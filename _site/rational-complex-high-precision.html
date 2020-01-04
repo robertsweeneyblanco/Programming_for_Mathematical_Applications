@@ -1,0 +1,2500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Data Types</title>
+  <meta name="description" content="        Rational and complex numbers, higher precision In addition to the regular integer and floating point data types, Julia supports arbitrary precision a...">
+
+  <link rel="canonical" href="http://0.0.0.0:4000/Rational-Complex-High-Precision.html">
+  <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000/feed.xml">
+
+  <meta property="og:url"         content="http://0.0.0.0:4000/Rational-Complex-High-Precision.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Data Types" />
+<meta property="og:description" content="        Rational and complex numbers, higher precision In addition to the regular integer and floating point data types, Julia supports arbitrary precision a..." />
+<meta property="og:image"       content="http://0.0.0.0:4000/logo.png" />
+
+<meta name="twitter:card" content="summary">
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": "http://0.0.0.0:4000/Rational-Complex-High-Precision.html",
+  "headline": "Data Types",
+  "datePublished": "2020-01-04T04:29:54-06:00",
+  "dateModified": "2020-01-04T04:29:54-06:00",
+  "description": "        Rational and complex numbers, higher precision In addition to the regular integer and floating point data types, Julia supports arbitrary precision a...",
+  "author": {
+    "@type": "Person",
+    "name": "Per-Olof Persson and Robert Sweeney Blanco"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://0.0.0.0:4000",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "http://0.0.0.0:4000",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<!-- (mostly) copied from nbconvert configuration -->
+<!-- https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/mathjax.tpl -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    // Center justify equations in code and markdown cells. Elsewhere
+    // we use CSS to left justify single line equations in code cells.
+    displayAlign: 'center',
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}},
+        linebreaks: { automatic: true },
+    }
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML' async></script>
+
+
+  <!-- DOM updating function -->
+  <script src="/assets/js/page/dom-update.js"></script>
+
+  <!-- Selectors for elements on the page -->
+  <script src="/assets/js/page/documentSelectors.js"></script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
+  <script src="/assets/js/page/anchors.js" async></script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+
+  <!-- Load the auto-generating TOC (non-async otherwise the TOC won't load w/ turbolinks) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" async></script>
+  <script src="/assets/js/page/tocbot.js"></script>
+
+  <!-- Google analytics -->
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52617120-7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52617120-7');
+</script>
+
+
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script>
+
+  <!-- Load custom website scripts -->
+  <script src="/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("http://0.0.0.0:4000") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("https://datahub.berkeley.edu", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js" async></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+
+  <!-- Load JS that depends on site variables -->
+  <script src="/assets/js/page/copy-button.js" async></script>
+
+  <!-- Hide cell code -->
+  <script src="/assets/js/page/hide-cell.js" async></script>
+
+  <!-- Printing the screen -->
+  <!-- Include nbinteract for interactive widgets -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js" async></script>
+<script>
+printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "/assets/css/styles.css",
+        style: "#textbook_content {padding-top: 40px};",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: ignoreAssistList,
+        documentTitle: "Programming for Mathematical Applications"
+    })
+};
+
+initPrint = () => {
+    document.querySelector('#interact-button-print').addEventListener('click', printContent)
+}
+
+initFunction(initPrint)
+</script>
+
+</head>
+
+  <body>
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://jupyterbook.org/intro.html"><img src="/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">Programming for Mathematical Applications</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/intro.html"
+        >
+          
+          Home
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Julia-Introduction.html"
+        >
+          
+          Introduction
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Random-Numbers.html"
+        >
+          
+          Random Numbers
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/More-Arrays-And-Vectorization.html"
+        >
+          
+          Vectorization
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry c-sidebar__entry--active"
+          href="/Rational-Complex-High-Precision.html"
+        >
+          
+          Data Types
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Recursion-Divide-and-Conquer.html"
+        >
+          
+          Recursion
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Matrices_Linear_Algebra.html"
+        >
+          
+          Linear Algebra
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Strings_Files.html"
+        >
+          
+          String Files
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Types_Structs_Objects.html"
+        >
+          
+          Objects
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Various_Julia_Topics.html"
+        >
+          
+          Topics
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Computational_Geometry.html"
+        >
+          
+          Computational Geometry
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Image_Processing.html"
+        >
+          
+          Image Processing
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Differential_Equations.html"
+        >
+          
+          Differential Equations
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Optimization.html"
+        >
+          
+          Optimization
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Graphs.html"
+        >
+          
+          Graphs
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Sparse_Arrays.html"
+        >
+          
+          Sparse Arrays
+        </a>
+
+        
+      </li>
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</nav>
+
+      
+      <div class="c-topbar" id="top-navbar">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <div class="c-topbar__buttons">
+    <button
+      id="js-sidebar-toggle"
+      class="hamburger hamburger--arrowalt is-active"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="buttons">
+<div class="download-buttons-dropdown">
+    <button id="dropdown-button-trigger" class="interact-button"><img src="/assets/images/download-solid.svg" alt="Download" /></button>
+    <div class="download-buttons">
+        <a href="/content/Rational-Complex-High-Precision.ipynb" download>
+        <button id="interact-button-download" class="interact-button">.ipynb</button>
+        </a>
+        
+        <a id="interact-button-print"><button id="interact-button-download" class="interact-button">.pdf</button></a>
+    </div>
+</div>
+
+
+  
+  
+  
+  
+
+
+
+
+
+<a href="https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com//jupyter/jupyter-book&amp;branch=gh-pages&amp;subPath=content%2FRational-Complex-High-Precision.ipynb&amp;app=notebook"><button class="interact-button" id="interact-button-jupyterhub"><img class="interact-button-logo" src="/assets/images/logo_jupyterhub.svg" alt="Interact" />JupyterHub</button></a>
+
+
+
+
+</div>
+
+  </div>
+  <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+  <aside class="sidebar__right">
+    <header><h4 class="nav__title"><img src="/assets/images/list-solid.svg" alt="Search" />   On this page</h4></header>
+    <nav class="onthispage">
+    </nav>
+  </aside>
+  <a href="/search.html" class="topbar-right-button" id="search-button">
+    <img src="/assets/images/search-solid.svg" alt="Search" />
+  </a>
+</div>
+
+      <main class="c-textbook__page" tabindex="-1">
+            <div class="c-textbook__content" id="textbook_content">
+                  <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Rational-and-complex-numbers,-higher-precision">Rational and complex numbers, higher precision<a class="anchor-link" href="#Rational-and-complex-numbers,-higher-precision"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In addition to the regular integer and floating point data types, Julia supports <em>arbitrary precision arithmetic</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Arbitrary-precision-integers">Arbitrary precision integers<a class="anchor-link" href="#Arbitrary-precision-integers"> </a></h3><p>The <code>BigInt</code> data type represents arbitrarily large integers. You can create a <code>BigInt</code> by passing an integer:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="kt">BigInt</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1234</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But note that the number (<code>1234</code> in this example) will first be interpreted as an <code>Int64</code>, and then converted to a <code>BigInt</code>. This means you cannot create larger numbers than what <code>Int64</code> supports using this syntax:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="kt">BigInt</span><span class="p">(</span><span class="n">typemax</span><span class="p">(</span><span class="kt">Int64</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>    <span class="c"># Incorrect - overflow</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-9223372036854775808</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, expressions involving <code>BigInt</code> objects will automatically be evaluated using the higher precision:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="kt">BigInt</span><span class="p">(</span><span class="n">typemax</span><span class="p">(</span><span class="kt">Int64</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>    <span class="c"># Correct - evaluated using higher precision</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9223372036854775808</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another option is to create the <code>BigInt</code> object using a string syntax, which supports arbitrary lengths:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">parse</span><span class="p">(</span><span class="kt">BigInt</span><span class="p">,</span> <span class="s">&quot;12345678901234567890&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>12345678901234567890</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since Julia automatically will use the higher precision arithmetics for <code>BigInt</code> objects, many of the existing functions and user functions will work without any changes:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">factorial</span><span class="p">(</span><span class="kt">BigInt</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>            <span class="c"># Would have given overflow with Int64</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>265252859812191058636308480000000</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Largest-exponential">Example: Largest exponential<a class="anchor-link" href="#Example:-Largest-exponential"> </a></h3><p>Project Euler, problem 99:</p>
+<blockquote><p>Comparing two numbers written in index form like $2^{11}$ and $3^7$ is not difficult, as any calculator would confirm that $2^{11} = 2048 &lt; 3^7 = 2187$.</p>
+<p>However, confirming that $632382^{518061} &gt; 519432^{525806}$ would be much more difficult, as both numbers contain over three million digits.</p>
+<p>Using base_exp.txt (right click and 'Save Link/Target As...'), a 22K text file containing one thousand lines with a base/exponent pair on each line, determine which line number has the greatest numerical value.</p>
+<p>NOTE: The first two lines in the file represent the numbers in the example given above.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This problem is trivial to solve using <code>BigInt</code> numbers. First define an array with the numbers provided in the text file:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">base_exp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">519432</span> <span class="mi">525806</span><span class="p">;</span> <span class="mi">632382</span> <span class="mi">518061</span><span class="p">;</span> <span class="mi">78864</span> <span class="mi">613712</span><span class="p">;</span> <span class="mi">466580</span> <span class="mi">530130</span><span class="p">;</span> <span class="mi">780495</span> <span class="mi">510032</span><span class="p">;</span> <span class="mi">525895</span> <span class="mi">525320</span><span class="p">;</span> <span class="mi">15991</span> <span class="mi">714883</span><span class="p">;</span> <span class="mi">960290</span> <span class="mi">502358</span><span class="p">;</span> <span class="mi">760018</span> <span class="mi">511029</span><span class="p">;</span> <span class="mi">166800</span> <span class="mi">575487</span><span class="p">;</span> <span class="mi">210884</span> <span class="mi">564478</span><span class="p">;</span> <span class="mi">555151</span> <span class="mi">523163</span><span class="p">;</span> <span class="mi">681146</span> <span class="mi">515199</span><span class="p">;</span> <span class="mi">563395</span> <span class="mi">522587</span><span class="p">;</span> <span class="mi">738250</span> <span class="mi">512126</span><span class="p">;</span> <span class="mi">923525</span> <span class="mi">503780</span><span class="p">;</span> <span class="mi">595148</span> <span class="mi">520429</span><span class="p">;</span> <span class="mi">177108</span> <span class="mi">572629</span><span class="p">;</span> <span class="mi">750923</span> <span class="mi">511482</span><span class="p">;</span> <span class="mi">440902</span> <span class="mi">532446</span><span class="p">;</span> <span class="mi">881418</span> <span class="mi">505504</span><span class="p">;</span> <span class="mi">422489</span> <span class="mi">534197</span><span class="p">;</span> <span class="mi">979858</span> <span class="mi">501616</span><span class="p">;</span> <span class="mi">685893</span> <span class="mi">514935</span><span class="p">;</span> <span class="mi">747477</span> <span class="mi">511661</span><span class="p">;</span> <span class="mi">167214</span> <span class="mi">575367</span><span class="p">;</span> <span class="mi">234140</span> <span class="mi">559696</span><span class="p">;</span> <span class="mi">940238</span> <span class="mi">503122</span><span class="p">;</span> <span class="mi">728969</span> <span class="mi">512609</span><span class="p">;</span> <span class="mi">232083</span> <span class="mi">560102</span><span class="p">;</span> <span class="mi">900971</span> <span class="mi">504694</span><span class="p">;</span> <span class="mi">688801</span> <span class="mi">514772</span><span class="p">;</span> <span class="mi">189664</span> <span class="mi">569402</span><span class="p">;</span> <span class="mi">891022</span> <span class="mi">505104</span><span class="p">;</span> <span class="mi">445689</span> <span class="mi">531996</span><span class="p">;</span> <span class="mi">119570</span> <span class="mi">591871</span><span class="p">;</span> <span class="mi">821453</span> <span class="mi">508118</span><span class="p">;</span> <span class="mi">371084</span> <span class="mi">539600</span><span class="p">;</span> <span class="mi">911745</span> <span class="mi">504251</span><span class="p">;</span> <span class="mi">623655</span> <span class="mi">518600</span><span class="p">;</span> <span class="mi">144361</span> <span class="mi">582486</span><span class="p">;</span> <span class="mi">352442</span> <span class="mi">541775</span><span class="p">;</span> <span class="mi">420726</span> <span class="mi">534367</span><span class="p">;</span> <span class="mi">295298</span> <span class="mi">549387</span><span class="p">;</span> <span class="mi">6530</span> <span class="mi">787777</span><span class="p">;</span> <span class="mi">468397</span> <span class="mi">529976</span><span class="p">;</span> <span class="mi">672336</span> <span class="mi">515696</span><span class="p">;</span> <span class="mi">431861</span> <span class="mi">533289</span><span class="p">;</span> <span class="mi">84228</span> <span class="mi">610150</span><span class="p">;</span> <span class="mi">805376</span> <span class="mi">508857</span><span class="p">;</span> <span class="mi">444409</span> <span class="mi">532117</span><span class="p">;</span> <span class="mi">33833</span> <span class="mi">663511</span><span class="p">;</span> <span class="mi">381850</span> <span class="mi">538396</span><span class="p">;</span> <span class="mi">402931</span> <span class="mi">536157</span><span class="p">;</span> <span class="mi">92901</span> <span class="mi">604930</span><span class="p">;</span> <span class="mi">304825</span> <span class="mi">548004</span><span class="p">;</span> <span class="mi">731917</span> <span class="mi">512452</span><span class="p">;</span> <span class="mi">753734</span> <span class="mi">511344</span><span class="p">;</span> <span class="mi">51894</span> <span class="mi">637373</span><span class="p">;</span> <span class="mi">151578</span> <span class="mi">580103</span><span class="p">;</span> <span class="mi">295075</span> <span class="mi">549421</span><span class="p">;</span> <span class="mi">303590</span> <span class="mi">548183</span><span class="p">;</span> <span class="mi">333594</span> <span class="mi">544123</span><span class="p">;</span> <span class="mi">683952</span> <span class="mi">515042</span><span class="p">;</span> <span class="mi">60090</span> <span class="mi">628880</span><span class="p">;</span> <span class="mi">951420</span> <span class="mi">502692</span><span class="p">;</span> <span class="mi">28335</span> <span class="mi">674991</span><span class="p">;</span> <span class="mi">714940</span> <span class="mi">513349</span><span class="p">;</span> <span class="mi">343858</span> <span class="mi">542826</span><span class="p">;</span> <span class="mi">549279</span> <span class="mi">523586</span><span class="p">;</span> <span class="mi">804571</span> <span class="mi">508887</span><span class="p">;</span> <span class="mi">260653</span> <span class="mi">554881</span><span class="p">;</span> <span class="mi">291399</span> <span class="mi">549966</span><span class="p">;</span> <span class="mi">402342</span> <span class="mi">536213</span><span class="p">;</span> <span class="mi">408889</span> <span class="mi">535550</span><span class="p">;</span> <span class="mi">40328</span> <span class="mi">652524</span><span class="p">;</span> <span class="mi">375856</span> <span class="mi">539061</span><span class="p">;</span> <span class="mi">768907</span> <span class="mi">510590</span><span class="p">;</span> <span class="mi">165993</span> <span class="mi">575715</span><span class="p">;</span> <span class="mi">976327</span> <span class="mi">501755</span><span class="p">;</span> <span class="mi">898500</span> <span class="mi">504795</span><span class="p">;</span> <span class="mi">360404</span> <span class="mi">540830</span><span class="p">;</span> <span class="mi">478714</span> <span class="mi">529095</span><span class="p">;</span> <span class="mi">694144</span> <span class="mi">514472</span><span class="p">;</span> <span class="mi">488726</span> <span class="mi">528258</span><span class="p">;</span> <span class="mi">841380</span> <span class="mi">507226</span><span class="p">;</span> <span class="mi">328012</span> <span class="mi">544839</span><span class="p">;</span> <span class="mi">22389</span> <span class="mi">690868</span><span class="p">;</span> <span class="mi">604053</span> <span class="mi">519852</span><span class="p">;</span> <span class="mi">329514</span> <span class="mi">544641</span><span class="p">;</span> <span class="mi">772965</span> <span class="mi">510390</span><span class="p">;</span> <span class="mi">492798</span> <span class="mi">527927</span><span class="p">;</span> <span class="mi">30125</span> <span class="mi">670983</span><span class="p">;</span> <span class="mi">895603</span> <span class="mi">504906</span><span class="p">;</span> <span class="mi">450785</span> <span class="mi">531539</span><span class="p">;</span> <span class="mi">840237</span> <span class="mi">507276</span><span class="p">;</span> <span class="mi">380711</span> <span class="mi">538522</span><span class="p">;</span> <span class="mi">63577</span> <span class="mi">625673</span><span class="p">;</span> <span class="mi">76801</span> <span class="mi">615157</span><span class="p">;</span> <span class="mi">502694</span> <span class="mi">527123</span><span class="p">;</span> <span class="mi">597706</span> <span class="mi">520257</span><span class="p">;</span> <span class="mi">310484</span> <span class="mi">547206</span><span class="p">;</span> <span class="mi">944468</span> <span class="mi">502959</span><span class="p">;</span> <span class="mi">121283</span> <span class="mi">591152</span><span class="p">;</span> <span class="mi">451131</span> <span class="mi">531507</span><span class="p">;</span> <span class="mi">566499</span> <span class="mi">522367</span><span class="p">;</span> <span class="mi">425373</span> <span class="mi">533918</span><span class="p">;</span> <span class="mi">40240</span> <span class="mi">652665</span><span class="p">;</span> <span class="mi">39130</span> <span class="mi">654392</span><span class="p">;</span> <span class="mi">714926</span> <span class="mi">513355</span><span class="p">;</span> <span class="mi">469219</span> <span class="mi">529903</span><span class="p">;</span> <span class="mi">806929</span> <span class="mi">508783</span><span class="p">;</span> <span class="mi">287970</span> <span class="mi">550487</span><span class="p">;</span> <span class="mi">92189</span> <span class="mi">605332</span><span class="p">;</span> <span class="mi">103841</span> <span class="mi">599094</span><span class="p">;</span> <span class="mi">671839</span> <span class="mi">515725</span><span class="p">;</span> <span class="mi">452048</span> <span class="mi">531421</span><span class="p">;</span> <span class="mi">987837</span> <span class="mi">501323</span><span class="p">;</span> <span class="mi">935192</span> <span class="mi">503321</span><span class="p">;</span> <span class="mi">88585</span> <span class="mi">607450</span><span class="p">;</span> <span class="mi">613883</span> <span class="mi">519216</span><span class="p">;</span> <span class="mi">144551</span> <span class="mi">582413</span><span class="p">;</span> <span class="mi">647359</span> <span class="mi">517155</span><span class="p">;</span> <span class="mi">213902</span> <span class="mi">563816</span><span class="p">;</span> <span class="mi">184120</span> <span class="mi">570789</span><span class="p">;</span> <span class="mi">258126</span> <span class="mi">555322</span><span class="p">;</span> <span class="mi">502546</span> <span class="mi">527130</span><span class="p">;</span> <span class="mi">407655</span> <span class="mi">535678</span><span class="p">;</span> <span class="mi">401528</span> <span class="mi">536306</span><span class="p">;</span> <span class="mi">477490</span> <span class="mi">529193</span><span class="p">;</span> <span class="mi">841085</span> <span class="mi">507237</span><span class="p">;</span> <span class="mi">732831</span> <span class="mi">512408</span><span class="p">;</span> <span class="mi">833000</span> <span class="mi">507595</span><span class="p">;</span> <span class="mi">904694</span> <span class="mi">504542</span><span class="p">;</span> <span class="mi">581435</span> <span class="mi">521348</span><span class="p">;</span> <span class="mi">455545</span> <span class="mi">531110</span><span class="p">;</span> <span class="mi">873558</span> <span class="mi">505829</span><span class="p">;</span> <span class="mi">94916</span> <span class="mi">603796</span><span class="p">;</span> <span class="mi">720176</span> <span class="mi">513068</span><span class="p">;</span> <span class="mi">545034</span> <span class="mi">523891</span><span class="p">;</span> <span class="mi">246348</span> <span class="mi">557409</span><span class="p">;</span> <span class="mi">556452</span> <span class="mi">523079</span><span class="p">;</span> <span class="mi">832015</span> <span class="mi">507634</span><span class="p">;</span> <span class="mi">173663</span> <span class="mi">573564</span><span class="p">;</span> <span class="mi">502634</span> <span class="mi">527125</span><span class="p">;</span> <span class="mi">250732</span> <span class="mi">556611</span><span class="p">;</span> <span class="mi">569786</span> <span class="mi">522139</span><span class="p">;</span> <span class="mi">216919</span> <span class="mi">563178</span><span class="p">;</span> <span class="mi">521815</span> <span class="mi">525623</span><span class="p">;</span> <span class="mi">92304</span> <span class="mi">605270</span><span class="p">;</span> <span class="mi">164446</span> <span class="mi">576167</span><span class="p">;</span> <span class="mi">753413</span> <span class="mi">511364</span><span class="p">;</span> <span class="mi">11410</span> <span class="mi">740712</span><span class="p">;</span> <span class="mi">448845</span> <span class="mi">531712</span><span class="p">;</span> <span class="mi">925072</span> <span class="mi">503725</span><span class="p">;</span> <span class="mi">564888</span> <span class="mi">522477</span><span class="p">;</span> <span class="mi">7062</span> <span class="mi">780812</span><span class="p">;</span> <span class="mi">641155</span> <span class="mi">517535</span><span class="p">;</span> <span class="mi">738878</span> <span class="mi">512100</span><span class="p">;</span> <span class="mi">636204</span> <span class="mi">517828</span><span class="p">;</span> <span class="mi">372540</span> <span class="mi">539436</span><span class="p">;</span> <span class="mi">443162</span> <span class="mi">532237</span><span class="p">;</span> <span class="mi">571192</span> <span class="mi">522042</span><span class="p">;</span> <span class="mi">655350</span> <span class="mi">516680</span><span class="p">;</span> <span class="mi">299741</span> <span class="mi">548735</span><span class="p">;</span> <span class="mi">581914</span> <span class="mi">521307</span><span class="p">;</span> <span class="mi">965471</span> <span class="mi">502156</span><span class="p">;</span> <span class="mi">513441</span> <span class="mi">526277</span><span class="p">;</span> <span class="mi">808682</span> <span class="mi">508700</span><span class="p">;</span> <span class="mi">237589</span> <span class="mi">559034</span><span class="p">;</span> <span class="mi">543300</span> <span class="mi">524025</span><span class="p">;</span> <span class="mi">804712</span> <span class="mi">508889</span><span class="p">;</span> <span class="mi">247511</span> <span class="mi">557192</span><span class="p">;</span> <span class="mi">543486</span> <span class="mi">524008</span><span class="p">;</span> <span class="mi">504383</span> <span class="mi">526992</span><span class="p">;</span> <span class="mi">326529</span> <span class="mi">545039</span><span class="p">;</span> <span class="mi">792493</span> <span class="mi">509458</span><span class="p">;</span> <span class="mi">86033</span> <span class="mi">609017</span><span class="p">;</span> <span class="mi">126554</span> <span class="mi">589005</span><span class="p">;</span> <span class="mi">579379</span> <span class="mi">521481</span><span class="p">;</span> <span class="mi">948026</span> <span class="mi">502823</span><span class="p">;</span> <span class="mi">404777</span> <span class="mi">535969</span><span class="p">;</span> <span class="mi">265767</span> <span class="mi">554022</span><span class="p">;</span> <span class="mi">266876</span> <span class="mi">553840</span><span class="p">;</span> <span class="mi">46631</span> <span class="mi">643714</span><span class="p">;</span> <span class="mi">492397</span> <span class="mi">527958</span><span class="p">;</span> <span class="mi">856106</span> <span class="mi">506581</span><span class="p">;</span> <span class="mi">795757</span> <span class="mi">509305</span><span class="p">;</span> <span class="mi">748946</span> <span class="mi">511584</span><span class="p">;</span> <span class="mi">294694</span> <span class="mi">549480</span><span class="p">;</span> <span class="mi">409781</span> <span class="mi">535463</span><span class="p">;</span> <span class="mi">775887</span> <span class="mi">510253</span><span class="p">;</span> <span class="mi">543747</span> <span class="mi">523991</span><span class="p">;</span> <span class="mi">210592</span> <span class="mi">564536</span><span class="p">;</span> <span class="mi">517119</span> <span class="mi">525990</span><span class="p">;</span> <span class="mi">520253</span> <span class="mi">525751</span><span class="p">;</span> <span class="mi">247926</span> <span class="mi">557124</span><span class="p">;</span> <span class="mi">592141</span> <span class="mi">520626</span><span class="p">;</span> <span class="mi">346580</span> <span class="mi">542492</span><span class="p">;</span> <span class="mi">544969</span> <span class="mi">523902</span><span class="p">;</span> <span class="mi">506501</span> <span class="mi">526817</span><span class="p">;</span> <span class="mi">244520</span> <span class="mi">557738</span><span class="p">;</span> <span class="mi">144745</span> <span class="mi">582349</span><span class="p">;</span> <span class="mi">69274</span> <span class="mi">620858</span><span class="p">;</span> <span class="mi">292620</span> <span class="mi">549784</span><span class="p">;</span> <span class="mi">926027</span> <span class="mi">503687</span><span class="p">;</span> <span class="mi">736320</span> <span class="mi">512225</span><span class="p">;</span> <span class="mi">515528</span> <span class="mi">526113</span><span class="p">;</span> <span class="mi">407549</span> <span class="mi">535688</span><span class="p">;</span> <span class="mi">848089</span> <span class="mi">506927</span><span class="p">;</span> <span class="mi">24141</span> <span class="mi">685711</span><span class="p">;</span> <span class="mi">9224</span> <span class="mi">757964</span><span class="p">;</span> <span class="mi">980684</span> <span class="mi">501586</span><span class="p">;</span> <span class="mi">175259</span> <span class="mi">573121</span><span class="p">;</span> <span class="mi">489160</span> <span class="mi">528216</span><span class="p">;</span> <span class="mi">878970</span> <span class="mi">505604</span><span class="p">;</span> <span class="mi">969546</span> <span class="mi">502002</span><span class="p">;</span> <span class="mi">525207</span> <span class="mi">525365</span><span class="p">;</span> <span class="mi">690461</span> <span class="mi">514675</span><span class="p">;</span> <span class="mi">156510</span> <span class="mi">578551</span><span class="p">;</span> <span class="mi">659778</span> <span class="mi">516426</span><span class="p">;</span> <span class="mi">468739</span> <span class="mi">529945</span><span class="p">;</span> <span class="mi">765252</span> <span class="mi">510770</span><span class="p">;</span> <span class="mi">76703</span> <span class="mi">615230</span><span class="p">;</span> <span class="mi">165151</span> <span class="mi">575959</span><span class="p">;</span> <span class="mi">29779</span> <span class="mi">671736</span><span class="p">;</span> <span class="mi">928865</span> <span class="mi">503569</span><span class="p">;</span> <span class="mi">577538</span> <span class="mi">521605</span><span class="p">;</span> <span class="mi">927555</span> <span class="mi">503618</span><span class="p">;</span> <span class="mi">185377</span> <span class="mi">570477</span><span class="p">;</span> <span class="mi">974756</span> <span class="mi">501809</span><span class="p">;</span> <span class="mi">800130</span> <span class="mi">509093</span><span class="p">;</span> <span class="mi">217016</span> <span class="mi">563153</span><span class="p">;</span> <span class="mi">365709</span> <span class="mi">540216</span><span class="p">;</span> <span class="mi">774508</span> <span class="mi">510320</span><span class="p">;</span> <span class="mi">588716</span> <span class="mi">520851</span><span class="p">;</span> <span class="mi">631673</span> <span class="mi">518104</span><span class="p">;</span> <span class="mi">954076</span> <span class="mi">502590</span><span class="p">;</span> <span class="mi">777828</span> <span class="mi">510161</span><span class="p">;</span> <span class="mi">990659</span> <span class="mi">501222</span><span class="p">;</span> <span class="mi">597799</span> <span class="mi">520254</span><span class="p">;</span> <span class="mi">786905</span> <span class="mi">509727</span><span class="p">;</span> <span class="mi">512547</span> <span class="mi">526348</span><span class="p">;</span> <span class="mi">756449</span> <span class="mi">511212</span><span class="p">;</span> <span class="mi">869787</span> <span class="mi">505988</span><span class="p">;</span> <span class="mi">653747</span> <span class="mi">516779</span><span class="p">;</span> <span class="mi">84623</span> <span class="mi">609900</span><span class="p">;</span> <span class="mi">839698</span> <span class="mi">507295</span><span class="p">;</span> <span class="mi">30159</span> <span class="mi">670909</span><span class="p">;</span> <span class="mi">797275</span> <span class="mi">509234</span><span class="p">;</span> <span class="mi">678136</span> <span class="mi">515373</span><span class="p">;</span> <span class="mi">897144</span> <span class="mi">504851</span><span class="p">;</span> <span class="mi">989554</span> <span class="mi">501263</span><span class="p">;</span> <span class="mi">413292</span> <span class="mi">535106</span><span class="p">;</span> <span class="mi">55297</span> <span class="mi">633667</span><span class="p">;</span> <span class="mi">788650</span> <span class="mi">509637</span><span class="p">;</span> <span class="mi">486748</span> <span class="mi">528417</span><span class="p">;</span> <span class="mi">150724</span> <span class="mi">580377</span><span class="p">;</span> <span class="mi">56434</span> <span class="mi">632490</span><span class="p">;</span> <span class="mi">77207</span> <span class="mi">614869</span><span class="p">;</span> <span class="mi">588631</span> <span class="mi">520859</span><span class="p">;</span> <span class="mi">611619</span> <span class="mi">519367</span><span class="p">;</span> <span class="mi">100006</span> <span class="mi">601055</span><span class="p">;</span> <span class="mi">528924</span> <span class="mi">525093</span><span class="p">;</span> <span class="mi">190225</span> <span class="mi">569257</span><span class="p">;</span> <span class="mi">851155</span> <span class="mi">506789</span><span class="p">;</span> <span class="mi">682593</span> <span class="mi">515114</span><span class="p">;</span> <span class="mi">613043</span> <span class="mi">519275</span><span class="p">;</span> <span class="mi">514673</span> <span class="mi">526183</span><span class="p">;</span> <span class="mi">877634</span> <span class="mi">505655</span><span class="p">;</span> <span class="mi">878905</span> <span class="mi">505602</span><span class="p">;</span> <span class="mi">1926</span> <span class="mi">914951</span><span class="p">;</span> <span class="mi">613245</span> <span class="mi">519259</span><span class="p">;</span> <span class="mi">152481</span> <span class="mi">579816</span><span class="p">;</span> <span class="mi">841774</span> <span class="mi">507203</span><span class="p">;</span> <span class="mi">71060</span> <span class="mi">619442</span><span class="p">;</span> <span class="mi">865335</span> <span class="mi">506175</span><span class="p">;</span> <span class="mi">90244</span> <span class="mi">606469</span><span class="p">;</span> <span class="mi">302156</span> <span class="mi">548388</span><span class="p">;</span> <span class="mi">399059</span> <span class="mi">536557</span><span class="p">;</span> <span class="mi">478465</span> <span class="mi">529113</span><span class="p">;</span> <span class="mi">558601</span> <span class="mi">522925</span><span class="p">;</span> <span class="mi">69132</span> <span class="mi">620966</span><span class="p">;</span> <span class="mi">267663</span> <span class="mi">553700</span><span class="p">;</span> <span class="mi">988276</span> <span class="mi">501310</span><span class="p">;</span> <span class="mi">378354</span> <span class="mi">538787</span><span class="p">;</span> <span class="mi">529909</span> <span class="mi">525014</span><span class="p">;</span> <span class="mi">161733</span> <span class="mi">576968</span><span class="p">;</span> <span class="mi">758541</span> <span class="mi">511109</span><span class="p">;</span> <span class="mi">823425</span> <span class="mi">508024</span><span class="p">;</span> <span class="mi">149821</span> <span class="mi">580667</span><span class="p">;</span> <span class="mi">269258</span> <span class="mi">553438</span><span class="p">;</span> <span class="mi">481152</span> <span class="mi">528891</span><span class="p">;</span> <span class="mi">120871</span> <span class="mi">591322</span><span class="p">;</span> <span class="mi">972322</span> <span class="mi">501901</span><span class="p">;</span> <span class="mi">981350</span> <span class="mi">501567</span><span class="p">;</span> <span class="mi">676129</span> <span class="mi">515483</span><span class="p">;</span> <span class="mi">950860</span> <span class="mi">502717</span><span class="p">;</span> <span class="mi">119000</span> <span class="mi">592114</span><span class="p">;</span> <span class="mi">392252</span> <span class="mi">537272</span><span class="p">;</span> <span class="mi">191618</span> <span class="mi">568919</span><span class="p">;</span> <span class="mi">946699</span> <span class="mi">502874</span><span class="p">;</span> <span class="mi">289555</span> <span class="mi">550247</span><span class="p">;</span> <span class="mi">799322</span> <span class="mi">509139</span><span class="p">;</span> <span class="mi">703886</span> <span class="mi">513942</span><span class="p">;</span> <span class="mi">194812</span> <span class="mi">568143</span><span class="p">;</span> <span class="mi">261823</span> <span class="mi">554685</span><span class="p">;</span> <span class="mi">203052</span> <span class="mi">566221</span><span class="p">;</span> <span class="mi">217330</span> <span class="mi">563093</span><span class="p">;</span> <span class="mi">734748</span> <span class="mi">512313</span><span class="p">;</span> <span class="mi">391759</span> <span class="mi">537328</span><span class="p">;</span> <span class="mi">807052</span> <span class="mi">508777</span><span class="p">;</span> <span class="mi">564467</span> <span class="mi">522510</span><span class="p">;</span> <span class="mi">59186</span> <span class="mi">629748</span><span class="p">;</span> <span class="mi">113447</span> <span class="mi">594545</span><span class="p">;</span> <span class="mi">518063</span> <span class="mi">525916</span><span class="p">;</span> <span class="mi">905944</span> <span class="mi">504492</span><span class="p">;</span> <span class="mi">613922</span> <span class="mi">519213</span><span class="p">;</span> <span class="mi">439093</span> <span class="mi">532607</span><span class="p">;</span> <span class="mi">445946</span> <span class="mi">531981</span><span class="p">;</span> <span class="mi">230530</span> <span class="mi">560399</span><span class="p">;</span> <span class="mi">297887</span> <span class="mi">549007</span><span class="p">;</span> <span class="mi">459029</span> <span class="mi">530797</span><span class="p">;</span> <span class="mi">403692</span> <span class="mi">536075</span><span class="p">;</span> <span class="mi">855118</span> <span class="mi">506616</span><span class="p">;</span> <span class="mi">963127</span> <span class="mi">502245</span><span class="p">;</span> <span class="mi">841711</span> <span class="mi">507208</span><span class="p">;</span> <span class="mi">407411</span> <span class="mi">535699</span><span class="p">;</span> <span class="mi">924729</span> <span class="mi">503735</span><span class="p">;</span> <span class="mi">914823</span> <span class="mi">504132</span><span class="p">;</span> <span class="mi">333725</span> <span class="mi">544101</span><span class="p">;</span> <span class="mi">176345</span> <span class="mi">572832</span><span class="p">;</span> <span class="mi">912507</span> <span class="mi">504225</span><span class="p">;</span> <span class="mi">411273</span> <span class="mi">535308</span><span class="p">;</span> <span class="mi">259774</span> <span class="mi">555036</span><span class="p">;</span> <span class="mi">632853</span> <span class="mi">518038</span><span class="p">;</span> <span class="mi">119723</span> <span class="mi">591801</span><span class="p">;</span> <span class="mi">163902</span> <span class="mi">576321</span><span class="p">;</span> <span class="mi">22691</span> <span class="mi">689944</span><span class="p">;</span> <span class="mi">402427</span> <span class="mi">536212</span><span class="p">;</span> <span class="mi">175769</span> <span class="mi">572988</span><span class="p">;</span> <span class="mi">837260</span> <span class="mi">507402</span><span class="p">;</span> <span class="mi">603432</span> <span class="mi">519893</span><span class="p">;</span> <span class="mi">313679</span> <span class="mi">546767</span><span class="p">;</span> <span class="mi">538165</span> <span class="mi">524394</span><span class="p">;</span> <span class="mi">549026</span> <span class="mi">523608</span><span class="p">;</span> <span class="mi">61083</span> <span class="mi">627945</span><span class="p">;</span> <span class="mi">898345</span> <span class="mi">504798</span><span class="p">;</span> <span class="mi">992556</span> <span class="mi">501153</span><span class="p">;</span> <span class="mi">369999</span> <span class="mi">539727</span><span class="p">;</span> <span class="mi">32847</span> <span class="mi">665404</span><span class="p">;</span> <span class="mi">891292</span> <span class="mi">505088</span><span class="p">;</span> <span class="mi">152715</span> <span class="mi">579732</span><span class="p">;</span> <span class="mi">824104</span> <span class="mi">507997</span><span class="p">;</span> <span class="mi">234057</span> <span class="mi">559711</span><span class="p">;</span> <span class="mi">730507</span> <span class="mi">512532</span><span class="p">;</span> <span class="mi">960529</span> <span class="mi">502340</span><span class="p">;</span> <span class="mi">388395</span> <span class="mi">537687</span><span class="p">;</span> <span class="mi">958170</span> <span class="mi">502437</span><span class="p">;</span> <span class="mi">57105</span> <span class="mi">631806</span><span class="p">;</span> <span class="mi">186025</span> <span class="mi">570311</span><span class="p">;</span> <span class="mi">993043</span> <span class="mi">501133</span><span class="p">;</span> <span class="mi">576770</span> <span class="mi">521664</span><span class="p">;</span> <span class="mi">215319</span> <span class="mi">563513</span><span class="p">;</span> <span class="mi">927342</span> <span class="mi">503628</span><span class="p">;</span> <span class="mi">521353</span> <span class="mi">525666</span><span class="p">;</span> <span class="mi">39563</span> <span class="mi">653705</span><span class="p">;</span> <span class="mi">752516</span> <span class="mi">511408</span><span class="p">;</span> <span class="mi">110755</span> <span class="mi">595770</span><span class="p">;</span> <span class="mi">309749</span> <span class="mi">547305</span><span class="p">;</span> <span class="mi">374379</span> <span class="mi">539224</span><span class="p">;</span> <span class="mi">919184</span> <span class="mi">503952</span><span class="p">;</span> <span class="mi">990652</span> <span class="mi">501226</span><span class="p">;</span> <span class="mi">647780</span> <span class="mi">517135</span><span class="p">;</span> <span class="mi">187177</span> <span class="mi">570017</span><span class="p">;</span> <span class="mi">168938</span> <span class="mi">574877</span><span class="p">;</span> <span class="mi">649558</span> <span class="mi">517023</span><span class="p">;</span> <span class="mi">278126</span> <span class="mi">552016</span><span class="p">;</span> <span class="mi">162039</span> <span class="mi">576868</span><span class="p">;</span> <span class="mi">658512</span> <span class="mi">516499</span><span class="p">;</span> <span class="mi">498115</span> <span class="mi">527486</span><span class="p">;</span> <span class="mi">896583</span> <span class="mi">504868</span><span class="p">;</span> <span class="mi">561170</span> <span class="mi">522740</span><span class="p">;</span> <span class="mi">747772</span> <span class="mi">511647</span><span class="p">;</span> <span class="mi">775093</span> <span class="mi">510294</span><span class="p">;</span> <span class="mi">652081</span> <span class="mi">516882</span><span class="p">;</span> <span class="mi">724905</span> <span class="mi">512824</span><span class="p">;</span> <span class="mi">499707</span> <span class="mi">527365</span><span class="p">;</span> <span class="mi">47388</span> <span class="mi">642755</span><span class="p">;</span> <span class="mi">646668</span> <span class="mi">517204</span><span class="p">;</span> <span class="mi">571700</span> <span class="mi">522007</span><span class="p">;</span> <span class="mi">180430</span> <span class="mi">571747</span><span class="p">;</span> <span class="mi">710015</span> <span class="mi">513617</span><span class="p">;</span> <span class="mi">435522</span> <span class="mi">532941</span><span class="p">;</span> <span class="mi">98137</span> <span class="mi">602041</span><span class="p">;</span> <span class="mi">759176</span> <span class="mi">511070</span><span class="p">;</span> <span class="mi">486124</span> <span class="mi">528467</span><span class="p">;</span> <span class="mi">526942</span> <span class="mi">525236</span><span class="p">;</span> <span class="mi">878921</span> <span class="mi">505604</span><span class="p">;</span> <span class="mi">408313</span> <span class="mi">535602</span><span class="p">;</span> <span class="mi">926980</span> <span class="mi">503640</span><span class="p">;</span> <span class="mi">882353</span> <span class="mi">505459</span><span class="p">;</span> <span class="mi">566887</span> <span class="mi">522345</span><span class="p">;</span> <span class="mi">3326</span> <span class="mi">853312</span><span class="p">;</span> <span class="mi">911981</span> <span class="mi">504248</span><span class="p">;</span> <span class="mi">416309</span> <span class="mi">534800</span><span class="p">;</span> <span class="mi">392991</span> <span class="mi">537199</span><span class="p">;</span> <span class="mi">622829</span> <span class="mi">518651</span><span class="p">;</span> <span class="mi">148647</span> <span class="mi">581055</span><span class="p">;</span> <span class="mi">496483</span> <span class="mi">527624</span><span class="p">;</span> <span class="mi">666314</span> <span class="mi">516044</span><span class="p">;</span> <span class="mi">48562</span> <span class="mi">641293</span><span class="p">;</span> <span class="mi">672618</span> <span class="mi">515684</span><span class="p">;</span> <span class="mi">443676</span> <span class="mi">532187</span><span class="p">;</span> <span class="mi">274065</span> <span class="mi">552661</span><span class="p">;</span> <span class="mi">265386</span> <span class="mi">554079</span><span class="p">;</span> <span class="mi">347668</span> <span class="mi">542358</span><span class="p">;</span> <span class="mi">31816</span> <span class="mi">667448</span><span class="p">;</span> <span class="mi">181575</span> <span class="mi">571446</span><span class="p">;</span> <span class="mi">961289</span> <span class="mi">502320</span><span class="p">;</span> <span class="mi">365689</span> <span class="mi">540214</span><span class="p">;</span> <span class="mi">987950</span> <span class="mi">501317</span><span class="p">;</span> <span class="mi">932299</span> <span class="mi">503440</span><span class="p">;</span> <span class="mi">27388</span> <span class="mi">677243</span><span class="p">;</span> <span class="mi">746701</span> <span class="mi">511701</span><span class="p">;</span> <span class="mi">492258</span> <span class="mi">527969</span><span class="p">;</span> <span class="mi">147823</span> <span class="mi">581323</span><span class="p">;</span> <span class="mi">57918</span> <span class="mi">630985</span><span class="p">;</span> <span class="mi">838849</span> <span class="mi">507333</span><span class="p">;</span> <span class="mi">678038</span> <span class="mi">515375</span><span class="p">;</span> <span class="mi">27852</span> <span class="mi">676130</span><span class="p">;</span> <span class="mi">850241</span> <span class="mi">506828</span><span class="p">;</span> <span class="mi">818403</span> <span class="mi">508253</span><span class="p">;</span> <span class="mi">131717</span> <span class="mi">587014</span><span class="p">;</span> <span class="mi">850216</span> <span class="mi">506834</span><span class="p">;</span> <span class="mi">904848</span> <span class="mi">504529</span><span class="p">;</span> <span class="mi">189758</span> <span class="mi">569380</span><span class="p">;</span> <span class="mi">392845</span> <span class="mi">537217</span><span class="p">;</span> <span class="mi">470876</span> <span class="mi">529761</span><span class="p">;</span> <span class="mi">925353</span> <span class="mi">503711</span><span class="p">;</span> <span class="mi">285431</span> <span class="mi">550877</span><span class="p">;</span> <span class="mi">454098</span> <span class="mi">531234</span><span class="p">;</span> <span class="mi">823910</span> <span class="mi">508003</span><span class="p">;</span> <span class="mi">318493</span> <span class="mi">546112</span><span class="p">;</span> <span class="mi">766067</span> <span class="mi">510730</span><span class="p">;</span> <span class="mi">261277</span> <span class="mi">554775</span><span class="p">;</span> <span class="mi">421530</span> <span class="mi">534289</span><span class="p">;</span> <span class="mi">694130</span> <span class="mi">514478</span><span class="p">;</span> <span class="mi">120439</span> <span class="mi">591498</span><span class="p">;</span> <span class="mi">213308</span> <span class="mi">563949</span><span class="p">;</span> <span class="mi">854063</span> <span class="mi">506662</span><span class="p">;</span> <span class="mi">365255</span> <span class="mi">540263</span><span class="p">;</span> <span class="mi">165437</span> <span class="mi">575872</span><span class="p">;</span> <span class="mi">662240</span> <span class="mi">516281</span><span class="p">;</span> <span class="mi">289970</span> <span class="mi">550181</span><span class="p">;</span> <span class="mi">847977</span> <span class="mi">506933</span><span class="p">;</span> <span class="mi">546083</span> <span class="mi">523816</span><span class="p">;</span> <span class="mi">413252</span> <span class="mi">535113</span><span class="p">;</span> <span class="mi">975829</span> <span class="mi">501767</span><span class="p">;</span> <span class="mi">361540</span> <span class="mi">540701</span><span class="p">;</span> <span class="mi">235522</span> <span class="mi">559435</span><span class="p">;</span> <span class="mi">224643</span> <span class="mi">561577</span><span class="p">;</span> <span class="mi">736350</span> <span class="mi">512229</span><span class="p">;</span> <span class="mi">328303</span> <span class="mi">544808</span><span class="p">;</span> <span class="mi">35022</span> <span class="mi">661330</span><span class="p">;</span> <span class="mi">307838</span> <span class="mi">547578</span><span class="p">;</span> <span class="mi">474366</span> <span class="mi">529458</span><span class="p">;</span> <span class="mi">873755</span> <span class="mi">505819</span><span class="p">;</span> <span class="mi">73978</span> <span class="mi">617220</span><span class="p">;</span> <span class="mi">827387</span> <span class="mi">507845</span><span class="p">;</span> <span class="mi">670830</span> <span class="mi">515791</span><span class="p">;</span> <span class="mi">326511</span> <span class="mi">545034</span><span class="p">;</span> <span class="mi">309909</span> <span class="mi">547285</span><span class="p">;</span> <span class="mi">400970</span> <span class="mi">536363</span><span class="p">;</span> <span class="mi">884827</span> <span class="mi">505352</span><span class="p">;</span> <span class="mi">718307</span> <span class="mi">513175</span><span class="p">;</span> <span class="mi">28462</span> <span class="mi">674699</span><span class="p">;</span> <span class="mi">599384</span> <span class="mi">520150</span><span class="p">;</span> <span class="mi">253565</span> <span class="mi">556111</span><span class="p">;</span> <span class="mi">284009</span> <span class="mi">551093</span><span class="p">;</span> <span class="mi">343403</span> <span class="mi">542876</span><span class="p">;</span> <span class="mi">446557</span> <span class="mi">531921</span><span class="p">;</span> <span class="mi">992372</span> <span class="mi">501160</span><span class="p">;</span> <span class="mi">961601</span> <span class="mi">502308</span><span class="p">;</span> <span class="mi">696629</span> <span class="mi">514342</span><span class="p">;</span> <span class="mi">919537</span> <span class="mi">503945</span><span class="p">;</span> <span class="mi">894709</span> <span class="mi">504944</span><span class="p">;</span> <span class="mi">892201</span> <span class="mi">505051</span><span class="p">;</span> <span class="mi">358160</span> <span class="mi">541097</span><span class="p">;</span> <span class="mi">448503</span> <span class="mi">531745</span><span class="p">;</span> <span class="mi">832156</span> <span class="mi">507636</span><span class="p">;</span> <span class="mi">920045</span> <span class="mi">503924</span><span class="p">;</span> <span class="mi">926137</span> <span class="mi">503675</span><span class="p">;</span> <span class="mi">416754</span> <span class="mi">534757</span><span class="p">;</span> <span class="mi">254422</span> <span class="mi">555966</span><span class="p">;</span> <span class="mi">92498</span> <span class="mi">605151</span><span class="p">;</span> <span class="mi">826833</span> <span class="mi">507873</span><span class="p">;</span> <span class="mi">660716</span> <span class="mi">516371</span><span class="p">;</span> <span class="mi">689335</span> <span class="mi">514746</span><span class="p">;</span> <span class="mi">160045</span> <span class="mi">577467</span><span class="p">;</span> <span class="mi">814642</span> <span class="mi">508425</span><span class="p">;</span> <span class="mi">969939</span> <span class="mi">501993</span><span class="p">;</span> <span class="mi">242856</span> <span class="mi">558047</span><span class="p">;</span> <span class="mi">76302</span> <span class="mi">615517</span><span class="p">;</span> <span class="mi">472083</span> <span class="mi">529653</span><span class="p">;</span> <span class="mi">587101</span> <span class="mi">520964</span><span class="p">;</span> <span class="mi">99066</span> <span class="mi">601543</span><span class="p">;</span> <span class="mi">498005</span> <span class="mi">527503</span><span class="p">;</span> <span class="mi">709800</span> <span class="mi">513624</span><span class="p">;</span> <span class="mi">708000</span> <span class="mi">513716</span><span class="p">;</span> <span class="mi">20171</span> <span class="mi">698134</span><span class="p">;</span> <span class="mi">285020</span> <span class="mi">550936</span><span class="p">;</span> <span class="mi">266564</span> <span class="mi">553891</span><span class="p">;</span> <span class="mi">981563</span> <span class="mi">501557</span><span class="p">;</span> <span class="mi">846502</span> <span class="mi">506991</span><span class="p">;</span> <span class="mi">334</span> <span class="mi">1190800</span><span class="p">;</span> <span class="mi">209268</span> <span class="mi">564829</span><span class="p">;</span> <span class="mi">9844</span> <span class="mi">752610</span><span class="p">;</span> <span class="mi">996519</span> <span class="mi">501007</span><span class="p">;</span> <span class="mi">410059</span> <span class="mi">535426</span><span class="p">;</span> <span class="mi">432931</span> <span class="mi">533188</span><span class="p">;</span> <span class="mi">848012</span> <span class="mi">506929</span><span class="p">;</span> <span class="mi">966803</span> <span class="mi">502110</span><span class="p">;</span> <span class="mi">983434</span> <span class="mi">501486</span><span class="p">;</span> <span class="mi">160700</span> <span class="mi">577267</span><span class="p">;</span> <span class="mi">504374</span> <span class="mi">526989</span><span class="p">;</span> <span class="mi">832061</span> <span class="mi">507640</span><span class="p">;</span> <span class="mi">392825</span> <span class="mi">537214</span><span class="p">;</span> <span class="mi">443842</span> <span class="mi">532165</span><span class="p">;</span> <span class="mi">440352</span> <span class="mi">532492</span><span class="p">;</span> <span class="mi">745125</span> <span class="mi">511776</span><span class="p">;</span> <span class="mi">13718</span> <span class="mi">726392</span><span class="p">;</span> <span class="mi">661753</span> <span class="mi">516312</span><span class="p">;</span> <span class="mi">70500</span> <span class="mi">619875</span><span class="p">;</span> <span class="mi">436952</span> <span class="mi">532814</span><span class="p">;</span> <span class="mi">424724</span> <span class="mi">533973</span><span class="p">;</span> <span class="mi">21954</span> <span class="mi">692224</span><span class="p">;</span> <span class="mi">262490</span> <span class="mi">554567</span><span class="p">;</span> <span class="mi">716622</span> <span class="mi">513264</span><span class="p">;</span> <span class="mi">907584</span> <span class="mi">504425</span><span class="p">;</span> <span class="mi">60086</span> <span class="mi">628882</span><span class="p">;</span> <span class="mi">837123</span> <span class="mi">507412</span><span class="p">;</span> <span class="mi">971345</span> <span class="mi">501940</span><span class="p">;</span> <span class="mi">947162</span> <span class="mi">502855</span><span class="p">;</span> <span class="mi">139920</span> <span class="mi">584021</span><span class="p">;</span> <span class="mi">68330</span> <span class="mi">621624</span><span class="p">;</span> <span class="mi">666452</span> <span class="mi">516038</span><span class="p">;</span> <span class="mi">731446</span> <span class="mi">512481</span><span class="p">;</span> <span class="mi">953350</span> <span class="mi">502619</span><span class="p">;</span> <span class="mi">183157</span> <span class="mi">571042</span><span class="p">;</span> <span class="mi">845400</span> <span class="mi">507045</span><span class="p">;</span> <span class="mi">651548</span> <span class="mi">516910</span><span class="p">;</span> <span class="mi">20399</span> <span class="mi">697344</span><span class="p">;</span> <span class="mi">861779</span> <span class="mi">506331</span><span class="p">;</span> <span class="mi">629771</span> <span class="mi">518229</span><span class="p">;</span> <span class="mi">801706</span> <span class="mi">509026</span><span class="p">;</span> <span class="mi">189207</span> <span class="mi">569512</span><span class="p">;</span> <span class="mi">737501</span> <span class="mi">512168</span><span class="p">;</span> <span class="mi">719272</span> <span class="mi">513115</span><span class="p">;</span> <span class="mi">479285</span> <span class="mi">529045</span><span class="p">;</span> <span class="mi">136046</span> <span class="mi">585401</span><span class="p">;</span> <span class="mi">896746</span> <span class="mi">504860</span><span class="p">;</span> <span class="mi">891735</span> <span class="mi">505067</span><span class="p">;</span> <span class="mi">684771</span> <span class="mi">514999</span><span class="p">;</span> <span class="mi">865309</span> <span class="mi">506184</span><span class="p">;</span> <span class="mi">379066</span> <span class="mi">538702</span><span class="p">;</span> <span class="mi">503117</span> <span class="mi">527090</span><span class="p">;</span> <span class="mi">621780</span> <span class="mi">518717</span><span class="p">;</span> <span class="mi">209518</span> <span class="mi">564775</span><span class="p">;</span> <span class="mi">677135</span> <span class="mi">515423</span><span class="p">;</span> <span class="mi">987500</span> <span class="mi">501340</span><span class="p">;</span> <span class="mi">197049</span> <span class="mi">567613</span><span class="p">;</span> <span class="mi">329315</span> <span class="mi">544673</span><span class="p">;</span> <span class="mi">236756</span> <span class="mi">559196</span><span class="p">;</span> <span class="mi">357092</span> <span class="mi">541226</span><span class="p">;</span> <span class="mi">520440</span> <span class="mi">525733</span><span class="p">;</span> <span class="mi">213471</span> <span class="mi">563911</span><span class="p">;</span> <span class="mi">956852</span> <span class="mi">502490</span><span class="p">;</span> <span class="mi">702223</span> <span class="mi">514032</span><span class="p">;</span> <span class="mi">404943</span> <span class="mi">535955</span><span class="p">;</span> <span class="mi">178880</span> <span class="mi">572152</span><span class="p">;</span> <span class="mi">689477</span> <span class="mi">514734</span><span class="p">;</span> <span class="mi">691351</span> <span class="mi">514630</span><span class="p">;</span> <span class="mi">866669</span> <span class="mi">506128</span><span class="p">;</span> <span class="mi">370561</span> <span class="mi">539656</span><span class="p">;</span> <span class="mi">739805</span> <span class="mi">512051</span><span class="p">;</span> <span class="mi">71060</span> <span class="mi">619441</span><span class="p">;</span> <span class="mi">624861</span> <span class="mi">518534</span><span class="p">;</span> <span class="mi">261660</span> <span class="mi">554714</span><span class="p">;</span> <span class="mi">366137</span> <span class="mi">540160</span><span class="p">;</span> <span class="mi">166054</span> <span class="mi">575698</span><span class="p">;</span> <span class="mi">601878</span> <span class="mi">519990</span><span class="p">;</span> <span class="mi">153445</span> <span class="mi">579501</span><span class="p">;</span> <span class="mi">279899</span> <span class="mi">551729</span><span class="p">;</span> <span class="mi">379166</span> <span class="mi">538691</span><span class="p">;</span> <span class="mi">423209</span> <span class="mi">534125</span><span class="p">;</span> <span class="mi">675310</span> <span class="mi">515526</span><span class="p">;</span> <span class="mi">145641</span> <span class="mi">582050</span><span class="p">;</span> <span class="mi">691353</span> <span class="mi">514627</span><span class="p">;</span> <span class="mi">917468</span> <span class="mi">504026</span><span class="p">;</span> <span class="mi">284778</span> <span class="mi">550976</span><span class="p">;</span> <span class="mi">81040</span> <span class="mi">612235</span><span class="p">;</span> <span class="mi">161699</span> <span class="mi">576978</span><span class="p">;</span> <span class="mi">616394</span> <span class="mi">519057</span><span class="p">;</span> <span class="mi">767490</span> <span class="mi">510661</span><span class="p">;</span> <span class="mi">156896</span> <span class="mi">578431</span><span class="p">;</span> <span class="mi">427408</span> <span class="mi">533714</span><span class="p">;</span> <span class="mi">254849</span> <span class="mi">555884</span><span class="p">;</span> <span class="mi">737217</span> <span class="mi">512182</span><span class="p">;</span> <span class="mi">897133</span> <span class="mi">504851</span><span class="p">;</span> <span class="mi">203815</span> <span class="mi">566051</span><span class="p">;</span> <span class="mi">270822</span> <span class="mi">553189</span><span class="p">;</span> <span class="mi">135854</span> <span class="mi">585475</span><span class="p">;</span> <span class="mi">778805</span> <span class="mi">510111</span><span class="p">;</span> <span class="mi">784373</span> <span class="mi">509847</span><span class="p">;</span> <span class="mi">305426</span> <span class="mi">547921</span><span class="p">;</span> <span class="mi">733418</span> <span class="mi">512375</span><span class="p">;</span> <span class="mi">732087</span> <span class="mi">512448</span><span class="p">;</span> <span class="mi">540668</span> <span class="mi">524215</span><span class="p">;</span> <span class="mi">702898</span> <span class="mi">513996</span><span class="p">;</span> <span class="mi">628057</span> <span class="mi">518328</span><span class="p">;</span> <span class="mi">640280</span> <span class="mi">517587</span><span class="p">;</span> <span class="mi">422405</span> <span class="mi">534204</span><span class="p">;</span> <span class="mi">10604</span> <span class="mi">746569</span><span class="p">;</span> <span class="mi">746038</span> <span class="mi">511733</span><span class="p">;</span> <span class="mi">839808</span> <span class="mi">507293</span><span class="p">;</span> <span class="mi">457417</span> <span class="mi">530938</span><span class="p">;</span> <span class="mi">479030</span> <span class="mi">529064</span><span class="p">;</span> <span class="mi">341758</span> <span class="mi">543090</span><span class="p">;</span> <span class="mi">620223</span> <span class="mi">518824</span><span class="p">;</span> <span class="mi">251661</span> <span class="mi">556451</span><span class="p">;</span> <span class="mi">561790</span> <span class="mi">522696</span><span class="p">;</span> <span class="mi">497733</span> <span class="mi">527521</span><span class="p">;</span> <span class="mi">724201</span> <span class="mi">512863</span><span class="p">;</span> <span class="mi">489217</span> <span class="mi">528217</span><span class="p">;</span> <span class="mi">415623</span> <span class="mi">534867</span><span class="p">;</span> <span class="mi">624610</span> <span class="mi">518548</span><span class="p">;</span> <span class="mi">847541</span> <span class="mi">506953</span><span class="p">;</span> <span class="mi">432295</span> <span class="mi">533249</span><span class="p">;</span> <span class="mi">400391</span> <span class="mi">536421</span><span class="p">;</span> <span class="mi">961158</span> <span class="mi">502319</span><span class="p">;</span> <span class="mi">139173</span> <span class="mi">584284</span><span class="p">;</span> <span class="mi">421225</span> <span class="mi">534315</span><span class="p">;</span> <span class="mi">579083</span> <span class="mi">521501</span><span class="p">;</span> <span class="mi">74274</span> <span class="mi">617000</span><span class="p">;</span> <span class="mi">701142</span> <span class="mi">514087</span><span class="p">;</span> <span class="mi">374465</span> <span class="mi">539219</span><span class="p">;</span> <span class="mi">217814</span> <span class="mi">562985</span><span class="p">;</span> <span class="mi">358972</span> <span class="mi">540995</span><span class="p">;</span> <span class="mi">88629</span> <span class="mi">607424</span><span class="p">;</span> <span class="mi">288597</span> <span class="mi">550389</span><span class="p">;</span> <span class="mi">285819</span> <span class="mi">550812</span><span class="p">;</span> <span class="mi">538400</span> <span class="mi">524385</span><span class="p">;</span> <span class="mi">809930</span> <span class="mi">508645</span><span class="p">;</span> <span class="mi">738326</span> <span class="mi">512126</span><span class="p">;</span> <span class="mi">955461</span> <span class="mi">502535</span><span class="p">;</span> <span class="mi">163829</span> <span class="mi">576343</span><span class="p">;</span> <span class="mi">826475</span> <span class="mi">507891</span><span class="p">;</span> <span class="mi">376488</span> <span class="mi">538987</span><span class="p">;</span> <span class="mi">102234</span> <span class="mi">599905</span><span class="p">;</span> <span class="mi">114650</span> <span class="mi">594002</span><span class="p">;</span> <span class="mi">52815</span> <span class="mi">636341</span><span class="p">;</span> <span class="mi">434037</span> <span class="mi">533082</span><span class="p">;</span> <span class="mi">804744</span> <span class="mi">508880</span><span class="p">;</span> <span class="mi">98385</span> <span class="mi">601905</span><span class="p">;</span> <span class="mi">856620</span> <span class="mi">506559</span><span class="p">;</span> <span class="mi">220057</span> <span class="mi">562517</span><span class="p">;</span> <span class="mi">844734</span> <span class="mi">507078</span><span class="p">;</span> <span class="mi">150677</span> <span class="mi">580387</span><span class="p">;</span> <span class="mi">558697</span> <span class="mi">522917</span><span class="p">;</span> <span class="mi">621751</span> <span class="mi">518719</span><span class="p">;</span> <span class="mi">207067</span> <span class="mi">565321</span><span class="p">;</span> <span class="mi">135297</span> <span class="mi">585677</span><span class="p">;</span> <span class="mi">932968</span> <span class="mi">503404</span><span class="p">;</span> <span class="mi">604456</span> <span class="mi">519822</span><span class="p">;</span> <span class="mi">579728</span> <span class="mi">521462</span><span class="p">;</span> <span class="mi">244138</span> <span class="mi">557813</span><span class="p">;</span> <span class="mi">706487</span> <span class="mi">513800</span><span class="p">;</span> <span class="mi">711627</span> <span class="mi">513523</span><span class="p">;</span> <span class="mi">853833</span> <span class="mi">506674</span><span class="p">;</span> <span class="mi">497220</span> <span class="mi">527562</span><span class="p">;</span> <span class="mi">59428</span> <span class="mi">629511</span><span class="p">;</span> <span class="mi">564845</span> <span class="mi">522486</span><span class="p">;</span> <span class="mi">623621</span> <span class="mi">518603</span><span class="p">;</span> <span class="mi">242689</span> <span class="mi">558077</span><span class="p">;</span> <span class="mi">125091</span> <span class="mi">589591</span><span class="p">;</span> <span class="mi">363819</span> <span class="mi">540432</span><span class="p">;</span> <span class="mi">686453</span> <span class="mi">514901</span><span class="p">;</span> <span class="mi">656813</span> <span class="mi">516594</span><span class="p">;</span> <span class="mi">489901</span> <span class="mi">528155</span><span class="p">;</span> <span class="mi">386380</span> <span class="mi">537905</span><span class="p">;</span> <span class="mi">542819</span> <span class="mi">524052</span><span class="p">;</span> <span class="mi">243987</span> <span class="mi">557841</span><span class="p">;</span> <span class="mi">693412</span> <span class="mi">514514</span><span class="p">;</span> <span class="mi">488484</span> <span class="mi">528271</span><span class="p">;</span> <span class="mi">896331</span> <span class="mi">504881</span><span class="p">;</span> <span class="mi">336730</span> <span class="mi">543721</span><span class="p">;</span> <span class="mi">728298</span> <span class="mi">512647</span><span class="p">;</span> <span class="mi">604215</span> <span class="mi">519840</span><span class="p">;</span> <span class="mi">153729</span> <span class="mi">579413</span><span class="p">;</span> <span class="mi">595687</span> <span class="mi">520398</span><span class="p">;</span> <span class="mi">540360</span> <span class="mi">524240</span><span class="p">;</span> <span class="mi">245779</span> <span class="mi">557511</span><span class="p">;</span> <span class="mi">924873</span> <span class="mi">503730</span><span class="p">;</span> <span class="mi">509628</span> <span class="mi">526577</span><span class="p">;</span> <span class="mi">528523</span> <span class="mi">525122</span><span class="p">;</span> <span class="mi">3509</span> <span class="mi">847707</span><span class="p">;</span> <span class="mi">522756</span> <span class="mi">525555</span><span class="p">;</span> <span class="mi">895447</span> <span class="mi">504922</span><span class="p">;</span> <span class="mi">44840</span> <span class="mi">646067</span><span class="p">;</span> <span class="mi">45860</span> <span class="mi">644715</span><span class="p">;</span> <span class="mi">463487</span> <span class="mi">530404</span><span class="p">;</span> <span class="mi">398164</span> <span class="mi">536654</span><span class="p">;</span> <span class="mi">894483</span> <span class="mi">504959</span><span class="p">;</span> <span class="mi">619415</span> <span class="mi">518874</span><span class="p">;</span> <span class="mi">966306</span> <span class="mi">502129</span><span class="p">;</span> <span class="mi">990922</span> <span class="mi">501212</span><span class="p">;</span> <span class="mi">835756</span> <span class="mi">507474</span><span class="p">;</span> <span class="mi">548881</span> <span class="mi">523618</span><span class="p">;</span> <span class="mi">453578</span> <span class="mi">531282</span><span class="p">;</span> <span class="mi">474993</span> <span class="mi">529410</span><span class="p">;</span> <span class="mi">80085</span> <span class="mi">612879</span><span class="p">;</span> <span class="mi">737091</span> <span class="mi">512193</span><span class="p">;</span> <span class="mi">50789</span> <span class="mi">638638</span><span class="p">;</span> <span class="mi">979768</span> <span class="mi">501620</span><span class="p">;</span> <span class="mi">792018</span> <span class="mi">509483</span><span class="p">;</span> <span class="mi">665001</span> <span class="mi">516122</span><span class="p">;</span> <span class="mi">86552</span> <span class="mi">608694</span><span class="p">;</span> <span class="mi">462772</span> <span class="mi">530469</span><span class="p">;</span> <span class="mi">589233</span> <span class="mi">520821</span><span class="p">;</span> <span class="mi">891694</span> <span class="mi">505072</span><span class="p">;</span> <span class="mi">592605</span> <span class="mi">520594</span><span class="p">;</span> <span class="mi">209645</span> <span class="mi">564741</span><span class="p">;</span> <span class="mi">42531</span> <span class="mi">649269</span><span class="p">;</span> <span class="mi">554376</span> <span class="mi">523226</span><span class="p">;</span> <span class="mi">803814</span> <span class="mi">508929</span><span class="p">;</span> <span class="mi">334157</span> <span class="mi">544042</span><span class="p">;</span> <span class="mi">175836</span> <span class="mi">572970</span><span class="p">;</span> <span class="mi">868379</span> <span class="mi">506051</span><span class="p">;</span> <span class="mi">658166</span> <span class="mi">516520</span><span class="p">;</span> <span class="mi">278203</span> <span class="mi">551995</span><span class="p">;</span> <span class="mi">966198</span> <span class="mi">502126</span><span class="p">;</span> <span class="mi">627162</span> <span class="mi">518387</span><span class="p">;</span> <span class="mi">296774</span> <span class="mi">549165</span><span class="p">;</span> <span class="mi">311803</span> <span class="mi">547027</span><span class="p">;</span> <span class="mi">843797</span> <span class="mi">507118</span><span class="p">;</span> <span class="mi">702304</span> <span class="mi">514032</span><span class="p">;</span> <span class="mi">563875</span> <span class="mi">522553</span><span class="p">;</span> <span class="mi">33103</span> <span class="mi">664910</span><span class="p">;</span> <span class="mi">191932</span> <span class="mi">568841</span><span class="p">;</span> <span class="mi">543514</span> <span class="mi">524006</span><span class="p">;</span> <span class="mi">506835</span> <span class="mi">526794</span><span class="p">;</span> <span class="mi">868368</span> <span class="mi">506052</span><span class="p">;</span> <span class="mi">847025</span> <span class="mi">506971</span><span class="p">;</span> <span class="mi">678623</span> <span class="mi">515342</span><span class="p">;</span> <span class="mi">876139</span> <span class="mi">505726</span><span class="p">;</span> <span class="mi">571997</span> <span class="mi">521984</span><span class="p">;</span> <span class="mi">598632</span> <span class="mi">520198</span><span class="p">;</span> <span class="mi">213590</span> <span class="mi">563892</span><span class="p">;</span> <span class="mi">625404</span> <span class="mi">518497</span><span class="p">;</span> <span class="mi">726508</span> <span class="mi">512738</span><span class="p">;</span> <span class="mi">689426</span> <span class="mi">514738</span><span class="p">;</span> <span class="mi">332495</span> <span class="mi">544264</span><span class="p">;</span> <span class="mi">411366</span> <span class="mi">535302</span><span class="p">;</span> <span class="mi">242546</span> <span class="mi">558110</span><span class="p">;</span> <span class="mi">315209</span> <span class="mi">546555</span><span class="p">;</span> <span class="mi">797544</span> <span class="mi">509219</span><span class="p">;</span> <span class="mi">93889</span> <span class="mi">604371</span><span class="p">;</span> <span class="mi">858879</span> <span class="mi">506454</span><span class="p">;</span> <span class="mi">124906</span> <span class="mi">589666</span><span class="p">;</span> <span class="mi">449072</span> <span class="mi">531693</span><span class="p">;</span> <span class="mi">235960</span> <span class="mi">559345</span><span class="p">;</span> <span class="mi">642403</span> <span class="mi">517454</span><span class="p">;</span> <span class="mi">720567</span> <span class="mi">513047</span><span class="p">;</span> <span class="mi">705534</span> <span class="mi">513858</span><span class="p">;</span> <span class="mi">603692</span> <span class="mi">519870</span><span class="p">;</span> <span class="mi">488137</span> <span class="mi">528302</span><span class="p">;</span> <span class="mi">157370</span> <span class="mi">578285</span><span class="p">;</span> <span class="mi">63515</span> <span class="mi">625730</span><span class="p">;</span> <span class="mi">666326</span> <span class="mi">516041</span><span class="p">;</span> <span class="mi">619226</span> <span class="mi">518883</span><span class="p">;</span> <span class="mi">443613</span> <span class="mi">532186</span><span class="p">;</span> <span class="mi">597717</span> <span class="mi">520257</span><span class="p">;</span> <span class="mi">96225</span> <span class="mi">603069</span><span class="p">;</span> <span class="mi">86940</span> <span class="mi">608450</span><span class="p">;</span> <span class="mi">40725</span> <span class="mi">651929</span><span class="p">;</span> <span class="mi">460976</span> <span class="mi">530625</span><span class="p">;</span> <span class="mi">268875</span> <span class="mi">553508</span><span class="p">;</span> <span class="mi">270671</span> <span class="mi">553214</span><span class="p">;</span> <span class="mi">363254</span> <span class="mi">540500</span><span class="p">;</span> <span class="mi">384248</span> <span class="mi">538137</span><span class="p">;</span> <span class="mi">762889</span> <span class="mi">510892</span><span class="p">;</span> <span class="mi">377941</span> <span class="mi">538833</span><span class="p">;</span> <span class="mi">278878</span> <span class="mi">551890</span><span class="p">;</span> <span class="mi">176615</span> <span class="mi">572755</span><span class="p">;</span> <span class="mi">860008</span> <span class="mi">506412</span><span class="p">;</span> <span class="mi">944392</span> <span class="mi">502967</span><span class="p">;</span> <span class="mi">608395</span> <span class="mi">519571</span><span class="p">;</span> <span class="mi">225283</span> <span class="mi">561450</span><span class="p">;</span> <span class="mi">45095</span> <span class="mi">645728</span><span class="p">;</span> <span class="mi">333798</span> <span class="mi">544090</span><span class="p">;</span> <span class="mi">625733</span> <span class="mi">518476</span><span class="p">;</span> <span class="mi">995584</span> <span class="mi">501037</span><span class="p">;</span> <span class="mi">506135</span> <span class="mi">526853</span><span class="p">;</span> <span class="mi">238050</span> <span class="mi">558952</span><span class="p">;</span> <span class="mi">557943</span> <span class="mi">522972</span><span class="p">;</span> <span class="mi">530978</span> <span class="mi">524938</span><span class="p">;</span> <span class="mi">634244</span> <span class="mi">517949</span><span class="p">;</span> <span class="mi">177168</span> <span class="mi">572616</span><span class="p">;</span> <span class="mi">85200</span> <span class="mi">609541</span><span class="p">;</span> <span class="mi">953043</span> <span class="mi">502630</span><span class="p">;</span> <span class="mi">523661</span> <span class="mi">525484</span><span class="p">;</span> <span class="mi">999295</span> <span class="mi">500902</span><span class="p">;</span> <span class="mi">840803</span> <span class="mi">507246</span><span class="p">;</span> <span class="mi">961490</span> <span class="mi">502312</span><span class="p">;</span> <span class="mi">471747</span> <span class="mi">529685</span><span class="p">;</span> <span class="mi">380705</span> <span class="mi">538523</span><span class="p">;</span> <span class="mi">911180</span> <span class="mi">504275</span><span class="p">;</span> <span class="mi">334149</span> <span class="mi">544046</span><span class="p">;</span> <span class="mi">478992</span> <span class="mi">529065</span><span class="p">;</span> <span class="mi">325789</span> <span class="mi">545133</span><span class="p">;</span> <span class="mi">335884</span> <span class="mi">543826</span><span class="p">;</span> <span class="mi">426976</span> <span class="mi">533760</span><span class="p">;</span> <span class="mi">749007</span> <span class="mi">511582</span><span class="p">;</span> <span class="mi">667067</span> <span class="mi">516000</span><span class="p">;</span> <span class="mi">607586</span> <span class="mi">519623</span><span class="p">;</span> <span class="mi">674054</span> <span class="mi">515599</span><span class="p">;</span> <span class="mi">188534</span> <span class="mi">569675</span><span class="p">;</span> <span class="mi">565185</span> <span class="mi">522464</span><span class="p">;</span> <span class="mi">172090</span> <span class="mi">573988</span><span class="p">;</span> <span class="mi">87592</span> <span class="mi">608052</span><span class="p">;</span> <span class="mi">907432</span> <span class="mi">504424</span><span class="p">;</span> <span class="mi">8912</span> <span class="mi">760841</span><span class="p">;</span> <span class="mi">928318</span> <span class="mi">503590</span><span class="p">;</span> <span class="mi">757917</span> <span class="mi">511138</span><span class="p">;</span> <span class="mi">718693</span> <span class="mi">513153</span><span class="p">;</span> <span class="mi">315141</span> <span class="mi">546566</span><span class="p">;</span> <span class="mi">728326</span> <span class="mi">512645</span><span class="p">;</span> <span class="mi">353492</span> <span class="mi">541647</span><span class="p">;</span> <span class="mi">638429</span> <span class="mi">517695</span><span class="p">;</span> <span class="mi">628892</span> <span class="mi">518280</span><span class="p">;</span> <span class="mi">877286</span> <span class="mi">505672</span><span class="p">;</span> <span class="mi">620895</span> <span class="mi">518778</span><span class="p">;</span> <span class="mi">385878</span> <span class="mi">537959</span><span class="p">;</span> <span class="mi">423311</span> <span class="mi">534113</span><span class="p">;</span> <span class="mi">633501</span> <span class="mi">517997</span><span class="p">;</span> <span class="mi">884833</span> <span class="mi">505360</span><span class="p">;</span> <span class="mi">883402</span> <span class="mi">505416</span><span class="p">;</span> <span class="mi">999665</span> <span class="mi">500894</span><span class="p">;</span> <span class="mi">708395</span> <span class="mi">513697</span><span class="p">;</span> <span class="mi">548142</span> <span class="mi">523667</span><span class="p">;</span> <span class="mi">756491</span> <span class="mi">511205</span><span class="p">;</span> <span class="mi">987352</span> <span class="mi">501340</span><span class="p">;</span> <span class="mi">766520</span> <span class="mi">510705</span><span class="p">;</span> <span class="mi">591775</span> <span class="mi">520647</span><span class="p">;</span> <span class="mi">833758</span> <span class="mi">507563</span><span class="p">;</span> <span class="mi">843890</span> <span class="mi">507108</span><span class="p">;</span> <span class="mi">925551</span> <span class="mi">503698</span><span class="p">;</span> <span class="mi">74816</span> <span class="mi">616598</span><span class="p">;</span> <span class="mi">646942</span> <span class="mi">517187</span><span class="p">;</span> <span class="mi">354923</span> <span class="mi">541481</span><span class="p">;</span> <span class="mi">256291</span> <span class="mi">555638</span><span class="p">;</span> <span class="mi">634470</span> <span class="mi">517942</span><span class="p">;</span> <span class="mi">930904</span> <span class="mi">503494</span><span class="p">;</span> <span class="mi">134221</span> <span class="mi">586071</span><span class="p">;</span> <span class="mi">282663</span> <span class="mi">551304</span><span class="p">;</span> <span class="mi">986070</span> <span class="mi">501394</span><span class="p">;</span> <span class="mi">123636</span> <span class="mi">590176</span><span class="p">;</span> <span class="mi">123678</span> <span class="mi">590164</span><span class="p">;</span> <span class="mi">481717</span> <span class="mi">528841</span><span class="p">;</span> <span class="mi">423076</span> <span class="mi">534137</span><span class="p">;</span> <span class="mi">866246</span> <span class="mi">506145</span><span class="p">;</span> <span class="mi">93313</span> <span class="mi">604697</span><span class="p">;</span> <span class="mi">783632</span> <span class="mi">509880</span><span class="p">;</span> <span class="mi">317066</span> <span class="mi">546304</span><span class="p">;</span> <span class="mi">502977</span> <span class="mi">527103</span><span class="p">;</span> <span class="mi">141272</span> <span class="mi">583545</span><span class="p">;</span> <span class="mi">71708</span> <span class="mi">618938</span><span class="p">;</span> <span class="mi">617748</span> <span class="mi">518975</span><span class="p">;</span> <span class="mi">581190</span> <span class="mi">521362</span><span class="p">;</span> <span class="mi">193824</span> <span class="mi">568382</span><span class="p">;</span> <span class="mi">682368</span> <span class="mi">515131</span><span class="p">;</span> <span class="mi">352956</span> <span class="mi">541712</span><span class="p">;</span> <span class="mi">351375</span> <span class="mi">541905</span><span class="p">;</span> <span class="mi">505362</span> <span class="mi">526909</span><span class="p">;</span> <span class="mi">905165</span> <span class="mi">504518</span><span class="p">;</span> <span class="mi">128645</span> <span class="mi">588188</span><span class="p">;</span> <span class="mi">267143</span> <span class="mi">553787</span><span class="p">;</span> <span class="mi">158409</span> <span class="mi">577965</span><span class="p">;</span> <span class="mi">482776</span> <span class="mi">528754</span><span class="p">;</span> <span class="mi">628896</span> <span class="mi">518282</span><span class="p">;</span> <span class="mi">485233</span> <span class="mi">528547</span><span class="p">;</span> <span class="mi">563606</span> <span class="mi">522574</span><span class="p">;</span> <span class="mi">111001</span> <span class="mi">595655</span><span class="p">;</span> <span class="mi">115920</span> <span class="mi">593445</span><span class="p">;</span> <span class="mi">365510</span> <span class="mi">540237</span><span class="p">;</span> <span class="mi">959724</span> <span class="mi">502374</span><span class="p">;</span> <span class="mi">938763</span> <span class="mi">503184</span><span class="p">;</span> <span class="mi">930044</span> <span class="mi">503520</span><span class="p">;</span> <span class="mi">970959</span> <span class="mi">501956</span><span class="p">;</span> <span class="mi">913658</span> <span class="mi">504176</span><span class="p">;</span> <span class="mi">68117</span> <span class="mi">621790</span><span class="p">;</span> <span class="mi">989729</span> <span class="mi">501253</span><span class="p">;</span> <span class="mi">567697</span> <span class="mi">522288</span><span class="p">;</span> <span class="mi">820427</span> <span class="mi">508163</span><span class="p">;</span> <span class="mi">54236</span> <span class="mi">634794</span><span class="p">;</span> <span class="mi">291557</span> <span class="mi">549938</span><span class="p">;</span> <span class="mi">124961</span> <span class="mi">589646</span><span class="p">;</span> <span class="mi">403177</span> <span class="mi">536130</span><span class="p">;</span> <span class="mi">405421</span> <span class="mi">535899</span><span class="p">;</span> <span class="mi">410233</span> <span class="mi">535417</span><span class="p">;</span> <span class="mi">815111</span> <span class="mi">508403</span><span class="p">;</span> <span class="mi">213176</span> <span class="mi">563974</span><span class="p">;</span> <span class="mi">83099</span> <span class="mi">610879</span><span class="p">;</span> <span class="mi">998588</span> <span class="mi">500934</span><span class="p">;</span> <span class="mi">513640</span> <span class="mi">526263</span><span class="p">;</span> <span class="mi">129817</span> <span class="mi">587733</span><span class="p">;</span> <span class="mi">1820</span> <span class="mi">921851</span><span class="p">;</span> <span class="mi">287584</span> <span class="mi">550539</span><span class="p">;</span> <span class="mi">299160</span> <span class="mi">548820</span><span class="p">;</span> <span class="mi">860621</span> <span class="mi">506386</span><span class="p">;</span> <span class="mi">529258</span> <span class="mi">525059</span><span class="p">;</span> <span class="mi">586297</span> <span class="mi">521017</span><span class="p">;</span> <span class="mi">953406</span> <span class="mi">502616</span><span class="p">;</span> <span class="mi">441234</span> <span class="mi">532410</span><span class="p">;</span> <span class="mi">986217</span> <span class="mi">501386</span><span class="p">;</span> <span class="mi">781938</span> <span class="mi">509957</span><span class="p">;</span> <span class="mi">461247</span> <span class="mi">530595</span><span class="p">;</span> <span class="mi">735424</span> <span class="mi">512277</span><span class="p">;</span> <span class="mi">146623</span> <span class="mi">581722</span><span class="p">;</span> <span class="mi">839838</span> <span class="mi">507288</span><span class="p">;</span> <span class="mi">510667</span> <span class="mi">526494</span><span class="p">;</span> <span class="mi">935085</span> <span class="mi">503327</span><span class="p">;</span> <span class="mi">737523</span> <span class="mi">512167</span><span class="p">;</span> <span class="mi">303455</span> <span class="mi">548204</span><span class="p">;</span> <span class="mi">992779</span> <span class="mi">501145</span><span class="p">;</span> <span class="mi">60240</span> <span class="mi">628739</span><span class="p">;</span> <span class="mi">939095</span> <span class="mi">503174</span><span class="p">;</span> <span class="mi">794368</span> <span class="mi">509370</span><span class="p">;</span> <span class="mi">501825</span> <span class="mi">527189</span><span class="p">;</span> <span class="mi">459028</span> <span class="mi">530798</span><span class="p">;</span> <span class="mi">884641</span> <span class="mi">505363</span><span class="p">;</span> <span class="mi">512287</span> <span class="mi">526364</span><span class="p">;</span> <span class="mi">835165</span> <span class="mi">507499</span><span class="p">;</span> <span class="mi">307723</span> <span class="mi">547590</span><span class="p">;</span> <span class="mi">160587</span> <span class="mi">577304</span><span class="p">;</span> <span class="mi">735043</span> <span class="mi">512300</span><span class="p">;</span> <span class="mi">493289</span> <span class="mi">527887</span><span class="p">;</span> <span class="mi">110717</span> <span class="mi">595785</span><span class="p">;</span> <span class="mi">306480</span> <span class="mi">547772</span><span class="p">;</span> <span class="mi">318593</span> <span class="mi">546089</span><span class="p">;</span> <span class="mi">179810</span> <span class="mi">571911</span><span class="p">;</span> <span class="mi">200531</span> <span class="mi">566799</span><span class="p">;</span> <span class="mi">314999</span> <span class="mi">546580</span><span class="p">;</span> <span class="mi">197020</span> <span class="mi">567622</span><span class="p">;</span> <span class="mi">301465</span> <span class="mi">548487</span><span class="p">;</span> <span class="mi">237808</span> <span class="mi">559000</span><span class="p">;</span> <span class="mi">131944</span> <span class="mi">586923</span><span class="p">;</span> <span class="mi">882527</span> <span class="mi">505449</span><span class="p">;</span> <span class="mi">468117</span> <span class="mi">530003</span><span class="p">;</span> <span class="mi">711319</span> <span class="mi">513541</span><span class="p">;</span> <span class="mi">156240</span> <span class="mi">578628</span><span class="p">;</span> <span class="mi">965452</span> <span class="mi">502162</span><span class="p">;</span> <span class="mi">992756</span> <span class="mi">501148</span><span class="p">;</span> <span class="mi">437959</span> <span class="mi">532715</span><span class="p">;</span> <span class="mi">739938</span> <span class="mi">512046</span><span class="p">;</span> <span class="mi">614249</span> <span class="mi">519196</span><span class="p">;</span> <span class="mi">391496</span> <span class="mi">537356</span><span class="p">;</span> <span class="mi">62746</span> <span class="mi">626418</span><span class="p">;</span> <span class="mi">688215</span> <span class="mi">514806</span><span class="p">;</span> <span class="mi">75501</span> <span class="mi">616091</span><span class="p">;</span> <span class="mi">883573</span> <span class="mi">505412</span><span class="p">;</span> <span class="mi">558824</span> <span class="mi">522910</span><span class="p">;</span> <span class="mi">759371</span> <span class="mi">511061</span><span class="p">;</span> <span class="mi">173913</span> <span class="mi">573489</span><span class="p">;</span> <span class="mi">891351</span> <span class="mi">505089</span><span class="p">;</span> <span class="mi">727464</span> <span class="mi">512693</span><span class="p">;</span> <span class="mi">164833</span> <span class="mi">576051</span><span class="p">;</span> <span class="mi">812317</span> <span class="mi">508529</span><span class="p">;</span> <span class="mi">540320</span> <span class="mi">524243</span><span class="p">;</span> <span class="mi">698061</span> <span class="mi">514257</span><span class="p">;</span> <span class="mi">69149</span> <span class="mi">620952</span><span class="p">;</span> <span class="mi">471673</span> <span class="mi">529694</span><span class="p">;</span> <span class="mi">159092</span> <span class="mi">577753</span><span class="p">;</span> <span class="mi">428134</span> <span class="mi">533653</span><span class="p">;</span> <span class="mi">89997</span> <span class="mi">606608</span><span class="p">;</span> <span class="mi">711061</span> <span class="mi">513557</span><span class="p">;</span> <span class="mi">779403</span> <span class="mi">510081</span><span class="p">;</span> <span class="mi">203327</span> <span class="mi">566155</span><span class="p">;</span> <span class="mi">798176</span> <span class="mi">509187</span><span class="p">;</span> <span class="mi">667688</span> <span class="mi">515963</span><span class="p">;</span> <span class="mi">636120</span> <span class="mi">517833</span><span class="p">;</span> <span class="mi">137410</span> <span class="mi">584913</span><span class="p">;</span> <span class="mi">217615</span> <span class="mi">563034</span><span class="p">;</span> <span class="mi">556887</span> <span class="mi">523038</span><span class="p">;</span> <span class="mi">667229</span> <span class="mi">515991</span><span class="p">;</span> <span class="mi">672276</span> <span class="mi">515708</span><span class="p">;</span> <span class="mi">325361</span> <span class="mi">545187</span><span class="p">;</span> <span class="mi">172115</span> <span class="mi">573985</span><span class="p">;</span> <span class="mi">13846</span> <span class="mi">725685</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1000×2 Array{Int64,2}:
+ 519432  525806
+ 632382  518061
+  78864  613712
+ 466580  530130
+ 780495  510032
+ 525895  525320
+  15991  714883
+ 960290  502358
+ 760018  511029
+ 166800  575487
+ 210884  564478
+ 555151  523163
+ 681146  515199
+      ⋮        
+ 203327  566155
+ 798176  509187
+ 667688  515963
+ 636120  517833
+ 137410  584913
+ 217615  563034
+ 556887  523038
+ 667229  515991
+ 672276  515708
+ 325361  545187
+ 172115  573985
+  13846  725685</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next compute all the exponentials using <code>BigInt</code> and find the largest:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">bases</span> <span class="o">=</span> <span class="n">base_exp</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">exponents</span> <span class="o">=</span> <span class="n">base_exp</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="kt">BigInt</span><span class="o">.</span><span class="p">(</span><span class="n">bases</span><span class="p">)</span> <span class="o">.^</span> <span class="kt">BigInt</span><span class="o">.</span><span class="p">(</span><span class="n">exponents</span><span class="p">)</span>
+<span class="n">max_value</span><span class="p">,</span> <span class="n">max_idx</span> <span class="o">=</span> <span class="n">findmax</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Largest value on row &quot;</span><span class="p">,</span> <span class="n">max_idx</span><span class="p">,</span> <span class="s">&quot;: &quot;</span><span class="p">,</span> <span class="n">bases</span><span class="p">[</span><span class="n">max_idx</span><span class="p">],</span> <span class="s">&quot;^&quot;</span><span class="p">,</span> <span class="n">exponents</span><span class="p">[</span><span class="n">max_idx</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Largest value on row 709: 895447^504922
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Arbitrary-precision-floating-point-numbers">Arbitrary precision floating-point numbers<a class="anchor-link" href="#Arbitrary-precision-floating-point-numbers"> </a></h3><p>Similarly, the <code>BigFloat</code> data type can create floating-point numbers with higher precision than the regular <code>Float64</code> type. It can also be created from an existing <code>Float64</code> number:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="kt">BigFloat</span><span class="p">(</span><span class="mf">1.75</span><span class="p">)</span>              <span class="c"># Accidentally OK, since 1.75 is exactly represented by Float64</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.75</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But again this might give unintended results, since the number is first converted to <code>Float64</code> with only about 16 decimal digits of accuracy:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="kt">BigFloat</span><span class="p">(</span><span class="mf">2.1</span><span class="p">)</span>               <span class="c"># First rounded to Float64, low precision</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.100000000000000088817841970012523233890533447265625</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Again this can be solved using the string syntax:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">parse</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">,</span> <span class="s">&quot;2.1&quot;</span><span class="p">)</span>      <span class="c"># High precision</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.099999999999999999999999999999999999999999999999999999999999999999999999999986</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The precision, or the number of bits used to store the number, can be controlled with the <code>setprecision</code> function. It will set the precision for all later operations, unless used in a <code>do</code> block as shown below when it will only apply to that block of code.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">setprecision</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kt">BigFloat</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="kt">BigFloat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333346e-01</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Julia's built-in functions support the higher precision:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="nb">pi</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="nb">pi</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>3.141592653589793238462643383279502884197169399375105820974944592307816406286198</pre>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>1.096917440979352076742130626395698021050758236508687951179005716992142688513354e-77</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Cubic-convergence">Example: Cubic convergence<a class="anchor-link" href="#Example:-Cubic-convergence"> </a></h3><p><em>Halley's method</em> is an extension of Newton's method for solving $f(x)=0$, which involves the second derivative but gives cubic convergence:
+$$
+x_{n+1} = x_n - \frac{2f(x_n) f'(x_n)}{2[f'(x_n)]^2 - f(x_n)f''(x_n)}
+$$</p>
+<p>This cubic convergence is sometimes hard to observe, since the machine precision is achieved very quickly. But with arbitrary precision we can confirm the "tripling of the accurate digits" in each iteration. For example, consider computing $x=\sqrt[3]{a}$ by solving the equation $f(x) = x^3 - a$:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">halley_cuberoot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">ε</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c"># Initial guess</span>
+    <span class="n">Δx</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c"># Need to initialize to get started</span>
+    <span class="k">while</span> <span class="n">Δx</span> <span class="o">≥</span> <span class="n">ε</span>
+        <span class="n">xnew</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="p">(</span><span class="mi">3</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">6</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">Δx</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">xnew</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">xnew</span>
+        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Error = &quot;</span><span class="p">,</span> <span class="n">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">cbrt</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
+    <span class="k">end</span>
+    <span class="n">x</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>halley_cuberoot (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">halley_cuberoot</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mf">1e-60</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Error = 9.921049894873164767210607278228350570251464701507980081975112155299676513956221e-03
+Error = 4.149742382441322899723575934299353308297808730594470544772346647558790369568435e-07
+Error = 3.001136168965729242876474785354871654493618340778791794290950778604895701742477e-20
+Error = 1.135217767765559947507625958119369715609728496052297379270293469389407869634748e-59
+Error = 0.0
+Error = 0.0
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.259921049894873164767210607278228350570251464701507980081975112155299676513956</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Complex-numbers">Complex numbers<a class="anchor-link" href="#Complex-numbers"> </a></h2><p>Complex numbers can be created using the global constant <code>im</code> for the imaginary unit $\sqrt{-1}$:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">-</span> <span class="mi">3</span><span class="nb">im</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5 - 3im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>or alternatively using the syntax <code>complex(real,imag)</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">complex</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5 + 3im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="nb">im</span>      <span class="c"># Parentheses needed since 3/4im == 3/(4im)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5.0 + 0.75im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The standard operations work as expected for complex arguments:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>34 + 0im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.4705882352941177 - 0.8823529411764706im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">im</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0 + 2im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Several functions are provided for manipulation of complex numbers (from the Julia documentation):</p>
+<div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span>
+<span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">real</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span> <span class="c"># real part of z</span>
+<span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">imag</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span> <span class="c"># imaginary part of z</span>
+<span class="mi">2</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">conj</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span> <span class="c"># complex conjugate of z</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span> <span class="c"># absolute value of z</span>
+<span class="mf">2.23606797749979</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">abs2</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span> <span class="c"># squared absolute value</span>
+<span class="mi">5</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">angle</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span> <span class="c"># phase angle in radians</span>
+<span class="mf">1.1071487177940904</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Also most elementary functions are defined for complex arguments (from the Julia documentation):</p>
+<div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="nb">im</span><span class="p">)</span>
+<span class="mf">0.7071067811865476</span> <span class="o">+</span> <span class="mf">0.7071067811865475</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+<span class="mf">1.272019649514069</span> <span class="o">+</span> <span class="mf">0.7861513777574233</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">cos</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+<span class="mf">2.0327230070196656</span> <span class="o">-</span> <span class="mf">3.0518977991518</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">exp</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+<span class="o">-</span><span class="mf">1.1312043837568135</span> <span class="o">+</span> <span class="mf">2.4717266720048188</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">sinh</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+<span class="o">-</span><span class="mf">0.4890562590412937</span> <span class="o">+</span> <span class="mf">1.4031192506220405</span><span class="nb">im</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that these functions typically return real values when applied to real numbers and complex values when applied to complex numbers:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mi">0</span><span class="nb">im</span><span class="p">)</span>  <span class="c"># OK, complex input gives complex output</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0 + 1.0im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>        <span class="c"># Error - real input but needs complex output</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+DomainError with -1.0:
+sqrt will only return a complex result if called with a complex argument. Try sqrt(Complex(x)).
+
+Stacktrace:
+ [1] throw_complex_domainerror(::Symbol, ::Float64) at ./math.jl:31
+ [2] sqrt(::Float64) at ./math.jl:492
+ [3] top-level scope at In[22]:1</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Roots-of-quadratic-function">Example: Roots of quadratic function<a class="anchor-link" href="#Example:-Roots-of-quadratic-function"> </a></h3><p>We can now update our previous example of the quadratic formula to handle all cases, including complex roots. We make sure that the argument to the <code>sqrt</code> function is complex:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">roots_of_quadratic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+    <span class="c"># Compute the roots of the quadratic ax^2 + bx + c = 0</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">complex</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
+    <span class="n">r1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="n">a</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="n">a</span>
+    <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>roots_of_quadratic (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0.0 - 1.0im, 0.0 + 1.0im)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(-2.0 - 3.0im, -2.0 + 3.0im)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that this implementation will return complex numbers even if the roots are real:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(6.0 + 0.0im, -1.0 - 0.0im)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If desired, one could easily write the function such that it returns real numbers for these cases.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Rational-numbers">Rational numbers<a class="anchor-link" href="#Rational-numbers"> </a></h2><p>Rational numbers (ratios of integers) can be represented exactly in Julia using the <code>//</code> operator:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">355</span> <span class="o">//</span> <span class="mi">113</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>355//113</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Rational numbers can be converted to floating point numbers if needed:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="kt">Float64</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.1415929203539825</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, this is often not needed since many standard operations and comparison operators are defined directly using the rational number type: (from the Julia documentation)</p>
+<div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="mi">2</span><span class="o">//</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">6</span><span class="o">//</span><span class="mi">9</span>
+<span class="kc">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">2</span><span class="o">//</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">9</span><span class="o">//</span><span class="mi">27</span>
+<span class="kc">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">3</span><span class="o">//</span><span class="mi">7</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">//</span><span class="mi">2</span>
+<span class="kc">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">3</span><span class="o">//</span><span class="mi">4</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="o">//</span><span class="mi">3</span>
+<span class="kc">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">2</span><span class="o">//</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="o">//</span><span class="mi">6</span>
+<span class="mi">2</span><span class="o">//</span><span class="mi">3</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">5</span><span class="o">//</span><span class="mi">12</span> <span class="o">-</span> <span class="mi">1</span><span class="o">//</span><span class="mi">4</span>
+<span class="mi">1</span><span class="o">//</span><span class="mi">6</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">5</span><span class="o">//</span><span class="mi">8</span> <span class="o">*</span> <span class="mi">3</span><span class="o">//</span><span class="mi">12</span>
+<span class="mi">5</span><span class="o">//</span><span class="mi">32</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">6</span><span class="o">//</span><span class="mi">5</span> <span class="o">/</span> <span class="mi">10</span><span class="o">//</span><span class="mi">7</span>
+<span class="mi">21</span><span class="o">//</span><span class="mi">25</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that if the numerator and the denominator have common factors, they are reduced to the lowest terms such that the denominator is positive: (from Julia documentation)</p>
+<div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="mi">6</span><span class="o">//</span><span class="mi">9</span>
+<span class="mi">2</span><span class="o">//</span><span class="mi">3</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="o">-</span><span class="mi">4</span><span class="o">//</span><span class="mi">8</span>
+<span class="o">-</span><span class="mi">1</span><span class="o">//</span><span class="mi">2</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">5</span><span class="o">//-</span><span class="mi">15</span>
+<span class="o">-</span><span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="o">-</span><span class="mi">4</span><span class="o">//-</span><span class="mi">12</span>
+<span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When combined with other numeric types, the rational numbers will be promoted to give the expected result: (from the Julia documentation)</p>
+<div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="mi">3</span><span class="o">//</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mi">8</span><span class="o">//</span><span class="mi">5</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">3</span><span class="o">//</span><span class="mi">5</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="mf">0.09999999999999998</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">2</span><span class="o">//</span><span class="mi">7</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">//</span><span class="mi">7</span> <span class="o">+</span> <span class="mi">4</span><span class="o">//</span><span class="mi">7</span><span class="o">*</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">2</span><span class="o">//</span><span class="mi">7</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.5</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+<span class="mf">0.42857142857142855</span> <span class="o">+</span> <span class="mf">0.5714285714285714</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">3</span><span class="o">//</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+<span class="mi">3</span><span class="o">//</span><span class="mi">10</span> <span class="o">-</span> <span class="mi">3</span><span class="o">//</span><span class="mi">5</span><span class="o">*</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">1</span><span class="o">//</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="nb">im</span>
+<span class="mi">1</span><span class="o">//</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">//</span><span class="mi">1</span><span class="o">*</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">//</span><span class="mi">3</span><span class="nb">im</span>
+<span class="mi">1</span><span class="o">//</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">//</span><span class="mi">3</span><span class="o">*</span><span class="nb">im</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mf">0.5</span> <span class="o">==</span> <span class="mi">1</span><span class="o">//</span><span class="mi">2</span>
+<span class="kc">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mf">0.33</span> <span class="o">==</span> <span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
+<span class="kc">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mf">0.33</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
+<span class="kc">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="mi">1</span><span class="o">//</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">0.33</span>
+<span class="mf">0.0033333333333332993</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Arrays-of-complex-and-rational-numbers">Arrays of complex and rational numbers<a class="anchor-link" href="#Arrays-of-complex-and-rational-numbers"> </a></h2><p>Arrays of complex and rational types can be defined easily, and the array functions work as expected:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span> <span class="n">complex</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">),</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="p">))</span> <span class="k">for</span> <span class="n">θ</span> <span class="kp">in</span> <span class="mi">2</span><span class="nb">π</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>11-element Array{Complex{Float64},1}:
+                  1.0 + 0.0im                   
+   0.8090169943749475 + 0.5877852522924731im    
+  0.30901699437494745 + 0.9510565162951535im    
+ -0.30901699437494734 + 0.9510565162951536im    
+  -0.8090169943749473 + 0.5877852522924732im    
+                 -1.0 + 1.2246467991473532e-16im
+  -0.8090169943749475 - 0.587785252292473im     
+ -0.30901699437494756 - 0.9510565162951535im    
+  0.30901699437494723 - 0.9510565162951536im    
+   0.8090169943749473 - 0.5877852522924734im    
+                  1.0 - 2.4492935982947064e-16im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.9999999999999996 - 6.008810221214569e-16im</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span> <span class="n">a</span><span class="o">//</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10-element Array{Rational{Int64},1}:
+  1//2 
+  2//3 
+  3//4 
+  4//5 
+  5//6 
+  6//7 
+  7//8 
+  8//9 
+  9//10
+ 10//11</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">prod</span><span class="p">(</span><span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1//121</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
+            </div>
+            <div class="c-textbook__footer" id="textbook_footer">
+              <nav class="c-page__nav">
+  
+    
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/More-Arrays-And-Vectorization.html">
+      〈 <span class="u-margin-right-tiny"></span> Vectorization
+    </a>
+  
+
+  
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/Recursion-Divide-and-Conquer.html">
+      Recursion <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+              <footer>
+  <p class="footer"></p>
+</footer>
+
+            </div>
+
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
