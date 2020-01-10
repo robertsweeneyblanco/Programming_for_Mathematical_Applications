@@ -23,10 +23,29 @@
   
 - divider: true
 
-- title: Introduction
-  url: /Julia-Introduction
+- title: Introduction to Julia
+  url: /Introduction/Chapter_Intro
   not_numbered: true
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Julia as a Calculator
+    url: /Introduction/Julia_As_A_Calculator
+    not_numbered: true
+  - title: Variables and Assignments
+    url: /Introduction/Variables_And_Assignments
+    not_numbered: true
+  - title: Functions
+    url: /Introduction/Functions
+    not_numbered: true
+  - title: For-Loops
+    url: /Introduction/For_Loops
+    not_numbered: true
+  - title: Conditionals
+    url: /Introduction/Conditionals
+    not_numbered: true
+  - title: While-Loops
+    url: /Introduction/While_Loops
+    not_numbered: true
 
 - title: Random Numbers
   url: /Random-Numbers
@@ -95,6 +114,11 @@
   
 - title: Sparse Arrays
   url: /Sparse_Arrays
+  not_numbered: true
+  expand_sections: true
+  
+- title: Mathematica
+  url: /Mathematica/Mathematica_1
   not_numbered: true
   expand_sections: true
 

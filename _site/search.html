@@ -8,10 +8,10 @@
   <title>Search the site</title>
   <meta name="description" content="        ">
 
-  <link rel="canonical" href="http://0.0.0.0:4000/search">
-  <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000/feed.xml">
+  <link rel="canonical" href="http://0.0.0.0:4000//search">
+  <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000//feed.xml">
 
-  <meta property="og:url"         content="http://0.0.0.0:4000/search" />
+  <meta property="og:url"         content="http://0.0.0.0:4000//search" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Search the site" />
 <meta property="og:description" content="        " />
@@ -24,10 +24,10 @@
   {
   "@context": "http://schema.org",
   "@type": "NewsArticle",
-  "mainEntityOfPage": "http://0.0.0.0:4000/search",
+  "mainEntityOfPage": "http://0.0.0.0:4000//search",
   "headline": "Search the site",
-  "datePublished": "2020-01-04T04:29:54-06:00",
-  "dateModified": "2020-01-04T04:29:54-06:00",
+  "datePublished": "2020-01-10T17:28:28-06:00",
+  "dateModified": "2020-01-10T17:28:28-06:00",
   "description": "        ",
   "author": {
     "@type": "Person",
@@ -38,14 +38,14 @@
     "name": "Data 100 at UC Berkeley",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://0.0.0.0:4000",
+      "url": "http://0.0.0.0:4000/",
       "width": 60,
       "height": 60
     }
   },
   "image": {
     "@type": "ImageObject",
-    "url": "http://0.0.0.0:4000",
+    "url": "http://0.0.0.0:4000/",
     "height": 60,
     "width": 60
   }
@@ -95,7 +95,7 @@ MathJax.Hub.Config({
 
   <!-- Define some javascript variables that will be useful in other javascript -->
   <script>
-    const site_basename = '';
+    const site_basename = '/';
   </script>
 
   <!-- Add AnchorJS to let headers be linked -->
@@ -122,13 +122,13 @@ MathJax.Hub.Config({
   <!-- Google analytics -->
   
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52617120-7"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-52617120-7');
+  gtag('config', '');
 </script>
 
 
@@ -265,7 +265,7 @@ function updateInteractLink() {
       } else {
         // If interact button isn't binderhub, assume it's jupyterhub
         // If JupyterHub links, we only need to replace the hub url
-        href = href.replace("https://datahub.berkeley.edu", hubUrl);
+        href = href.replace("https://julia.datahub.berkeley.edu", hubUrl);
         if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
           // Assume we're working from a local Jupyter server and remove `/hub`
           href = href.replace("/hub/user-redirect", "");
@@ -425,7 +425,7 @@ initFunction(initPrint)
 
 
 <nav id="js-sidebar" class="c-textbook__sidebar">
-  <a href="https://jupyterbook.org/intro.html"><img src="/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <a href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/home.html"><img src="/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
   <h2 class="c-sidebar__title">Programming for Mathematical Applications</h2>
   <ul class="c-sidebar__chapters">
     
@@ -439,7 +439,7 @@ initFunction(initPrint)
       
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry "
-          href="/intro.html"
+          href="/home.html"
         >
           
           Home
@@ -452,6 +452,10 @@ initFunction(initPrint)
     
       
       
+        <li class="c-sidebar__divider"></li>
+        
+      
+      
 
       
       
@@ -460,12 +464,126 @@ initFunction(initPrint)
       
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry "
-          href="/Julia-Introduction.html"
+          href="/Introduction/Chapter_Intro.html"
         >
           
-          Introduction
+          Introduction to Julia
         </a>
 
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections u-hidden-visually">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Julia_As_A_Calculator.html"
+                >
+                  
+                  Julia as a Calculator
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Variables_And_Assignments.html"
+                >
+                  
+                  Variables and Assignments
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Functions.html"
+                >
+                  
+                  Functions
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/For_Loops.html"
+                >
+                  
+                  For-Loops
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Conditionals.html"
+                >
+                  
+                  Conditionals
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/While_Loops.html"
+                >
+                  
+                  While-Loops
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
         
       </li>
 
@@ -765,6 +883,27 @@ initFunction(initPrint)
 
       
     
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Mathematica/Mathematica_1.html"
+        >
+          
+          Mathematica
+        </a>
+
+        
+      </li>
+
+      
+    
   </ul>
   <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
 </nav>
@@ -847,13 +986,77 @@ initFunction(initPrint)
         "tags": [],
         "url": "http://0.0.0.0:4000/Image_Processing.html",
         "teaser":null},{
-        "title": "Introduction",
+        "title": "Introduction to Julia",
         
         "excerpt":
-            "Julia introduction: variables, assignments, iteration, conditionals Julia as a calculator Arithmetics The first thing to try in Julia is the evaluation of arithmetic expressions: 123.4 + 234.5 # This is a comment, ignored by Julia 357.9 7 / 3 # Integer division returns floating point 2.3333333333333335 7 ÷ 3 # Truncated integer division (type \\div and press tab) 2 7 % 3 # Remainder 1 2^7 - 4 # All integer expression which returns an integer 124 3 * (4.2 - 9.7) # Use parentheses to control the order of operations -16.499999999999996 # We will later learn why the previous...",
+            "             Introduction to Julia  This section will cover the basics of the Julia programming language. After this chapter, readers should know how to write and execute Julia code to perform basic calculations. The big picture lessons from this chapter can be applied to almost any programming language, but the syntax and conventions will be specific to Julia.                     ",
         "categories": [],
         "tags": [],
-        "url": "http://0.0.0.0:4000/Julia-Introduction.html",
+        "url": "http://0.0.0.0:4000/Introduction/Chapter_Intro.html",
+        "teaser":null},{
+        "title": "Conditionals",
+        
+        "excerpt":
+            "Conditionals A conditional statement allows a block of code to be executed only when a given logical condition is satisfied. Before introducing the so-called if statement, we need to learn how to express these conditions. Boolean expressions A boolean expression is an expression that is either true or false. For example, the operator == compares two operands and returns true if they are equal and false otherwise: 123 == 123 true 123 == 100 + 23 true 123 == -123 false true and false are special values that belong to the type Bool: typeof(true) Bool typeof(false) Bool typeof(45 == 45)...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Introduction/Conditionals.html",
+        "teaser":null},{
+        "title": "For-Loops",
+        
+        "excerpt":
+            "Repeated evaluation: for-loops Suppose we want to compute the finite sum $s_n = \\sum_{i=1}^n \\frac{1}{i}$ for some integer $n\\ge 1$. To do this in a computer code, we need a loop, which runs a block of code repeatedly for a given number of times. The simplest form of a for-loop has the syntax for i = 1:n # This code will be repeated n times, for i = 1,2,...,n end Using for-loops, we can write a function to compute $s_n$: function compute_s(n) sn = 0 for i = 1:n sn += 1/i end sn end compute_s (generic function with 1...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Introduction/For_Loops.html",
+        "teaser":null},{
+        "title": "Functions",
+        
+        "excerpt":
+            "Functions A function is a named sequence of statements that performs a computation You can call the function by its name followed by parentheses, optionally passing comma-separated expressions inside the parentheses as arguments For example, we already used the println(x) function, which prints x and returns nothing Julia defines a number of standard mathematical functions, e.g. Function Description abs(x) a positive value with the magnitude of x sign(x) indicates the sign of x, returning -1, 0, or +1 sqrt(x), √x square root of x cbrt(x), ∛x cube root of x exp(x) natural exponential function at x log(x) natural logarithm of...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Introduction/Functions.html",
+        "teaser":null},{
+        "title": "Julia as a Calculator",
+        
+        "excerpt":
+            "Julia as a calculator Arithmetics The first thing to try in Julia is the evaluation of arithmetic expressions: 123.4 + 234.5 # This is a comment, ignored by Julia 357.9 7 / 3 # Integer division returns floating point 2.3333333333333335 7 ÷ 3 # Truncated integer division (type \\div and press tab) 2 7 % 3 # Remainder 1 2^7 - 4 # All integer expression which returns an integer 124 3 * (4.2 - 9.7) # Use parentheses to control the order of operations -16.499999999999996 # We will later learn why the previous result is not exact 5.6e7 ^...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Introduction/Julia_As_A_Calculator.html",
+        "teaser":null},{
+        "title": "Variables and Assignments",
+        
+        "excerpt":
+            "Variables and assignments A variable is a name that refers to a value Variable names: Can contain most unicode characters, but cannot begin with a number Are case sensitive (e.g. Tau is different from tau) Should ideally be a good description of what the variable represents An assignment statement has the form variable_name = expression, and it creates a new variable and gives it the value of the evaluated expression my_number = 1.2 # Assignment 1.2 pi # Pre-defined variable π = 3.1415926535897... My_number # Error - was defined without capital M UndefVarError: My_number not defined Stacktrace: [1] top-level scope...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Introduction/Variables_And_Assignments.html",
+        "teaser":null},{
+        "title": "While-Loops",
+        
+        "excerpt":
+            "Repeated evaluation: while-loops We have seen above that for-loops are good for looping when you know the number of iterations, e.g to compute the finite sum $s_n = \\sum_{i=1}^n \\frac{1}{i}$ for some given integer $n\\ge 1$. However, suppose the problem statement makes it difficult to predict the number of iterations. For example, if we had to compute the terms in $s_n$ until a term is smaller than a given number $\\delta$. For problems like this, when you don't know the total number of iterations, you can use a while loop. It has the following syntax: while #condition # Code repeated...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Introduction/While_Loops.html",
+        "teaser":null},{
+        "title": "Mathematica",
+        
+        "excerpt":
+            "MathematicaLectureNotebook1 (the Wolfram Language for Students - Personal Use Only : www.wolfram.com) The notebook interface Very similar to Jupyter notebooks Enter code/expressions in a cell Shift-return (or enter on the numeric keypad) evaluates the expression The output is shown below the input cell Simple arithmetic The usual operations work: Note: division of integers gives rational numbers not floating point: Numbers with decimal points are interpreted as inexact (i.e. double precision floating point) Group expressions using parentheses. Multiplication can be perform by adding a space (a gray x will appear): More computations There are a huge number of mathematical functions built...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Mathematica/Mathematica_1.html",
+        "teaser":null},{
+        "title": "Mathematica",
+        
+        "excerpt":
+            "MathematicaLectureNotebook1 (the Wolfram Language for Students - Personal Use Only : www.wolfram.com) The notebook interface Very similar to Jupyter notebooks Enter code/expressions in a cell Shift-return (or enter on the numeric keypad) evaluates the expression The output is shown below the input cell Simple arithmetic The usual operations work: Note: division of integers gives rational numbers not floating point: Numbers with decimal points are interpreted as inexact (i.e. double precision floating point) Group expressions using parentheses. Multiplication can be perform by adding a space (a gray x will appear): More computations There are a huge number of mathematical functions built...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Mathematica/test.html",
         "teaser":null},{
         "title": "Linear Algebra",
         
@@ -941,7 +1144,7 @@ initFunction(initPrint)
             "Programming for Mathematical Applications Description An introduction to computer programming with a focus on the solution of mathematical and scientific problems. Basic programming concepts such as variables, statements, loops, branches, functions, data types, and object orientation. Mathematical/scientific tools such as arrays, floating point numbers, plotting, symbolic algebra, and various packages. Examples from a wide range of mathematical applications such as evaluation of complex algebraic expressions, number theory, combinatorics, statistical analysis, efficient algorithms, computational geometry, Fourier analysis, and optimization. Mainly based on the Julia programming language, but some examples will demonstrate other languages such as MATLAB, Python, C, and Mathematica. Additional...",
         "categories": [],
         "tags": [],
-        "url": "http://0.0.0.0:4000/intro.html",
+        "url": "http://0.0.0.0:4000/home.html",
         "teaser":null},]
 </script>
             </div>

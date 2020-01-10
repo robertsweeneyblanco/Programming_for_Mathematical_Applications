@@ -8,10 +8,10 @@
   <title>Graphs</title>
   <meta name="description" content="        F - Graphs     using PyPlot  # Packages used    Graphs A graph is a set of objects, represented as vertices, which may be connected (or related)to ot...">
 
-  <link rel="canonical" href="http://0.0.0.0:4000/Graphs.html">
-  <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000/feed.xml">
+  <link rel="canonical" href="http://0.0.0.0:4000//Graphs.html">
+  <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000//feed.xml">
 
-  <meta property="og:url"         content="http://0.0.0.0:4000/Graphs.html" />
+  <meta property="og:url"         content="http://0.0.0.0:4000//Graphs.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Graphs" />
 <meta property="og:description" content="        F - Graphs     using PyPlot  # Packages used    Graphs A graph is a set of objects, represented as vertices, which may be connected (or related)to ot..." />
@@ -24,10 +24,10 @@
   {
   "@context": "http://schema.org",
   "@type": "NewsArticle",
-  "mainEntityOfPage": "http://0.0.0.0:4000/Graphs.html",
+  "mainEntityOfPage": "http://0.0.0.0:4000//Graphs.html",
   "headline": "Graphs",
-  "datePublished": "2020-01-04T04:29:54-06:00",
-  "dateModified": "2020-01-04T04:29:54-06:00",
+  "datePublished": "2020-01-10T17:28:28-06:00",
+  "dateModified": "2020-01-10T17:28:28-06:00",
   "description": "        F - Graphs     using PyPlot  # Packages used    Graphs A graph is a set of objects, represented as vertices, which may be connected (or related)to ot...",
   "author": {
     "@type": "Person",
@@ -38,14 +38,14 @@
     "name": "Data 100 at UC Berkeley",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://0.0.0.0:4000",
+      "url": "http://0.0.0.0:4000/",
       "width": 60,
       "height": 60
     }
   },
   "image": {
     "@type": "ImageObject",
-    "url": "http://0.0.0.0:4000",
+    "url": "http://0.0.0.0:4000/",
     "height": 60,
     "width": 60
   }
@@ -95,7 +95,7 @@ MathJax.Hub.Config({
 
   <!-- Define some javascript variables that will be useful in other javascript -->
   <script>
-    const site_basename = '';
+    const site_basename = '/';
   </script>
 
   <!-- Add AnchorJS to let headers be linked -->
@@ -122,13 +122,13 @@ MathJax.Hub.Config({
   <!-- Google analytics -->
   
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52617120-7"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-52617120-7');
+  gtag('config', '');
 </script>
 
 
@@ -265,7 +265,7 @@ function updateInteractLink() {
       } else {
         // If interact button isn't binderhub, assume it's jupyterhub
         // If JupyterHub links, we only need to replace the hub url
-        href = href.replace("https://datahub.berkeley.edu", hubUrl);
+        href = href.replace("https://julia.datahub.berkeley.edu", hubUrl);
         if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
           // Assume we're working from a local Jupyter server and remove `/hub`
           href = href.replace("/hub/user-redirect", "");
@@ -425,7 +425,7 @@ initFunction(initPrint)
 
 
 <nav id="js-sidebar" class="c-textbook__sidebar">
-  <a href="https://jupyterbook.org/intro.html"><img src="/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
+  <a href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/home.html"><img src="/logo.png" class="textbook_logo" id="sidebar-logo" alt="textbook logo" data-turbolinks-permanent/></a>
   <h2 class="c-sidebar__title">Programming for Mathematical Applications</h2>
   <ul class="c-sidebar__chapters">
     
@@ -439,7 +439,7 @@ initFunction(initPrint)
       
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry "
-          href="/intro.html"
+          href="/home.html"
         >
           
           Home
@@ -452,6 +452,10 @@ initFunction(initPrint)
     
       
       
+        <li class="c-sidebar__divider"></li>
+        
+      
+      
 
       
       
@@ -460,12 +464,126 @@ initFunction(initPrint)
       
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry "
-          href="/Julia-Introduction.html"
+          href="/Introduction/Chapter_Intro.html"
         >
           
-          Introduction
+          Introduction to Julia
         </a>
 
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections u-hidden-visually">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Julia_As_A_Calculator.html"
+                >
+                  
+                  Julia as a Calculator
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Variables_And_Assignments.html"
+                >
+                  
+                  Variables and Assignments
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Functions.html"
+                >
+                  
+                  Functions
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/For_Loops.html"
+                >
+                  
+                  For-Loops
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Conditionals.html"
+                >
+                  
+                  Conditionals
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/While_Loops.html"
+                >
+                  
+                  While-Loops
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
         
       </li>
 
@@ -765,6 +883,27 @@ initFunction(initPrint)
 
       
     
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/Mathematica/Mathematica_1.html"
+        >
+          
+          Mathematica
+        </a>
+
+        
+      </li>
+
+      
+    
   </ul>
   <p class="sidebar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
 </nav>
@@ -803,7 +942,7 @@ initFunction(initPrint)
 
 
 
-<a href="https://datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com//jupyter/jupyter-book&amp;branch=gh-pages&amp;subPath=content%2FGraphs.ipynb&amp;app=notebook"><button class="interact-button" id="interact-button-jupyterhub"><img class="interact-button-logo" src="/assets/images/logo_jupyterhub.svg" alt="Interact" />JupyterHub</button></a>
+<a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&amp;branch=master&amp;subPath=content%2FGraphs.ipynb&amp;app=notebook"><button class="interact-button" id="interact-button-jupyterhub"><img class="interact-button-logo" src="/assets/images/logo_jupyterhub.svg" alt="Interact" />JupyterHub</button></a>
 
 
 
