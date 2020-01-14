@@ -48,19 +48,55 @@
     not_numbered: true
 
 - title: Random Numbers
-  url: /Random-Numbers
+  url: /Random_Numbers/Chapter_Intro
   not_numbered: true
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Distributions
+    url: /Random_Numbers/Distributions
+    not_numbered: true
+  - title: Histograms
+    url: /Random_Numbers/Histograms
+    not_numbered: true
+  - title: Monte Carlo
+    url: /Random_Numbers/Monte_Carlo
+    not_numbered: true
   
 - title: Vectorization
-  url: /More-Arrays-And-Vectorization
+  url: /Vectorization/Chapter_Intro
   not_numbered: true
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Constructing Arrays
+    url: /Vectorization/Constructing_Arrays
+    not_numbered: true
+  - title: Array Functions
+    url: /Vectorization/Array_Functions
+    not_numbered: true
+  - title: Logical Indexing
+    url: /Vectorization/Logical_Indexing
+    not_numbered: true
   
 - title: Data Types
-  url: /Rational-Complex-High-Precision
+  url: /Data_Types/Chapter_Intro
   not_numbered: true
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Arbitrary Precision Integers
+    url: /Data_Types/Arbitrary_Precision_Integers
+    not_numbered: true
+  - title: Arbitrary Precision Floats 
+    url: /Data_Types/Arbitrary_Precision_Floats
+    not_numbered: true
+  - title: Complex Numbers
+    url: /Data_Types/Complex_Numbers
+    not_numbered: true
+  - title: Rational Numbers
+    url: /Data_Types/Rational_Numbers
+    not_numbered: true
+  - title: Arrays
+    url: /Data_Types/Arrays
+    not_numbered: true
 
 - title: Recursion
   url: /Recursion-Divide-and-Conquer
@@ -68,9 +104,19 @@
   expand_sections: true
   
 - title: Linear Algebra
-  url: /Matrices_Linear_Algebra
+  url: /Linear_Algebra/Chapter_Intro
   not_numbered: true
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Matrix Operations
+    url: /Linear_Algebra/Matrix_Operations
+    not_numbered: true
+  - title: Special Matricies
+    url: /Linear_Algebra/Special_Matricies 
+    not_numbered: true
+  - title: Linear Systems and Regression
+    url: /Linear_Algebra/Linear_Systems_And_Regression
+    not_numbered: true
   
 - title: String Files
   url: /Strings_Files

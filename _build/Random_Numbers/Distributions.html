@@ -1,0 +1,482 @@
+---
+redirect_from:
+  - "/random-numbers/distributions"
+interact_link: content/Random_Numbers/Distributions.ipynb
+kernel_name: julia-1.3
+has_widgets: false
+title: |-
+  Distributions
+prev_page:
+  url: /Random_Numbers/Chapter_Intro.html
+  title: |-
+    Random Numbers
+next_page:
+  url: /Random_Numbers/Histograms.html
+  title: |-
+    Histograms
+suffix: .ipynb
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Distributions">Distributions<a class="anchor-link" href="#Distributions"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Uniformly-distributed-random-numbers">Uniformly distributed random numbers<a class="anchor-link" href="#Uniformly-distributed-random-numbers"> </a></h2><p>The function <code>rand(n)</code> generates $n$ so-called <em>pseudo-random</em> numbers from a uniform distribution on $[0,1]$. This means that the numbers are technically fully deterministic, but for most practical purposes they can be seen as random. These numbers have a wide range of application in computing, for statistical simulations, studying noise, etc.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">rand</span><span class="p">()</span>               <span class="c"># Defaults to n = 1 random number</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.12780989889368866</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">rand</span><span class="p">()</span>               <span class="c"># Different output each time</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.374186714831074</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>              <span class="c"># Array of 3 random numbers</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3-element Array{Float64,1}:
+ 0.9311151512445586 
+ 0.43893895933102156
+ 0.24686248047491066</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that all the generated numbers are different, which we would expect from a random number generator. However, sometimes it is useful to be able to generate the same sequence of random numbers (e.g. for debugging code). This can be done using the <code>Random.seed!</code> command from the <code>Random</code> package, and an arbitrary so-called <em>seed</em> number:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Random</span>
+<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>      <span class="c"># Seed number 1234</span>
+<span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>      <span class="c"># Re-seed with same number - will give the same sequence of random numbers</span>
+<span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.5908446386657102, 0.7667970365022592, 0.5662374165061859]
+[0.4600853424625171, 0.7940257103317943, 0.8541465903790502, 0.20058603493384108, 0.2986142783434118]
+[0.5908446386657102, 0.7667970365022592]
+[0.5662374165061859, 0.4600853424625171, 0.7940257103317943, 0.8541465903790502, 0.20058603493384108, 0.2986142783434118]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Other-intervals">Other intervals<a class="anchor-link" href="#Other-intervals"> </a></h2><p>To generate uniform random numbers from a different interval $[a,b]$, you can simply scale a random number $x\in [0,1]$ by $a + x(b-a)$. For example:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">.-</span> <span class="mi">1</span>     <span class="c"># 5 uniform random numbers on [-1,1]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5-element Array{Float64,1}:
+ -0.506325626779982  
+  0.15934446673808322
+  0.29776390041869094
+ -0.9781882207288093 
+ -0.8671539260893253 </pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="mi">7</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">.+</span> <span class="mi">4</span>    <span class="c"># 3 uniform random numbers on [4,11]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3-element Array{Float64,1}:
+ 10.697273545220465 
+  8.526836870721521 
+  4.7874010983099815</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Random-integers">Random integers<a class="anchor-link" href="#Random-integers"> </a></h2><p>The <code>rand</code> function can also be used with a range or a vector, from which it chooses samples at random. This can be used to generate random integers:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c"># 3 random integers between 1 and 10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3-element Array{Int64,1}:
+ 4
+ 9
+ 3</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>but also more generally to select any objects from a vector at random:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">rand</span><span class="p">([</span><span class="nb">π</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5-element Array{Float64,1}:
+ 3.141592653589793
+ 3.141592653589793
+ 2.718281828459045
+ 2.718281828459045
+ 2.718281828459045</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Normal-distributions">Normal distributions<a class="anchor-link" href="#Normal-distributions"> </a></h2><p>The function <code>randn</code> is similar to <code>rand</code> but draws random numbers from a normal distribution with mean 0 and standard deviation 1.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">randn</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.1509756176321479</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Suppose $\mu$ and $\sigma &gt; 0$ are constants. If $Z$ is standard normal, then $\sigma Z + \mu$ is normal with mean $\mu$ and standard deviation $\sigma$. Thus we can generate numbers from any normal distributions using the <code>randn</code> function. As an example, the code below draws from a normal distribution with mean 2 and standard deviation 5.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">μ</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">σ</span><span class="o">*</span><span class="n">randn</span><span class="p">()</span> <span class="o">+</span> <span class="n">μ</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5.846391302672911</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

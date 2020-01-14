@@ -1,0 +1,570 @@
+---
+redirect_from:
+  - "/random-numbers/monte-carlo"
+interact_link: content/Random_Numbers/Monte_Carlo.ipynb
+kernel_name: julia-1.3
+has_widgets: false
+title: |-
+  Monte Carlo
+prev_page:
+  url: /Random_Numbers/Histograms.html
+  title: |-
+    Histograms
+next_page:
+  url: /Vectorization/Chapter_Intro.html
+  title: |-
+    Vectorization
+suffix: .ipynb
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Monte-Carlo">Monte Carlo<a class="anchor-link" href="#Monte-Carlo"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span>
+<span class="k">using</span> <span class="n">Random</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Monte-Carlo-simulations">Monte Carlo simulations<a class="anchor-link" href="#Monte-Carlo-simulations"> </a></h2><p>A common technique to estimate probabilities and statistical quantities is <em>Monte Carlo simulation</em>. The computer runs many simulations that depend on random numbers and records the outcomes. The desired quantity can then be estimated by simple fractions.</p>
+<p>As an example, the code below simulates rolling a die repeatedly until it rolls a 6, and recording the number of rolls that it took. The average number of rolls required can then be estimated.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">ntrials</span> <span class="o">=</span> <span class="mi">10000</span>            <span class="c"># Number of experiments</span>
+<span class="n">x</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>                <span class="c"># Array of outcomes</span>
+<span class="n">sumx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">ntrials</span>
+    <span class="n">nrolls</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">found_a_six</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="k">while</span> <span class="o">!</span><span class="n">found_a_six</span>
+        <span class="n">nrolls</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">6</span>
+            <span class="n">found_a_six</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nrolls</span><span class="p">)</span>
+    <span class="n">sumx</span> <span class="o">+=</span> <span class="n">nrolls</span>
+<span class="k">end</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;Number of rolls&quot;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;Count&quot;</span><span class="p">)</span>
+<span class="n">average</span> <span class="o">=</span> <span class="n">sumx</span> <span class="o">/</span> <span class="n">ntrials</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Random_Numbers/Monte_Carlo_3_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5.9093</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Card-games,-permutations">Card games, permutations<a class="anchor-link" href="#Card-games,-permutations"> </a></h3><p>To simulate card games, we need a way to represent the cards. There are 13 <em>ranks</em> and 4 <em>suits</em>, so we could simply use an integer between 1 and 52 and let 1 to 13 represent Ace, 2, 3, ..., King of clubs, 14 to 26 all the diamonds, etc. We can use integer division and remainder to find the rank and suit:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">card_rank</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">card</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">13</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">card_suit</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">card</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">÷</span> <span class="mi">13</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="k">end</span>
+
+<span class="n">cards</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">52</span>      <span class="c"># All cards</span>
+<span class="p">[</span><span class="n">card_rank</span><span class="o">.</span><span class="p">(</span><span class="n">cards</span><span class="p">)</span> <span class="n">card_suit</span><span class="o">.</span><span class="p">(</span><span class="n">cards</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>52×2 Array{Int64,2}:
+  1  1
+  2  1
+  3  1
+  4  1
+  5  1
+  6  1
+  7  1
+  8  1
+  9  1
+ 10  1
+ 11  1
+ 12  1
+ 13  1
+  ⋮   
+  2  4
+  3  4
+  4  4
+  5  4
+  6  4
+  7  4
+  8  4
+  9  4
+ 10  4
+ 11  4
+ 12  4
+ 13  4</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now draw a random card by generating a random integer between 1 and 52. However, to deal e.g. a poker hand of 5 cards, we need to make sure we do not draw the same card twice. One way to do this is with Julia's <code>randperm(n)</code> function, which generates a random permutation of the integers 1 up to <code>n</code>. We can use this to represent a shuffled deck of cards, and use the first 5 cards to deal a poker hand:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">cards</span> <span class="o">=</span> <span class="n">randperm</span><span class="p">(</span><span class="mi">52</span><span class="p">)</span>
+<span class="n">hand</span> <span class="o">=</span> <span class="n">cards</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="p">[</span><span class="n">card_rank</span><span class="o">.</span><span class="p">(</span><span class="n">hand</span><span class="p">)</span> <span class="n">card_suit</span><span class="o">.</span><span class="p">(</span><span class="n">hand</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5×2 Array{Int64,2}:
+ 11  4
+  5  4
+  6  2
+  1  4
+ 12  1</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Probability-of-flush">Example: Probability of flush<a class="anchor-link" href="#Example:-Probability-of-flush"> </a></h3><p>A <em>flush</em> means that all cards have the same suit. To estimate the probabilty that a random poker hand is a flush, we run Monte Carlo simulation:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">ntrials</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">nflush</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">itrial</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">ntrials</span>
+    <span class="n">cards</span> <span class="o">=</span> <span class="n">randperm</span><span class="p">(</span><span class="mi">52</span><span class="p">)</span>
+    <span class="n">hand</span> <span class="o">=</span> <span class="n">cards</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+
+    <span class="n">suits</span> <span class="o">=</span> <span class="n">card_suit</span><span class="o">.</span><span class="p">(</span><span class="n">hand</span><span class="p">)</span>
+    <span class="n">same_suit</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="mi">5</span>
+        <span class="k">if</span> <span class="n">suits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">≠</span> <span class="n">suits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">same_suit</span> <span class="o">=</span> <span class="kc">false</span>
+            <span class="k">break</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="k">if</span> <span class="n">same_suit</span>
+        <span class="n">nflush</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">approx_probability</span> <span class="o">=</span> <span class="n">nflush</span> <span class="o">/</span> <span class="n">ntrials</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.00212</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This problem can also be solved using combinatorial techniques, which we can use to check the approximation:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">exact_probability</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">binomial</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="n">binomial</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0019807923169267707</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Estimate-$\pi$-by-throwing-darts">Estimate $\pi$ by throwing darts<a class="anchor-link" href="#Estimate-$\pi$-by-throwing-darts"> </a></h2><p>Random number can be used to approximate areas, or more generally, to estimate integrals. To illustrate this, consider a 2-by-2 square with a unit disk inside. Imagine throwing $n$ darts on the square with equal probability everywhere. Then the fraction of darts that hit inside the circle should approximate the ratio between the areas, that is:
+$$
+\frac{\mathrm{hits}}{n} \approx \frac{\pi r^2}{(2r)^2}
+$$
+where the radius $r=1$. This means we can estimate $\pi$ as
+$$
+\pi \approx 4 \frac{\mathrm{hits}}{n}
+$$</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>               <span class="c"># Number of darts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">.-</span> <span class="mi">1</span>       <span class="c"># Coordinates</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">.-</span> <span class="mi">1</span>
+
+<span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c"># Draw square</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span><span class="nb">π</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="mi">100</span><span class="p">)</span><span class="o">./</span><span class="mi">100</span>               <span class="c"># Draw circle</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>   
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&quot;None&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>   <span class="c"># Plot dart points</span>
+<span class="n">axis</span><span class="p">(</span><span class="s">&quot;equal&quot;</span><span class="p">)</span>
+
+<span class="c"># Determine if points are inside the circle (a &quot;hit&quot;)</span>
+<span class="n">hits</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">≤</span> <span class="mi">1</span>
+        <span class="n">hits</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">approx_pi</span> <span class="o">=</span> <span class="mi">4</span><span class="n">hits</span> <span class="o">/</span> <span class="n">n</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Random_Numbers/Monte_Carlo_13_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.1564</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-Random-walk">Example: Random walk<a class="anchor-link" href="#Example:-Random-walk"> </a></h2><p>A <em>random walk</em> can be described by the following algorithm:</p>
+<ul>
+<li>Consider a 2-d array of square cells</li>
+<li>Start at the center cell</li>
+<li>At each turn, randomly choose a direction (up/down/left/right) and move to that neighboring cell</li>
+<li>Continue until reaching an edge</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">random_walk</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">n</span>
+        <span class="k">if</span> <span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span>
+            <span class="k">if</span> <span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span>  <span class="c"># Up</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span>             <span class="c"># Down</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">else</span>
+            <span class="k">if</span> <span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span>  <span class="c"># Right</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+            <span class="k">else</span>             <span class="c"># Left    </span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>random_walk (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">random_walk</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>     <span class="c"># Draw dots at each point in x,y</span>
+<span class="n">grid</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="o">-</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">]);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Random_Numbers/Monte_Carlo_16_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

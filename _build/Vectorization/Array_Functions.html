@@ -1,0 +1,992 @@
+---
+redirect_from:
+  - "/vectorization/array-functions"
+interact_link: content/Vectorization/Array_Functions.ipynb
+kernel_name: julia-1.3
+has_widgets: false
+title: |-
+  Array Functions
+prev_page:
+  url: /Vectorization/Constructing_Arrays.html
+  title: |-
+    Constructing Arrays
+next_page:
+  url: /Vectorization/Logical_Indexing.html
+  title: |-
+    Logical Indexing
+suffix: .ipynb
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Array-Functions">Array Functions<a class="anchor-link" href="#Array-Functions"> </a></h1>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Introduction-to-Array-functions">Introduction to Array functions<a class="anchor-link" href="#Introduction-to-Array-functions"> </a></h2><p>We have seen before how many for-loops over arrays can be avoided using e.g. the dot-operator, which evaluates functions and operators element-wise. A number of other helper functions are available to extend this so-called <em>vectorization</em> technique, and allow for shorter code that is easier to understand and which might execute faster.</p>
+<p>For example, a very common operation is to sum all the elements of an array. While this is easy to do with a for-loop, the function <code>sum</code> makes it even easier:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Sum of &quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">&quot; = &quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Sum of [66, 59, 81, 32, 10] = 248
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>sum</code> function can also take an additional dimension argument <code>dims</code>, to specify which dimension it should add along. For example, it can add all the elements in each column (along dimension 1, producing a vector of sums):</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3×5 Array{Int64,2}:
+ -10  -97   6  -62  -62
+  67   96  81  -21   80
+  53  -98  12  -84   -4</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1×5 Array{Int64,2}:
+ 110  -99  99  -167  14</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>or it can add all the elements in each row (along dimension 2):</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3×1 Array{Int64,2}:
+ -225
+  303
+ -121</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that while these functions reduce a 2D array to a 1D array, the output is still a 2D array (a row of a column vector). The syntax [:] after any array will convert it to a 1D array, which might be needed for example when using the array as indices.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">:</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5-element Array{Int64,1}:
+  110
+  -99
+   99
+ -167
+   14</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Some other examples of these so-called <em>array reduction</em> functions are shown below.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                         <span class="c"># Product of all elements</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>5-element Array{Int64,1}:
+ 76
+ 49
+ 72
+ 32
+ 98</pre>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>840849408</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">maximum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>     <span class="c"># Largest element in each column</span>
+<span class="n">display</span><span class="p">(</span><span class="n">minimum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>     <span class="c"># Smallest element in each column</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>3×5 Array{Int64,2}:
+ -10  -97   6  -62  -62
+  67   96  81  -21   80
+  53  -98  12  -84   -4</pre>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>1×5 Array{Int64,2}:
+ 67  96  81  -21  80</pre>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>1×5 Array{Int64,2}:
+ -10  -98  6  -84  -62</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <em>cumulative</em> sum and product functions work in a similar way, but produce arrays of the same size as the original array:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
+<span class="n">display</span><span class="p">(</span><span class="n">cumsum</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>                   <span class="c"># Cumulative sum, that is, entry n is the sum of x_1,...,x_n</span>
+<span class="n">display</span><span class="p">(</span><span class="n">cumprod</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>                  <span class="c"># Cumulative product</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>5-element Array{Int64,1}:
+  1
+  3
+  6
+ 10
+ 15</pre>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>5-element Array{Int64,1}:
+   1
+   2
+   6
+  24
+ 120</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2×3 reshape(::UnitRange{Int64}, 2, 3) with eltype Int64:
+ 1  3  5
+ 2  4  6</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">cumsum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                    <span class="c"># Cumulative sum along dimension 1 (that is, column-wise)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2×3 Array{Int64,2}:
+ 1  3   5
+ 3  7  11</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">cumprod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>                   <span class="c"># Cumulative product along dimension 2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2×3 Array{Int64,2}:
+ 1  3  15
+ 2  8  48</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-Taylor-polynomial-using-array-functions">Example: Taylor polynomial using array functions<a class="anchor-link" href="#Example:-Taylor-polynomial-using-array-functions"> </a></h2><p>In part 1, we used for-loops to evaluate the Taylor polynomial for $\cos x$ of a given degree $2n$:</p>
+<div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">taylor_cos</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">term</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+        <span class="n">term</span> <span class="o">*=</span> <span class="o">-</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="p">((</span><span class="mi">2</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">+=</span> <span class="n">term</span>
+    <span class="k">end</span>
+    <span class="n">y</span>
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can rewrite this in a vectorized form by using the <code>cumprod</code> and the <code>sum</code> functions. Note that each term in the sum is built up by multiplying the previous term by the expression <code>-x^2 / ((2k-1) * 2k)</code>. This means we can create a vector with these values, and create <em>all</em> the terms using the <code>cumprod</code> function. Finally, the Taylor polynomial is obtained by adding all the terms using the <code>sum</code> function, and manually adding the first term 1 which is a special case:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">taylor_cos</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">factors</span> <span class="o">=</span> <span class="p">[</span> <span class="o">-</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="p">((</span><span class="mi">2</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span> <span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">sum</span><span class="p">(</span><span class="n">cumprod</span><span class="p">(</span><span class="n">factors</span><span class="p">))</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>taylor_cos (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">taylor_cos</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span> <span class="c"># Taylor approximation</span>
+<span class="n">println</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>            <span class="c"># true value</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-0.8390715290752269
+-0.8390715290764524
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since we now know how to plot functions, let us make the typical calculus plot that compares Taylor polynomial approximations of different degrees. Note how we can generate a 2D array <code>yy_taylor</code> of 6 different Taylor polynomials, for all values of <code>x</code>, using an array comprehension.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">xx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">10</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+<span class="n">yy_taylor</span> <span class="o">=</span> <span class="p">[</span> <span class="n">taylor_cos</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="kp">in</span> <span class="n">xx</span><span class="p">,</span> <span class="n">n</span> <span class="kp">in</span> <span class="mi">0</span><span class="o">:</span><span class="mi">5</span> <span class="p">]</span>
+
+<span class="k">using</span> <span class="n">PyPlot</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy_taylor</span><span class="p">)</span>
+<span class="n">grid</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">]);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Vectorization/Array_Functions_23_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Array-functions-for-indices-and-booleans">Array functions for indices and booleans<a class="anchor-link" href="#Array-functions-for-indices-and-booleans"> </a></h2><p>Another useful set of array functions are based on indices and boolean variables. For example, the <code>in</code> function (or the $\in$ symbol) will loop through an array and return <code>true</code> if a given number appears anywhere in the array:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">1000</span>                 <span class="c"># Odd numbers</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">503</span> <span class="kp">in</span> <span class="n">x</span><span class="p">)</span>            <span class="c"># True, 503 is in the list</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">1000</span> <span class="o">∈</span> <span class="n">x</span><span class="p">)</span>            <span class="c"># False, 1000 is not in the list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>true
+false
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>all</code> function returns <code>true</code> if all elements in a boolean array are <code>true</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">.&lt;</span> <span class="mi">500</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">.&gt;</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>false
+true
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>any</code> function returns <code>true</code> if any element in a boolean array is <code>true</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">.==</span> <span class="mi">503</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">any</span><span class="p">(</span><span class="n">x</span> <span class="o">.==</span> <span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>true
+false
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also find the <em>index</em> of e.g. the first element that is <code>true</code> in a boolean array:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="n">findfirst</span><span class="p">(</span><span class="n">x</span> <span class="o">.==</span> <span class="mi">503</span><span class="p">)</span>    <span class="c"># Index in x with the value 503</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>252</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>or more generally, a vector with the indices to <em>all</em> the elements that are <code>true</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">ind</span> <span class="o">=</span> <span class="n">findall</span><span class="p">(</span><span class="err">@</span><span class="o">.</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">97</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Indices in x with numbers that are multiples of 97: &quot;</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Indices in x with numbers that are multiples of 97: [49, 146, 243, 340, 437]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, the <code>count</code> function returns the number of times <code>true</code> appears in a boolean array:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">count</span><span class="p">(</span><span class="err">@</span><span class="o">.</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">97</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

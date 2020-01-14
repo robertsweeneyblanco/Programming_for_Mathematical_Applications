@@ -1,0 +1,373 @@
+---
+redirect_from:
+  - "/data-types/arbitrary-precision-floats"
+interact_link: content/Data_Types/Arbitrary_Precision_Floats.ipynb
+kernel_name: julia-1.3
+has_widgets: false
+title: |-
+  Arbitrary Precision Floats
+prev_page:
+  url: /Data_Types/Arbitrary_Precision_Integers.html
+  title: |-
+    Arbitrary Precision Integers
+next_page:
+  url: /Data_Types/Complex_Numbers.html
+  title: |-
+    Complex Numbers
+suffix: .ipynb
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Arbitrary-precision-floating-point-numbers">Arbitrary precision floating-point numbers<a class="anchor-link" href="#Arbitrary-precision-floating-point-numbers"> </a></h1><p>Similarly, the <code>BigFloat</code> data type can create floating-point numbers with higher precision than the regular <code>Float64</code> type. It can also be created from an existing <code>Float64</code> number:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="kt">BigFloat</span><span class="p">(</span><span class="mf">1.75</span><span class="p">)</span>              <span class="c"># Accidentally OK, since 1.75 is exactly represented by Float64</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.75</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But again this might give unintended results, since the number is first converted to <code>Float64</code> with only about 16 decimal digits of accuracy:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="kt">BigFloat</span><span class="p">(</span><span class="mf">2.1</span><span class="p">)</span>               <span class="c"># First rounded to Float64, low precision</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.100000000000000088817841970012523233890533447265625</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Again this can be solved using the string syntax:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">parse</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">,</span> <span class="s">&quot;2.1&quot;</span><span class="p">)</span>      <span class="c"># High precision</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.099999999999999999999999999999999999999999999999999999999999999999999999999986</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The precision, or the number of bits used to store the number, can be controlled with the <code>setprecision</code> function. It will set the precision for all later operations, unless used in a <code>do</code> block as shown below when it will only apply to that block of code.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">setprecision</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kt">BigFloat</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="kt">BigFloat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333346</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Julia's built-in functions support the higher precision:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="nb">pi</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="nb">pi</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>3.141592653589793238462643383279502884197169399375105820974944592307816406286198</pre>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>1.096917440979352076742130626395698021050758236508687951179005716992142688513354e-77</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-Cubic-convergence">Example: Cubic convergence<a class="anchor-link" href="#Example:-Cubic-convergence"> </a></h2><p><em>Halley's method</em> is an extension of Newton's method for solving $f(x)=0$, which involves the second derivative but gives cubic convergence:
+$$
+x_{n+1} = x_n - \frac{2f(x_n) f'(x_n)}{2[f'(x_n)]^2 - f(x_n)f''(x_n)}
+$$</p>
+<p>This cubic convergence is sometimes hard to observe, since the machine precision is achieved very quickly. But with arbitrary precision we can confirm the "tripling of the accurate digits" in each iteration. For example, consider computing $x=\sqrt[3]{a}$ by solving the equation $f(x) = x^3 - a$:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">halley_cuberoot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">ε</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c"># Initial guess</span>
+    <span class="n">Δx</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c"># Need to initialize to get started</span>
+    <span class="k">while</span> <span class="n">Δx</span> <span class="o">≥</span> <span class="n">ε</span>
+        <span class="n">xnew</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="p">(</span><span class="mi">3</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">6</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">Δx</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">xnew</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">xnew</span>
+        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Error = &quot;</span><span class="p">,</span> <span class="n">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">cbrt</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
+    <span class="k">end</span>
+    <span class="n">x</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>halley_cuberoot (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">halley_cuberoot</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mf">1e-60</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Error = 0.009921049894873164767210607278228350570251464701507980081975112155299676513956221
+Error = 4.149742382441322899723575934299353308297808730594470544772346647558790369568435e-07
+Error = 3.001136168965729242876474785354871654493618340778791794290950778604895701742477e-20
+Error = 1.135217767765559947507625958119369715609728496052297379270293469389407869634748e-59
+Error = 0.0
+Error = 0.0
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.259921049894873164767210607278228350570251464701507980081975112155299676513956</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
