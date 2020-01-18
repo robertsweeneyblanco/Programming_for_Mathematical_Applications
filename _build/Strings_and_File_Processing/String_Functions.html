@@ -1,0 +1,320 @@
+---
+redirect_from:
+  - "/strings-and-file-processing/string-functions"
+interact_link: content/Strings_and_File_Processing/String_Functions.ipynb
+kernel_name: julia-1.3
+has_widgets: false
+title: |-
+  String Functions
+prev_page:
+  url: /Strings_and_File_Processing/String_Basics.html
+  title: |-
+    String Basics
+next_page:
+  url: /Strings_and_File_Processing/File_Processing.html
+  title: |-
+    File Processing
+suffix: .ipynb
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="String-Functions">String Functions<a class="anchor-link" href="#String-Functions"> </a></h1><p>Julia defines a number of functions that operate on strings. For example,
+<code>lowercase</code> and <code>uppercase</code> converts all letters to lower- or upper-case:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">uppercase</span><span class="p">(</span><span class="s">&quot;julia123 &quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">lowercase</span><span class="p">(</span><span class="s">&quot;LOWER&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>JULIA123 lower
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>titlecase</code> commands capitalizes the first character of each word in a string:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">str</span> <span class="o">=</span> <span class="s">&quot;SEARCHING FOR CHARACTERS AND SUBSTRINGS&quot;</span>
+<span class="n">titlecase</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;Searching For Characters And Substrings&#34;</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Searching-for-characters-and-substrings">Searching for characters and substrings<a class="anchor-link" href="#Searching-for-characters-and-substrings"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The ∈ operator (type "\in" and tab) returns <code>true</code> if a characters appears in a string:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="sc">&#39;!&#39;</span> <span class="o">∈</span> <span class="n">str</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>false</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The function <code>findfirst(pattern, str)</code> returns the indices of the first occurance of <code>pattern</code> in <code>str</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">str</span> <span class="o">=</span> <span class="s">&quot;Hello, World! These are my words.&quot;</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="s">&quot;wor&quot;</span>
+<span class="n">idx1</span> <span class="o">=</span> <span class="n">findfirst</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">lowercase</span><span class="p">(</span><span class="n">str</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8:10</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The function <code>findnext(pattern, str, start)</code> returns the indicies of the next occurance of <code>pattern</code> in <code>str</code> after the one at position <code>start</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">idx2</span> <span class="o">=</span> <span class="n">findnext</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">lowercase</span><span class="p">(</span><span class="n">str</span><span class="p">),</span> <span class="n">idx1</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>28:30</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Similarly, <code>findlast</code> and <code>findprev</code> starts from the end of the string.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Replacing-substrings">Replacing substrings<a class="anchor-link" href="#Replacing-substrings"> </a></h2><p>The function <code>replace(str, pattern=&gt;repl)</code> searches the string <code>str</code> for all occurances of the substring <code>pattern</code>, and replace them with the string <code>repl</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">replace</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;, World&quot;</span><span class="o">=&gt;</span><span class="s">&quot; there&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello, World! These are my words.
+Hello there! These are my words.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

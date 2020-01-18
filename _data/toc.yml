@@ -118,10 +118,20 @@
     url: /Linear_Algebra/Linear_Systems_And_Regression
     not_numbered: true
   
-- title: String Files
-  url: /Strings_Files
+- title: Strings and File Processing
+  url: /Strings_and_File_Processing/Chapter_Intro
   not_numbered: true
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: String Basics 
+    url: /Strings_and_File_Processing/String_Basics
+    not_numbered: true
+  - title: String Functions
+    url: /Strings_and_File_Processing/String_Functions
+    not_numbered: true
+  - title: File Processing
+    url: /Strings_and_File_Processing/File_Processing
+    not_numbered: true
   
 - title: Objects
   url: /Types_Structs_Objects

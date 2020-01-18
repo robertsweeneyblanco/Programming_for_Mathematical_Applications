@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "http://0.0.0.0:4000//search",
   "headline": "Search the site",
-  "datePublished": "2020-01-13T19:37:52-06:00",
-  "dateModified": "2020-01-13T19:37:52-06:00",
+  "datePublished": "2020-01-18T03:12:13-06:00",
+  "dateModified": "2020-01-18T03:12:13-06:00",
   "description": "        ",
   "author": {
     "@type": "Person",
@@ -990,12 +990,75 @@ initFunction(initPrint)
       
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry "
-          href="/Strings_Files.html"
+          href="/Strings_and_File_Processing/Chapter_Intro.html"
         >
           
-          String Files
+          Strings and File Processing
         </a>
 
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections u-hidden-visually">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Strings_and_File_Processing/String_Basics.html"
+                >
+                  
+                  String Basics
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Strings_and_File_Processing/String_Functions.html"
+                >
+                  
+                  String Functions
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Strings_and_File_Processing/File_Processing.html"
+                >
+                  
+                  File Processing
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
         
       </li>
 
@@ -1427,7 +1490,7 @@ initFunction(initPrint)
         "title": "Random Numbers",
         
         "excerpt":
-            "             Random Numbers  This chapter will introduce how to sample random numbers in julia using the Random package. The chapter will demonstrate several examples of using the package to run Monte Carlo simulations.                     ",
+            "             Random Numbers  This chapter will introduce how to sample random numbers in Julia using the Random package. The chapter will demonstrate several examples of using the package to run Monte Carlo simulations.                     ",
         "categories": [],
         "tags": [],
         "url": "http://0.0.0.0:4000/Random_Numbers/Chapter_Intro.html",
@@ -1472,13 +1535,37 @@ initFunction(initPrint)
         "tags": [],
         "url": "http://0.0.0.0:4000/Sparse_Arrays.html",
         "teaser":null},{
-        "title": "String Files",
+        "title": "Strings and File Processing",
         
         "excerpt":
-            "Strings and File Processing Strings Strings are sequences of characters, and they are used in a wide range of programming applications. Julia provides extensive functionality for working with strings and characters, including support for so-called Unicode characters. However, Julia also works efficiently using standard so-called ASCII characters and string, which we will focus on here to keep the presentation shorter. Characters ASCII is a 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters. The numbers 0 - 31 are used for so-called...",
+            "             Strings and File Processing  This chapter will cover Julia's string data type and many special functions to manipulate them. It will also cover how to read in text files for programs to analyze.                     ",
         "categories": [],
         "tags": [],
-        "url": "http://0.0.0.0:4000/Strings_Files.html",
+        "url": "http://0.0.0.0:4000/Strings_and_File_Processing/Chapter_Intro.html",
+        "teaser":null},{
+        "title": "File Processing",
+        
+        "excerpt":
+            "File Processing Files are commonly used by computer codes, for example to save computed data or to read tables and external data files. Julia has extensive support for working with files, but here we will focus on only the basic functionality. Reading files First we consider the most basic way to read a text file. We create an example text file named test_file.txt (e.g. using the Jupyter notebook or an editor), containing some lines of text. The code below shows how to read each line of this file into a string, which can then be further processed in Julia (here...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Strings_and_File_Processing/File_Processing.html",
+        "teaser":null},{
+        "title": "String Basics",
+        
+        "excerpt":
+            "String Basics Strings are sequences of characters, and they are used in a wide range of programming applications. Julia provides extensive functionality for working with strings and characters, including support for so-called Unicode characters. However, Julia also works efficiently using standard so-called ASCII characters and string, which we will focus on here to keep the presentation shorter. Characters ASCII is a 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters. The numbers 0 - 31 are used for so-called control characters, including...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Strings_and_File_Processing/String_Basics.html",
+        "teaser":null},{
+        "title": "String Functions",
+        
+        "excerpt":
+            "String Functions Julia defines a number of functions that operate on strings. For example, lowercase and uppercase converts all letters to lower- or upper-case: println(uppercase(&quot;julia123 &quot;) * lowercase(&quot;LOWER&quot;)) JULIA123 lower The titlecase commands capitalizes the first character of each word in a string: str = &quot;SEARCHING FOR CHARACTERS AND SUBSTRINGS&quot; titlecase(str) &#34;Searching For Characters And Substrings&#34; Searching for characters and substrings The ∈ operator (type \"\\in\" and tab) returns true if a characters appears in a string: &#39;!&#39; ∈ str false The function findfirst(pattern, str) returns the indices of the first occurance of pattern in str: str = &quot;Hello, World!...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Strings_and_File_Processing/String_Functions.html",
         "teaser":null},{
         "title": "Objects",
         
