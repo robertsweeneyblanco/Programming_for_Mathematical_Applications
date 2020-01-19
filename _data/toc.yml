@@ -176,10 +176,23 @@
     url: /Image_Processing/Fourier_Transform
     not_numbered: true
   
-- title: Differential Equations 
-  url: /Differential_Equations
+- title: Differential Equations
+  url: /Differential_Equations/Chapter_Intro
   not_numbered: false
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Initial Value Problems 
+    url: /Differential_Equations/Initial_Value_Problems
+    not_numbered: true
+  - title: Higher Order Derivatives and Systems of ODEs
+    url: /Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs
+    not_numbered: true
+  - title: Boundary Value Problems 
+    url: /Differential_Equations/Boundary_Value_Problems
+    not_numbered: true
+  - title: DifferentialEquations_Package
+    url: /Differential_Equations/DifferentialEquations_Package
+    not_numbered: true
   
 - title: Optimization
   url: /Optimization

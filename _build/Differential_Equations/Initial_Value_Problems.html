@@ -1,0 +1,407 @@
+---
+redirect_from:
+  - "/differential-equations/initial-value-problems"
+interact_link: content/Differential_Equations/Initial_Value_Problems.ipynb
+kernel_name: julia-1.3
+has_widgets: false
+title: |-
+  Initial Value Problems
+prev_page:
+  url: /Differential_Equations/Chapter_Intro.html
+  title: |-
+    Differential Equations
+next_page:
+  url: /Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html
+  title: |-
+    Higher Order Derivatives and Systems of ODEs
+suffix: .ipynb
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Initial-Value-Problems">Initial Value Problems<a class="anchor-link" href="#Initial-Value-Problems"> </a></h1><p>An <em>initial value problem</em> (IVP) can be written as:</p>
+$$
+\begin{align*}
+y'(t) &amp;= f(t,y(t)), \quad t\ge t_0 \\
+y(t_0) &amp;= y_0
+\end{align*}
+$$<p>for some <em>right-hand side function</em> $f(t,y)$ and <em>initial condition</em> $y_0$ for $t=t_0$. In these problems, the independent variable $t$ often represents time.</p>
+<p>Sometimes basic calculus can be used to solve these equations. For example, some <em>linear</em> and <em>separable</em> equations have closed-form solutions. But in general we have to resort to <em>numerical methods</em> to find approximations to the solution $y(t)$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span><span class="p">,</span> <span class="n">PyCall</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Euler's-method">Euler's method<a class="anchor-link" href="#Euler's-method"> </a></h2><p>The most basic approach for numerically solving an IVP is <em>Euler's method</em>, illustrated below.</p>
+<p><img src="data:image/png;base64,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" alt="412px-Euler_method.svg.png">
+(from Wikipedia, <a href="https://en.wikipedia.org/wiki/Euler_method">https://en.wikipedia.org/wiki/Euler_method</a>).</p>
+<p>We first choose a <em>step size</em>, or <em>time step</em>, $h$, and define the discrete times $t_n = t_0 + nh$, $n = 0,1,\ldots$. Euler's method advances the solution $y_n$ at time $t_n$ to time $t_{n+1}$ by a linear approximation using the derivative at time $t_n$:</p>
+$$
+y_{n+1} = y_n + hf(t_n,y_n)
+$$<p>With some assumptions on the IVP and the step size, these values can be shown to be good approximation to the true solution, that is, $y_n \approx y(t_n$).</p>
+<p>While described for scalar-valued functions $y(t)$, the method works equally well for systems of equations, that is, when $y(t)$ and $f(t,y(t))$ are vector-valued.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Euler's-method,-implementation">Euler's method, implementation<a class="anchor-link" href="#Euler's-method,-implementation"> </a></h2><p>We implement a general version of Euler's method which takes the right-hand side function $f(t,y(t))$
+as an argument. In addition, it takes the initial condition $y_0$, the step size $h$, the number of steps $N$, and the starting time $t_0$ which has a default value of $0$. Note that the implementations supports solutions $y$ that are vector-valued, and the output <code>y</code> is a 2D array of the approximate solutions at each time step.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">.+</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">y0</span><span class="p">),</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">.=</span> <span class="n">y0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">N</span>
+        <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
+    <span class="k">end</span>
+    
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>euler (generic function with 2 methods)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We demonstrate the method on a model problem with $f(t,y) = -y + \sin t$ and $y(0) = 1$. We solve using Euler's method with time step $h=0.2$ and $N=20$ steps.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">y</span> <span class="o">.+</span> <span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">],</span> <span class="s">&quot;-o&quot;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Differential_Equations/Initial_Value_Problems_6_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can compare the results to the exact solution:</p>
+$$
+y_\mathrm{exact} = e^{-t} + (\sin t - \cos t + e^{-t}) / 2
+$$<p>In the code below, we solve three times using various time steps $h$. In the plot, we see that the results are generally better for smaller $h$ (as expected), and the accuracy seems to roughly scale linearly with $h$. This can be shown to be true in general: the method is <em>convergent</em> (the approximations approach the exact solution as $h \rightarrow 0$), and the method is first-order accurate (the error scales with the first power of $h$).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">yexact</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">2</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yexact</span><span class="o">.</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+    <span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">round</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="n">h</span><span class="p">))</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">],</span> <span class="s">&quot;-o&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">legend</span><span class="p">((</span><span class="s">&quot;Exact&quot;</span><span class="p">,</span> <span class="s">&quot;h=0.5&quot;</span><span class="p">,</span> <span class="s">&quot;h=0.2&quot;</span><span class="p">,</span> <span class="s">&quot;h=0.1&quot;</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Differential_Equations/Initial_Value_Problems_8_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Runge-Kutta-method">The Runge-Kutta method<a class="anchor-link" href="#The-Runge-Kutta-method"> </a></h2><p>While Euler's method does give accurate results for small enough time steps $h$, its first-order convergence is often considered too slow and much better methods have been developed. One of the most popular methods is the following 4th order accurate Runge-Kutta method (RK4):</p>
+$$
+\begin{align*}
+k_1 &amp;= h f(t_n, y_n) \\
+k_2 &amp;= h f(t_n + h/2, y_n + k_1/2) \\
+k_3 &amp;= h f(t_n + h/2, y_n + k_2/2) \\
+k_4 &amp;= h f(t_n + h, y_n + k_3) \\
+y_{n+1} &amp;= y_n + (k_1 + 2k_2 + 2k_3 + k_4) / 6
+\end{align*}
+$$<p>We implement it in a very similar way to before. Note that each step now requires computing the four so-called <em>stages</em> or <em>stage derivatives</em> $k_1,k_2,k_3,k_4$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">rk4</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">.+</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">y0</span><span class="p">),</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">.=</span> <span class="n">y0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">N</span>
+        <span class="n">k1</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">k2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k3</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k4</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">k3</span><span class="p">)</span>
+        <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>
+    <span class="k">end</span>
+    
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>rk4 (generic function with 2 methods)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run the same test problem as before using RK4:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">yexact</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">2</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="n">yexact</span><span class="o">.</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+    <span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">rk4</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">round</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="n">h</span><span class="p">))</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">],</span> <span class="s">&quot;-o&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">legend</span><span class="p">((</span><span class="s">&quot;Exact&quot;</span><span class="p">,</span> <span class="s">&quot;h=0.5&quot;</span><span class="p">,</span> <span class="s">&quot;h=0.2&quot;</span><span class="p">,</span> <span class="s">&quot;h=0.1&quot;</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Differential_Equations/Initial_Value_Problems_12_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see that the results are fundamentally more accurate. In fact, even with largest time step $h=0.5$, the point values are essentially right on top of the exact solution. We can compute the error for the smallest time step $h=0.1$, and note that it has 6 accurate digits:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">errors</span> <span class="o">=</span> <span class="err">@</span><span class="o">.</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">]</span> <span class="o">-</span> <span class="n">yexact</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="o">:</span><span class="p">])</span>
+<span class="n">max_error</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">errors</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5.015261516083669e-7</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
