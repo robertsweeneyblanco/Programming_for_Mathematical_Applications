@@ -25,7 +25,7 @@
 
 - title: Introduction to Julia
   url: /Introduction/Chapter_Intro
-  not_numbered: true
+  not_numbered: false
   expand_sections: false
   sections:
   - title: Julia as a Calculator
@@ -49,7 +49,7 @@
 
 - title: Random Numbers
   url: /Random_Numbers/Chapter_Intro
-  not_numbered: true
+  not_numbered: false
   expand_sections: false
   sections:
   - title: Distributions
@@ -64,7 +64,7 @@
   
 - title: Vectorization
   url: /Vectorization/Chapter_Intro
-  not_numbered: true
+  not_numbered: false
   expand_sections: false
   sections:
   - title: Constructing Arrays
@@ -79,7 +79,7 @@
   
 - title: Data Types
   url: /Data_Types/Chapter_Intro
-  not_numbered: true
+  not_numbered: false
   expand_sections: false
   sections:
   - title: Arbitrary Precision Integers
@@ -100,12 +100,12 @@
 
 - title: Recursion
   url: /Recursion-Divide-and-Conquer
-  not_numbered: true
+  not_numbered: false
   expand_sections: true
   
 - title: Linear Algebra
   url: /Linear_Algebra/Chapter_Intro
-  not_numbered: true
+  not_numbered: false
   expand_sections: false
   sections:
   - title: Matrix Operations
@@ -120,7 +120,7 @@
   
 - title: Strings and File Processing
   url: /Strings_and_File_Processing/Chapter_Intro
-  not_numbered: true
+  not_numbered: false
   expand_sections: false
   sections:
   - title: String Basics 
@@ -135,46 +135,69 @@
   
 - title: Objects
   url: /Types_Structs_Objects
-  not_numbered: true
+  not_numbered: false
   expand_sections: true
   
 - title: Topics
   url: /Various_Julia_Topics
-  not_numbered: true
+  not_numbered: false
   expand_sections: true
   
 - title: Computational Geometry
-  url: /Computational_Geometry
-  not_numbered: true
-  expand_sections: true
+  url: /Computational_Geometry/Chapter_Intro
+  not_numbered: false
+  expand_sections: false
+  sections:
+  - title: Convex Hull
+    url: /Computational_Geometry/Convex_Hull
+    not_numbered: true
+  - title: Line-segment Interactions
+    url: /Computational_Geometry/Line_Segment_Interactions
+    not_numbered: true
+  - title: Triangulations
+    url: /Computational_Geometry/Triangulations
+    not_numbered: true
   
-- title: Image Processing 
-  url: /Image_Processing
-  not_numbered: true
-  expand_sections: true
+- title: Image Processing
+  url: /Image_Processing/Chapter_Intro
+  not_numbered: false
+  expand_sections: false
+  sections:
+  - title: Reading and Plotting Images
+    url: /Image_Processing/Reading_And_Plotting_Images
+    not_numbered: true
+  - title: Image Scaling
+    url: /Image_Processing/Image_Scaling
+    not_numbered: true
+  - title: Filtering
+    url: /Image_Processing/Filtering
+    not_numbered: true
+  - title: Fourier Transform
+    url: /Image_Processing/Fourier_Transform
+    not_numbered: true
   
 - title: Differential Equations 
   url: /Differential_Equations
-  not_numbered: true
+  not_numbered: false
   expand_sections: true
   
 - title: Optimization
   url: /Optimization
-  not_numbered: true
+  not_numbered: false
   expand_sections: true
   
 - title: Graphs
   url: /Graphs
-  not_numbered: true
+  not_numbered: false
   expand_sections: true
   
 - title: Sparse Arrays
   url: /Sparse_Arrays
-  not_numbered: true
+  not_numbered: false
   expand_sections: true
   
 - title: Mathematica
   url: /Mathematica/Mathematica_1
-  not_numbered: true
+  not_numbered: false
   expand_sections: true
 

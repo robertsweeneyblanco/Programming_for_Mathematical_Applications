@@ -1,0 +1,233 @@
+---
+redirect_from:
+  - "/image-processing/image-scaling"
+interact_link: content/Image_Processing/Image_Scaling.ipynb
+kernel_name: julia-1.3
+has_widgets: false
+title: |-
+  Image Scaling
+prev_page:
+  url: /Image_Processing/Reading_And_Plotting_Images.html
+  title: |-
+    Reading and Plotting Images
+next_page:
+  url: /Image_Processing/Filtering.html
+  title: |-
+    Filtering
+suffix: .ipynb
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Image-Scaling">Image Scaling<a class="anchor-link" href="#Image-Scaling"> </a></h1><p>One imporatant image operation is <em>scaling</em>, that is, change the number of pixels along each direction of the image. First consider the so-called <em>downsampling</em> of an image by a factor of 2. While we could simply extract every second pixel in each row and each column, a slightly better option is to average the values in each 2-by-2 block:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_hide_input tag_hide_output">
+
+<div class="cell border-box-sizing code_cell rendered tag_hide_input tag_hide_output">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># Code from previous section</span>
+<span class="k">using</span> <span class="n">PyPlot</span>
+<span class="k">using</span> <span class="n">Statistics</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s">&quot;sample_photo.png&quot;</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">3</span><span class="p">)[</span><span class="o">:</span><span class="p">,</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">function</span> <span class="n">imshow_scale</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="c"># Like imshow(A) but scales the values to [0,1] and supports grayscale</span>
+    
+    <span class="n">A</span> <span class="o">.-=</span> <span class="n">minimum</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>            <span class="c"># Scale and shift to [0,1]</span>
+    <span class="n">A</span> <span class="o">./=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ndims</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="k">if</span> <span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">repeat</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c"># Set R=G=B for grayscale</span>
+    <span class="k">end</span>
+    <span class="n">imshow</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">image_downsample</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="c"># For simplicity, ignore last row/column if size is odd</span>
+    <span class="n">sz</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">sz2</span> <span class="o">=</span> <span class="n">sz</span> <span class="o">.÷</span> <span class="mi">2</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="n">sz2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="n">sz2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">:</span><span class="p">]</span> <span class="o">.+</span>
+         <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="n">sz2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="n">sz2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">:</span><span class="p">]</span> <span class="o">.+</span>
+         <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="n">sz2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="n">sz2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">:</span><span class="p">]</span> <span class="o">.+</span>
+         <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="n">sz2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="n">sz2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">:</span><span class="p">])</span> <span class="o">./</span> <span class="mi">4</span>
+<span class="k">end</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">image_downsample</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
+    <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span> <span class="n">imshow_scale</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+    <span class="n">title</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="s"> levels downsampling&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Image_Processing/Image_Scaling_2_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Upscaling</em> an image, that is, increasing its size, is a more difficult operation. Is is obviously impossible to know the intensity of the added pixels, but assuming the variations are small one can for example interpolate between the given values. One simple interpolation is <em>bilinear</em>, which for a factor of 2 simply becomes averaging between neighboring pixel values:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">image_upsample</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">sz</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="kt">Float32</span><span class="p">,</span> <span class="mi">2</span><span class="n">sz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="n">sz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">sz</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="n">A</span>
+    <span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.+</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="o">:</span><span class="p">,</span><span class="o">:</span><span class="p">])</span> <span class="o">./</span> <span class="mi">2</span>
+    <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span> <span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.+</span> <span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="o">:</span><span class="p">])</span> <span class="o">./</span> <span class="mi">2</span>
+    <span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.+</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="o">:</span><span class="p">]</span>
+                               <span class="o">.+</span>  <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.+</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">,</span><span class="o">:</span><span class="p">])</span> <span class="o">./</span> <span class="mi">4</span>
+    <span class="k">return</span> <span class="n">B</span>
+<span class="k">end</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">image_upsample</span><span class="p">(</span><span class="n">D</span><span class="p">);</span>
+    <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span> <span class="n">imshow_scale</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+    <span class="n">title</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="s"> levels upsampling&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Image_Processing/Image_Scaling_4_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The resulting image is of course much less detailed that the original, but that was expected since we reduced its size by a factor of $2^4=16$ in each direction:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">imshow_scale</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s">&quot;Original&quot;</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">imshow_scale</span><span class="p">(</span><span class="n">D</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s">&quot;Down+Up sampling&quot;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Image_Processing/Image_Scaling_6_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
