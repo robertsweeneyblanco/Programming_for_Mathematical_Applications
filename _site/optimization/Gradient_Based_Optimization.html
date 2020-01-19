@@ -5,16 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
-  <title>Optimization</title>
-  <meta name="description" content="        Optimization     using PyPlot    Overview The goal of optimization is to maximize (or minimize) the value of a function (called objective function) s...">
+  <title>Gradient Based Optimization</title>
+  <meta name="description" content="        Gradient-based Optimization While there are so-called zeroth-order methods which can optimize a function without the gradient,most applications use f...">
 
-  <link rel="canonical" href="http://0.0.0.0:4000//Optimization.html">
+  <link rel="canonical" href="http://0.0.0.0:4000//Optimization/Gradient_Based_Optimization.html">
   <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000//feed.xml">
 
-  <meta property="og:url"         content="http://0.0.0.0:4000//Optimization.html" />
+  <meta property="og:url"         content="http://0.0.0.0:4000//Optimization/Gradient_Based_Optimization.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Optimization" />
-<meta property="og:description" content="        Optimization     using PyPlot    Overview The goal of optimization is to maximize (or minimize) the value of a function (called objective function) s..." />
+<meta property="og:title"       content="Gradient Based Optimization" />
+<meta property="og:description" content="        Gradient-based Optimization While there are so-called zeroth-order methods which can optimize a function without the gradient,most applications use f..." />
 <meta property="og:image"       content="http://0.0.0.0:4000/logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -24,11 +24,11 @@
   {
   "@context": "http://schema.org",
   "@type": "NewsArticle",
-  "mainEntityOfPage": "http://0.0.0.0:4000//Optimization.html",
-  "headline": "Optimization",
-  "datePublished": "2020-01-19T15:09:45-06:00",
-  "dateModified": "2020-01-19T15:09:45-06:00",
-  "description": "        Optimization     using PyPlot    Overview The goal of optimization is to maximize (or minimize) the value of a function (called objective function) s...",
+  "mainEntityOfPage": "http://0.0.0.0:4000//Optimization/Gradient_Based_Optimization.html",
+  "headline": "Gradient Based Optimization",
+  "datePublished": "2020-01-19T15:37:24-06:00",
+  "dateModified": "2020-01-19T15:37:24-06:00",
+  "description": "        Gradient-based Optimization While there are so-called zeroth-order methods which can optimize a function without the gradient,most applications use f...",
   "author": {
     "@type": "Person",
     "name": "Per-Olof Persson and Robert Sweeney Blanco"
@@ -1425,8 +1425,8 @@ initFunction(initPrint)
       
       
       <li class="c-sidebar__chapter">
-        <a class="c-sidebar__entry c-sidebar__entry--active"
-          href="/Optimization.html"
+        <a class="c-sidebar__entry "
+          href="/Optimization/Chapter_Intro.html"
         >
           
             13.
@@ -1434,6 +1434,52 @@ initFunction(initPrint)
           Optimization
         </a>
 
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections ">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry c-sidebar__entry--active"
+                  href="/Optimization/Gradient_Based_Optimization.html"
+                >
+                  
+                  Gradient Based Optimization
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Optimization/Optim_Package.html"
+                >
+                  
+                  Optim Package
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
         
       </li>
 
@@ -1528,7 +1574,7 @@ initFunction(initPrint)
 <div class="download-buttons-dropdown">
     <button id="dropdown-button-trigger" class="interact-button"><img src="/assets/images/download-solid.svg" alt="Download" /></button>
     <div class="download-buttons">
-        <a href="/content/Optimization.ipynb" download>
+        <a href="/content/Optimization/Gradient_Based_Optimization.ipynb" download>
         <button id="interact-button-download" class="interact-button">.ipynb</button>
         </a>
         
@@ -1546,7 +1592,7 @@ initFunction(initPrint)
 
 
 
-<a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&amp;branch=master&amp;subPath=content%2FOptimization.ipynb&amp;app=notebook"><button class="interact-button" id="interact-button-jupyterhub"><img class="interact-button-logo" src="/assets/images/logo_jupyterhub.svg" alt="Interact" />JupyterHub</button></a>
+<a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&amp;branch=master&amp;subPath=content%2FOptimization%2FGradient_Based_Optimization.ipynb&amp;app=notebook"><button class="interact-button" id="interact-button-jupyterhub"><img class="interact-button-logo" src="/assets/images/logo_jupyterhub.svg" alt="Interact" />JupyterHub</button></a>
 
 
 
@@ -1572,46 +1618,7 @@ initFunction(initPrint)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Optimization">Optimization<a class="anchor-link" href="#Optimization"> </a></h1>
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Overview">Overview<a class="anchor-link" href="#Overview"> </a></h2><p>The goal of optimization is to maximize (or minimize) the value of a function (called objective function) subject to a number of restrictions (called constraints). It is of fundamental importance in wide variety of fields throughout science, engineering, finance.</p>
-<p>Here we will give a brief overview on the manual implementation of <em>gradient-based optimizers</em> without constraints. We will also introduce one of the many Julia optimization packages, <code>Optim</code>.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Gradient-based-optimization">Gradient-based optimization<a class="anchor-link" href="#Gradient-based-optimization"> </a></h2><p>While there are so-called zeroth-order methods which can optimize a function without the gradient,
+<h1 id="Gradient-based-Optimization">Gradient-based Optimization<a class="anchor-link" href="#Gradient-based-Optimization"> </a></h1><p>While there are so-called zeroth-order methods which can optimize a function without the gradient,
 most applications use first-order method which require the gradient. We will also show an example
 of a second-order method, Newton's method, which require the Hessian matrix (that is, second derivatives).</p>
 <p>In our examples, we will optimize the following function of the vector $x$ with two components:</p>
@@ -1632,7 +1639,9 @@ Below we define the function in Julia, and create a helper function to plot a 2D
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span>
+
+<span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
 
 <span class="k">function</span> <span class="n">fplot</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -1663,7 +1672,7 @@ Below we define the function in Julia, and create a helper function to plot a 2D
 
 
 <div class="output_png output_subarea ">
-<img src="images/Optimization_4_0.png"
+<img src="../images/Optimization/Gradient_Based_Optimization_1_0.png"
 >
 </div>
 
@@ -1690,7 +1699,7 @@ Below we define the function in Julia, and create a helper function to plot a 2D
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Gradient-function">Gradient function<a class="anchor-link" href="#Gradient-function"> </a></h3><p>Since our methods will be gradient based, we also need to differentiate $f(x)$
+<h2 id="Gradient-function">Gradient function<a class="anchor-link" href="#Gradient-function"> </a></h2><p>Since our methods will be gradient based, we also need to differentiate $f(x)$
 to produce the gradient $\nabla f(x)$. Since this can be difficult to obtain,
 or at least highly time consuming, later we will explore alternatives to this
 such as numerical differentiation and automatic (symbolic) differentiation.
@@ -1746,7 +1755,7 @@ define below.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Gradient-descent">Gradient descent<a class="anchor-link" href="#Gradient-descent"> </a></h3><p>The <em>gradient descent method</em>, or <em>steepest descent</em>, is based on the observation that for any
+<h2 id="Gradient-descent">Gradient descent<a class="anchor-link" href="#Gradient-descent"> </a></h2><p>The <em>gradient descent method</em>, or <em>steepest descent</em>, is based on the observation that for any
 given value of $x$, the negative gradient $-\nabla f(x)$ gives the direction of the fastest
 decrease of $f(x)$. This means that there should be a scalar $\alpha$ such that</p>
 $$
@@ -1940,7 +1949,7 @@ length of the paths, and the gradient norm at the final iteration.</p>
 
 
 <div class="output_png output_subarea ">
-<img src="images/Optimization_16_0.png"
+<img src="../images/Optimization/Gradient_Based_Optimization_13_0.png"
 >
 </div>
 
@@ -2150,7 +2159,7 @@ determines appropriate $\alpha_k$ values and converge for all three initial gues
 
 
 <div class="output_png output_subarea ">
-<img src="images/Optimization_23_0.png"
+<img src="../images/Optimization/Gradient_Based_Optimization_20_0.png"
 >
 </div>
 
@@ -2276,7 +2285,7 @@ $$<p>Here, $\epsilon$ is a (small) step size parameter, and the vector $d^k$ is 
 
 
 <div class="output_png output_subarea ">
-<img src="images/Optimization_27_0.png"
+<img src="../images/Optimization/Gradient_Based_Optimization_24_0.png"
 >
 </div>
 
@@ -2420,7 +2429,7 @@ two of our values closer to their minima. However, when the method converges it 
 
 
 <div class="output_png output_subarea ">
-<img src="images/Optimization_31_0.png"
+<img src="../images/Optimization/Gradient_Based_Optimization_28_0.png"
 >
 </div>
 
@@ -2443,405 +2452,6 @@ Path length = 6, ||gradient|| = 1.7631665079368057e-8
 </div>
 </div>
 
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Optim-package">The <code>Optim</code> package<a class="anchor-link" href="#The-Optim-package"> </a></h2><p>For more advanced optimization method, Julia provided a number of state-of-the-art packages.
-Here we will consider the <code>Optim</code> package. It has a number of options and features, but
-here we will only demonstrate some basic features.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Optim</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In the simplest form, you can solve our optimization problem by only providing
-the function $f(x)$ and the initial guess $x_0$. The output shows that it found
-a local minimum, and that it used the "Nelder-Mead" method which is derivative
-free (zeroth order).</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="jb_output_wrapper }}">
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Results of Optimization Algorithm
- * Algorithm: Nelder-Mead
- * Starting Point: [0.0,0.5]
- * Minimizer: [0.36306816496678507,0.8476312815194897]
- * Minimum: -2.072854e-01
- * Iterations: 31
- * Convergence: true
-   *  √(Σ(yᵢ-ȳ)²)/n &lt; 1.0e-08: true
-   * Reached Maximum Number of Iterations: false
- * Objective Calls: 61</pre>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If a gradient function is available, a gradient-based solver will be used
-automatically (in this case, the L-BFGS method). The <code>inplace=false</code> is used
-since our gradient function <code>df</code> returns the gradient instead of modifying it.</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">];</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">false</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="jb_output_wrapper }}">
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Results of Optimization Algorithm
- * Algorithm: L-BFGS
- * Starting Point: [0.0,0.5]
- * Minimizer: [0.3631511055731168,0.8476566766300782]
- * Minimum: -2.072854e-01
- * Iterations: 8
- * Convergence: true
-   * |x - x&#39;| ≤ 0.0e+00: false 
-     |x - x&#39;| = 9.09e-07 
-   * |f(x) - f(x&#39;)| ≤ 0.0e+00 |f(x)|: false
-     |f(x) - f(x&#39;)| = -5.74e-12 |f(x)|
-   * |g(x)| ≤ 1.0e-08: true 
-     |g(x)| = 5.19e-10 
-   * Stopped by an increasing objective: false
-   * Reached Maximum Number of Iterations: false
- * Objective Calls: 20
- * Gradient Calls: 20</pre>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The method can also be specified explicitly, e.g. the gradient descent method:</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">GradientDescent</span><span class="p">();</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">false</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="jb_output_wrapper }}">
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Results of Optimization Algorithm
- * Algorithm: Gradient Descent
- * Starting Point: [0.0,0.5]
- * Minimizer: [0.36315109114712635,0.8476566612943871]
- * Minimum: -2.072854e-01
- * Iterations: 24
- * Convergence: true
-   * |x - x&#39;| ≤ 0.0e+00: false 
-     |x - x&#39;| = 2.20e-08 
-   * |f(x) - f(x&#39;)| ≤ 0.0e+00 |f(x)|: false
-     |f(x) - f(x&#39;)| = -9.51e-15 |f(x)|
-   * |g(x)| ≤ 1.0e-08: true 
-     |g(x)| = 5.64e-09 
-   * Stopped by an increasing objective: false
-   * Reached Maximum Number of Iterations: false
- * Objective Calls: 65
- * Gradient Calls: 65</pre>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If the gradient function is not available, it can be computed using
-automatic differentiation:</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">GradientDescent</span><span class="p">();</span> <span class="n">autodiff</span><span class="o">=:</span><span class="n">forward</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="jb_output_wrapper }}">
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Results of Optimization Algorithm
- * Algorithm: Gradient Descent
- * Starting Point: [0.0,0.5]
- * Minimizer: [0.36315109114712724,0.8476566612943879]
- * Minimum: -2.072854e-01
- * Iterations: 24
- * Convergence: true
-   * |x - x&#39;| ≤ 0.0e+00: false 
-     |x - x&#39;| = 2.20e-08 
-   * |f(x) - f(x&#39;)| ≤ 0.0e+00 |f(x)|: false
-     |f(x) - f(x&#39;)| = -8.17e-15 |f(x)|
-   * |g(x)| ≤ 1.0e-08: true 
-     |g(x)| = 5.64e-09 
-   * Stopped by an increasing objective: false
-   * Reached Maximum Number of Iterations: false
- * Objective Calls: 65
- * Gradient Calls: 65</pre>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This also works for the Hessian matrix in Newton's method. Note the extremely fast
-convergence (number of iterations):</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">Newton</span><span class="p">();</span> <span class="n">autodiff</span><span class="o">=:</span><span class="n">forward</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="jb_output_wrapper }}">
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Results of Optimization Algorithm
- * Algorithm: Newton&#39;s Method
- * Starting Point: [0.0,0.5]
- * Minimizer: [0.3631511048913647,0.84765667579412]
- * Minimum: -2.072854e-01
- * Iterations: 4
- * Convergence: true
-   * |x - x&#39;| ≤ 0.0e+00: false 
-     |x - x&#39;| = 4.82e-07 
-   * |f(x) - f(x&#39;)| ≤ 0.0e+00 |f(x)|: false
-     |f(x) - f(x&#39;)| = -8.17e-13 |f(x)|
-   * |g(x)| ≤ 1.0e-08: true 
-     |g(x)| = 2.90e-14 
-   * Stopped by an increasing objective: false
-   * Reached Maximum Number of Iterations: false
- * Objective Calls: 9
- * Gradient Calls: 9
- * Hessian Calls: 4</pre>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, we use the BFGS solver using automatic differentiation. This is a widely
-used method, since it obtains convergence comparable to Newton's method but without
-requiring explicit Hessian matrices:</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="jb_cell">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">BFGS</span><span class="p">();</span> <span class="n">autodiff</span><span class="o">=:</span><span class="n">forward</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="jb_output_wrapper }}">
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Results of Optimization Algorithm
- * Algorithm: BFGS
- * Starting Point: [0.0,0.5]
- * Minimizer: [0.36315109763957404,0.8476566675719984]
- * Minimum: -2.072854e-01
- * Iterations: 6
- * Convergence: true
-   * |x - x&#39;| ≤ 0.0e+00: false 
-     |x - x&#39;| = 1.09e-05 
-   * |f(x) - f(x&#39;)| ≤ 0.0e+00 |f(x)|: false
-     |f(x) - f(x&#39;)| = -1.41e-09 |f(x)|
-   * |g(x)| ≤ 1.0e-08: true 
-     |g(x)| = 4.04e-09 
-   * Stopped by an increasing objective: false
-   * Reached Maximum Number of Iterations: false
- * Objective Calls: 14
- * Gradient Calls: 14</pre>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
  
 
 
@@ -2852,15 +2462,15 @@ requiring explicit Hessian matrices:</p>
               <nav class="c-page__nav">
   
     
-    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/Differential_Equations/DifferentialEquations_Package.html">
-      〈 <span class="u-margin-right-tiny"></span> DifferentialEquations_Package
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/Optimization/Chapter_Intro.html">
+      〈 <span class="u-margin-right-tiny"></span> Optimization
     </a>
   
 
   
     
-    <a id="js-page__nav__next" class="c-page__nav__next" href="/Graphs.html">
-      Graphs <span class="u-margin-right-tiny"></span> 〉
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/Optimization/Optim_Package.html">
+      Optim Package <span class="u-margin-right-tiny"></span> 〉
     </a>
   
 </nav>

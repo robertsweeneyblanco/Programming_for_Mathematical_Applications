@@ -195,9 +195,16 @@
     not_numbered: true
   
 - title: Optimization
-  url: /Optimization
+  url: /Optimization/Chapter_Intro
   not_numbered: false
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Gradient Based Optimization
+    url: /Optimization/Gradient_Based_Optimization
+    not_numbered: true
+  - title: Optim Package
+    url: /Optimization/Optim_Package
+    not_numbered: true
   
 - title: Graphs
   url: /Graphs

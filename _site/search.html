@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "http://0.0.0.0:4000//search",
   "headline": "Search the site",
-  "datePublished": "2020-01-19T15:09:45-06:00",
-  "dateModified": "2020-01-19T15:09:45-06:00",
+  "datePublished": "2020-01-19T15:37:24-06:00",
+  "dateModified": "2020-01-19T15:37:24-06:00",
   "description": "        ",
   "author": {
     "@type": "Person",
@@ -1426,7 +1426,7 @@ initFunction(initPrint)
       
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry "
-          href="/Optimization.html"
+          href="/Optimization/Chapter_Intro.html"
         >
           
             13.
@@ -1434,6 +1434,52 @@ initFunction(initPrint)
           Optimization
         </a>
 
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections u-hidden-visually">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Optimization/Gradient_Based_Optimization.html"
+                >
+                  
+                  Gradient Based Optimization
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Optimization/Optim_Package.html"
+                >
+                  
+                  Optim Package
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
         
       </li>
 
@@ -1825,10 +1871,26 @@ initFunction(initPrint)
         "title": "Optimization",
         
         "excerpt":
-            "Optimization using PyPlot Overview The goal of optimization is to maximize (or minimize) the value of a function (called objective function) subject to a number of restrictions (called constraints). It is of fundamental importance in wide variety of fields throughout science, engineering, finance. Here we will give a brief overview on the manual implementation of gradient-based optimizers without constraints. We will also introduce one of the many Julia optimization packages, Optim. Gradient-based optimization While there are so-called zeroth-order methods which can optimize a function without the gradient, most applications use first-order method which require the gradient. We will also show...",
+            "             Optimization  The goal of optimization is to maximize (or minimize) the value of a function (called objective function) subject to a number of restrictions (called constraints). It is of fundamental importance in wide variety of fields throughout science, engineering, finance.  Here we will give a brief overview on the manual implementation of gradient-based optimizers without constraints. We will also introduce one of the many Julia optimization packages, Optim.                     ",
         "categories": [],
         "tags": [],
-        "url": "http://0.0.0.0:4000/Optimization.html",
+        "url": "http://0.0.0.0:4000/Optimization/Chapter_Intro.html",
+        "teaser":null},{
+        "title": "Gradient Based Optimization",
+        
+        "excerpt":
+            "Gradient-based Optimization While there are so-called zeroth-order methods which can optimize a function without the gradient, most applications use first-order method which require the gradient. We will also show an example of a second-order method, Newton's method, which require the Hessian matrix (that is, second derivatives). In our examples, we will optimize the following function of the vector $x$ with two components: $$ f(x) = -\\sin\\left(\\frac{x_1^2}{2} - \\frac{x_2^2}{4} + 3 \\right) \\cos\\left(2x_1 + 1 -e^{x_2}\\right) $$Since $f$ only depends on two degrees of freedom, we can easily visualize it in the plane. Below we define the function in Julia, and...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Optimization/Gradient_Based_Optimization.html",
+        "teaser":null},{
+        "title": "Optim Package",
+        
+        "excerpt":
+            "The Optim package For more advanced optimization method, Julia provided a number of state-of-the-art packages. Here we will consider the Optim package. It has a number of options and features, but here we will only demonstrate some basic features. using Optim In the simplest form, you can solve our optimization problem by only providing the function $f(x)$ and the initial guess $x_0$. The output shows that it found a local minimum, and that it used the \"Nelder-Mead\" method which is derivative free (zeroth order). f(x) = -sin(x[1]^2/2 - x[2]^2/4 + 3) * cos(2x[1] + 1 - exp(x[2])) # Same as...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Optimization/Optim_Package.html",
         "teaser":null},{
         "title": "Random Numbers",
         
