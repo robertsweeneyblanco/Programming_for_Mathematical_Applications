@@ -24,7 +24,7 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Higher-Order-Derivatives,-Systems-of-ODEs">Higher-Order Derivatives, Systems of ODEs<a class="anchor-link" href="#Higher-Order-Derivatives,-Systems-of-ODEs"> </a></h2><p>Our implementation of RK4 supports systems of ODEs, that is, problems with vector-valued solutions $y(t)$. This can also be used to solve scalar-valued equations with higher-order derivatives. Consider e.g. the motion of a pendulum, with an angle $\theta$ from the vertical axis and normalized physical constants:</p>
+<h1 id="Higher-Order-Derivatives,-Systems-of-ODEs">Higher-Order Derivatives, Systems of ODEs<a class="anchor-link" href="#Higher-Order-Derivatives,-Systems-of-ODEs"> </a></h1><p>Our implementation of RK4 supports systems of ODEs, that is, problems with vector-valued solutions $y(t)$. This can also be used to solve scalar-valued equations with higher-order derivatives. Consider e.g. the motion of a pendulum, with an angle $\theta$ from the vertical axis and normalized physical constants:</p>
 $$
 \theta''(t) + \sin \theta(t) = 0
 $$<p>To write this as a system of first-order equations, we introduce the first derivative $\theta'(t)$ as a new unknown and solve for the vector-valued function $y(t) = (\theta(t), \theta'(t))$. The corresponding right-hand side in the system of equations then becomes</p>

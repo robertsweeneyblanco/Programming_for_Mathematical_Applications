@@ -47,6 +47,23 @@
     url: /Introduction/While_Loops
     not_numbered: true
 
+- title: Arrays
+  url: /Arrays/Chapter_Intro
+  not_numbered: false
+  expand_sections: false
+  sections:
+  - title: Introduction to Arrays
+    url: /Arrays/Introduction_To_Arrays
+    not_numbered: true
+  - title: Multi-dimensional Arrays
+    url: /Arrays/Multi_Dimensional_Arrays
+    not_numbered: true
+    
+- title: Plotting
+  url: /Plotting/Plotting
+  not_numbered: false
+  expand_sections: true
+
 - title: Random Numbers
   url: /Random_Numbers/Chapter_Intro
   not_numbered: false
@@ -99,7 +116,7 @@
     not_numbered: true
 
 - title: Recursion
-  url: /Recursion-Divide-and-Conquer
+  url: /Recursion/Recursion
   not_numbered: false
   expand_sections: true
   
@@ -133,8 +150,8 @@
     url: /Strings_and_File_Processing/File_Processing
     not_numbered: true
   
-- title: Objects
-  url: /Types_Structs_Objects
+- title: Structs and Objects
+  url: /Structs_And_Objects/Structs_And_Objects
   not_numbered: false
   expand_sections: true
   
@@ -207,17 +224,32 @@
     not_numbered: true
   
 - title: Graphs
-  url: /Graphs
+  url: /Graphs/Chapter_Intro
   not_numbered: false
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Graph Basics 
+    url: /Graphs/Graph_Basics
+    not_numbered: true
+  - title: Graph Algorithms
+    url: /Graphs/Graph_Algorithms
+    not_numbered: true
   
-- title: Sparse Arrays
-  url: /Sparse_Arrays
+- title: Sparse Matrices 
+  url: /Sparse_Matrices/Chapter_Intro
   not_numbered: false
-  expand_sections: true
-  
-- title: Mathematica
-  url: /Mathematica/Mathematica_1
-  not_numbered: false
-  expand_sections: true
+  expand_sections: false
+  sections:
+  - title: Matrix Designs
+    url: /Sparse_Matrices/Matrix_Designs
+    not_numbered: true
+  - title: Sparse Matrices in Julia
+    url: /Sparse_Matrices/Sparse_Matrices_In_Julia
+    not_numbered: true
+  - title: Application; Graphs
+    url: /Sparse_Matrices/Application_Graphs
+    not_numbered: true
+  - title: Application; Google Page Rank
+    url: /Sparse_Matrices/Application_Google_Page_Rank
+    not_numbered: true
 

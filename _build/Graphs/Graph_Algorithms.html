@@ -1,0 +1,807 @@
+---
+redirect_from:
+  - "/graphs/graph-algorithms"
+interact_link: content/Graphs/Graph_Algorithms.ipynb
+kernel_name: julia-1.3
+has_widgets: false
+title: |-
+  Graph Algorithms
+prev_page:
+  url: /Graphs/Graph_Basics.html
+  title: |-
+    Graph Basics
+next_page:
+  url: /Sparse_Matrices/Chapter_Intro.html
+  title: |-
+    Sparse Matrices
+suffix: .ipynb
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Graph-Algorithms">Graph Algorithms<a class="anchor-link" href="#Graph-Algorithms"> </a></h1><h2 id="Depth-first-search">Depth first search<a class="anchor-link" href="#Depth-first-search"> </a></h2><p>The <em>depth first search</em> (DFS) is a simply way of traversing a graph, starting from
+a given vertex <code>start</code>. It can be used
+for a number of important problems such as path finding, topological sorting, etc.
+It is easiest implemented using recursion. We keep track of visited vertices using
+an array of booleans, and the method is applied recursively to all neighbors of
+a vertex. Note that this strategy will first traverse an entire branch of a
+neighbor node, before continuing to the next neighbor - therefore the name
+"depth first".</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell tag_hide_input tag_hide_output">
+
+<div class="cell border-box-sizing code_cell rendered tag_hide_input tag_hide_output">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># Import code from previous section</span>
+<span class="k">using</span> <span class="n">NBInclude</span>
+<span class="nd">@nbinclude</span><span class="p">(</span><span class="s">&quot;Graph_Code.ipynb&quot;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">dfs</span><span class="p">(</span><span class="n">g</span><span class="o">::</span><span class="n">Graph</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="n">falses</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
+    <span class="k">function</span> <span class="n">visit</span><span class="p">(</span><span class="n">ivertex</span><span class="p">)</span>
+        <span class="n">visited</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Visiting vertex #</span><span class="si">$ivertex</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">nb</span> <span class="kp">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span><span class="o">.</span><span class="n">neighbors</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span>
+                <span class="n">visit</span><span class="p">(</span><span class="n">nb</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">nothing</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>dfs (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can observe the order that the method visits vertices. Note that
+this highly depends on the order of the elements in <code>neighbors</code>, which
+is arbitrary (at least the way we designed it). We will continue to use the graph created in the previous section to demonstrate.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Graphs/Graph_Algorithms_4_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">dfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Visiting vertex #1
+Visiting vertex #2
+Visiting vertex #3
+Visiting vertex #11
+Visiting vertex #4
+Visiting vertex #5
+Visiting vertex #6
+Visiting vertex #7
+Visiting vertex #9
+Visiting vertex #10
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Path-finding">Path finding<a class="anchor-link" href="#Path-finding"> </a></h3><p>A simple application of the DFS method is to find a path between two vertices.
+One way to do this is to have the <code>visit</code> function return a boolean, indicating
+if the final vertex was found on the recursive call or not. If this is <code>true</code>,
+the current vertex number is added to the list of vertices in the path
+(<em>after</em> visiting the vertex).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">find_path_dfs</span><span class="p">(</span><span class="n">g</span><span class="o">::</span><span class="n">Graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span><span class="p">)</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="n">falses</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>
+    <span class="k">function</span> <span class="n">visit</span><span class="p">(</span><span class="n">ivertex</span><span class="p">)</span>
+        <span class="n">visited</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="k">if</span> <span class="n">ivertex</span> <span class="o">==</span> <span class="n">finish</span>
+            <span class="n">pushfirst!</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ivertex</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="k">end</span>
+        <span class="k">for</span> <span class="n">nb</span> <span class="kp">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span><span class="o">.</span><span class="n">neighbors</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">visit</span><span class="p">(</span><span class="n">nb</span><span class="p">)</span>
+                    <span class="n">pushfirst!</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ivertex</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">true</span>
+                <span class="k">end</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="k">end</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>find_path_dfs (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We also define a simple utility function for plotting paths in a graph:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">plot_path</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="n">xypath</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">coordinates</span> <span class="k">for</span> <span class="n">v</span> <span class="kp">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">][</span><span class="n">path</span><span class="p">]</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">last</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>plot_path (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>and apply the method to out graph from before. Note that this path is again
+highly dependent on the order of the <code>neighbors</code> array, and in particular it
+is in general not the shortest path between the vertices.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">find_path_dfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plot_path</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Path from 10 to 5: </span><span class="si">$path</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Graphs/Graph_Algorithms_11_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Path from 10 to 5: [10, 1, 2, 11, 4, 5]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Other-applications-of-DFS">Other applications of DFS<a class="anchor-link" href="#Other-applications-of-DFS"> </a></h3><p>The DFS method can be used to a number of important graph operations, see below for
+examples (from <a href="https://www.geeksforgeeks.org/applications-of-depth-first-search">https://www.geeksforgeeks.org/applications-of-depth-first-search</a>).</p>
+<ol>
+<li><p>For an unweighted graph, DFS traversal of the graph produces the minimum spanning tree and all pair shortest path tree.</p>
+</li>
+<li><p><strong>Detecting cycle in a graph</strong>: A graph has cycle if and only if we see a back edge during DFS. So we can run DFS for the graph and check for back edges.</p>
+</li>
+<li><p><strong>Path Finding</strong>: We can specialize the DFS algorithm to find a path between two given vertices u and z.</p>
+<ul>
+<li>Call DFS(G, u) with u as the start vertex.</li>
+<li>Use a stack S to keep track of the path between the start vertex and the current vertex.</li>
+<li>As soon as destination vertex z is encountered, return the path as the
+contents of the stack</li>
+</ul>
+</li>
+<li><p><strong>Topological Sorting</strong>: Topological Sorting is mainly used for scheduling jobs from the given dependencies among jobs. In computer science, applications of this type arise in instruction scheduling, ordering of formula cell evaluation when recomputing formula values in spreadsheets, logic synthesis, determining the order of compilation tasks to perform in makefiles, data serialization, and resolving symbol dependencies in linkers.</p>
+</li>
+<li><p>To test if a graph is <strong>bipartite</strong>: We can augment either BFS or DFS when we first discover a new vertex, color it opposited its parents, and for each other edge, check it doesn’t link two vertices of the same color. The first vertex in any connected component can be red or black!</p>
+</li>
+<li><p>Finding <strong>Strongly Connected Components</strong> of a graph: A directed graph is called strongly connected if there is a path from each vertex in the graph to every other vertex.</p>
+</li>
+<li><p>Solving <strong>puzzles with only one solution</strong>, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Breadth-first-search">Breadth first search<a class="anchor-link" href="#Breadth-first-search"> </a></h2><p>An alternative way to traverse a graph is the <em>Breadth First Search</em> (BFS) method,
+which visits all of the neighbor vertices at the present depth before moving on to
+the vertices at the next depth level. This is easiest implemented in a non-recursive
+way, using a <em>queue</em>, which can be seen as an array where new elements are added to
+the end but elements are extracted from the beginning ("First-In-First-Out", or FIFO).</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">bfs</span><span class="p">(</span><span class="n">g</span><span class="o">::</span><span class="n">Graph</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="n">falses</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">visited</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="k">while</span> <span class="o">!</span><span class="n">isempty</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="n">ivertex</span> <span class="o">=</span> <span class="n">popfirst!</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Visiting vertex #</span><span class="si">$ivertex</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">nb</span> <span class="kp">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span><span class="o">.</span><span class="n">neighbors</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span>
+                <span class="n">visited</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">nb</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>bfs (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Running the function of the previous graph, we note that the order
+is very different from the DFS method:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">bfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Visiting vertex #1
+Visiting vertex #2
+Visiting vertex #10
+Visiting vertex #6
+Visiting vertex #3
+Visiting vertex #11
+Visiting vertex #9
+Visiting vertex #7
+Visiting vertex #5
+Visiting vertex #4
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Shortest-path">Shortest path<a class="anchor-link" href="#Shortest-path"> </a></h3><p>The BFS method has the property that it will visit the vertices in an order
+that corresponds to a <em>shortest path</em> from the starting vertex to each other
+vertex (that is, fewest number of edges). This is important for many
+applications, and we can modify our BFS method to return this path.</p>
+<p>Instead of simply keeping track of the visited nodes, we use an array
+<code>parent</code> which is inially zero for each vertex. After visiting a new
+vertex, <code>parent</code> is set to the vertex number of the vertex it came
+from. This means we can trace the (shortest) path from any vertex
+back to the starting vertex, and build the path.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">shortest_path_bfs</span><span class="p">(</span><span class="n">g</span><span class="o">::</span><span class="n">Graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span><span class="p">)</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">parent</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="k">while</span> <span class="o">!</span><span class="n">isempty</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="n">ivertex</span> <span class="o">=</span> <span class="n">popfirst!</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ivertex</span> <span class="o">==</span> <span class="n">finish</span>
+            <span class="k">break</span>
+        <span class="k">end</span>
+        <span class="k">for</span> <span class="n">nb</span> <span class="kp">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span><span class="o">.</span><span class="n">neighbors</span>
+            <span class="k">if</span> <span class="n">parent</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="c"># Not visited yet</span>
+                <span class="n">parent</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivertex</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">nb</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="c"># Build path</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>
+    <span class="n">iv</span> <span class="o">=</span> <span class="n">finish</span>
+    <span class="k">while</span> <span class="kc">true</span>
+        <span class="n">pushfirst!</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">iv</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">iv</span> <span class="o">==</span> <span class="n">start</span>
+            <span class="k">break</span>
+        <span class="k">end</span>
+        <span class="n">iv</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">path</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>shortest_path_bfs (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">shortest_path_bfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">plot_path</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Shortest path from 10 to 5: </span><span class="si">$path</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Graphs/Graph_Algorithms_19_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shortest path from 10 to 5: [10, 1, 6, 5]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Shortest-path-application:-Optimal-trajectory">Shortest path application: Optimal trajectory<a class="anchor-link" href="#Shortest-path-application:-Optimal-trajectory"> </a></h3><p>Here we consider navigation on a grid, with the goal of reaching a destination
+with the fewest possible moves. Any neighbor in the grid can be reached in one
+move, unless there is a wall. This can be represented as a grid, with edges
+between vertices with admissible moves.</p>
+<p>As an example, we draw an "obstacle course" and create a graph that represents it:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">field</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">....O....</span>
+<span class="s">O.O.O.O..</span>
+<span class="s">..O...O.O</span>
+<span class="s">.OOOOOO.O</span>
+<span class="s">....OO..O</span>
+<span class="s">.O...OOOO</span>
+<span class="s">.O.......</span>
+<span class="s">.OOOOOO..</span>
+<span class="s">......O..</span>
+<span class="s">......O..</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">F</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="n">collect</span><span class="p">(</span><span class="n">field</span><span class="p">),</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">.==</span> <span class="sc">&#39;O&#39;</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">g1</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">([])</span>
+<span class="n">nbr</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+        <span class="n">nbr</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">nb</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">dj</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span>
+            <span class="k">for</span> <span class="n">di</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span>
+                <span class="k">if</span> <span class="mi">1</span> <span class="o">≤</span> <span class="n">i</span><span class="o">+</span><span class="n">di</span> <span class="o">≤</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="mi">1</span> <span class="o">≤</span> <span class="n">j</span><span class="o">+</span><span class="n">dj</span> <span class="o">≤</span> <span class="n">n</span>
+                    <span class="k">if</span> <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">di</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dj</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+                        <span class="n">push!</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">nbr</span> <span class="o">+</span> <span class="n">di</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="n">dj</span><span class="p">)</span>
+                    <span class="k">end</span>
+                <span class="k">end</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">push!</span><span class="p">(</span><span class="n">g1</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The shortest path algorithm can now find the optimal trajectory:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">shortest_path_bfs</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+<span class="n">xypath</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">coordinates</span> <span class="k">for</span> <span class="n">v</span> <span class="kp">in</span> <span class="n">g1</span><span class="o">.</span><span class="n">vertices</span><span class="p">][</span><span class="n">path</span><span class="p">]</span>
+<span class="n">plot_graph</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">last</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/Graphs/Graph_Algorithms_23_0.png"
+>
+</div>
+
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1-element Array{PyCall.PyObject,1}:
+ PyObject &lt;matplotlib.lines.Line2D object at 0x142dbe0d0&gt;</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Other-applications-of-BFS">Other applications of BFS<a class="anchor-link" href="#Other-applications-of-BFS"> </a></h3><p>Like the DFS method, the BFS method is also very important for a wide range of graph
+algorithms. See below for
+examples (from <a href="https://www.geeksforgeeks.org/applications-of-breadth-first-traversal">https://www.geeksforgeeks.org/applications-of-breadth-first-traversal</a>).</p>
+<p>1) <strong>Shortest Path and Minimum Spanning Tree for unweighted graph</strong>: In an unweighted graph, the shortest path is the path with least number of edges. With Breadth First, we always reach a vertex from given source using the minimum number of edges. Also, in case of unweighted graphs, any spanning tree is Minimum Spanning Tree and we can use either Depth or Breadth first traversal for finding a spanning tree.</p>
+<p>2) <strong>Peer to Peer Networks</strong>: In Peer to Peer Networks like BitTorrent, Breadth First Search is used to find all neighbor nodes.</p>
+<p>3) <strong>Crawlers in Search Engines</strong>: Crawlers build index using Breadth First. The idea is to start from source page and follow all links from source and keep doing same. Depth First Traversal can also be used for crawlers, but the advantage with Breadth First Traversal is, depth or levels of the built tree can be limited.</p>
+<p>4) <strong>Social Networking Websites</strong>: In social networks, we can find people within a given distance ‘k’ from a person using Breadth First Search till ‘k’ levels.</p>
+<p>5) <strong>GPS Navigation systems</strong>: Breadth First Search is used to find all neighboring locations.</p>
+<p>6) <strong>Broadcasting in Network</strong>: In networks, a broadcasted packet follows Breadth First Search to reach all nodes.</p>
+<p>7) <strong>In Garbage Collection</strong>: Breadth First Search is used in copying garbage collection using Cheney’s algorithm. Refer this and for details. Breadth First Search is preferred over Depth First Search because of better locality of reference:</p>
+<p>8) <strong>Cycle detection in undirected graph</strong>: In undirected graphs, either Breadth First Search or Depth First Search can be used to detect cycle. In directed graph, only depth first search can be used.</p>
+<p>9) <strong>Ford–Fulkerson algorithm</strong>: In Ford-Fulkerson algorithm, we can either use Breadth First or Depth First Traversal to find the maximum flow. Breadth First Traversal is preferred as it reduces worst case time complexity to O(VE2).</p>
+<p>10) <strong>To test if a graph is Bipartite</strong>: We can either use Breadth First or Depth First Traversal.</p>
+<p>11) <strong>Path Finding</strong>: We can either use Breadth First or Depth First Traversal to find if there is a path between two vertices.</p>
+<p>12) <strong>Finding all nodes within one connected component</strong>: We can either use Breadth First or Depth First Traversal to find all nodes reachable from a given node.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

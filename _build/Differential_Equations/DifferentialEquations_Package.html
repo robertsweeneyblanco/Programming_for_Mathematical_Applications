@@ -24,7 +24,7 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-DifferentialEquations-Package">The DifferentialEquations Package<a class="anchor-link" href="#The-DifferentialEquations-Package"> </a></h2><p>Various ODE solvers are implemented in the excellent <code>DifferentialEquations</code> package. They are similar to our <code>euler</code> and <code>rk4</code> functions above in the sense that they accept input arguments that define the problem as well as numerical parameters. But a major difference is that they use automatic step control. Instead of defining time steps $h$, you specify absolute and relative tolerances (<code>abstol</code> and <code>reltol</code>). If needed, the solution can be interpolated to arbitrary time values.</p>
+<h1 id="The-DifferentialEquations-Package">The DifferentialEquations Package<a class="anchor-link" href="#The-DifferentialEquations-Package"> </a></h1><p>Various ODE solvers are implemented in the excellent <code>DifferentialEquations</code> package. They are similar to our <code>euler</code> and <code>rk4</code> functions above in the sense that they accept input arguments that define the problem as well as numerical parameters. But a major difference is that they use automatic step control. Instead of defining time steps $h$, you specify absolute and relative tolerances (<code>abstol</code> and <code>reltol</code>). If needed, the solution can be interpolated to arbitrary time values.</p>
 
 </div>
 </div>
@@ -277,7 +277,7 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Continuous-events">Continuous events<a class="anchor-link" href="#Continuous-events"> </a></h3><p>Another important feature in the differential equation package is the support for <em>events</em>. These can be used to e.g. change the solution when certain conditions are satisfied, or to end the simulation.</p>
+<h2 id="Continuous-events">Continuous events<a class="anchor-link" href="#Continuous-events"> </a></h2><p>Another important feature in the differential equation package is the support for <em>events</em>. These can be used to e.g. change the solution when certain conditions are satisfied, or to end the simulation.</p>
 <p>As an example, suppose we want to find the period of the pendulum from before. This is a non-trivial problem, but numerically we can find it by telling the ODE solver to stop when $\theta'(t)=0$. This will give the (first) time instance that the pendulum turns, which corresponds to half the period.</p>
 
 </div>
