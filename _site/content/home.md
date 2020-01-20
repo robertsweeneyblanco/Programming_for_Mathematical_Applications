@@ -1,5 +1,7 @@
 # Programming for Mathematical Applications
 
+### By Per-Olof Persson and Robert Sweeney Blanco
+
 ## Description 
 
 An introduction to computer programming with a focus on the solution of mathematical and scientific problems. Basic programming concepts such as variables, statements, loops, branches, functions, data types, and object orientation. Mathematical/scientific tools such as arrays, floating point numbers, plotting, symbolic algebra, and various packages. Examples from a wide range of mathematical applications such as evaluation of complex algebraic expressions, number theory, combinatorics, statistical analysis, efficient algorithms, computational geometry, Fourier analysis, and optimization. Mainly based on the Julia programming language, but some examples will demonstrate other languages such as MATLAB, Python, C, and Mathematica.

@@ -46,17 +46,23 @@
   - title: While-Loops
     url: /Introduction/While_Loops
     not_numbered: true
+  - title: Function Arguments
+    url: /Introduction/Function_Arguments
+    not_numbered: true
 
-- title: Arrays
-  url: /Arrays/Chapter_Intro
+- title: Arrays and Dictionaries
+  url: /Arrays_and_Dictionaries/Chapter_Intro
   not_numbered: false
   expand_sections: false
   sections:
   - title: Introduction to Arrays
-    url: /Arrays/Introduction_To_Arrays
+    url: /Arrays_and_Dictionaries/Introduction_To_Arrays
     not_numbered: true
   - title: Multi-dimensional Arrays
-    url: /Arrays/Multi_Dimensional_Arrays
+    url: /Arrays_and_Dictionaries/Multi_Dimensional_Arrays
+    not_numbered: true
+  - title: Dictionaries
+    url: /Arrays_and_Dictionaries/Dictionaries
     not_numbered: true
     
 - title: Plotting
@@ -111,8 +117,8 @@
   - title: Rational Numbers
     url: /Data_Types/Rational_Numbers
     not_numbered: true
-  - title: Arrays
-    url: /Data_Types/Arrays
+  - title: Data Types of Arrays
+    url: /Data_Types/Data_Types_of_Arrays
     not_numbered: true
 
 - title: Recursion
@@ -152,11 +158,6 @@
   
 - title: Structs and Objects
   url: /Structs_And_Objects/Structs_And_Objects
-  not_numbered: false
-  expand_sections: true
-  
-- title: Topics
-  url: /Various_Julia_Topics
   not_numbered: false
   expand_sections: true
   

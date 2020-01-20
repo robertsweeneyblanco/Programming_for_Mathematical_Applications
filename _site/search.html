@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "http://0.0.0.0:4000//search",
   "headline": "Search the site",
-  "datePublished": "2020-01-19T21:28:37-06:00",
-  "dateModified": "2020-01-19T21:28:37-06:00",
+  "datePublished": "2020-01-20T15:45:29-06:00",
+  "dateModified": "2020-01-20T15:45:29-06:00",
   "description": "        ",
   "author": {
     "@type": "Person",
@@ -585,6 +585,23 @@ initFunction(initPrint)
               </li>
               
             
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Introduction/Function_Arguments.html"
+                >
+                  
+                  Function Arguments
+                </a>
+
+                
+                
+
+              </li>
+              
+            
           </ul>
         
       </li>
@@ -601,12 +618,12 @@ initFunction(initPrint)
       
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry "
-          href="/Arrays/Chapter_Intro.html"
+          href="/Arrays_and_Dictionaries/Chapter_Intro.html"
         >
           
             2.
           
-          Arrays
+          Arrays and Dictionaries
         </a>
 
         
@@ -625,7 +642,7 @@ initFunction(initPrint)
 
               <li class="c-sidebar__section">
                 <a class="c-sidebar__entry "
-                  href="/Arrays/Introduction_To_Arrays.html"
+                  href="/Arrays_and_Dictionaries/Introduction_To_Arrays.html"
                 >
                   
                   Introduction to Arrays
@@ -642,10 +659,27 @@ initFunction(initPrint)
 
               <li class="c-sidebar__section">
                 <a class="c-sidebar__entry "
-                  href="/Arrays/Multi_Dimensional_Arrays.html"
+                  href="/Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html"
                 >
                   
                   Multi-dimensional Arrays
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/Arrays_and_Dictionaries/Dictionaries.html"
+                >
+                  
+                  Dictionaries
                 </a>
 
                 
@@ -957,10 +991,10 @@ initFunction(initPrint)
 
               <li class="c-sidebar__section">
                 <a class="c-sidebar__entry "
-                  href="/Data_Types/Arrays.html"
+                  href="/Data_Types/Data_Types_of_Arrays.html"
                 >
                   
-                  Arrays
+                  Data Types of Arrays
                 </a>
 
                 
@@ -1203,33 +1237,10 @@ initFunction(initPrint)
       
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry "
-          href="/Various_Julia_Topics.html"
-        >
-          
-            11.
-          
-          Topics
-        </a>
-
-        
-      </li>
-
-      
-    
-      
-      
-
-      
-      
-
-      
-      
-      <li class="c-sidebar__chapter">
-        <a class="c-sidebar__entry "
           href="/Computational_Geometry/Chapter_Intro.html"
         >
           
-            12.
+            11.
           
           Computational Geometry
         </a>
@@ -1315,7 +1326,7 @@ initFunction(initPrint)
           href="/Image_Processing/Chapter_Intro.html"
         >
           
-            13.
+            12.
           
           Image Processing
         </a>
@@ -1418,7 +1429,7 @@ initFunction(initPrint)
           href="/Differential_Equations/Chapter_Intro.html"
         >
           
-            14.
+            13.
           
           Differential Equations
         </a>
@@ -1521,7 +1532,7 @@ initFunction(initPrint)
           href="/Optimization/Chapter_Intro.html"
         >
           
-            15.
+            14.
           
           Optimization
         </a>
@@ -1590,7 +1601,7 @@ initFunction(initPrint)
           href="/Graphs/Chapter_Intro.html"
         >
           
-            16.
+            15.
           
           Graphs
         </a>
@@ -1659,7 +1670,7 @@ initFunction(initPrint)
           href="/Sparse_Matrices/Chapter_Intro.html"
         >
           
-            17.
+            16.
           
           Sparse Matrices
         </a>
@@ -1799,13 +1810,21 @@ initFunction(initPrint)
 <script>
     // Add the lunr store since we will now search it
     var store = [{
-        "title": "Arrays",
+        "title": "Arrays and Dictionaries",
         
         "excerpt":
-            "             Arrays  This chapter will introduce one of the most important and basic data structures in computer science; arrays.                     ",
+            "             Arrays and Dictionaries  This chapter will two fundamental data structures; arrays and dictionaries. These data structures allow programmers to store, access, and iterate over values.                     ",
         "categories": [],
         "tags": [],
-        "url": "http://0.0.0.0:4000/Arrays/Chapter_Intro.html",
+        "url": "http://0.0.0.0:4000/Arrays_and_Dictionaries/Chapter_Intro.html",
+        "teaser":null},{
+        "title": "Dictionaries",
+        
+        "excerpt":
+            "Dictionaries A dictionary is like an array, but more general. In an array, the indices have to be integers; in a dictionary they can be (almost) any type. A dictionary contains a collection of indices, which are called keys, and a collection of values. Each key is associated with a single value. The association of a key and a value is called a key-value pair or sometimes an item. An example of constructing a dictionary is given below classes = Dict(&quot;Introduction to Real Analysis&quot; =&gt; 104, &quot;Programming for Mathematical Applications&quot; =&gt; 124 ) Dict{String,Int64} with 2 entries: &#34;Programming for Mathematical...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Arrays_and_Dictionaries/Dictionaries.html",
         "teaser":null},{
         "title": "Introduction to Arrays",
         
@@ -1813,7 +1832,7 @@ initFunction(initPrint)
             "Introduction to Arrays An array is a sequence of values or objects. The values can be of any type, but it is very common with arrays of numbers (integers or floating point numbers), in which case the array can be used to present vectors, matrices, and tensors. The values in an array are often referred to as elements. One way to create a so-called 1-d array (or a vector) is to list the elements, separated by commas, inside square brackets ([ ]): x = [1, 2, 4, -3] 4-element Array{Int64,1}: 1 2 4 -3 y = [1.1, π, -4/3, 1e-1]...",
         "categories": [],
         "tags": [],
-        "url": "http://0.0.0.0:4000/Arrays/Introduction_To_Arrays.html",
+        "url": "http://0.0.0.0:4000/Arrays_and_Dictionaries/Introduction_To_Arrays.html",
         "teaser":null},{
         "title": "Multi-dimensional Arrays",
         
@@ -1821,7 +1840,7 @@ initFunction(initPrint)
             "Multi-dimensional Arrays Arrays can have multiple dimensions, e.g. 2-d arrays can be used to represent matrices. They can be constructed by using spaces between the number in each row, and semi-colons between the rows: A = [1 2 3; -4 -5 -6] 2×3 Array{Int64,2}: 1 2 3 -4 -5 -6 Note the type Array{Int64,2}, indicating that this is a 2-d array (of integers). When accessing elements in a mutli-dimensional array, you supply multiple indices separated by commas inside the square brackets: A[2,3] -6 Multi-dimensional arrays can be operated on using similar syntax as for 1-d arrays. The length function returns...",
         "categories": [],
         "tags": [],
-        "url": "http://0.0.0.0:4000/Arrays/Multi_Dimensional_Arrays.html",
+        "url": "http://0.0.0.0:4000/Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html",
         "teaser":null},{
         "title": "Computational Geometry",
         
@@ -1871,18 +1890,10 @@ initFunction(initPrint)
         "tags": [],
         "url": "http://0.0.0.0:4000/Data_Types/Arbitrary_Precision_Integers.html",
         "teaser":null},{
-        "title": "Arrays",
-        
-        "excerpt":
-            "             Arrays of complex and rational numbers  Arrays of complex and rational types can be defined easily, and the array functions work as expected:                   x = [ complex(cos(θ),sin(θ)) for θ in 2π*(0:10)/10 ]                    11-element Array{Complex{Float64},1}:                   1.0 + 0.0im                       0.8090169943749475 + 0.5877852522924731im       0.30901699437494745 + 0.9510565162951535im      -0.30901699437494734 + 0.9510565162951536im       -0.8090169943749473 + 0.5877852522924732im                      -1.0 + 1.2246467991473532e-16im   -0.8090169943749475 - 0.587785252292473im       -0.30901699437494756 - 0.9510565162951535im       0.30901699437494723 - 0.9510565162951536im        0.8090169943749473 - 0.5877852522924734im                       1.0 - 2.4492935982947064e-16im                      sum(x.^2)                    0.9999999999999996 - 6.008810221214569e-16im                      y = [ a//(a+1) for a = 1:10 ]                    10-element Array{Rational{Int64},1}:   1//2    2//3    3//4    4//5    5//6    6//7    7//8    8//9    9//10  10//11                      prod(y.^2)                    1//121                        ",
-        "categories": [],
-        "tags": [],
-        "url": "http://0.0.0.0:4000/Data_Types/Arrays.html",
-        "teaser":null},{
         "title": "Data Types",
         
         "excerpt":
-            "             Introduction to Julia  This section will cover the basics of the Julia programming language. After this chapter, readers should know how to write and execute Julia code to perform basic calculations. The big picture lessons from this chapter can be applied to almost any programming language, but the syntax and conventions will be specific to Julia.                     ",
+            "Data Types When doing computational work, it is extremely important to be aware of any potential floating point errors. These are errors caused by the finite arithmetic setting of a computer. Here are a couple of tragic examples of real life disasters that occured do to floating point errors. This chapter will introduce how to increase the precision of calculuations to avoid such disasters. We will also discuss a couple of new data types (complex and rational). Mathematicians often work with different sets of numbers (integers, rationals, reals, complex, etc), so it is important to be able to work with...",
         "categories": [],
         "tags": [],
         "url": "http://0.0.0.0:4000/Data_Types/Chapter_Intro.html",
@@ -1894,6 +1905,14 @@ initFunction(initPrint)
         "categories": [],
         "tags": [],
         "url": "http://0.0.0.0:4000/Data_Types/Complex_Numbers.html",
+        "teaser":null},{
+        "title": "Data Types of Arrays",
+        
+        "excerpt":
+            "Data Types of Arrays So far we have worked with arrays of integers and floats. Arrays of complex and rational types can be defined easily, and the array functions work as expected: x = [ complex(cos(θ),sin(θ)) for θ in 2π*(0:10)/10 ] 11-element Array{Complex{Float64},1}: 1.0 + 0.0im 0.8090169943749475 + 0.5877852522924731im 0.30901699437494745 + 0.9510565162951535im -0.30901699437494734 + 0.9510565162951536im -0.8090169943749473 + 0.5877852522924732im -1.0 + 1.2246467991473532e-16im -0.8090169943749475 - 0.587785252292473im -0.30901699437494756 - 0.9510565162951535im 0.30901699437494723 - 0.9510565162951536im 0.8090169943749473 - 0.5877852522924734im 1.0 - 2.4492935982947064e-16im sum(x.^2) 0.9999999999999996 - 6.008810221214569e-16im y = [ a//(a+1) for a = 1:10 ] 10-element Array{Rational{Int64},1}: 1//2 2//3 3//4 4//5 5//6 6//7 7//8 8//9 9//10...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Data_Types/Data_Types_of_Arrays.html",
         "teaser":null},{
         "title": "Rational Numbers",
         
@@ -2030,6 +2049,14 @@ initFunction(initPrint)
         "categories": [],
         "tags": [],
         "url": "http://0.0.0.0:4000/Introduction/For_Loops.html",
+        "teaser":null},{
+        "title": "Function Arguments",
+        
+        "excerpt":
+            "Optional and Keyword Arguments to Functions Optional arguments Arguments to a function can be made optional by providing a default value. This simplifies the calling syntax when the default value is desired, but still allows for overriding if needed. As an example, consider solving the equation $2x=\\tan x$ using the fixed-point iteration $x_{n+1} = \\tan^{-1}(2x_n)$. Our arguments are the termination tolerance $\\delta$ (that is, the iterations will continue until $|x_{n+1}-x_n|\\le \\delta$) and the starting value $x_0$. In the function below, these arguments have default values of $10^{-3}$ and $1.0$, resepectively. function fixpnt(δ=1e-3, x0=1.0) x = x0 iter = 0 while...",
+        "categories": [],
+        "tags": [],
+        "url": "http://0.0.0.0:4000/Introduction/Function_Arguments.html",
         "teaser":null},{
         "title": "Functions",
         
@@ -2247,14 +2274,6 @@ initFunction(initPrint)
         "tags": [],
         "url": "http://0.0.0.0:4000/Structs_And_Objects/Structs_And_Objects.html",
         "teaser":null},{
-        "title": "Topics",
-        
-        "excerpt":
-            "Various Julia Language Topics Scope of Variables The scope of a variable is the region of code within which a variable is visible. A new local scope is introduced by most code blocks. A local scope inherits all the variables from a parent local scope, both for reading and writing, unless the variable is specifically marked with the keyword local. This is illustrated in the example below. x = 10 y = 10 for i = 1:5 z = i # Local scope, only visible inside for-loop x = z # Using x from parent scope local y = z...",
-        "categories": [],
-        "tags": [],
-        "url": "http://0.0.0.0:4000/Various_Julia_Topics.html",
-        "teaser":null},{
         "title": "Array Functions",
         
         "excerpt":
@@ -2290,7 +2309,7 @@ initFunction(initPrint)
         "title": "Home",
         
         "excerpt":
-            "Programming for Mathematical Applications Description An introduction to computer programming with a focus on the solution of mathematical and scientific problems. Basic programming concepts such as variables, statements, loops, branches, functions, data types, and object orientation. Mathematical/scientific tools such as arrays, floating point numbers, plotting, symbolic algebra, and various packages. Examples from a wide range of mathematical applications such as evaluation of complex algebraic expressions, number theory, combinatorics, statistical analysis, efficient algorithms, computational geometry, Fourier analysis, and optimization. Mainly based on the Julia programming language, but some examples will demonstrate other languages such as MATLAB, Python, C, and Mathematica. Additional...",
+            "Programming for Mathematical Applications By Per-Olof Persson and Robert Sweeney Blanco Description An introduction to computer programming with a focus on the solution of mathematical and scientific problems. Basic programming concepts such as variables, statements, loops, branches, functions, data types, and object orientation. Mathematical/scientific tools such as arrays, floating point numbers, plotting, symbolic algebra, and various packages. Examples from a wide range of mathematical applications such as evaluation of complex algebraic expressions, number theory, combinatorics, statistical analysis, efficient algorithms, computational geometry, Fourier analysis, and optimization. Mainly based on the Julia programming language, but some examples will demonstrate other languages such...",
         "categories": [],
         "tags": [],
         "url": "http://0.0.0.0:4000/home.html",

@@ -7,9 +7,9 @@ has_widgets: false
 title: |-
   Recursion
 prev_page:
-  url: /Data_Types/Arrays.html
+  url: /Data_Types/Data_Types_of_Arrays.html
   title: |-
-    Arrays
+    Data Types of Arrays
 next_page:
   url: /Linear_Algebra/Chapter_Intro.html
   title: |-
@@ -887,8 +887,8 @@ ack(2,1): Case 3: finished calling itself, returning 5
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[787, 422, 759, 906, 245, 613, 319, 9, 523, 156]
-[9, 156, 245, 319, 422, 523, 613, 759, 787, 906]
+<pre>[171, 111, 541, 633, 723, 577, 967, 622, 721, 596]
+[111, 171, 541, 577, 596, 622, 633, 721, 723, 967]
 </pre>
 </div>
 </div>
@@ -936,15 +936,15 @@ ack(2,1): Case 3: finished calling itself, returning 5
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>n = 1000
-  0.000248 seconds (2.00 k allocations: 245.500 KiB)
+  0.042392 seconds (65.90 k allocations: 3.252 MiB)
 n = 10000
-  0.005249 seconds (20.00 k allocations: 2.677 MiB, 53.84% gc time)
+  0.001917 seconds (20.00 k allocations: 2.665 MiB)
 n = 100000
-  0.032483 seconds (200.06 k allocations: 29.543 MiB, 14.62% gc time)
+  0.036173 seconds (200.06 k allocations: 29.225 MiB, 34.01% gc time)
 n = 1000000
-  0.318711 seconds (2.00 M allocations: 315.630 MiB, 31.24% gc time)
+  0.307931 seconds (2.00 M allocations: 314.595 MiB, 11.81% gc time)
 n = 10000000
-  3.323824 seconds (20.01 M allocations: 3.353 GiB, 25.52% gc time)
+  4.452034 seconds (20.01 M allocations: 3.352 GiB, 15.49% gc time)
 </pre>
 </div>
 </div>
@@ -963,6 +963,151 @@ n = 10000000
 
 </div>
 </div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Saving-intermediate-values-in-a-recursion">Saving intermediate values in a recursion<a class="anchor-link" href="#Saving-intermediate-values-in-a-recursion"> </a></h2><p>The function below implements the so-called <em>McCarthy 91 function</em>:</p>
+$$
+M(n) = 
+\begin{cases}
+n-10, &amp; \text{if }n &gt; 100 \\
+M(M(n+11)), &amp; \text{if } n \le 100
+\end{cases}
+$$<p>While trivial to implement using recursion, it is not that easy to trace the recursive calls to the function. Therefore, we define a function <code>Mvalues(n)</code> which creates an empty array <code>returned_values</code>. Inside this function we define the actual recursive function <code>M(n)</code>, and each time it is called we push the value that it returns to the <code>returned_values</code> array. Note that the order of these numbers in the array will not be the same as the order in which <code>M(n)</code> is called, since the values are pushed to the array at the end of the function.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">Mvalues</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">returned_values</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>
+
+    <span class="k">function</span> <span class="n">M</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">100</span>
+            <span class="n">newval</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">10</span>
+        <span class="k">else</span>
+            <span class="n">newval</span> <span class="o">=</span> <span class="n">M</span><span class="p">(</span><span class="n">M</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">11</span><span class="p">))</span>
+        <span class="k">end</span>
+        <span class="n">push!</span><span class="p">(</span><span class="n">returned_values</span><span class="p">,</span> <span class="n">newval</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">newval</span>
+    <span class="k">end</span>
+
+    <span class="n">M</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">returned_values</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Mvalues (generic function with 1 method)</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Mvalues</span><span class="p">(</span><span class="mi">105</span><span class="p">)</span>     <span class="c"># Easy - terminates immediately, M(105) = 95</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1-element Array{Int64,1}:
+ 95</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Mvalues</span><span class="p">(</span><span class="mi">97</span><span class="p">)</span>      <span class="c"># More complex - finally returns M(97) = 91</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9-element Array{Int64,1}:
+  98
+  99
+ 100
+ 101
+  91
+  91
+  91
+  91
+  91</pre>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
 </div>
 </div>
 

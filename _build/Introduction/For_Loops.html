@@ -864,6 +864,84 @@ Stacktrace:
 </div>
 </div>
 
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Scope-of-Variables">Scope of Variables<a class="anchor-link" href="#Scope-of-Variables"> </a></h2><p>The <em>scope</em> of a variable is the region of code within which a variable is visible. A new <em>local scope</em> is introduced by most code blocks. A local scope inherits all the variables from a parent local scope, both for reading and writing, unless the variable is specifically marked with the keyword <code>local</code>. This is illustrated in the example below.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">i</span>        <span class="c"># Local scope, only visible inside for-loop</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">z</span>        <span class="c"># Using x from parent scope</span>
+    <span class="kd">local</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span>  <span class="c"># Local scope, only visible inside for-loop (not using y from parent scope)</span>
+<span class="k">end</span>
+
+<span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    <span class="c">#  = 5, since for loop modifies parent variable x</span>
+<span class="n">println</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>    <span class="c">#  = 10, since for loop uses local variable y</span>
+<span class="n">println</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>    <span class="c"># Error: z only defined in the local scope of the for-loop</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5
+10
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+UndefVarError: z not defined
+
+Stacktrace:
+ [1] top-level scope at In[20]:12</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This can be convenient in for example <em>nested functions</em>, where the variables defined in the top function can be used in the inner function without having to pass it as a parameter.</p>
+
+</div>
+</div>
+</div>
+</div>
+
  
 
 
