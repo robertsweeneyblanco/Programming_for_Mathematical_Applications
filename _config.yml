@@ -20,7 +20,7 @@ title: Programming for Mathematical Applications
 author: Per-Olof Persson and Robert Sweeney Blanco
 email: persson@berkeley.edu
 description: >-
-  This is an example book built with Jupyter Books.
+  This is a textbook intended for UC Berkeley's Math 124.
 
 baseurl: /  # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
 url: https://robertsweeneyblanco.github.io/ # the base hostname & protocol for your site, e.g. http://example.com
@@ -88,7 +88,7 @@ scholar:
 
 # Navigate to https://analytics.google.com, add a new property for your jupyter book and copy the tracking id here.
 google_analytics:
-  mytrackingcode: ''
+  mytrackingcode: 'UA-112384113-2'
 
 #######################################################################################
 # Jupyter book settings you probably don't need to change
