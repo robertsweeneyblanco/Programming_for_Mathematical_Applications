@@ -27,8 +27,8 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 <h1 id="Repeated-evaluation:-while-loops">Repeated evaluation: while-loops<a class="anchor-link" href="#Repeated-evaluation:-while-loops"> </a></h1><p>We have seen above that for-loops are good for looping <em>when you know the number of iterations</em>, e.g to compute the finite sum $s_n = \sum_{i=1}^n \frac{1}{i}$ for some given integer $n\ge 1$. However, suppose the problem statement makes it difficult to predict the number of iterations. For example, if we had to compute the terms in $s_n$ until a term is smaller than a given number $\delta$.</p>
 <p>For problems like this, when you don't know the total number of iterations, you can use a <code>while</code> loop. It has the following syntax:</p>
 <div class="highlight"><pre><span></span><span class="k">while</span> <span class="c">#condition</span>
-        <span class="c"># Code repeated until the condition above becomes false</span>
-    <span class="k">end</span>
+    <span class="c"># Code repeated until the condition above becomes false</span>
+<span class="k">end</span>
 </pre></div>
 
 </div>
@@ -184,12 +184,12 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-break-statement">The break statement<a class="anchor-link" href="#The-break-statement"> </a></h2><p>Sometimes it is convenient to determine somewhere inside the <code>while</code> loop that the loop should finish. This can be done with the <code>break</code> statement:</p>
 <div class="highlight"><pre><span></span><span class="k">while</span> <span class="c">#condition</span>
-        <span class="c"># Code 1 to be repeated...</span>
-        <span class="k">if</span> <span class="c">#termination_condition</span>
-            <span class="k">break</span>
-        <span class="k">end</span>
-        <span class="c"># Code 2 to be repeated...</span>
+    <span class="c"># Code 1 to be repeated...</span>
+    <span class="k">if</span> <span class="c">#termination_condition</span>
+        <span class="k">break</span>
     <span class="k">end</span>
+    <span class="c"># Code 2 to be repeated...</span>
+<span class="k">end</span>
 </pre></div>
 <p>This will repeat like before, that is, until <code>#condition</code> becomes <code>false</code>. However, if <code>#termination_condition</code> becomes <code>false</code>, it will immediately finish the loop.</p>
 <p>This way of writing while loops is common because you can check the condition anywhere in the loop (not just at the top). Another common usage of this is to set <code>#condition</code> to <code>true</code>, in which case the termination is completely controlled by <code>#termination_condition</code>.</p>
