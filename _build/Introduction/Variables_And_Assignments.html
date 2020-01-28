@@ -458,7 +458,7 @@ Stacktrace:
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Numeric literal coefficients have higher precedence than <code>*</code>, <code>/</code> and <code>^</code>:</li>
+<li>Numeric literal coefficients have higher precedence than <code>*</code> and <code>/</code>:</li>
 </ul>
 
 </div>
@@ -475,7 +475,6 @@ Stacktrace:
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="mi">2</span><span class="o">*</span><span class="nb">π</span><span class="p">)</span>  <span class="c"># Left first - equals 180*π</span>
 <span class="n">println</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="mi">2</span><span class="nb">π</span><span class="p">)</span>   <span class="c"># Right first - equals 180/π</span>
-<span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">2</span><span class="n">x</span><span class="p">)</span>       <span class="c"># 2^(2x), not (4)x</span>
 </pre></div>
 
     </div>
@@ -491,7 +490,53 @@ Stacktrace:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>565.4866776461628
 57.29577951308232
-64
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>For exponentiation <code>^</code>, numeric literal coefficients behave similarly to unary operators:</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">2</span><span class="n">x</span><span class="p">)</span>       <span class="c"># 2^(2x), not (4)x</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>       <span class="c"># 2*(x^2), not (2x)^2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>64
+18
 </pre>
 </div>
 </div>
