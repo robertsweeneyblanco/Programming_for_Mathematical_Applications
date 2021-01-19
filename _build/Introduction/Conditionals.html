@@ -3,23 +3,23 @@ redirect_from:
   - "/introduction/conditionals"
 interact_link: content/Introduction/Conditionals.ipynb
 kernel_name: julia-1.3
+kernel_path: content/Introduction
 has_widgets: false
 title: |-
   Conditionals
+pagenum: 6
 prev_page:
   url: /Introduction/For_Loops.html
-  title: |-
-    For-Loops
 next_page:
   url: /Introduction/While_Loops.html
-  title: |-
-    While-Loops
 suffix: .ipynb
+search: example evaluated true x y f boolean expression operator below statement block only expressions false equal special type comparison operators numbers b k multiples given logical tab less greater note following println elseif else handling cases conditional allows code otherwise ge examples notation common single chained comparisons julia syntax convenient determine corresponding value subexpression evaluates error fibonacci recurrence relation problem sum function answer conditionals executed condition satisfied before introducing called need learn express conditions either compares operands returns values belong bool relational listed name equality inequality ne le here simple between floating point integers work expect finally warning mistake since
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
     <main class="jupyter-page">
+    <div id="page-info"></div>
     <div class="jb_cell">
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -686,12 +686,12 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-if-statement">The if-statement<a class="anchor-link" href="#The-if-statement"> </a></h3><p>We are now ready to define the <code>if</code> statement for conditional execusion. It has the following syntax:</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span>
-        <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is less than y&quot;</span><span class="p">)</span>
-    <span class="k">elseif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span>
-        <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is greater than y&quot;</span><span class="p">)</span>
-    <span class="k">else</span>
-        <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is equal to y&quot;</span><span class="p">)</span>
-    <span class="k">end</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is less than y&quot;</span><span class="p">)</span>
+<span class="k">elseif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is greater than y&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is equal to y&quot;</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div>
 <ul>
 <li>First <code>x &lt; y</code> is evaluated, if <code>true</code> then the corresponding block is evaluated</li>
@@ -941,7 +941,7 @@ $$<p>In the implementation below, the special cases $F_0$ and $F_1$ are handled 
         <span class="n">Fk</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="n">n</span>
             <span class="n">Fknew</span> <span class="o">=</span> <span class="n">Fk</span> <span class="o">+</span> <span class="n">Fkold</span>
-            <span class="c"># Swap previous values</span>
+            <span class="c"># Update previous values</span>
             <span class="n">Fkold</span> <span class="o">=</span> <span class="n">Fk</span>
             <span class="n">Fk</span> <span class="o">=</span> <span class="n">Fknew</span>
         <span class="k">end</span>
@@ -1015,7 +1015,7 @@ $$<p>In the implementation below, the special cases $F_0$ and $F_1$ are handled 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>   <span class="c"># Again be careful with overflow of Int64, but this one is OK</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>   <span class="c"># Again be careful with overflow of Int64, but this one is OK</span>
 </pre></div>
 
     </div>
@@ -1031,7 +1031,7 @@ $$<p>In the implementation below, the special cases $F_0$ and $F_1$ are handled 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>817770325994397771</pre>
+<pre>2880067194370816120</pre>
 </div>
 
 </div>

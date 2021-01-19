@@ -3,23 +3,23 @@ redirect_from:
   - "/sparse-matrices/application-google-page-rank"
 interact_link: content/Sparse_Matrices/Application_Google_Page_Rank.ipynb
 kernel_name: julia-1.3
+kernel_path: content/Sparse_Matrices
 has_widgets: false
 title: |-
   Application; Google Page Rank
+pagenum: 62
 prev_page:
   url: /Sparse_Matrices/Application_Graphs.html
-  title: |-
-    Application; Graphs
 next_page:
   url: 
-  title: |-
-    
 suffix: .ipynb
+search: page links boldsymbol pageranks example pj r pr d n pages pagerank web where pi m matrix vector algorithm shown c link graph frac l outbound equation k google used search network below png vertex probability clicking random between solve mathrm rhs adjancency diagonal above application rank engine results works counting quality higher e even though fewer comes important hence high value attachment en wikipedia org wiki starting point webgraph another edge goal determine weights not edges weighted interpreted someone eventually reach derive simple relationship probabilities here also assumed person stops chooses damping factor sum total set iterative computation iteratively
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
     <main class="jupyter-page">
+    <div id="page-info"></div>
     <div class="jb_cell">
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -100,7 +100,8 @@ the adjancency matrix $A$, including the added links for pages without outbound 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">]</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span><span class="p">,</span> <span class="n">SparseArrays</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">]</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="n">A</span><span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="p">)[</span><span class="o">:</span><span class="p">]</span> <span class="o">.==</span> <span class="mi">0</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="mi">1</span>  <span class="c"># If a vertex has no outbound edges, all edges to all other vertices</span>

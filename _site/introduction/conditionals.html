@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
   <title>Conditionals</title>
-  <meta name="description" content="        Conditionals A conditional statement allows a block of code to be executed only when a given logical condition is satisfied. Before introducing the s...">
+  <meta name="description" content="            Conditionals A conditional statement allows a block of code to be executed only when a given logical condition is satisfied. Before introducing t...">
 
   <link rel="canonical" href="http://0.0.0.0:4000//Introduction/Conditionals.html">
   <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000//feed.xml">
@@ -14,7 +14,7 @@
   <meta property="og:url"         content="http://0.0.0.0:4000//Introduction/Conditionals.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Conditionals" />
-<meta property="og:description" content="        Conditionals A conditional statement allows a block of code to be executed only when a given logical condition is satisfied. Before introducing the s..." />
+<meta property="og:description" content="            Conditionals A conditional statement allows a block of code to be executed only when a given logical condition is satisfied. Before introducing t..." />
 <meta property="og:image"       content="http://0.0.0.0:4000/logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -26,9 +26,9 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "http://0.0.0.0:4000//Introduction/Conditionals.html",
   "headline": "Conditionals",
-  "datePublished": "2020-01-27T20:57:27-06:00",
-  "dateModified": "2020-01-27T20:57:27-06:00",
-  "description": "        Conditionals A conditional statement allows a block of code to be executed only when a given logical condition is satisfied. Before introducing the s...",
+  "datePublished": "2021-01-18T22:26:16-06:00",
+  "dateModified": "2021-01-18T22:26:16-06:00",
+  "description": "            Conditionals A conditional statement allows a block of code to be executed only when a given logical condition is satisfied. Before introducing t...",
   "author": {
     "@type": "Person",
     "name": "Per-Olof Persson and Robert Sweeney Blanco"
@@ -1912,6 +1912,7 @@ initFunction(initPrint)
       <main class="c-textbook__page" tabindex="-1">
             <div class="c-textbook__content" id="textbook_content">
                   <main class="jupyter-page">
+    <div id="page-info"></div>
     <div class="jb_cell">
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -2578,12 +2579,12 @@ initFunction(initPrint)
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-if-statement">The if-statement<a class="anchor-link" href="#The-if-statement"> </a></h3><p>We are now ready to define the <code>if</code> statement for conditional execusion. It has the following syntax:</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span>
-        <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is less than y&quot;</span><span class="p">)</span>
-    <span class="k">elseif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span>
-        <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is greater than y&quot;</span><span class="p">)</span>
-    <span class="k">else</span>
-        <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is equal to y&quot;</span><span class="p">)</span>
-    <span class="k">end</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is less than y&quot;</span><span class="p">)</span>
+<span class="k">elseif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is greater than y&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;x is equal to y&quot;</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div>
 <ul>
 <li>First <code>x &lt; y</code> is evaluated, if <code>true</code> then the corresponding block is evaluated</li>
@@ -2833,7 +2834,7 @@ $$<p>In the implementation below, the special cases $F_0$ and $F_1$ are handled 
         <span class="n">Fk</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="n">n</span>
             <span class="n">Fknew</span> <span class="o">=</span> <span class="n">Fk</span> <span class="o">+</span> <span class="n">Fkold</span>
-            <span class="c"># Swap previous values</span>
+            <span class="c"># Update previous values</span>
             <span class="n">Fkold</span> <span class="o">=</span> <span class="n">Fk</span>
             <span class="n">Fk</span> <span class="o">=</span> <span class="n">Fknew</span>
         <span class="k">end</span>
@@ -2907,7 +2908,7 @@ $$<p>In the implementation below, the special cases $F_0$ and $F_1$ are handled 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>   <span class="c"># Again be careful with overflow of Int64, but this one is OK</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>   <span class="c"># Again be careful with overflow of Int64, but this one is OK</span>
 </pre></div>
 
     </div>
@@ -2923,7 +2924,7 @@ $$<p>In the implementation below, the special cases $F_0$ and $F_1$ are handled 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>817770325994397771</pre>
+<pre>2880067194370816120</pre>
 </div>
 
 </div>
@@ -3092,14 +3093,14 @@ $$<p>In the implementation below, the special cases $F_0$ and $F_1$ are handled 
   
     
     <a id="js-page__nav__prev" class="c-page__nav__prev" href="/Introduction/For_Loops.html">
-      〈 <span class="u-margin-right-tiny"></span> For-Loops
+      〈 <span class="u-margin-right-tiny"></span> 
     </a>
   
 
   
     
     <a id="js-page__nav__next" class="c-page__nav__next" href="/Introduction/While_Loops.html">
-      While-Loops <span class="u-margin-right-tiny"></span> 〉
+       <span class="u-margin-right-tiny"></span> 〉
     </a>
   
 </nav>

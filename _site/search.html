@@ -26,8 +26,8 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "http://0.0.0.0:4000//search",
   "headline": "Search the site",
-  "datePublished": "2020-01-27T20:57:27-06:00",
-  "dateModified": "2020-01-27T20:57:27-06:00",
+  "datePublished": "2021-01-18T22:26:16-06:00",
+  "dateModified": "2021-01-18T22:26:16-06:00",
   "description": "        ",
   "author": {
     "@type": "Person",
@@ -1961,7 +1961,7 @@ initFunction(initPrint)
         "title": "Triangulations",
         
         "excerpt":
-            "Triangulations A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, visualization, numerical solution of PDEs, and interpolation. First let us define a function to plot a triangulation. The function below is based on PyPlot, and it takes an array of points p and an array of triangle indices t. function tplot(p, t) # Plot triangular mesh with nodes `p` and triangles `t` tris = convert(Array{Int64}, hcat(t...)&#39;) tripcolor(first.(p), last.(p), tris .- 1, 0*tris[:,1], cmap=&quot;Set3&quot;, edgecolors=&quot;k&quot;, linewidth=1) axis(&quot;equal&quot;) return end tplot (generic function with 1 method) We can test the function using...",
+            "Triangulations A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, visualization, numerical solution of PDEs, and interpolation. First let us define a function to plot a triangulation. The function below is based on PyPlot, and it takes an array of points p and an array of triangle indices t. using PyPlot function tplot(p, t) # Plot triangular mesh with nodes `p` and triangles `t` tris = convert(Array{Int64}, hcat(t...)&#39;) tripcolor(first.(p), last.(p), tris .- 1, 0*tris[:,1], cmap=&quot;Set3&quot;, edgecolors=&quot;k&quot;, linewidth=1) axis(&quot;equal&quot;) return end tplot (generic function with 1 method) We can test the...",
         "categories": [],
         "tags": [],
         "url": "http://0.0.0.0:4000/Computational_Geometry/Triangulations.html",
@@ -2065,7 +2065,7 @@ initFunction(initPrint)
         "title": "Graph Algorithms",
         
         "excerpt":
-            "Graph Algorithms Depth first search The depth first search (DFS) is a simply way of traversing a graph, starting from a given vertex start. It can be used for a number of important problems such as path finding, topological sorting, etc. It is easiest implemented using recursion. We keep track of visited vertices using an array of booleans, and the method is applied recursively to all neighbors of a vertex. Note that this strategy will first traverse an entire branch of a neighbor node, before continuing to the next neighbor - therefore the name \"depth first\". # Import code from...",
+            "Graph Algorithms Depth first search The depth first search (DFS) is a simply way of traversing a graph, starting from a given vertex start. It can be used for a number of important problems such as path finding, topological sorting, etc. It is easiest implemented using recursion. We keep track of visited vertices using an array of booleans, and the method is applied recursively to all neighbors of a vertex. Note that this strategy will first traverse an entire branch of a neighbor node, before continuing to the next neighbor - therefore the name \"depth first\". # Uncomment below if...",
         "categories": [],
         "tags": [],
         "url": "http://0.0.0.0:4000/Graphs/Graph_Algorithms.html",

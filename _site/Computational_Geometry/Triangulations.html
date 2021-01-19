@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
   <title>Triangulations</title>
-  <meta name="description" content="        Triangulations A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, visual...">
+  <meta name="description" content="            Triangulations A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, vi...">
 
   <link rel="canonical" href="http://0.0.0.0:4000//Computational_Geometry/Triangulations.html">
   <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000//feed.xml">
@@ -14,7 +14,7 @@
   <meta property="og:url"         content="http://0.0.0.0:4000//Computational_Geometry/Triangulations.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Triangulations" />
-<meta property="og:description" content="        Triangulations A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, visual..." />
+<meta property="og:description" content="            Triangulations A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, vi..." />
 <meta property="og:image"       content="http://0.0.0.0:4000/logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -26,9 +26,9 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "http://0.0.0.0:4000//Computational_Geometry/Triangulations.html",
   "headline": "Triangulations",
-  "datePublished": "2020-01-27T20:57:27-06:00",
-  "dateModified": "2020-01-27T20:57:27-06:00",
-  "description": "        Triangulations A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, visual...",
+  "datePublished": "2021-01-18T22:26:16-06:00",
+  "dateModified": "2021-01-18T22:26:16-06:00",
+  "description": "            Triangulations A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, vi...",
   "author": {
     "@type": "Person",
     "name": "Per-Olof Persson and Robert Sweeney Blanco"
@@ -1912,6 +1912,7 @@ initFunction(initPrint)
       <main class="c-textbook__page" tabindex="-1">
             <div class="c-textbook__content" id="textbook_content">
                   <main class="jupyter-page">
+    <div id="page-info"></div>
     <div class="jb_cell">
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -1931,7 +1932,8 @@ initFunction(initPrint)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">tplot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span>
+<span class="k">function</span> <span class="n">tplot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
     <span class="c"># Plot triangular mesh with nodes `p` and triangles `t`</span>
     <span class="n">tris</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span> <span class="n">hcat</span><span class="p">(</span><span class="n">t</span><span class="o">...</span><span class="p">)</span><span class="o">&#39;</span><span class="p">)</span>
     <span class="n">tripcolor</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">last</span><span class="o">.</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">tris</span> <span class="o">.-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="n">tris</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
@@ -2025,6 +2027,44 @@ initFunction(initPrint)
 </div>
 </div>
 
+<div class="jb_cell tag_hide_input tag_hide_output">
+
+<div class="cell border-box-sizing code_cell rendered tag_hide_input tag_hide_output">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Pkg</span><span class="p">;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;Triangle&quot;</span><span class="p">)</span> <span class="c"># In case not already installed</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre><span class="ansi-green-intense-fg ansi-bold">  Updating</span> registry at `~/.julia/registries/General`
+<span class="ansi-green-intense-fg ansi-bold">  Updating</span> git-repo `https://github.com/JuliaRegistries/General.git`
+<span class="ansi-green-intense-fg ansi-bold"> Resolving</span> package versions...
+<span class="ansi-green-intense-fg ansi-bold">  Updating</span> `~/.julia/environments/v1.3/Project.toml`
+<span class="ansi-black-intense-fg"> [no changes]</span>
+<span class="ansi-green-intense-fg ansi-bold">  Updating</span> `~/.julia/environments/v1.3/Manifest.toml`
+<span class="ansi-black-intense-fg"> [no changes]</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
 <div class="jb_cell">
 
 <div class="cell border-box-sizing code_cell rendered">
@@ -2100,7 +2140,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea ">
-<img src="../images/Computational_Geometry/Triangulations_7_0.png"
+<img src="../images/Computational_Geometry/Triangulations_8_0.png"
 >
 </div>
 
@@ -2159,7 +2199,7 @@ initFunction(initPrint)
 
 
 <div class="output_png output_subarea ">
-<img src="../images/Computational_Geometry/Triangulations_10_0.png"
+<img src="../images/Computational_Geometry/Triangulations_11_0.png"
 >
 </div>
 
@@ -2182,14 +2222,14 @@ initFunction(initPrint)
   
     
     <a id="js-page__nav__prev" class="c-page__nav__prev" href="/Computational_Geometry/Line_Segment_Interactions.html">
-      〈 <span class="u-margin-right-tiny"></span> Line-segment Interactions
+      〈 <span class="u-margin-right-tiny"></span> 
     </a>
   
 
   
     
     <a id="js-page__nav__next" class="c-page__nav__next" href="/Image_Processing/Chapter_Intro.html">
-      Image Processing <span class="u-margin-right-tiny"></span> 〉
+       <span class="u-margin-right-tiny"></span> 〉
     </a>
   
 </nav>

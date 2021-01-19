@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
   <title>Line-segment Interactions</title>
-  <meta name="description" content="        Line-segment Intersections A line-segment can be described by its two endpoints, $p_1$ and $p_2$, and denoted by $p_1p_2$. Note that the set of point...">
+  <meta name="description" content="            Line-segment Intersections A line-segment can be described by its two endpoints, $p_1$ and $p_2$, and denoted by $p_1p_2$. Note that the set of p...">
 
   <link rel="canonical" href="http://0.0.0.0:4000//Computational_Geometry/Line_Segment_Interactions.html">
   <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000//feed.xml">
@@ -14,7 +14,7 @@
   <meta property="og:url"         content="http://0.0.0.0:4000//Computational_Geometry/Line_Segment_Interactions.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Line-segment Interactions" />
-<meta property="og:description" content="        Line-segment Intersections A line-segment can be described by its two endpoints, $p_1$ and $p_2$, and denoted by $p_1p_2$. Note that the set of point..." />
+<meta property="og:description" content="            Line-segment Intersections A line-segment can be described by its two endpoints, $p_1$ and $p_2$, and denoted by $p_1p_2$. Note that the set of p..." />
 <meta property="og:image"       content="http://0.0.0.0:4000/logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -26,9 +26,9 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "http://0.0.0.0:4000//Computational_Geometry/Line_Segment_Interactions.html",
   "headline": "Line-segment Interactions",
-  "datePublished": "2020-01-27T20:57:27-06:00",
-  "dateModified": "2020-01-27T20:57:27-06:00",
-  "description": "        Line-segment Intersections A line-segment can be described by its two endpoints, $p_1$ and $p_2$, and denoted by $p_1p_2$. Note that the set of point...",
+  "datePublished": "2021-01-18T22:26:16-06:00",
+  "dateModified": "2021-01-18T22:26:16-06:00",
+  "description": "            Line-segment Intersections A line-segment can be described by its two endpoints, $p_1$ and $p_2$, and denoted by $p_1p_2$. Note that the set of p...",
   "author": {
     "@type": "Person",
     "name": "Per-Olof Persson and Robert Sweeney Blanco"
@@ -1912,6 +1912,7 @@ initFunction(initPrint)
       <main class="c-textbook__page" tabindex="-1">
             <div class="c-textbook__content" id="textbook_content">
                   <main class="jupyter-page">
+    <div id="page-info"></div>
     <div class="jb_cell">
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -1957,6 +1958,7 @@ $$<p>If the line-segments are parallel, the matrix is singular. For simplicity w
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span>
+<span class="k">using</span> <span class="n">PyPlot</span>
 <span class="k">function</span> <span class="n">linesegment_intersect</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">δ</span><span class="p">)</span>
     <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">p2</span><span class="o">-</span><span class="n">p1</span> <span class="n">q1</span><span class="o">-</span><span class="n">q2</span><span class="p">]</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">q1</span><span class="o">-</span><span class="n">p1</span>
@@ -2065,14 +2067,14 @@ $$<p>If the line-segments are parallel, the matrix is singular. For simplicity w
   
     
     <a id="js-page__nav__prev" class="c-page__nav__prev" href="/Computational_Geometry/Convex_Hull.html">
-      〈 <span class="u-margin-right-tiny"></span> Convex Hull
+      〈 <span class="u-margin-right-tiny"></span> 
     </a>
   
 
   
     
     <a id="js-page__nav__next" class="c-page__nav__next" href="/Computational_Geometry/Triangulations.html">
-      Triangulations <span class="u-margin-right-tiny"></span> 〉
+       <span class="u-margin-right-tiny"></span> 〉
     </a>
   
 </nav>

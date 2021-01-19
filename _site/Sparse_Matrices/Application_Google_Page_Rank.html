@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
   <title>Application; Google Page Rank</title>
-  <meta name="description" content="        Application: Google PageRank PageRank (PR) is an algorithm used by Google Search to rank web pages in their search engine results.It works by countin...">
+  <meta name="description" content="            Application: Google PageRank PageRank (PR) is an algorithm used by Google Search to rank web pages in their search engine results.It works by cou...">
 
   <link rel="canonical" href="http://0.0.0.0:4000//Sparse_Matrices/Application_Google_Page_Rank.html">
   <link rel="alternate" type="application/rss+xml" title="Programming for Mathematical Applications" href="http://0.0.0.0:4000//feed.xml">
@@ -14,7 +14,7 @@
   <meta property="og:url"         content="http://0.0.0.0:4000//Sparse_Matrices/Application_Google_Page_Rank.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Application; Google Page Rank" />
-<meta property="og:description" content="        Application: Google PageRank PageRank (PR) is an algorithm used by Google Search to rank web pages in their search engine results.It works by countin..." />
+<meta property="og:description" content="            Application: Google PageRank PageRank (PR) is an algorithm used by Google Search to rank web pages in their search engine results.It works by cou..." />
 <meta property="og:image"       content="http://0.0.0.0:4000/logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -26,9 +26,9 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": "http://0.0.0.0:4000//Sparse_Matrices/Application_Google_Page_Rank.html",
   "headline": "Application; Google Page Rank",
-  "datePublished": "2020-01-27T20:57:27-06:00",
-  "dateModified": "2020-01-27T20:57:27-06:00",
-  "description": "        Application: Google PageRank PageRank (PR) is an algorithm used by Google Search to rank web pages in their search engine results.It works by countin...",
+  "datePublished": "2021-01-18T22:26:16-06:00",
+  "dateModified": "2021-01-18T22:26:16-06:00",
+  "description": "            Application: Google PageRank PageRank (PR) is an algorithm used by Google Search to rank web pages in their search engine results.It works by cou...",
   "author": {
     "@type": "Person",
     "name": "Per-Olof Persson and Robert Sweeney Blanco"
@@ -1912,6 +1912,7 @@ initFunction(initPrint)
       <main class="c-textbook__page" tabindex="-1">
             <div class="c-textbook__content" id="textbook_content">
                   <main class="jupyter-page">
+    <div id="page-info"></div>
     <div class="jb_cell">
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -1992,7 +1993,8 @@ the adjancency matrix $A$, including the added links for pages without outbound 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">]</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span><span class="p">,</span> <span class="n">SparseArrays</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">]</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="n">A</span><span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="p">)[</span><span class="o">:</span><span class="p">]</span> <span class="o">.==</span> <span class="mi">0</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="mi">1</span>  <span class="c"># If a vertex has no outbound edges, all edges to all other vertices</span>
@@ -2149,7 +2151,7 @@ the adjancency matrix $A$, including the added links for pages without outbound 
   
     
     <a id="js-page__nav__prev" class="c-page__nav__prev" href="/Sparse_Matrices/Application_Graphs.html">
-      〈 <span class="u-margin-right-tiny"></span> Application; Graphs
+      〈 <span class="u-margin-right-tiny"></span> 
     </a>
   
 
