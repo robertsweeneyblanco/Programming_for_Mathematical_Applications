@@ -1,8 +1,0 @@
-This is a test file
-===================
-
-This is line #4
-Here are some comma-separated numbers:
-
-1,2,3,4,5
-5,-4,3e3,2.0,1
