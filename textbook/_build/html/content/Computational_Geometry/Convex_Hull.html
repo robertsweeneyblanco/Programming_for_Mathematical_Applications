@@ -757,7 +757,7 @@ false
 <li><p>The outer loop considers each point <span class="math notranslate nohighlight">\(p_0,p_1,\ldots\)</span> on the convex hull. This is a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, since we do not know beforehand how many points it will include.</p></li>
 <li><p>The inner loop finds the next point such that all other points are to the right of the corresponding line segment. This is done by computing orientations to all other points.</p></li>
 </ol>
-<p>From this, it is clear that the computational complexity of the algorithm is <span class="math notranslate nohighlight">\(\mathcal{O}(nh)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of points and <span class="math notranslate nohighlight">\(h\)</span> is the number of points on the complex hull.</p>
+<p>From this, it is clear that the computational complexity of the algorithm is <span class="math notranslate nohighlight">\(\mathcal{O}(nh)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of points and <span class="math notranslate nohighlight">\(h\)</span> is the number of points on the convex hull.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">convex_hull</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
