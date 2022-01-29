@@ -27,5 +27,5 @@ launch_buttons:
 repository:
   url: https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications
   path_to_book: textbook  # Path to the book, relative to the repository root
-  branch: main
+  branch: master
 
