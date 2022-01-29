@@ -1,0 +1,166 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+title: Home
+options:
+  numbered: True
+
+chapters:
+- file: content/Introduction/Chapter_Intro
+  title: Introduction to Julia
+  sections:
+  - file: content/Introduction/Julia_As_A_Calculator
+    title: Julia as a Calculator
+  - file: content/Introduction/Variables_And_Assignments
+    title: Variables and Assignments
+  - file: content/Introduction/Functions
+    title: Functions
+  - file: content/Introduction/For_Loops
+    title: For-Loops
+  - file: content/Introduction/Conditionals
+    title: Conditionals
+  - file: content/Introduction/While_Loops
+    title: While-Loops
+  - file: content/Introduction/Function_Arguments
+    title: Function Arguments
+
+- file: content/Arrays_and_Dictionaries/Chapter_Intro
+  title: Arrays and Dictionaries
+  sections:
+  - file: content/Arrays_and_Dictionaries/Introduction_To_Arrays
+    title: Introduction to Arrays
+  - file: content/Arrays_and_Dictionaries/Multi_Dimensional_Arrays
+    title: Multi-dimensional Arrays
+  - file: content/Arrays_and_Dictionaries/Dictionaries
+    title: Dictionaries
+    
+- file: content/Plotting/Plotting
+  title: Plotting
+
+- file: content/Debugging/Debugging
+  title: Debugging
+
+- file: content/Random_Numbers/Chapter_Intro
+  title: Random Numbers
+  sections:
+  - file: content/Random_Numbers/Distributions
+    title: Distributions
+  - file: content/Random_Numbers/Histograms
+    title: Histograms
+  - file: content/Random_Numbers/Monte_Carlo
+    title: Monte Carlo
+  
+- file: content/Vectorization/Chapter_Intro
+  title: Vectorization
+  sections:
+  - file: content/Vectorization/Constructing_Arrays
+    title: Constructing Arrays
+  - file: content/Vectorization/Array_Functions
+    title: Array Functions
+  - file: content/Vectorization/Logical_Indexing
+    title: Logical Indexing
+  
+- file: content/Data_Types/Chapter_Intro
+  title: Data Types
+  sections:
+  - file: content/Data_Types/Arbitrary_Precision_Integers
+    title: Arbitrary Precision Integers
+  - file: content/Data_Types/Arbitrary_Precision_Floats
+    title: Arbitrary Precision Floats 
+  - file: content/Data_Types/Complex_Numbers
+    title: Complex Numbers
+  - file: content/Data_Types/Rational_Numbers
+    title: Rational Numbers
+  - file: content/Data_Types/Data_Types_of_Arrays
+    title: Data Types of Arrays
+
+- file: content/Recursion/Recursion
+  title: Recursion
+  
+- file: content/Linear_Algebra/Chapter_Intro
+  title: Linear Algebra
+  sections:
+  - file: content/Linear_Algebra/Matrix_Operations
+    title: Matrix Operations
+  - file: content/Linear_Algebra/Special_Matrices 
+    title: Special Matrices
+  - file: content/Linear_Algebra/Linear_Systems_And_Regression
+    title: Linear Systems and Regression
+  
+- file: content/Strings_and_File_Processing/Chapter_Intro
+  title: Strings and File Processing
+  sections:
+  - file: content/Strings_and_File_Processing/String_Basics
+    title: String Basics 
+  - file: content/Strings_and_File_Processing/String_Functions
+    title: String Functions
+  - file: content/Strings_and_File_Processing/File_Processing
+    title: File Processing
+  
+- file: content/Structs_And_Objects/Structs_And_Objects
+  title: Structs and Objects
+  
+- file: content/Computational_Geometry/Chapter_Intro
+  title: Computational Geometry
+  sections:
+  - file: content/Computational_Geometry/Convex_Hull
+    title: Convex Hull
+  - file: content/Computational_Geometry/Line_Segment_Interactions
+    title: Line-segment Interactions
+  - file: content/Computational_Geometry/Triangulations
+    title: Triangulations
+  
+- file: content/Image_Processing/Chapter_Intro
+  title: Image Processing
+  sections:
+  - file: content/Image_Processing/Reading_And_Plotting_Images
+    title: Reading and Plotting Images
+  - file: content/Image_Processing/Image_Scaling
+    title: Image Scaling
+  - file: content/Image_Processing/Filtering
+    title: Filtering
+  - file: content/Image_Processing/Fourier_Transform
+    title: Fourier Transform
+  
+- file: content/Differential_Equations/Chapter_Intro
+  title: Differential Equations
+  sections:
+  - file: content/Differential_Equations/Initial_Value_Problems
+    title: Initial Value Problems 
+  - file: content/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs
+    title: Higher Order Derivatives and Systems of ODEs
+  - file: content/Differential_Equations/Boundary_Value_Problems
+    title: Boundary Value Problems 
+  - file: content/Differential_Equations/DifferentialEquations_Package
+    title: DifferentialEquations Package
+  
+- file: content/Optimization/Chapter_Intro
+  title: Optimization
+  sections:
+  - file: content/Optimization/Gradient_Based_Optimization
+    title: Gradient Based Optimization
+  - file: content/Optimization/Optim_Package
+    title: Optim Package
+  
+- file: content/Graphs/Chapter_Intro
+  title: Graphs
+  sections:
+  - file: content/Graphs/Graph_Basics
+    title: Graph Basics 
+  - file: content/Graphs/Graph_Algorithms
+    title: Graph Algorithms
+  
+- file: content/Sparse_Matrices/Chapter_Intro
+  title: Sparse Matrices 
+  sections:
+  - file: content/Sparse_Matrices/Matrix_Designs
+    title: Matrix Designs
+  - file: content/Sparse_Matrices/Sparse_Matrices_In_Julia
+    title: Sparse Matrices in Julia
+  - file: content/Sparse_Matrices/Application_Graphs
+    title: Application; Graphs
+  - file: content/Sparse_Matrices/Application_Google_Page_Rank
+    title: Application; Google Page Rank
+

@@ -1,0 +1,31 @@
+# Learn more at https://jupyterbook.org/customize/config.html
+
+# Overall book settings
+title: Programming for Mathematical Applications
+author: Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco
+copyright : "2022"
+logo: content/logo.png
+
+# Force re-execution of notebooks on each build?
+execute:
+  execute_notebooks: "off"
+  allow_errors : true
+
+# HTML-specific options
+html:
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications_QA/
+
+# Interactive environment launch buttons
+launch_buttons:
+  notebook_interface : classic
+  binderhub_url : ""
+  jupyterhub_url : https://julia.datahub.berkeley.edu
+
+# Information about where the book repo is hosted
+repository:
+  url: https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications_QA
+  path_to_book: textbook  # Path to the book, relative to the repository root
+  branch: main
+
