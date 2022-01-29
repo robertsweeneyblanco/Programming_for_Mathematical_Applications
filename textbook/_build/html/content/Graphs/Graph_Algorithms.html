@@ -1,0 +1,1183 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>16.2. Graph Algorithms &#8212; Programming for Mathematical Applications</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Graphs/Graph_Algorithms.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="17. Sparse Matrices" href="../Sparse_Matrices/Chapter_Intro.html" />
+    <link rel="prev" title="16.1. Graph Basics" href="Graph_Basics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming for Mathematical Applications</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Programming for Mathematical Applications
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Introduction/Chapter_Intro.html">
+   1. Introduction to Julia
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">
+     1.1. Julia as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Variables_And_Assignments.html">
+     1.2. Variables and Assignments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Functions.html">
+     1.3. Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/For_Loops.html">
+     1.4. For-Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Conditionals.html">
+     1.5. Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/While_Loops.html">
+     1.6. While-Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Function_Arguments.html">
+     1.7. Function Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">
+   2. Arrays and Dictionaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">
+     2.1. Introduction to Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">
+     2.2. Multi-dimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">
+     2.3. Dictionaries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Plotting/Plotting.html">
+   3. Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Debugging/Debugging.html">
+   4. Debugging
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">
+   5. Random Numbers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Distributions.html">
+     5.1. Distributions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Histograms.html">
+     5.2. Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">
+     5.3. Monte Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Vectorization/Chapter_Intro.html">
+   6. Vectorization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Constructing_Arrays.html">
+     6.1. Constructing Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Array_Functions.html">
+     6.2. Array Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Logical_Indexing.html">
+     6.3. Logical Indexing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Data_Types/Chapter_Intro.html">
+   7. Data Types
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">
+     7.1. Arbitrary Precision Integers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">
+     7.2. Arbitrary Precision Floats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Complex_Numbers.html">
+     7.3. Complex Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Rational_Numbers.html">
+     7.4. Rational Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">
+     7.5. Data Types of Arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Recursion/Recursion.html">
+   8. Recursion
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">
+   9. Linear Algebra
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">
+     9.1. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">
+     9.2. Special Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">
+     9.3. Linear Systems and Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">
+   10. Strings and File Processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">
+     10.1. String Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">
+     10.2. String Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">
+     10.3. File Processing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">
+   11. Structs and Objects
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">
+   12. Computational Geometry
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">
+     12.1. Convex Hull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">
+     12.2. Line-segment Interactions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Triangulations.html">
+     12.3. Triangulations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Image_Processing/Chapter_Intro.html">
+   13. Image Processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">
+     13.1. Reading and Plotting Images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Image_Scaling.html">
+     13.2. Image Scaling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Filtering.html">
+     13.3. Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Fourier_Transform.html">
+     13.4. Fourier Transform
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">
+   14. Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">
+     14.1. Initial Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">
+     14.2. Higher Order Derivatives and Systems of ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">
+     14.3. Boundary Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">
+     14.4. DifferentialEquations Package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Optimization/Chapter_Intro.html">
+   15. Optimization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">
+     15.1. Gradient Based Optimization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Optimization/Optim_Package.html">
+     15.2. Optim Package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Chapter_Intro.html">
+   16. Graphs
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Graph_Basics.html">
+     16.1. Graph Basics
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     16.2. Graph Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">
+   17. Sparse Matrices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">
+     17.1. Matrix Designs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">
+     17.2. Sparse Matrices in Julia
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">
+     17.3. Application; Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">
+     17.4. Application; Google Page Rank
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/Graphs/Graph_Algorithms.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Graphs/Graph_Algorithms.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        <a class="jupyterhub-button" href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Graphs/Graph_Algorithms.ipynb&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#depth-first-search">
+   16.2.1. Depth first search
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#path-finding">
+     16.2.1.1. Path finding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-applications-of-dfs">
+     16.2.1.2. Other applications of DFS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#breadth-first-search">
+   16.2.2. Breadth first search
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shortest-path">
+     16.2.2.1. Shortest path
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shortest-path-application-optimal-trajectory">
+     16.2.2.2. Shortest path application: Optimal trajectory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-applications-of-bfs">
+     16.2.2.3. Other applications of BFS
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Graph Algorithms</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#depth-first-search">
+   16.2.1. Depth first search
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#path-finding">
+     16.2.1.1. Path finding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-applications-of-dfs">
+     16.2.1.2. Other applications of DFS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#breadth-first-search">
+   16.2.2. Breadth first search
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shortest-path">
+     16.2.2.1. Shortest path
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shortest-path-application-optimal-trajectory">
+     16.2.2.2. Shortest path application: Optimal trajectory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-applications-of-bfs">
+     16.2.2.3. Other applications of BFS
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="graph-algorithms">
+<h1><span class="section-number">16.2. </span>Graph Algorithms<a class="headerlink" href="#graph-algorithms" title="Permalink to this headline">¶</a></h1>
+<section id="depth-first-search">
+<h2><span class="section-number">16.2.1. </span>Depth first search<a class="headerlink" href="#depth-first-search" title="Permalink to this headline">¶</a></h2>
+<p>The <em>depth first search</em> (DFS) is a simply way of traversing a graph, starting from
+a given vertex <code class="docutils literal notranslate"><span class="pre">start</span></code>. It can be used
+for a number of important problems such as path finding, topological sorting, etc.
+It is easiest implemented using recursion. We keep track of visited vertices using
+an array of booleans, and the method is applied recursively to all neighbors of
+a vertex. Note that this strategy will first traverse an entire branch of a
+neighbor node, before continuing to the next neighbor - therefore the name
+“depth first”.</p>
+<div class="cell tag_hide_input tag_hide_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Uncomment below if the package is not already installed</span>
+<span class="c">#using Pkg; Pkg.add(&quot;NBInclude&quot;) </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input tag_hide_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Import code from previous section</span>
+<span class="k">using</span> <span class="n">NBInclude</span>
+<span class="nd">@nbinclude</span><span class="p">(</span><span class="s">&quot;Graph_Code.ipynb&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">dfs</span><span class="p">(</span><span class="n">g</span><span class="o">::</span><span class="kt">Graph</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="n">falses</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
+    <span class="k">function</span> <span class="n">visit</span><span class="p">(</span><span class="n">ivertex</span><span class="p">)</span>
+        <span class="n">visited</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span>
+        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Visiting vertex #</span><span class="si">$ivertex</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">nb</span> <span class="k">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span><span class="o">.</span><span class="n">neighbors</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span>
+                <span class="n">visit</span><span class="p">(</span><span class="n">nb</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">nothing</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dfs (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can observe the order that the method visits vertices. Note that
+this highly depends on the order of the elements in <code class="docutils literal notranslate"><span class="pre">neighbors</span></code>, which
+is arbitrary (at least the way we designed it). We will continue to use the graph created in the previous section to demonstrate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Graph_Algorithms_5_0.png" src="../../_images/Graph_Algorithms_5_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
+│   caller = npyinitialize() at numpy.jl:67
+└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Visiting vertex #1
+Visiting vertex #2
+Visiting vertex #3
+Visiting vertex #11
+Visiting vertex #4
+Visiting vertex #5
+Visiting vertex #6
+Visiting vertex #7
+Visiting vertex #9
+Visiting vertex #10
+</pre></div>
+</div>
+</div>
+</div>
+<section id="path-finding">
+<h3><span class="section-number">16.2.1.1. </span>Path finding<a class="headerlink" href="#path-finding" title="Permalink to this headline">¶</a></h3>
+<p>A simple application of the DFS method is to find a path between two vertices.
+One way to do this is to have the <code class="docutils literal notranslate"><span class="pre">visit</span></code> function return a boolean, indicating
+if the final vertex was found on the recursive call or not. If this is <code class="docutils literal notranslate"><span class="pre">true</span></code>,
+the current vertex number is added to the list of vertices in the path
+(<em>after</em> visiting the vertex).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">find_path_dfs</span><span class="p">(</span><span class="n">g</span><span class="o">::</span><span class="kt">Graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span><span class="p">)</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="n">falses</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>
+    <span class="k">function</span> <span class="n">visit</span><span class="p">(</span><span class="n">ivertex</span><span class="p">)</span>
+        <span class="n">visited</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span>
+        <span class="k">if</span> <span class="n">ivertex</span> <span class="o">==</span> <span class="n">finish</span>
+            <span class="n">pushfirst!</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ivertex</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">true</span>
+        <span class="k">end</span>
+        <span class="k">for</span> <span class="n">nb</span> <span class="k">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span><span class="o">.</span><span class="n">neighbors</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">visit</span><span class="p">(</span><span class="n">nb</span><span class="p">)</span>
+                    <span class="n">pushfirst!</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">ivertex</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="nb">true</span>
+                <span class="k">end</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        <span class="k">return</span> <span class="nb">false</span>
+    <span class="k">end</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>find_path_dfs (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also define a simple utility function for plotting paths in a graph:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">plot_path</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="n">xypath</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">coordinates</span> <span class="k">for</span> <span class="n">v</span> <span class="k">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">][</span><span class="n">path</span><span class="p">]</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">last</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plot_path (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<p>and apply the method to out graph from before. Note that this path is again
+highly dependent on the order of the <code class="docutils literal notranslate"><span class="pre">neighbors</span></code> array, and in particular it
+is in general not the shortest path between the vertices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">find_path_dfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plot_path</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Path from 10 to 5: </span><span class="si">$path</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Graph_Algorithms_12_0.png" src="../../_images/Graph_Algorithms_12_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path from 10 to 5: [10, 1, 2, 11, 4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-applications-of-dfs">
+<h3><span class="section-number">16.2.1.2. </span>Other applications of DFS<a class="headerlink" href="#other-applications-of-dfs" title="Permalink to this headline">¶</a></h3>
+<p>The DFS method can be used to a number of important graph operations, see below for
+examples (from <a class="reference external" href="https://www.geeksforgeeks.org/applications-of-depth-first-search">https://www.geeksforgeeks.org/applications-of-depth-first-search</a>).</p>
+<ol class="simple">
+<li><p>For an unweighted graph, DFS traversal of the graph produces the minimum spanning tree and all pair shortest path tree.</p></li>
+<li><p><strong>Detecting cycle in a graph</strong>: A graph has cycle if and only if we see a back edge during DFS. So we can run DFS for the graph and check for back edges.</p></li>
+<li><p><strong>Path Finding</strong>: We can specialize the DFS algorithm to find a path between two given vertices u and z.</p>
+<ul class="simple">
+<li><p>Call DFS(G, u) with u as the start vertex.</p></li>
+<li><p>Use a stack S to keep track of the path between the start vertex and the current vertex.</p></li>
+<li><p>As soon as destination vertex z is encountered, return the path as the
+contents of the stack</p></li>
+</ul>
+</li>
+<li><p><strong>Topological Sorting</strong>: Topological Sorting is mainly used for scheduling jobs from the given dependencies among jobs. In computer science, applications of this type arise in instruction scheduling, ordering of formula cell evaluation when recomputing formula values in spreadsheets, logic synthesis, determining the order of compilation tasks to perform in makefiles, data serialization, and resolving symbol dependencies in linkers.</p></li>
+<li><p>To test if a graph is <strong>bipartite</strong>: We can augment either BFS or DFS when we first discover a new vertex, color it opposited its parents, and for each other edge, check it doesn’t link two vertices of the same color. The first vertex in any connected component can be red or black!</p></li>
+<li><p>Finding <strong>Strongly Connected Components</strong> of a graph: A directed graph is called strongly connected if there is a path from each vertex in the graph to every other vertex.</p></li>
+<li><p>Solving <strong>puzzles with only one solution</strong>, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)</p></li>
+</ol>
+</section>
+</section>
+<section id="breadth-first-search">
+<h2><span class="section-number">16.2.2. </span>Breadth first search<a class="headerlink" href="#breadth-first-search" title="Permalink to this headline">¶</a></h2>
+<p>An alternative way to traverse a graph is the <em>Breadth First Search</em> (BFS) method,
+which visits all of the neighbor vertices at the present depth before moving on to
+the vertices at the next depth level. This is easiest implemented in a non-recursive
+way, using a <em>queue</em>, which can be seen as an array where new elements are added to
+the end but elements are extracted from the beginning (“First-In-First-Out”, or FIFO).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">bfs</span><span class="p">(</span><span class="n">g</span><span class="o">::</span><span class="kt">Graph</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="n">falses</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">visited</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span>
+    <span class="k">while</span> <span class="o">!</span><span class="n">isempty</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="n">ivertex</span> <span class="o">=</span> <span class="n">popfirst!</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="n">println</span><span class="p">(</span><span class="s">&quot;Visiting vertex #</span><span class="si">$ivertex</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">nb</span> <span class="k">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span><span class="o">.</span><span class="n">neighbors</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span>
+                <span class="n">visited</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">nb</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bfs (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Running the function of the previous graph, we note that the order
+is very different from the DFS method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">bfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Visiting vertex #1
+Visiting vertex #2
+Visiting vertex #10
+Visiting vertex #6
+Visiting vertex #3
+Visiting vertex #11
+Visiting vertex #9
+Visiting vertex #7
+Visiting vertex #5
+Visiting vertex #4
+</pre></div>
+</div>
+</div>
+</div>
+<section id="shortest-path">
+<h3><span class="section-number">16.2.2.1. </span>Shortest path<a class="headerlink" href="#shortest-path" title="Permalink to this headline">¶</a></h3>
+<p>The BFS method has the property that it will visit the vertices in an order
+that corresponds to a <em>shortest path</em> from the starting vertex to each other
+vertex (that is, fewest number of edges). This is important for many
+applications, and we can modify our BFS method to return this path.</p>
+<p>Instead of simply keeping track of the visited nodes, we use an array
+<code class="docutils literal notranslate"><span class="pre">parent</span></code> which is inially zero for each vertex. After visiting a new
+vertex, <code class="docutils literal notranslate"><span class="pre">parent</span></code> is set to the vertex number of the vertex it came
+from. This means we can trace the (shortest) path from any vertex
+back to the starting vertex, and build the path.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">shortest_path_bfs</span><span class="p">(</span><span class="n">g</span><span class="o">::</span><span class="kt">Graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span><span class="p">)</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">parent</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="k">while</span> <span class="o">!</span><span class="n">isempty</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="n">ivertex</span> <span class="o">=</span> <span class="n">popfirst!</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ivertex</span> <span class="o">==</span> <span class="n">finish</span>
+            <span class="k">break</span>
+        <span class="k">end</span>
+        <span class="k">for</span> <span class="n">nb</span> <span class="k">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">ivertex</span><span class="p">]</span><span class="o">.</span><span class="n">neighbors</span>
+            <span class="k">if</span> <span class="n">parent</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="c"># Not visited yet</span>
+                <span class="n">parent</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivertex</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">nb</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="c"># Build path</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>
+    <span class="n">iv</span> <span class="o">=</span> <span class="n">finish</span>
+    <span class="k">while</span> <span class="nb">true</span>
+        <span class="n">pushfirst!</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">iv</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">iv</span> <span class="o">==</span> <span class="n">start</span>
+            <span class="k">break</span>
+        <span class="k">end</span>
+        <span class="n">iv</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">path</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shortest_path_bfs (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">shortest_path_bfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">plot_path</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Shortest path from 10 to 5: </span><span class="si">$path</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Graph_Algorithms_20_0.png" src="../../_images/Graph_Algorithms_20_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shortest path from 10 to 5: [10, 1, 6, 5]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="shortest-path-application-optimal-trajectory">
+<h3><span class="section-number">16.2.2.2. </span>Shortest path application: Optimal trajectory<a class="headerlink" href="#shortest-path-application-optimal-trajectory" title="Permalink to this headline">¶</a></h3>
+<p>Here we consider navigation on a grid, with the goal of reaching a destination
+with the fewest possible moves. Any neighbor in the grid can be reached in one
+move, unless there is a wall. This can be represented as a grid, with edges
+between vertices with admissible moves.</p>
+<p>As an example, we draw an “obstacle course” and create a graph that represents it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">field</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">....O....</span>
+<span class="s">O.O.O.O..</span>
+<span class="s">..O...O.O</span>
+<span class="s">.OOOOOO.O</span>
+<span class="s">....OO..O</span>
+<span class="s">.O...OOOO</span>
+<span class="s">.O.......</span>
+<span class="s">.OOOOOO..</span>
+<span class="s">......O..</span>
+<span class="s">......O..</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">F</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="n">collect</span><span class="p">(</span><span class="n">field</span><span class="p">),</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">.==</span> <span class="sc">&#39;O&#39;</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">g1</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">([])</span>
+<span class="n">nbr</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+        <span class="n">nbr</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">nb</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">dj</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span>
+            <span class="k">for</span> <span class="n">di</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span>
+                <span class="k">if</span> <span class="mi">1</span> <span class="o">≤</span> <span class="n">i</span><span class="o">+</span><span class="n">di</span> <span class="o">≤</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="mi">1</span> <span class="o">≤</span> <span class="n">j</span><span class="o">+</span><span class="n">dj</span> <span class="o">≤</span> <span class="n">n</span>
+                    <span class="k">if</span> <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">di</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dj</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+                        <span class="n">push!</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">nbr</span> <span class="o">+</span> <span class="n">di</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="n">dj</span><span class="p">)</span>
+                    <span class="k">end</span>
+                <span class="k">end</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">push!</span><span class="p">(</span><span class="n">g1</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The shortest path algorithm can now find the optimal trajectory:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">shortest_path_bfs</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+<span class="n">xypath</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">coordinates</span> <span class="k">for</span> <span class="n">v</span> <span class="k">in</span> <span class="n">g1</span><span class="o">.</span><span class="n">vertices</span><span class="p">][</span><span class="n">path</span><span class="p">]</span>
+<span class="n">plot_graph</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">last</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Graph_Algorithms_24_0.png" src="../../_images/Graph_Algorithms_24_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-element Vector{PyCall.PyObject}:
+ PyObject &lt;matplotlib.lines.Line2D object at 0x7fa89d2b13d0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-applications-of-bfs">
+<h3><span class="section-number">16.2.2.3. </span>Other applications of BFS<a class="headerlink" href="#other-applications-of-bfs" title="Permalink to this headline">¶</a></h3>
+<p>Like the DFS method, the BFS method is also very important for a wide range of graph
+algorithms. See below for
+examples (from <a class="reference external" href="https://www.geeksforgeeks.org/applications-of-breadth-first-traversal">https://www.geeksforgeeks.org/applications-of-breadth-first-traversal</a>).</p>
+<ol class="simple">
+<li><p><strong>Shortest Path and Minimum Spanning Tree for unweighted graph</strong>: In an unweighted graph, the shortest path is the path with least number of edges. With Breadth First, we always reach a vertex from given source using the minimum number of edges. Also, in case of unweighted graphs, any spanning tree is Minimum Spanning Tree and we can use either Depth or Breadth first traversal for finding a spanning tree.</p></li>
+<li><p><strong>Peer to Peer Networks</strong>: In Peer to Peer Networks like BitTorrent, Breadth First Search is used to find all neighbor nodes.</p></li>
+<li><p><strong>Crawlers in Search Engines</strong>: Crawlers build index using Breadth First. The idea is to start from source page and follow all links from source and keep doing same. Depth First Traversal can also be used for crawlers, but the advantage with Breadth First Traversal is, depth or levels of the built tree can be limited.</p></li>
+<li><p><strong>Social Networking Websites</strong>: In social networks, we can find people within a given distance ‘k’ from a person using Breadth First Search till ‘k’ levels.</p></li>
+<li><p><strong>GPS Navigation systems</strong>: Breadth First Search is used to find all neighboring locations.</p></li>
+<li><p><strong>Broadcasting in Network</strong>: In networks, a broadcasted packet follows Breadth First Search to reach all nodes.</p></li>
+<li><p><strong>In Garbage Collection</strong>: Breadth First Search is used in copying garbage collection using Cheney’s algorithm. Refer this and for details. Breadth First Search is preferred over Depth First Search because of better locality of reference:</p></li>
+<li><p><strong>Cycle detection in undirected graph</strong>: In undirected graphs, either Breadth First Search or Depth First Search can be used to detect cycle. In directed graph, only depth first search can be used.</p></li>
+<li><p><strong>Ford–Fulkerson algorithm</strong>: In Ford-Fulkerson algorithm, we can either use Breadth First or Depth First Traversal to find the maximum flow. Breadth First Traversal is preferred as it reduces worst case time complexity to O(VE2).</p></li>
+<li><p><strong>To test if a graph is Bipartite</strong>: We can either use Breadth First or Depth First Traversal.</p></li>
+<li><p><strong>Path Finding</strong>: We can either use Breadth First or Depth First Traversal to find if there is a path between two vertices.</p></li>
+<li><p><strong>Finding all nodes within one connected component</strong>: We can either use Breadth First or Depth First Traversal to find all nodes reachable from a given node.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./content/Graphs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Graph_Basics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">16.1. </span>Graph Basics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Sparse_Matrices/Chapter_Intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Sparse Matrices</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

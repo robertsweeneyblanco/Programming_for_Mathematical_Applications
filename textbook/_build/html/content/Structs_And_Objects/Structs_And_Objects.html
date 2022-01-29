@@ -1,0 +1,1310 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>11. Structs and Objects &#8212; Programming for Mathematical Applications</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Structs_And_Objects/Structs_And_Objects.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="12. Computational Geometry" href="../Computational_Geometry/Chapter_Intro.html" />
+    <link rel="prev" title="10.3. File Processing" href="../Strings_and_File_Processing/File_Processing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming for Mathematical Applications</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Programming for Mathematical Applications
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Introduction/Chapter_Intro.html">
+   1. Introduction to Julia
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">
+     1.1. Julia as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Variables_And_Assignments.html">
+     1.2. Variables and Assignments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Functions.html">
+     1.3. Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/For_Loops.html">
+     1.4. For-Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Conditionals.html">
+     1.5. Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/While_Loops.html">
+     1.6. While-Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Function_Arguments.html">
+     1.7. Function Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">
+   2. Arrays and Dictionaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">
+     2.1. Introduction to Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">
+     2.2. Multi-dimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">
+     2.3. Dictionaries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Plotting/Plotting.html">
+   3. Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Debugging/Debugging.html">
+   4. Debugging
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">
+   5. Random Numbers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Distributions.html">
+     5.1. Distributions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Histograms.html">
+     5.2. Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">
+     5.3. Monte Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Vectorization/Chapter_Intro.html">
+   6. Vectorization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Constructing_Arrays.html">
+     6.1. Constructing Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Array_Functions.html">
+     6.2. Array Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Logical_Indexing.html">
+     6.3. Logical Indexing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Data_Types/Chapter_Intro.html">
+   7. Data Types
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">
+     7.1. Arbitrary Precision Integers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">
+     7.2. Arbitrary Precision Floats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Complex_Numbers.html">
+     7.3. Complex Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Rational_Numbers.html">
+     7.4. Rational Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">
+     7.5. Data Types of Arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Recursion/Recursion.html">
+   8. Recursion
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">
+   9. Linear Algebra
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">
+     9.1. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">
+     9.2. Special Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">
+     9.3. Linear Systems and Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">
+   10. Strings and File Processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">
+     10.1. String Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">
+     10.2. String Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">
+     10.3. File Processing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   11. Structs and Objects
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">
+   12. Computational Geometry
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">
+     12.1. Convex Hull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">
+     12.2. Line-segment Interactions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Triangulations.html">
+     12.3. Triangulations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Image_Processing/Chapter_Intro.html">
+   13. Image Processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">
+     13.1. Reading and Plotting Images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Image_Scaling.html">
+     13.2. Image Scaling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Filtering.html">
+     13.3. Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Fourier_Transform.html">
+     13.4. Fourier Transform
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">
+   14. Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">
+     14.1. Initial Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">
+     14.2. Higher Order Derivatives and Systems of ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">
+     14.3. Boundary Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">
+     14.4. DifferentialEquations Package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Optimization/Chapter_Intro.html">
+   15. Optimization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">
+     15.1. Gradient Based Optimization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Optimization/Optim_Package.html">
+     15.2. Optim Package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Graphs/Chapter_Intro.html">
+   16. Graphs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Graphs/Graph_Basics.html">
+     16.1. Graph Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Graphs/Graph_Algorithms.html">
+     16.2. Graph Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">
+   17. Sparse Matrices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">
+     17.1. Matrix Designs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">
+     17.2. Sparse Matrices in Julia
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">
+     17.3. Application; Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">
+     17.4. Application; Google Page Rank
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/Structs_And_Objects/Structs_And_Objects.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Structs_And_Objects/Structs_And_Objects.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        <a class="jupyterhub-button" href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Structs_And_Objects/Structs_And_Objects.ipynb&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#composite-types">
+   11.1. Composite types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-on-types">
+   11.2. Functions on types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#customized-printing">
+   11.3. Customized printing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#callable-objects">
+   11.4. Callable objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting">
+   11.5. Plotting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operator-overloading">
+   11.6. Operator overloading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generic-programming">
+   11.7. Generic programming
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Structs and Objects</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#composite-types">
+   11.1. Composite types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-on-types">
+   11.2. Functions on types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#customized-printing">
+   11.3. Customized printing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#callable-objects">
+   11.4. Callable objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting">
+   11.5. Plotting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operator-overloading">
+   11.6. Operator overloading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generic-programming">
+   11.7. Generic programming
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="structs-and-objects">
+<span id="structs"></span><h1><span class="section-number">11. </span>Structs and Objects<a class="headerlink" href="#structs-and-objects" title="Permalink to this headline">¶</a></h1>
+<p>We have seen a number of different <em>types</em> in Julia, such as <code class="docutils literal notranslate"><span class="pre">Int64</span></code>, <code class="docutils literal notranslate"><span class="pre">Float64</span></code>, <code class="docutils literal notranslate"><span class="pre">Array{Float64,2}</span></code>, etc. Now we will learn how to create new types, how to use them to store data, and how to define new functions (methods) and operators on them. This is closely related to the concept of <em>object orientation</em> in other computer languages.</p>
+<section id="composite-types">
+<h2><span class="section-number">11.1. </span>Composite types<a class="headerlink" href="#composite-types" title="Permalink to this headline">¶</a></h2>
+<p>The keyword <code class="docutils literal notranslate"><span class="pre">struct</span></code> is used to create a so-called composite type, that is, a new user-defined type.
+The type is given a name, and a list of <em>fields</em> (or <em>attributes</em>) which are names that will be used
+as variables to store data for objects of the new type.</p>
+<p>As an example, we create a new type named <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> for storing and operating on polynomials.
+The fields will be an array of coefficients <code class="docutils literal notranslate"><span class="pre">c</span></code>, and a character <code class="docutils literal notranslate"><span class="pre">var</span></code> to denote the name of the dependent
+variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="kt">MyPoly</span>
+    <span class="n">c</span>
+    <span class="n">var</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The coefficients <code class="docutils literal notranslate"><span class="pre">c</span></code> will represent the polynomial in the standard monomial form:</p>
+<div class="math notranslate nohighlight">
+\[
+p(x) = \sum_{k=0}^d c_{n-k}x^n
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is the array of coefficients, <span class="math notranslate nohighlight">\(d\)</span> is the polynomial degree, and <span class="math notranslate nohighlight">\(n\)</span> is the length of the array <span class="math notranslate nohighlight">\(c\)</span>. Note that we allow for <span class="math notranslate nohighlight">\(n\)</span> to be greater than the number of required coefficients <span class="math notranslate nohighlight">\(d+1\)</span>, and that the coefficients are stored in reverse order (that is, highest exponents come first).</p>
+<p>With this definition, we can create a so-called <em>instance</em> of the type
+(or <em>object</em>) by
+providing the values for each of the fields. For example, the polynomial
+<span class="math notranslate nohighlight">\(p(x) = 3x^2 - 5x + 2\)</span> can be created as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">MyPoly</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="sc">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly([3, -5, 2], &#39;x&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that by default, Julia will print the object using the type name and a list of the field values. Later we will override this and create a specialized output function.</p>
+<p>You can define other ways to specify (or initialize) a polynomial using a so-called <em>constructor</em>,
+which is a function that is called when a type is initiated. For example, if you want to allow for
+a default value in the <code class="docutils literal notranslate"><span class="pre">var</span></code> field, you can add a constructor as shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="kt">MyPoly</span>
+    <span class="n">c</span>
+    <span class="n">var</span>
+    <span class="n">MyPoly</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="sc">&#39;x&#39;</span><span class="p">)</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At this point, the struct <code class="docutils literal notranslate"><span class="pre">p</span></code> does not do anything besides simply storing the variables <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">var</span></code>. They can be accessed using a <code class="docutils literal notranslate"><span class="pre">.</span></code> notation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+  3
+ -5
+  2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">var</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;x&#39;: ASCII/Unicode U+0078 (category Ll: Letter, lowercase)
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, structs in Julia are <em>immutable</em> which means that once created, you can not change their contents. This is different from many other language, and there are some good reasons for this design. If you need to change the variables in a struct, or even add new fields, simply use the keyword <code class="docutils literal notranslate"><span class="pre">mutable</span> <span class="pre">struct</span></code> instead of <code class="docutils literal notranslate"><span class="pre">struct</span></code>. However, here we will stay with a standard struct, since in our example we will only modify the polynomials coefficients <code class="docutils literal notranslate"><span class="pre">c</span></code>. This is an exception which actually is allowed, since the variable <code class="docutils literal notranslate"><span class="pre">c</span></code> is itself a mutable object and its content can be changed.</p>
+<p>For example, if you want to change the polynomial to <span class="math notranslate nohighlight">\(p(x) = -x^3 + 3x^2 - 5x + 2\)</span> you can <em>not</em> change the actual array in <code class="docutils literal notranslate"><span class="pre">c</span></code>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>  <span class="c"># Error: Immutable struct</span>
+</pre></div>
+</div>
+<p>but you can change the content in the existing array <code class="docutils literal notranslate"><span class="pre">c</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">resize!</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly([-1, 3, -5, 2], &#39;x&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course, another option is to simply create a new instance of the <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">MyPoly</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="o">.</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly([-1, 3, -5, 2], &#39;x&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="functions-on-types">
+<h2><span class="section-number">11.2. </span>Functions on types<a class="headerlink" href="#functions-on-types" title="Permalink to this headline">¶</a></h2>
+<p>We can easily define functions on new types, by passing the objects as arguments or return values.
+For example, we can easily define a function that multiplies a polynomial <span class="math notranslate nohighlight">\(p(x)\)</span> by <span class="math notranslate nohighlight">\(x\)</span> in the
+following way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">times_x</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">MyPoly</span><span class="p">(</span><span class="n">vcat</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">p</span><span class="o">.</span><span class="n">var</span><span class="p">)</span> 
+<span class="k">end</span>
+
+<span class="n">times_x</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly([-1, 3, -5, 2, 0], &#39;x&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, this function should only work if you pass a <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> type to it. In Julia you can write functions that operate differently on different types. A function which defines the behavior for a specific combination or number of arguments is called a <em>method</em>.</p>
+<p>A function which is specialized for a certain type can be created using a <em>type declaration</em> with the <code class="docutils literal notranslate"><span class="pre">::</span></code> operator. As an example, we create a <code class="docutils literal notranslate"><span class="pre">degree</span></code> function to find the degree <span class="math notranslate nohighlight">\(d\)</span>. The implementation
+is straight-forward, we simply search the for the first (highest degree) non-zero
+coefficient. Note that we define the degree of the zero polynomial to zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">degree</span><span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">)</span>
+    <span class="n">ix1</span> <span class="o">=</span> <span class="n">findfirst</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">c</span> <span class="o">.!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ix1</span> <span class="o">==</span> <span class="nb">nothing</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">length</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="n">ix1</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>degree (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">degree</span><span class="p">(</span><span class="n">MyPoly</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">degree</span><span class="p">(</span><span class="n">MyPoly</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">degree</span><span class="p">(</span><span class="n">MyPoly</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">degree</span><span class="p">(</span><span class="n">MyPoly</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+0
+1
+4
+</pre></div>
+</div>
+</div>
+</div>
+<p>By specializing the <code class="docutils literal notranslate"><span class="pre">degree</span></code> function to the <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> type, we can now use the same function name for other combinations or types, that is, to implement other methods. This is also called <em>overloading</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">degree</span><span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="kt">Int</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;degree function called with Int argument&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">degree</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;degree function called with any other argument&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">degree</span><span class="p">(</span><span class="mf">1.234</span><span class="p">)</span>
+<span class="n">degree</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">degree</span><span class="p">(</span><span class="o">-</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">degree</span><span class="p">(</span><span class="n">MyPoly</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>degree function called with any other argument
+degree function called with any other argument
+degree function called with Int argument
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="customized-printing">
+<h2><span class="section-number">11.3. </span>Customized printing<a class="headerlink" href="#customized-printing" title="Permalink to this headline">¶</a></h2>
+<p>Julia provides a special function <code class="docutils literal notranslate"><span class="pre">show</span></code> in the <code class="docutils literal notranslate"><span class="pre">Base</span></code> package, which can be overloaded to change how objects of a new type are printed. For our polynomials, instead of showing the array of coefficients <code class="docutils literal notranslate"><span class="pre">c</span></code> and the name of the independent variable <code class="docutils literal notranslate"><span class="pre">var</span></code>, we will write it as a polynomial in standard math notation.</p>
+<p>The details of this functions do not matter much, it mostly needs to deal with certain special cases to print polynomials correctly. The main point is that it will <em>only be called</em> for objects of type <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">io</span><span class="o">::</span><span class="kt">IO</span><span class="p">,</span> <span class="n">p</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">degree</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;MyPoly(&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="n">d</span><span class="o">:-</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span>
+        <span class="n">coeff</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="n">k</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">coeff</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="k">continue</span>
+        <span class="k">end</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">d</span>
+            <span class="k">if</span> <span class="k">isa</span><span class="p">(</span><span class="n">coeff</span><span class="p">,</span> <span class="kt">Real</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">coeff</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                    <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot; + &quot;</span><span class="p">)</span>
+                <span class="k">else</span>
+                    <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot; - &quot;</span><span class="p">)</span>
+                <span class="k">end</span>
+                <span class="n">coeff</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span>
+            <span class="k">else</span>
+                <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot; + &quot;</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        <span class="k">if</span> <span class="k">isa</span><span class="p">(</span><span class="n">coeff</span><span class="p">,</span> <span class="kt">Real</span><span class="p">)</span>
+            <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">coeff</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;(</span><span class="si">$coeff</span><span class="s">)&quot;</span><span class="p">)</span>
+        <span class="k">end</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="k">continue</span>
+        <span class="k">end</span>
+        <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;⋅&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">var</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;^&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;)&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(-1⋅x^3 + 3⋅x^2 - 5⋅x + 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">MyPoly</span><span class="p">([</span><span class="o">-</span><span class="mf">1.234</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">4.321</span><span class="p">],</span> <span class="sc">&#39;s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(-1.234⋅s^4 + 4.321)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="callable-objects">
+<h2><span class="section-number">11.4. </span>Callable objects<a class="headerlink" href="#callable-objects" title="Permalink to this headline">¶</a></h2>
+<p>One basic operation to perform on a polynomial is evaluation, that is, for a given number <span class="math notranslate nohighlight">\(x\)</span> compute <span class="math notranslate nohighlight">\(p(x)\)</span>. We will implement this using <em>Horner’s rule</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+p(x) &amp;= a_nx^n + a_{n-1} x^{n-1} + \cdots + a_0 \\
+     &amp;= ((a_n + xa_{n-1})x + \cdots)x + a_0
+\end{align}
+\end{split}\]</div>
+<p>While we could implement this in a function with a new name, for example, <code class="docutils literal notranslate"><span class="pre">polyval</span></code>, Julia allows the definition of a method which behaves like a function evaluating the polynomial:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">degree</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="n">d</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">cc</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">cc</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">v</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mf">1.234</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.3</span><span class="p">]))</span>  <span class="c"># Note: Broadcasting automatically defined</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
+-1.4808129039999995
+[-1.0, 32.0, -1.6270000000000002]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting">
+<h2><span class="section-number">11.5. </span>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
+<p>Using the evaluation functionality, we can easily implement plotting of polynomials. Again we reuse the name <code class="docutils literal notranslate"><span class="pre">plot</span></code> which is already used in the <code class="docutils literal notranslate"><span class="pre">PyPlot</span></code> package, but we specialize it to our <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span>
+<span class="k">function</span> <span class="n">PyPlot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="n">range</span><span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">length</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">var</span><span class="p">))</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">MyPoly</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Structs_And_Objects_30_0.png" src="../../_images/Structs_And_Objects_30_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
+│   caller = npyinitialize() at numpy.jl:67
+└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(1⋅x^5 + 1⋅x^4 - 5⋅x^3 - 5⋅x^2 + 4⋅x + 4)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operator-overloading">
+<h2><span class="section-number">11.6. </span>Operator overloading<a class="headerlink" href="#operator-overloading" title="Permalink to this headline">¶</a></h2>
+<p>Operators such as <code class="docutils literal notranslate"><span class="pre">+</span></code> can also be overloaded for new types, by specializing the function definition. These operators are so fundamental to the language itself that they are part of the <code class="docutils literal notranslate"><span class="pre">Base</span></code> package. This special package is automatically included by Julia, so there is no need to call <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">Base</span></code> before using any of its functionality or specify <code class="docutils literal notranslate"><span class="pre">Base.func_name()</span></code> when calling one of its functions. However, when overloading a function in this package, we must still specify that the function is a part of this package with the usual syntax <code class="docutils literal notranslate"><span class="pre">Base.func_name()</span></code>.</p>
+<p>Adding polynomials is of course easy, we simply add the coefficients. However, for our implementation we first need to make sure the coefficient vectors are long enough to contain the sum:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">Base</span><span class="o">.:+</span><span class="p">(</span><span class="n">p1</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">,</span> <span class="n">p2</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">p1</span><span class="o">.</span><span class="n">var</span> <span class="o">!=</span> <span class="n">p2</span><span class="o">.</span><span class="n">var</span>
+        <span class="n">error</span><span class="p">(</span><span class="s">&quot;Cannot add polynomials of different independent variables.&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">degree</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">degree</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">-</span><span class="n">d1</span><span class="p">);</span> <span class="n">p1</span><span class="o">.</span><span class="n">c</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">-</span><span class="n">d2</span><span class="p">);</span> <span class="n">p2</span><span class="o">.</span><span class="n">c</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">MyPoly</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">var</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">MyPoly</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">2.2</span><span class="p">]))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">MyPoly</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="sc">&#39;s&#39;</span><span class="p">))</span> <span class="c"># will trigger our error message</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(1⋅x^5 + 1⋅x^4 - 5⋅x^3 - 5⋅x^2 + 4⋅x + 4)
+MyPoly(2⋅x^5 + 2⋅x^4 - 10⋅x^3 - 10⋅x^2 + 8⋅x + 8)
+MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Cannot</span> <span class="n">add</span> <span class="n">polynomials</span> <span class="n">of</span> <span class="n">different</span> <span class="n">independent</span> <span class="n">variables</span><span class="o">.</span>
+
+<span class="ne">Stacktrace</span>:
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">error</span><span class="p">(</span><span class="n">s</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">error</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">33</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span><span class="p">(</span><span class="n">p1</span><span class="p">::</span><span class="n">MyPoly</span><span class="p">,</span> <span class="n">p2</span><span class="p">::</span><span class="n">MyPoly</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span><span class="mi">3</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span><span class="mi">4</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="nb">eval</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Subtraction is easiest done by overloading the <code class="docutils literal notranslate"><span class="pre">-</span></code> operator and reusing the implementation of <code class="docutils literal notranslate"><span class="pre">+</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">Base</span><span class="o">.:-</span><span class="p">(</span><span class="n">p1</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">,</span> <span class="n">p2</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">MyPoly</span><span class="p">(</span><span class="o">-</span><span class="n">p2</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly with scalar multiplication, we overload <code class="docutils literal notranslate"><span class="pre">*</span></code>. Note that we do not specify the type of the first scalar argument <code class="docutils literal notranslate"><span class="pre">a</span></code>, it is assumed that it is a regular number (not a <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code>) object. We also define multiplication in the reverse order, by reusing the same function (since we know that it commutes).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">)</span>
+    <span class="n">newc</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">p</span><span class="o">.</span><span class="n">c</span>
+    <span class="k">return</span> <span class="n">MyPoly</span><span class="p">(</span><span class="n">newc</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">var</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">p</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the overloaded operators <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, and <code class="docutils literal notranslate"><span class="pre">*</span></code> (for scalars), we can perform many polynomial operations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="mf">0.4</span><span class="n">p</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">-</span> <span class="mf">.3</span><span class="o">*</span><span class="n">MyPoly</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="n">p2</span> <span class="o">+</span> <span class="n">p</span>
+<span class="n">plot</span><span class="o">.</span><span class="p">([</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Structs_And_Objects_39_0.png" src="../../_images/Structs_And_Objects_39_0.png" />
+</div>
+</div>
+</section>
+<section id="generic-programming">
+<h2><span class="section-number">11.7. </span>Generic programming<a class="headerlink" href="#generic-programming" title="Permalink to this headline">¶</a></h2>
+<p>In the examples above we have specialized many functions and operators to work in a specific way for objects of type <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code>. However, note the advantages of <em>not</em> limiting the type of a variable or function argument to be of a certain type. For example, in the definition of <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> we did not specify that the coefficients <code class="docutils literal notranslate"><span class="pre">c</span></code> should be of e.g. integer or floating point types (in fact our examples used both). This means our functions work perfectly fine also for rational coefficients and arguments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">MyPoly</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">//</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="o">//</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(1//1⋅x^2 - 2//3⋅x + 6//7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-element Vector{Rational{Int64}}:
+   25//21
+ 1297//84
+</pre></div>
+</div>
+</div>
+</div>
+<p>and for complex:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">MyPoly</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="nb">im</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="nb">im</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly((1 + 0im)⋅x^4 + (0 + 1im)⋅x^3 + (-1 + 0im)⋅x^2 + (0 - 1im)⋅x + (1 + 0im))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">im</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">im</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Complex{Int64}}:
+  1 + 0im
+  5 + 0im
+ -2 + 1im
+</pre></div>
+</div>
+</div>
+</div>
+<p>or for <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">MyPoly</span><span class="p">(</span><span class="n">collect</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="o">:</span><span class="mf">3.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(-1.5⋅x^5 - 0.5⋅x^4 + 0.5⋅x^3 + 1.5⋅x^2 + 2.5⋅x + 3.5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="o">-</span><span class="nb">π</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>405.2722682884305251107738095974542912801020079018409933037640550322547603287204
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./content/Structs_And_Objects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Strings_and_File_Processing/File_Processing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">10.3. </span>File Processing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Computational_Geometry/Chapter_Intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Computational Geometry</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

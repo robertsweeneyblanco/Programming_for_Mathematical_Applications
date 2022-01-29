@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5.3. Monte Carlo &#8212; Programming for Mathematical Applications</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Random_Numbers/Monte_Carlo.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6. Vectorization" href="../Vectorization/Chapter_Intro.html" />
+    <link rel="prev" title="5.2. Histograms" href="Histograms.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming for Mathematical Applications</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Programming for Mathematical Applications
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Introduction/Chapter_Intro.html">
+   1. Introduction to Julia
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">
+     1.1. Julia as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Variables_And_Assignments.html">
+     1.2. Variables and Assignments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Functions.html">
+     1.3. Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/For_Loops.html">
+     1.4. For-Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Conditionals.html">
+     1.5. Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/While_Loops.html">
+     1.6. While-Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Function_Arguments.html">
+     1.7. Function Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">
+   2. Arrays and Dictionaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">
+     2.1. Introduction to Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">
+     2.2. Multi-dimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">
+     2.3. Dictionaries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Plotting/Plotting.html">
+   3. Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Debugging/Debugging.html">
+   4. Debugging
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Chapter_Intro.html">
+   5. Random Numbers
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Distributions.html">
+     5.1. Distributions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Histograms.html">
+     5.2. Histograms
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.3. Monte Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Vectorization/Chapter_Intro.html">
+   6. Vectorization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Constructing_Arrays.html">
+     6.1. Constructing Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Array_Functions.html">
+     6.2. Array Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Logical_Indexing.html">
+     6.3. Logical Indexing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Data_Types/Chapter_Intro.html">
+   7. Data Types
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">
+     7.1. Arbitrary Precision Integers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">
+     7.2. Arbitrary Precision Floats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Complex_Numbers.html">
+     7.3. Complex Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Rational_Numbers.html">
+     7.4. Rational Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">
+     7.5. Data Types of Arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Recursion/Recursion.html">
+   8. Recursion
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">
+   9. Linear Algebra
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">
+     9.1. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">
+     9.2. Special Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">
+     9.3. Linear Systems and Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">
+   10. Strings and File Processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">
+     10.1. String Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">
+     10.2. String Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">
+     10.3. File Processing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">
+   11. Structs and Objects
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">
+   12. Computational Geometry
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">
+     12.1. Convex Hull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">
+     12.2. Line-segment Interactions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Triangulations.html">
+     12.3. Triangulations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Image_Processing/Chapter_Intro.html">
+   13. Image Processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">
+     13.1. Reading and Plotting Images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Image_Scaling.html">
+     13.2. Image Scaling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Filtering.html">
+     13.3. Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Fourier_Transform.html">
+     13.4. Fourier Transform
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">
+   14. Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">
+     14.1. Initial Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">
+     14.2. Higher Order Derivatives and Systems of ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">
+     14.3. Boundary Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">
+     14.4. DifferentialEquations Package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Optimization/Chapter_Intro.html">
+   15. Optimization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">
+     15.1. Gradient Based Optimization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Optimization/Optim_Package.html">
+     15.2. Optim Package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Graphs/Chapter_Intro.html">
+   16. Graphs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Graphs/Graph_Basics.html">
+     16.1. Graph Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Graphs/Graph_Algorithms.html">
+     16.2. Graph Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">
+   17. Sparse Matrices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">
+     17.1. Matrix Designs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">
+     17.2. Sparse Matrices in Julia
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">
+     17.3. Application; Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">
+     17.4. Application; Google Page Rank
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/Random_Numbers/Monte_Carlo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Random_Numbers/Monte_Carlo.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        <a class="jupyterhub-button" href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Random_Numbers/Monte_Carlo.ipynb&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-simulations">
+   5.3.1. Monte Carlo simulations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#card-games-permutations">
+     5.3.1.1. Card games, permutations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-probability-of-flush">
+     5.3.1.2. Example: Probability of flush
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimate-pi-by-throwing-darts">
+   5.3.2. Estimate
+   <span class="math notranslate nohighlight">
+    \(\pi\)
+   </span>
+   by throwing darts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-random-walk">
+   5.3.3. Example: Random walk
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Monte Carlo</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-simulations">
+   5.3.1. Monte Carlo simulations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#card-games-permutations">
+     5.3.1.1. Card games, permutations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-probability-of-flush">
+     5.3.1.2. Example: Probability of flush
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimate-pi-by-throwing-darts">
+   5.3.2. Estimate
+   <span class="math notranslate nohighlight">
+    \(\pi\)
+   </span>
+   by throwing darts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-random-walk">
+   5.3.3. Example: Random walk
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="monte-carlo">
+<h1><span class="section-number">5.3. </span>Monte Carlo<a class="headerlink" href="#monte-carlo" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span>
+<span class="k">using</span> <span class="n">Random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="monte-carlo-simulations">
+<h2><span class="section-number">5.3.1. </span>Monte Carlo simulations<a class="headerlink" href="#monte-carlo-simulations" title="Permalink to this headline">¶</a></h2>
+<p>A common technique to estimate probabilities and statistical quantities is <em>Monte Carlo simulation</em>. The computer runs many simulations that depend on random numbers and records the outcomes. The desired quantity can then be estimated by simple fractions.</p>
+<p>As an example, the code below simulates rolling a die repeatedly until it rolls a 6, and recording the number of rolls that it took. The average number of rolls required can then be estimated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">ntrials</span> <span class="o">=</span> <span class="mi">10000</span>            <span class="c"># Number of experiments</span>
+<span class="n">x</span> <span class="o">=</span> <span class="kt">Int64</span><span class="p">[]</span>                <span class="c"># Array of outcomes</span>
+<span class="n">sumx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">ntrials</span>
+    <span class="n">nrolls</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">found_a_six</span> <span class="o">=</span> <span class="nb">false</span>
+    <span class="k">while</span> <span class="o">!</span><span class="n">found_a_six</span>
+        <span class="n">nrolls</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">6</span>
+            <span class="n">found_a_six</span> <span class="o">=</span> <span class="nb">true</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nrolls</span><span class="p">)</span>
+    <span class="n">sumx</span> <span class="o">+=</span> <span class="n">nrolls</span>
+<span class="k">end</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;Number of rolls&quot;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;Count&quot;</span><span class="p">)</span>
+<span class="n">average</span> <span class="o">=</span> <span class="n">sumx</span> <span class="o">/</span> <span class="n">ntrials</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Monte_Carlo_3_0.png" src="../../_images/Monte_Carlo_3_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
+│   caller = npyinitialize() at numpy.jl:67
+└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.1382
+</pre></div>
+</div>
+</div>
+</div>
+<section id="card-games-permutations">
+<h3><span class="section-number">5.3.1.1. </span>Card games, permutations<a class="headerlink" href="#card-games-permutations" title="Permalink to this headline">¶</a></h3>
+<p>To simulate card games, we need a way to represent the cards. There are 13 <em>ranks</em> and 4 <em>suits</em>, so we could simply use an integer between 1 and 52 and let 1 to 13 represent Ace, 2, 3, …, King of clubs, 14 to 26 all the diamonds, etc. We can use integer division and remainder to find the rank and suit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">card_rank</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">card</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">13</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">card_suit</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">card</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">÷</span> <span class="mi">13</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="k">end</span>
+
+<span class="n">cards</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">52</span>      <span class="c"># All cards</span>
+<span class="p">[</span><span class="n">card_rank</span><span class="o">.</span><span class="p">(</span><span class="n">cards</span><span class="p">)</span> <span class="n">card_suit</span><span class="o">.</span><span class="p">(</span><span class="n">cards</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52×2 Matrix{Int64}:
+  1  1
+  2  1
+  3  1
+  4  1
+  5  1
+  6  1
+  7  1
+  8  1
+  9  1
+ 10  1
+ 11  1
+ 12  1
+ 13  1
+  ⋮  
+  2  4
+  3  4
+  4  4
+  5  4
+  6  4
+  7  4
+  8  4
+  9  4
+ 10  4
+ 11  4
+ 12  4
+ 13  4
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now draw a random card by generating a random integer between 1 and 52. However, to deal e.g. a poker hand of 5 cards, we need to make sure we do not draw the same card twice. One way to do this is with Julia’s <code class="docutils literal notranslate"><span class="pre">randperm(n)</span></code> function, which generates a random permutation of the integers 1 up to <code class="docutils literal notranslate"><span class="pre">n</span></code>. We can use this to represent a shuffled deck of cards, and use the first 5 cards to deal a poker hand:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">cards</span> <span class="o">=</span> <span class="n">randperm</span><span class="p">(</span><span class="mi">52</span><span class="p">)</span>
+<span class="n">hand</span> <span class="o">=</span> <span class="n">cards</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="p">[</span><span class="n">card_rank</span><span class="o">.</span><span class="p">(</span><span class="n">hand</span><span class="p">)</span> <span class="n">card_suit</span><span class="o">.</span><span class="p">(</span><span class="n">hand</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5×2 Matrix{Int64}:
+ 12  4
+  4  3
+  2  1
+  5  3
+  2  4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-probability-of-flush">
+<h3><span class="section-number">5.3.1.2. </span>Example: Probability of flush<a class="headerlink" href="#example-probability-of-flush" title="Permalink to this headline">¶</a></h3>
+<p>A <em>flush</em> means that all cards have the same suit. To estimate the probabilty that a random poker hand is a flush, we run Monte Carlo simulation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">ntrials</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">nflush</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">itrial</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">ntrials</span>
+    <span class="n">cards</span> <span class="o">=</span> <span class="n">randperm</span><span class="p">(</span><span class="mi">52</span><span class="p">)</span>
+    <span class="n">hand</span> <span class="o">=</span> <span class="n">cards</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+
+    <span class="n">suits</span> <span class="o">=</span> <span class="n">card_suit</span><span class="o">.</span><span class="p">(</span><span class="n">hand</span><span class="p">)</span>
+    <span class="n">same_suit</span> <span class="o">=</span> <span class="nb">true</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="mi">5</span>
+        <span class="k">if</span> <span class="n">suits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">≠</span> <span class="n">suits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">same_suit</span> <span class="o">=</span> <span class="nb">false</span>
+            <span class="k">break</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="k">if</span> <span class="n">same_suit</span>
+        <span class="n">nflush</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">approx_probability</span> <span class="o">=</span> <span class="n">nflush</span> <span class="o">/</span> <span class="n">ntrials</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.00208
+</pre></div>
+</div>
+</div>
+</div>
+<p>This problem can also be solved using combinatorial techniques, which we can use to check the approximation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">exact_probability</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">binomial</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="n">binomial</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0019807923169267707
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="estimate-pi-by-throwing-darts">
+<h2><span class="section-number">5.3.2. </span>Estimate <span class="math notranslate nohighlight">\(\pi\)</span> by throwing darts<a class="headerlink" href="#estimate-pi-by-throwing-darts" title="Permalink to this headline">¶</a></h2>
+<p>Random number can be used to approximate areas, or more generally, to estimate integrals. To illustrate this, consider a 2-by-2 square with a unit disk inside. Imagine throwing <span class="math notranslate nohighlight">\(n\)</span> darts on the square with equal probability everywhere. Then the fraction of darts that hit inside the circle should approximate the ratio between the areas, that is:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\mathrm{hits}}{n} \approx \frac{\pi r^2}{(2r)^2}
+\]</div>
+<p>where the radius <span class="math notranslate nohighlight">\(r=1\)</span>. This means we can estimate <span class="math notranslate nohighlight">\(\pi\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+\pi \approx 4 \frac{\mathrm{hits}}{n}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>               <span class="c"># Number of darts</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">.-</span> <span class="mi">1</span>       <span class="c"># Coordinates</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">.-</span> <span class="mi">1</span>
+
+<span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c"># Draw square</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span><span class="nb">π</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="mi">100</span><span class="p">)</span><span class="o">./</span><span class="mi">100</span>               <span class="c"># Draw circle</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>   
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&quot;None&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>   <span class="c"># Plot dart points</span>
+<span class="n">axis</span><span class="p">(</span><span class="s">&quot;equal&quot;</span><span class="p">)</span>
+
+<span class="c"># Determine if points are inside the circle (a &quot;hit&quot;)</span>
+<span class="n">hits</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+    <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">≤</span> <span class="mi">1</span>
+        <span class="n">hits</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">approx_pi</span> <span class="o">=</span> <span class="mi">4</span><span class="n">hits</span> <span class="o">/</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Monte_Carlo_13_0.png" src="../../_images/Monte_Carlo_13_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.1616
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-random-walk">
+<h2><span class="section-number">5.3.3. </span>Example: Random walk<a class="headerlink" href="#example-random-walk" title="Permalink to this headline">¶</a></h2>
+<p>A <em>random walk</em> can be described by the following algorithm:</p>
+<ul class="simple">
+<li><p>Consider a 2-d array of square cells</p></li>
+<li><p>Start at the center cell</p></li>
+<li><p>At each turn, randomly choose a direction (up/down/left/right) and move to that neighboring cell</p></li>
+<li><p>Continue until reaching an edge</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">random_walk</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">n</span>
+        <span class="k">if</span> <span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span>
+            <span class="k">if</span> <span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span>  <span class="c"># Up</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span>             <span class="c"># Down</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">else</span>
+            <span class="k">if</span> <span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span>  <span class="c"># Right</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+            <span class="k">else</span>             <span class="c"># Left    </span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">push!</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+<span class="k">end</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>random_walk (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">random_walk</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>     <span class="c"># Draw dots at each point in x,y</span>
+<span class="n">grid</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="o">-</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Monte_Carlo_16_0.png" src="../../_images/Monte_Carlo_16_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./content/Random_Numbers"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Histograms.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5.2. </span>Histograms</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Vectorization/Chapter_Intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Vectorization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

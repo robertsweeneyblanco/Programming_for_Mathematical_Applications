@@ -1,0 +1,1155 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>9.1. Matrix Operations &#8212; Programming for Mathematical Applications</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Linear_Algebra/Matrix_Operations.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="9.2. Special Matrices" href="Special_Matrices.html" />
+    <link rel="prev" title="9. Linear Algebra" href="Chapter_Intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Programming for Mathematical Applications</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Programming for Mathematical Applications
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Introduction/Chapter_Intro.html">
+   1. Introduction to Julia
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">
+     1.1. Julia as a Calculator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Variables_And_Assignments.html">
+     1.2. Variables and Assignments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Functions.html">
+     1.3. Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/For_Loops.html">
+     1.4. For-Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Conditionals.html">
+     1.5. Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/While_Loops.html">
+     1.6. While-Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Introduction/Function_Arguments.html">
+     1.7. Function Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">
+   2. Arrays and Dictionaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">
+     2.1. Introduction to Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">
+     2.2. Multi-dimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">
+     2.3. Dictionaries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Plotting/Plotting.html">
+   3. Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Debugging/Debugging.html">
+   4. Debugging
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">
+   5. Random Numbers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Distributions.html">
+     5.1. Distributions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Histograms.html">
+     5.2. Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">
+     5.3. Monte Carlo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Vectorization/Chapter_Intro.html">
+   6. Vectorization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Constructing_Arrays.html">
+     6.1. Constructing Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Array_Functions.html">
+     6.2. Array Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Vectorization/Logical_Indexing.html">
+     6.3. Logical Indexing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Data_Types/Chapter_Intro.html">
+   7. Data Types
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">
+     7.1. Arbitrary Precision Integers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">
+     7.2. Arbitrary Precision Floats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Complex_Numbers.html">
+     7.3. Complex Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Rational_Numbers.html">
+     7.4. Rational Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">
+     7.5. Data Types of Arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Recursion/Recursion.html">
+   8. Recursion
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Chapter_Intro.html">
+   9. Linear Algebra
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     9.1. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Special_Matrices.html">
+     9.2. Special Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Linear_Systems_And_Regression.html">
+     9.3. Linear Systems and Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">
+   10. Strings and File Processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">
+     10.1. String Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">
+     10.2. String Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">
+     10.3. File Processing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">
+   11. Structs and Objects
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">
+   12. Computational Geometry
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">
+     12.1. Convex Hull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">
+     12.2. Line-segment Interactions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Computational_Geometry/Triangulations.html">
+     12.3. Triangulations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Image_Processing/Chapter_Intro.html">
+   13. Image Processing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">
+     13.1. Reading and Plotting Images
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Image_Scaling.html">
+     13.2. Image Scaling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Filtering.html">
+     13.3. Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Image_Processing/Fourier_Transform.html">
+     13.4. Fourier Transform
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">
+   14. Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">
+     14.1. Initial Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">
+     14.2. Higher Order Derivatives and Systems of ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">
+     14.3. Boundary Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">
+     14.4. DifferentialEquations Package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Optimization/Chapter_Intro.html">
+   15. Optimization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">
+     15.1. Gradient Based Optimization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Optimization/Optim_Package.html">
+     15.2. Optim Package
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Graphs/Chapter_Intro.html">
+   16. Graphs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Graphs/Graph_Basics.html">
+     16.1. Graph Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Graphs/Graph_Algorithms.html">
+     16.2. Graph Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">
+   17. Sparse Matrices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">
+     17.1. Matrix Designs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">
+     17.2. Sparse Matrices in Julia
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">
+     17.3. Application; Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">
+     17.4. Application; Google Page Rank
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/Linear_Algebra/Matrix_Operations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Linear_Algebra/Matrix_Operations.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        <a class="jupyterhub-button" href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Linear_Algebra/Matrix_Operations.ipynb&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-vectors-and-matrices">
+   9.1.1. Creating Vectors and Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-matrix-operations">
+   9.1.2. Basic Matrix Operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-multiplication">
+   9.1.3. Matrix Multiplication
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-transpose">
+   9.1.4. Matrix Transpose
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-matrix-operations">
+   9.1.5. Other Matrix Operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">
+   9.1.6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-eigenvalues-of-random-matrices">
+   9.1.7. Example: Eigenvalues of Random Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-data-types">
+   9.1.8. Other data types
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Matrix Operations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-vectors-and-matrices">
+   9.1.1. Creating Vectors and Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-matrix-operations">
+   9.1.2. Basic Matrix Operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-multiplication">
+   9.1.3. Matrix Multiplication
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-transpose">
+   9.1.4. Matrix Transpose
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-matrix-operations">
+   9.1.5. Other Matrix Operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">
+   9.1.6. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-eigenvalues-of-random-matrices">
+   9.1.7. Example: Eigenvalues of Random Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-data-types">
+   9.1.8. Other data types
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="matrix-operations">
+<h1><span class="section-number">9.1. </span>Matrix Operations<a class="headerlink" href="#matrix-operations" title="Permalink to this headline">¶</a></h1>
+<section id="creating-vectors-and-matrices">
+<h2><span class="section-number">9.1.1. </span>Creating Vectors and Matrices<a class="headerlink" href="#creating-vectors-and-matrices" title="Permalink to this headline">¶</a></h2>
+<p>We have already seen how to create 1D and 2D arrays in Julia. These can be naturally used to represent vectors and matrices:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>   <span class="c"># Random vector</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+  0.8892349004816178
+ -0.0719021404866299
+ -0.25712061831490673
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># Random matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×3 Matrix{Float64}:
+ -1.15805    -1.14501    -0.657621
+  0.541023   -0.0855135  -0.176993
+ -0.0148093   0.068844    0.770481
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-matrix-operations">
+<h2><span class="section-number">9.1.2. </span>Basic Matrix Operations<a class="headerlink" href="#basic-matrix-operations" title="Permalink to this headline">¶</a></h2>
+<p>Julia also defines common matrix operations for arrays, some in the base library and some in the <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example addition, subtraction, and scalar multiplication work as expected:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+ 4.898239271678415
+ 0.6997793206629153
+ 0.17053637235532998
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that this happens to be the same operation as the corresponding <em>elementwise</em> operation <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">.-</span> <span class="pre">3y</span></code>, because of the definition of vector addition. However, if you try to multiply two vectors</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>   <span class="c"># Error - cannot multiply two vectors</span>
+</pre></div>
+</div>
+<p>you get an error. Use can use the <code class="docutils literal notranslate"><span class="pre">dot</span></code> function or the <span class="math notranslate nohighlight">\(\cdot\)</span> syntax (type <code class="docutils literal notranslate"><span class="pre">\cdot</span></code> and tab) to compute dot products:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x_dot_y_1</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>   <span class="c"># Dot product</span>
+<span class="n">x_dot_y_2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">⋅</span> <span class="n">y</span>      <span class="c"># Same thing</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1331672081177433
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the special case of vectors of length 3, Julia also defines the cross product:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x_cross_y</span> <span class="o">=</span> <span class="n">cross</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+ -0.05588858713655367
+  0.4703617347627336
+ -0.32482069427271026
+</pre></div>
+</div>
+</div>
+</div>
+<p>The 2-norm of a vector can be calculated using the <code class="docutils literal notranslate"><span class="pre">norm</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                 <span class="c"># 2-norm of x</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">sum</span><span class="p">(</span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">))</span>   <span class="c"># Should be the same</span>
+<span class="n">a</span> <span class="o">-</span> <span class="n">b</span>                       <span class="c"># Confirm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>More generally, the <code class="docutils literal notranslate"><span class="pre">norm</span></code> function takes a second argument <code class="docutils literal notranslate"><span class="pre">p</span></code> in which case it computes the <span class="math notranslate nohighlight">\(p\)</span>-norm:</p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_p = \left( \sum_{i=1}^n | a_i | ^p \right)^{1/p}
+\]</div>
+<p>This includes the so-called max-norm, by setting <code class="docutils literal notranslate"><span class="pre">p</span></code> to <code class="docutils literal notranslate"><span class="pre">Inf</span></code>.</p>
+</section>
+<section id="matrix-multiplication">
+<h2><span class="section-number">9.1.3. </span>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this headline">¶</a></h2>
+<p>Matrix multiplication is performed using the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator. Recall the definition of the product of two matrices <span class="math notranslate nohighlight">\(C=AB\)</span> where <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(m\)</span>-by-<span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(k\)</span>-by-<span class="math notranslate nohighlight">\(n\)</span>, and <span class="math notranslate nohighlight">\(C\)</span> is <span class="math notranslate nohighlight">\(m\)</span>-by-<span class="math notranslate nohighlight">\(n\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+C_{ij} = \sum_{\ell=1}^k A_{i\ell} B_{\ell j},\qquad\text{ for }i=1,\ldots,m\text{ and }j=1,\ldots,n
+\]</div>
+<p>If the “middle dimensions” (<span class="math notranslate nohighlight">\(k\)</span> in the example above) do not match, Julia gives an error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">B</span><span class="o">*</span><span class="n">A</span>     <span class="c"># OK, since B is 4-by-3 and A is 3-by-3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4×3 Matrix{Float64}:
+ -1.22317   -0.96037    0.298082
+ -0.798993  -0.451545  -1.49723
+  0.555024  -0.406885   0.778622
+  1.99122    2.26293    2.52958
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that unlike addition and subtraction, matrix multiplication is completely different from elementwise multiplication:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">AA</span> <span class="o">=</span> <span class="n">A</span><span class="o">*</span><span class="n">A</span>     <span class="c"># Square of matrix</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">A</span><span class="o">.*</span><span class="n">A</span>    <span class="c"># Square of each entry in matrix</span>
+<span class="n">A2</span> <span class="o">-</span> <span class="n">AA</span>      <span class="c"># These are not the same</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×3 Matrix{Float64}:
+  0.609739   -0.0675654  -0.0250656
+  0.962879    0.631663    0.508349
+ -0.0427665  -0.0593733   0.00244597
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, the power <code class="docutils literal notranslate"><span class="pre">^</span></code> operator will compute <em>matrix powers</em>, not elementwise powers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A_to_the_power_of_2</span> <span class="o">=</span> <span class="n">A</span><span class="o">^</span><span class="mi">2</span>       <span class="c"># Same as A*A</span>
+<span class="n">A_to_the_power_of_3_5</span> <span class="o">=</span> <span class="n">A</span><span class="o">^</span><span class="mf">3.5</span>   <span class="c"># A^3.5, much harder to compute!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×3 Matrix{ComplexF64}:
+  -0.699585+3.10425e-19im  -0.889248+1.85352e-18im    -0.445545+2.94266e-17im
+   0.423833+3.46945e-17im   0.145918+5.55112e-17im  -0.00288211-3.46945e-18im
+ -0.0164066-8.67362e-19im  0.0248005-8.67362e-19im     0.372698+5.42101e-20im
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that Julia automatically returns a matrix of complex numbers when needed (even if the input matrix was real).</p>
+</section>
+<section id="matrix-transpose">
+<h2><span class="section-number">9.1.4. </span>Matrix Transpose<a class="headerlink" href="#matrix-transpose" title="Permalink to this headline">¶</a></h2>
+<p>Matrices can be transposed using the <code class="docutils literal notranslate"><span class="pre">transpose</span></code> function, or conjugate transposed using the <code class="docutils literal notranslate"><span class="pre">adjoint</span></code> function or the convenient <code class="docutils literal notranslate"><span class="pre">'</span></code> syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">BT</span> <span class="o">=</span> <span class="n">transpose</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>     <span class="c"># B is 4-by-3, so BT is 3-by-4</span>
+<span class="n">BT2</span> <span class="o">=</span> <span class="n">B</span><span class="o">&#39;</span>              <span class="c"># Same thing (since B is real so conjugate does not matter)</span>
+
+<span class="n">A</span> <span class="o">*</span> <span class="n">B</span><span class="o">&#39;</span>                <span class="c"># Well-defined, since A is 3-by-3 and B&#39; is 3-by-4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×4 Matrix{Float64}:
+ -1.51919    1.71411   -3.51545    1.36572
+  0.323782   0.577764  -0.275168  -1.27398
+  0.830835  -1.47123    1.42235    1.27231
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the dot product between two vectors can be written as <span class="math notranslate nohighlight">\(z = x^*y\)</span> (conjugate transpose of <span class="math notranslate nohighlight">\(x\)</span>), matrix multiplication can be used to provide an alternative syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x_dot_y_3</span> <span class="o">=</span> <span class="n">x</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1331672081177433
+</pre></div>
+</div>
+</div>
+</div>
+<p>In all these examples, the vectors <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> have been 1D arrays. It is also possible to use 2D arrays (or matrices) to represent vectors, which allows for both column- and row-vectors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c"># Column vector</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>   <span class="c"># Row vector</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1×3 Matrix{Float64}:
+ 0.874197  0.631681  -0.720351
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">a'</span> <span class="pre">*</span> <span class="pre">b</span></code> is now invalid because of the dimensions. One option is to do <code class="docutils literal notranslate"><span class="pre">a'</span> <span class="pre">*</span> <span class="pre">b'</span></code>, but it is generally safer to use the <code class="docutils literal notranslate"><span class="pre">dot</span></code> function to compute the dot product:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a_dot_b</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.6114571135923468
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-matrix-operations">
+<h2><span class="section-number">9.1.5. </span>Other Matrix Operations<a class="headerlink" href="#other-matrix-operations" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">LinearAlgebra</span></code> package defines many other common matrix operations. For example, determinant, trace, and inverse matrix (but note that inverse matrices are often inefficient and ill-conditioned, use <code class="docutils literal notranslate"><span class="pre">\</span></code> instead for solving linear systems):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;det(A) = &quot;</span><span class="p">,</span> <span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;tr(A) = &quot;</span><span class="p">,</span> <span class="n">tr</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;inv(A) = &quot;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>det(A) = 0.3094892084286972
+tr(A) = -0.6323971104372268
+inv(A) = [-1.010742525157353 -0.42035781995469435 0.7252325494999748; -0.13171578005462825 -0.5112927776592611 -5.571527004674333; -0.6380479933666557 -1.0060872070827533 -1.7331619846667148]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="eigenvalues-and-eigenvectors">
+<h2><span class="section-number">9.1.6. </span>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this headline">¶</a></h2>
+<p>Eigenvalues and eigenvectors can be computed using the functions <code class="docutils literal notranslate"><span class="pre">eigvals</span></code> and <code class="docutils literal notranslate"><span class="pre">eigvects</span></code>. Note that the output of these functions is in general complex, even though the matrices are real.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">lambda</span> <span class="o">=</span> <span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>     <span class="c"># Eigenvalues</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{ComplexF64}:
+ -1.5196613311881448 + 0.0im
+ -1.0211792640462782 - 1.2667279612854871im
+ -1.0211792640462782 + 1.2667279612854871im
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>          <span class="c"># Eigenvectors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×3 Matrix{ComplexF64}:
+ 0.509338+0.0im   0.196503+0.557665im   0.196503-0.557665im
+ -0.74161+0.0im  0.0666145+0.482036im  0.0666145-0.482036im
+ 0.436566+0.0im   0.643117-0.0im        0.643117+0.0im
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">X</span> <span class="o">-</span> <span class="n">X</span><span class="o">*</span><span class="n">Diagonal</span><span class="p">(</span><span class="n">lambda</span><span class="p">))</span>     <span class="c"># Confirm A*X = X*LAMBDA</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.3414875847488985e-15
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Diagonal</span></code> function above is an example of a special matrix in Julia discussed in the next section.</p>
+</section>
+<section id="example-eigenvalues-of-random-matrices">
+<h2><span class="section-number">9.1.7. </span>Example: Eigenvalues of Random Matrices<a class="headerlink" href="#example-eigenvalues-of-random-matrices" title="Permalink to this headline">¶</a></h2>
+<p>Random matrix theory studies the distribution of the eigenvalues of certain classes of randomly generated matrices, which have many important applications. For example, matrices with entries from the normal distribution can be shown to have eigenvalues concentrated inside a circle in the complex plane:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="n">imag</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="s">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="s">&quot;equal&quot;</span><span class="p">);</span>
+<span class="c"># Draw circle</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mi">2</span><span class="nb">π</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span> <span class="n">radius</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">phi</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Matrix_Operations_39_0.png" src="../../_images/Matrix_Operations_39_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
+│   caller = npyinitialize() at numpy.jl:67
+└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-data-types">
+<h2><span class="section-number">9.1.8. </span>Other data types<a class="headerlink" href="#other-data-types" title="Permalink to this headline">¶</a></h2>
+<p>We already saw how matrix operations can be performed on complex numbers. Many operations are also defined for rational numbers, which allows for exact linear algebra computations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">den</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">rat</span> <span class="o">=</span> <span class="n">num</span> <span class="o">.//</span> <span class="n">den</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rat</span><span class="p">)</span>
+<span class="n">inv</span><span class="p">(</span><span class="n">rat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×3 Matrix{Rational{Int64}}:
+ -1//2   1//1    1//6
+  4//5  -3//10   7//6
+ -1//5   1//1   -6//7
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×3 Matrix{Rational{Int64}}:
+ -955//1082  1075//1082   2555//2164
+  475//1082   485//1082   1505//2164
+  777//1082   315//1082  -1365//2164
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.7"
+        },
+        kernelOptions: {
+            kernelName: "julia-1.7",
+            path: "./content/Linear_Algebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.7'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Chapter_Intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>Linear Algebra</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Special_Matrices.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9.2. </span>Special Matrices</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
