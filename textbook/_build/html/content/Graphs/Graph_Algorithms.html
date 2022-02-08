@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>16.2. Graph Algorithms &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -716,9 +715,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="graph-algorithms">
+  <div class="tex2jax_ignore mathjax_ignore section" id="graph-algorithms">
 <h1><span class="section-number">16.2. </span>Graph Algorithms<a class="headerlink" href="#graph-algorithms" title="Permalink to this headline">¶</a></h1>
-<section id="depth-first-search">
+<div class="section" id="depth-first-search">
 <h2><span class="section-number">16.2.1. </span>Depth first search<a class="headerlink" href="#depth-first-search" title="Permalink to this headline">¶</a></h2>
 <p>The <em>depth first search</em> (DFS) is a simply way of traversing a graph, starting from
 a given vertex <code class="docutils literal notranslate"><span class="pre">start</span></code>. It can be used
@@ -775,17 +774,12 @@ this highly depends on the order of the elements in <code class="docutils litera
 is arbitrary (at least the way we designed it). We will continue to use the graph created in the previous section to demonstrate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Graph_Algorithms_5_0.png" src="../../_images/Graph_Algorithms_5_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -809,7 +803,7 @@ Visiting vertex #10
 </div>
 </div>
 </div>
-<section id="path-finding">
+<div class="section" id="path-finding">
 <h3><span class="section-number">16.2.1.1. </span>Path finding<a class="headerlink" href="#path-finding" title="Permalink to this headline">¶</a></h3>
 <p>A simple application of the DFS method is to find a path between two vertices.
 One way to do this is to have the <code class="docutils literal notranslate"><span class="pre">visit</span></code> function return a boolean, indicating
@@ -870,7 +864,7 @@ highly dependent on the order of the <code class="docutils literal notranslate">
 is in general not the shortest path between the vertices.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="n">path</span> <span class="o">=</span> <span class="n">find_path_dfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">plot_path</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;Path from 10 to 5: </span><span class="si">$path</span><span class="s">&quot;</span><span class="p">)</span>
@@ -884,8 +878,8 @@ is in general not the shortest path between the vertices.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="other-applications-of-dfs">
+</div>
+<div class="section" id="other-applications-of-dfs">
 <h3><span class="section-number">16.2.1.2. </span>Other applications of DFS<a class="headerlink" href="#other-applications-of-dfs" title="Permalink to this headline">¶</a></h3>
 <p>The DFS method can be used to a number of important graph operations, see below for
 examples (from <a class="reference external" href="https://www.geeksforgeeks.org/applications-of-depth-first-search">https://www.geeksforgeeks.org/applications-of-depth-first-search</a>).</p>
@@ -905,9 +899,9 @@ contents of the stack</p></li>
 <li><p>Finding <strong>Strongly Connected Components</strong> of a graph: A directed graph is called strongly connected if there is a path from each vertex in the graph to every other vertex.</p></li>
 <li><p>Solving <strong>puzzles with only one solution</strong>, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)</p></li>
 </ol>
-</section>
-</section>
-<section id="breadth-first-search">
+</div>
+</div>
+<div class="section" id="breadth-first-search">
 <h2><span class="section-number">16.2.2. </span>Breadth first search<a class="headerlink" href="#breadth-first-search" title="Permalink to this headline">¶</a></h2>
 <p>An alternative way to traverse a graph is the <em>Breadth First Search</em> (BFS) method,
 which visits all of the neighbor vertices at the present depth before moving on to
@@ -963,7 +957,7 @@ Visiting vertex #4
 </div>
 </div>
 </div>
-<section id="shortest-path">
+<div class="section" id="shortest-path">
 <h3><span class="section-number">16.2.2.1. </span>Shortest path<a class="headerlink" href="#shortest-path" title="Permalink to this headline">¶</a></h3>
 <p>The BFS method has the property that it will visit the vertices in an order
 that corresponds to a <em>shortest path</em> from the starting vertex to each other
@@ -1016,7 +1010,7 @@ back to the starting vertex, and build the path.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">shortest_path_bfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">plot_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="n">plot_path</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;Shortest path from 10 to 5: </span><span class="si">$path</span><span class="s">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1029,8 +1023,8 @@ back to the starting vertex, and build the path.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="shortest-path-application-optimal-trajectory">
+</div>
+<div class="section" id="shortest-path-application-optimal-trajectory">
 <h3><span class="section-number">16.2.2.2. </span>Shortest path application: Optimal trajectory<a class="headerlink" href="#shortest-path-application-optimal-trajectory" title="Permalink to this headline">¶</a></h3>
 <p>Here we consider navigation on a grid, with the goal of reaching a destination
 with the fewest possible moves. Any neighbor in the grid can be reached in one
@@ -1083,7 +1077,7 @@ between vertices with admissible moves.</p>
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">shortest_path_bfs</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
 <span class="n">xypath</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">coordinates</span> <span class="k">for</span> <span class="n">v</span> <span class="k">in</span> <span class="n">g1</span><span class="o">.</span><span class="n">vertices</span><span class="p">][</span><span class="n">path</span><span class="p">]</span>
-<span class="n">plot_graph</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">last</span><span class="o">.</span><span class="p">(</span><span class="n">xypath</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1091,13 +1085,13 @@ between vertices with admissible moves.</p>
 <div class="cell_output docutils container">
 <img alt="../../_images/Graph_Algorithms_24_0.png" src="../../_images/Graph_Algorithms_24_0.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-element Vector{PyCall.PyObject}:
- PyObject &lt;matplotlib.lines.Line2D object at 0x7fa89d2b13d0&gt;
+ PyObject &lt;matplotlib.lines.Line2D object at 0x7fe27d38c670&gt;
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="other-applications-of-bfs">
+</div>
+<div class="section" id="other-applications-of-bfs">
 <h3><span class="section-number">16.2.2.3. </span>Other applications of BFS<a class="headerlink" href="#other-applications-of-bfs" title="Permalink to this headline">¶</a></h3>
 <p>Like the DFS method, the BFS method is also very important for a wide range of graph
 algorithms. See below for
@@ -1116,9 +1110,9 @@ examples (from <a class="reference external" href="https://www.geeksforgeeks.org
 <li><p><strong>Path Finding</strong>: We can either use Breadth First or Depth First Traversal to find if there is a path between two vertices.</p></li>
 <li><p><strong>Finding all nodes within one connected component</strong>: We can either use Breadth First or Depth First Traversal to find all nodes reachable from a given node.</p></li>
 </ol>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1129,16 +1123,16 @@ examples (from <a class="reference external" href="https://www.geeksforgeeks.org
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Graphs"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

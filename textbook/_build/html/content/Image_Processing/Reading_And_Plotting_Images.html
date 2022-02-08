@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>13.1. Reading and Plotting Images &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -650,7 +649,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="reading-and-plotting-images">
+  <div class="tex2jax_ignore mathjax_ignore section" id="reading-and-plotting-images">
 <h1><span class="section-number">13.1. </span>Reading and Plotting Images<a class="headerlink" href="#reading-and-plotting-images" title="Permalink to this headline">¶</a></h1>
 <p>Julia provides a large set of image processing functions in the <code class="docutils literal notranslate"><span class="pre">Images</span></code> package. However, here we will focus on the mathematics and the algorithm behind some of these functions, and work directly on the arrays.</p>
 <p>We will use <code class="docutils literal notranslate"><span class="pre">PyPlot</span></code> to read and plot images, as shown below:</p>
@@ -664,11 +663,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Reading_And_Plotting_Images_1_0.png" src="../../_images/Reading_And_Plotting_Images_1_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
-</div>
 </div>
 </div>
 <p>Using standard Julia functions, we can determine that the image is represented in a 3-dimensional array of <code class="docutils literal notranslate"><span class="pre">Float32</span></code>, with values between 0 and 1:</p>
@@ -688,7 +682,7 @@ The values of A range between 0.0 and 1.0
 </div>
 <p>Here, the first 2 dimensions are row and the column indices of the pixels in the image, and the 3rd dimension of length 3 correspond to the RGB (Red-Green-Blue) components of the corresponding color.</p>
 <p>It is convenient to work with <code class="docutils literal notranslate"><span class="pre">Float</span></code> numbers, however, images are normally stored as <code class="docutils literal notranslate"><span class="pre">UInt8</span></code> with only 256 integer values for each RGB components. This is also supported by PyPlot, but for simplicity we will use the <code class="docutils literal notranslate"><span class="pre">Float32</span></code> format here.</p>
-<section id="rgb-values-grayscale-images">
+<div class="section" id="rgb-values-grayscale-images">
 <h2><span class="section-number">13.1.1. </span>RGB values, Grayscale images<a class="headerlink" href="#rgb-values-grayscale-images" title="Permalink to this headline">¶</a></h2>
 <p>To illustrate how the RGB components build up the color of each pixel, we can build and plot new images which only contain each of the components:</p>
 <div class="cell docutils container">
@@ -750,8 +744,8 @@ The values of A range between 0.0 and 1.0
 <img alt="../../_images/Reading_And_Plotting_Images_10_0.png" src="../../_images/Reading_And_Plotting_Images_10_0.png" />
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -762,16 +756,16 @@ The values of A range between 0.0 and 1.0
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Image_Processing"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>15.2. The Optim package &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -624,7 +623,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="the-optim-package">
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-optim-package">
 <h1><span class="section-number">15.2. </span>The <code class="docutils literal notranslate"><span class="pre">Optim</span></code> package<a class="headerlink" href="#the-optim-package" title="Permalink to this headline">¶</a></h1>
 <p>For more advanced optimization method, Julia provided a number of state-of-the-art packages.
 Here we will consider the <code class="docutils literal notranslate"><span class="pre">Optim</span></code> package. It has a number of options and features, but
@@ -651,12 +650,10 @@ free (zeroth order).</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * Status: success
 
  * Candidate solution
-    Minimizer: [3.63e-01, 8.48e-01]
-    Minimum:   -2.072854e-01
+    Final objective value:     -2.072854e-01
 
  * Found with
     Algorithm:     Nelder-Mead
-    Initial Point: [0.00e+00, 5.00e-01]
 
  * Convergence measures
     √(Σ(yᵢ-ȳ)²)/n ≤ 1.0e-08
@@ -664,7 +661,7 @@ free (zeroth order).</p>
  * Work counters
     Seconds run:   0  (vs limit Inf)
     Iterations:    31
-    f(x) calls:    61
+    f(x) calls:    60
 </pre></div>
 </div>
 </div>
@@ -690,12 +687,10 @@ since our gradient function <code class="docutils literal notranslate"><span cla
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * Status: success
 
  * Candidate solution
-    Minimizer: [3.63e-01, 8.48e-01]
-    Minimum:   -2.072854e-01
+    Final objective value:     -2.072854e-01
 
  * Found with
     Algorithm:     L-BFGS
-    Initial Point: [0.00e+00, 5.00e-01]
 
  * Convergence measures
     |x - x&#39;|               = 9.09e-07 ≰ 0.0e+00
@@ -705,7 +700,7 @@ since our gradient function <code class="docutils literal notranslate"><span cla
     |g(x)|                 = 5.19e-10 ≤ 1.0e-08
 
  * Work counters
-    Seconds run:   1  (vs limit Inf)
+    Seconds run:   0  (vs limit Inf)
     Iterations:    8
     f(x) calls:    20
     ∇f(x) calls:   20
@@ -724,12 +719,10 @@ since our gradient function <code class="docutils literal notranslate"><span cla
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * Status: success
 
  * Candidate solution
-    Minimizer: [3.63e-01, 8.48e-01]
-    Minimum:   -2.072854e-01
+    Final objective value:     -2.072854e-01
 
  * Found with
     Algorithm:     Gradient Descent
-    Initial Point: [0.00e+00, 5.00e-01]
 
  * Convergence measures
     |x - x&#39;|               = 2.20e-08 ≰ 0.0e+00
@@ -759,12 +752,10 @@ automatic differentiation:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * Status: success
 
  * Candidate solution
-    Minimizer: [3.63e-01, 8.48e-01]
-    Minimum:   -2.072854e-01
+    Final objective value:     -2.072854e-01
 
  * Found with
     Algorithm:     Gradient Descent
-    Initial Point: [0.00e+00, 5.00e-01]
 
  * Convergence measures
     |x - x&#39;|               = 2.20e-08 ≰ 0.0e+00
@@ -794,12 +785,10 @@ convergence (number of iterations):</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * Status: success
 
  * Candidate solution
-    Minimizer: [3.63e-01, 8.48e-01]
-    Minimum:   -2.072854e-01
+    Final objective value:     -2.072854e-01
 
  * Found with
     Algorithm:     Newton&#39;s Method
-    Initial Point: [0.00e+00, 5.00e-01]
 
  * Convergence measures
     |x - x&#39;|               = 4.82e-07 ≰ 0.0e+00
@@ -831,12 +820,10 @@ requiring explicit Hessian matrices:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * Status: success
 
  * Candidate solution
-    Minimizer: [3.63e-01, 8.48e-01]
-    Minimum:   -2.072854e-01
+    Final objective value:     -2.072854e-01
 
  * Found with
     Algorithm:     BFGS
-    Initial Point: [0.00e+00, 5.00e-01]
 
  * Convergence measures
     |x - x&#39;|               = 1.09e-05 ≰ 0.0e+00
@@ -854,7 +841,7 @@ requiring explicit Hessian matrices:</p>
 </div>
 </div>
 </div>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -865,16 +852,16 @@ requiring explicit Hessian matrices:</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Optimization"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

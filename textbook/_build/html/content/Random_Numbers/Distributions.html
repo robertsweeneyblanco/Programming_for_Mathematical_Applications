@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>5.1. Distributions &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -680,9 +679,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="distributions">
+  <div class="tex2jax_ignore mathjax_ignore section" id="distributions">
 <h1><span class="section-number">5.1. </span>Distributions<a class="headerlink" href="#distributions" title="Permalink to this headline">¶</a></h1>
-<section id="uniformly-distributed-random-numbers">
+<div class="section" id="uniformly-distributed-random-numbers">
 <h2><span class="section-number">5.1.1. </span>Uniformly distributed random numbers<a class="headerlink" href="#uniformly-distributed-random-numbers" title="Permalink to this headline">¶</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">rand(n)</span></code> generates <span class="math notranslate nohighlight">\(n\)</span> so-called <em>pseudo-random</em> numbers from a uniform distribution on <span class="math notranslate nohighlight">\([0,1]\)</span>. This means that the numbers are technically fully deterministic, but for most practical purposes they can be seen as random. These numbers have a wide range of application in computing, for statistical simulations, studying noise, etc.</p>
 <div class="cell docutils container">
@@ -692,7 +691,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.36313330748267425
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9967897533005654
 </pre></div>
 </div>
 </div>
@@ -704,7 +703,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.572393685099716
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7381472548909045
 </pre></div>
 </div>
 </div>
@@ -717,9 +716,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
- 0.32689935226611966
- 0.3253939891622999
- 0.20409631945971018
+ 0.7534762291820414
+ 0.9536035678091033
+ 0.5544324956840205
 </pre></div>
 </div>
 </div>
@@ -738,16 +737,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.32597672886359486, 0.5490511363155669, 0.21858665481883066]
-[0.8942454282009883, 0.35311164439921205, 0.39425536741585077, 0.9531246272848422, 0.7955469475347194]
-[0.32597672886359486, 0.5490511363155669]
-[0.21858665481883066, 0.8942454282009883, 0.35311164439921205, 0.39425536741585077, 0.9531246272848422, 0.7955469475347194]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.5908446386657102, 0.7667970365022592, 0.5662374165061859]
+[0.4600853424625171, 0.7940257103317943, 0.8541465903790502, 0.20058603493384108, 0.2986142783434118]
+[0.5908446386657102, 0.7667970365022592]
+[0.5662374165061859, 0.4600853424625171, 0.7940257103317943, 0.8541465903790502, 0.20058603493384108, 0.2986142783434118]
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="other-intervals">
+</div>
+<div class="section" id="other-intervals">
 <h2><span class="section-number">5.1.2. </span>Other intervals<a class="headerlink" href="#other-intervals" title="Permalink to this headline">¶</a></h2>
 <p>To generate uniform random numbers from a different interval <span class="math notranslate nohighlight">\([a,b]\)</span>, you can simply scale a random number <span class="math notranslate nohighlight">\(x\in [0,1]\)</span> by <span class="math notranslate nohighlight">\(a + x(b-a)\)</span>. For example:</p>
 <div class="cell docutils container">
@@ -758,11 +757,11 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Float64}:
- -0.011500266219158783
-  0.4968300437749482
-  0.1564638931227953
-  0.4558700024532112
- -0.98510398773427
+ -0.506325626779982
+  0.15934446673808322
+  0.29776390041869094
+ -0.9781882207288093
+ -0.8671539260893253
 </pre></div>
 </div>
 </div>
@@ -775,15 +774,15 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
- 5.395636298694089
- 7.0747018781728785
- 8.777728635836691
+ 10.697273545220465
+  8.526836870721521
+  4.7874010983099815
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="random-integers">
+</div>
+<div class="section" id="random-integers">
 <h2><span class="section-number">5.1.3. </span>Random integers<a class="headerlink" href="#random-integers" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">rand</span></code> function can also be used with a range or a vector, from which it chooses samples at random. This can be used to generate random integers:</p>
 <div class="cell docutils container">
@@ -794,9 +793,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
- 10
-  7
- 10
+ 7
+ 8
+ 9
 </pre></div>
 </div>
 </div>
@@ -811,16 +810,16 @@
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Float64}:
  -1.0
+ -1.0
   3.141592653589793
+ -1.0
   2.718281828459045
-  2.718281828459045
-  3.141592653589793
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="normal-distributions">
+</div>
+<div class="section" id="normal-distributions">
 <h2><span class="section-number">5.1.4. </span>Normal distributions<a class="headerlink" href="#normal-distributions" title="Permalink to this headline">¶</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">randn</span></code> is similar to <code class="docutils literal notranslate"><span class="pre">rand</span></code> but draws random numbers from a normal distribution with mean 0 and standard deviation 1.</p>
 <div class="cell docutils container">
@@ -830,7 +829,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.973077837133343
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.2511757400198831
 </pre></div>
 </div>
 </div>
@@ -845,13 +844,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.608700549523313
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.8485701751587267
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -862,16 +861,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Random_Numbers"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

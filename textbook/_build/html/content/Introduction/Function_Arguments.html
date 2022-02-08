@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1.7. Optional and Keyword Arguments to Functions &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -660,9 +659,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="optional-and-keyword-arguments-to-functions">
+  <div class="tex2jax_ignore mathjax_ignore section" id="optional-and-keyword-arguments-to-functions">
 <h1><span class="section-number">1.7. </span>Optional and Keyword Arguments to Functions<a class="headerlink" href="#optional-and-keyword-arguments-to-functions" title="Permalink to this headline">¶</a></h1>
-<section id="optional-arguments">
+<div class="section" id="optional-arguments">
 <h2><span class="section-number">1.7.1. </span>Optional arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this headline">¶</a></h2>
 <p>Arguments to a function can be made optional by providing a default value. This simplifies the calling syntax when the default value is desired, but still allows for overriding if needed.</p>
 <p>As an example, consider solving the equation <span class="math notranslate nohighlight">\(2x=\tan x\)</span> using the fixed-point iteration <span class="math notranslate nohighlight">\(x_{n+1} = \tan^{-1}(2x_n)\)</span>. Our arguments are the termination tolerance <span class="math notranslate nohighlight">\(\delta\)</span> (that is, the iterations will continue until <span class="math notranslate nohighlight">\(|x_{n+1}-x_n|\le \delta\)</span>) and the starting value <span class="math notranslate nohighlight">\(x_0\)</span>. In the function below, these arguments have default values of <span class="math notranslate nohighlight">\(10^{-3}\)</span> and <span class="math notranslate nohighlight">\(1.0\)</span>, resepectively.</p>
@@ -730,8 +729,8 @@
 </div>
 </div>
 <p>Note that it is not possible to use the default value for the first argument <code class="docutils literal notranslate"><span class="pre">δ</span></code>, but overriding the second argument <code class="docutils literal notranslate"><span class="pre">x0</span></code>. The next topic will show how to use so-called keyword arguments for this.</p>
-</section>
-<section id="keyword-arguments">
+</div>
+<div class="section" id="keyword-arguments">
 <h2><span class="section-number">1.7.2. </span>Keyword arguments<a class="headerlink" href="#keyword-arguments" title="Permalink to this headline">¶</a></h2>
 <p>Functions with keyword arguments are defined using a semicolon in the signature. These arguments have to be provided using their names when called, however, the order can be arbitrary. As before, default values can also be provided for keyword arguments.</p>
 <p>As an example, we add a named argument <code class="docutils literal notranslate"><span class="pre">maxiter</span></code> to the previous example:</p>
@@ -772,8 +771,8 @@
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -784,16 +783,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

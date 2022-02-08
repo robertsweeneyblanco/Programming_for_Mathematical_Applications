@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1.3. Functions &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -724,7 +723,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="functions">
+  <div class="tex2jax_ignore mathjax_ignore section" id="functions">
 <h1><span class="section-number">1.3. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>A <em>function</em> is a named sequence of statements that performs a computation</p></li>
@@ -768,7 +767,7 @@
 </tr>
 </tbody>
 </table>
-<section id="trigonometric-and-hyperbolic-functions">
+<div class="section" id="trigonometric-and-hyperbolic-functions">
 <h2><span class="section-number">1.3.1. </span>Trigonometric and hyperbolic functions<a class="headerlink" href="#trigonometric-and-hyperbolic-functions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>All the standard trigonometric and hyperbolic functions are also defined:</p></li>
@@ -787,8 +786,8 @@
 <span class="n">asind</span>  <span class="n">acosd</span>  <span class="n">atand</span>  <span class="n">acotd</span>  <span class="n">asecd</span>  <span class="n">acscd</span>
 </pre></div>
 </div>
-</section>
-<section id="example-e-to-the-pi-minus-pi">
+</div>
+<div class="section" id="example-e-to-the-pi-minus-pi">
 <h2><span class="section-number">1.3.2. </span>Example: e to the pi Minus pi<a class="headerlink" href="#example-e-to-the-pi-minus-pi" title="Permalink to this headline">¶</a></h2>
 <p>Evaluate <span class="math notranslate nohighlight">\(e^\pi - \pi\)</span>, see if it equals 20 (it should not, but it is remarkably close):</p>
 <div class="cell docutils container">
@@ -805,8 +804,8 @@
 </div>
 <p><img alt="xkcd217_e_to_the_pi_minus_pi" src="../../_images/e_to_the_pi_minus_pi.png" /></p>
 <p>(from <a class="reference external" href="https://xkcd.com/217">https://xkcd.com/217</a>)</p>
-</section>
-<section id="example-real-roots-of-quadratic">
+</div>
+<div class="section" id="example-real-roots-of-quadratic">
 <h2><span class="section-number">1.3.3. </span>Example: Real roots of quadratic<a class="headerlink" href="#example-real-roots-of-quadratic" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Use the quadratic formula</p></li>
@@ -839,8 +838,8 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </div>
 </div>
-</section>
-<section id="user-defined-functions">
+</div>
+<div class="section" id="user-defined-functions">
 <h2><span class="section-number">1.3.4. </span>User-defined functions<a class="headerlink" href="#user-defined-functions" title="Permalink to this headline">¶</a></h2>
 <p>You can also define your own functions. This can help make your program easier to read, and eliminate repetitive code. For example, consider the following function named <code class="docutils literal notranslate"><span class="pre">myfunc</span></code>:</p>
 <div class="cell docutils container">
@@ -875,7 +874,7 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </div>
 </div>
-<section id="compact-assignment-form">
+<div class="section" id="compact-assignment-form">
 <h3><span class="section-number">1.3.4.1. </span>Compact “assignment” form<a class="headerlink" href="#compact-assignment-form" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Functions that consist of a single expression can also be defined using the following syntax:</p></li>
@@ -893,8 +892,8 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </div>
 </div>
-</section>
-<section id="anonymous-functions">
+</div>
+<div class="section" id="anonymous-functions">
 <h3><span class="section-number">1.3.4.2. </span>Anonymous functions<a class="headerlink" href="#anonymous-functions" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Yet another way to define a function, which has the benefit that it does not need to be given a name which can be convenient e.g. if it is only used temporarily:</p></li>
@@ -915,8 +914,8 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </div>
 </div>
-</section>
-<section id="multiple-return-values">
+</div>
+<div class="section" id="multiple-return-values">
 <h3><span class="section-number">1.3.4.3. </span>Multiple return values<a class="headerlink" href="#multiple-return-values" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>A function can return multiple values, separated by commas:</p></li>
@@ -949,9 +948,9 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="example-real-roots-of-quadratic-function">
+</div>
+</div>
+<div class="section" id="example-real-roots-of-quadratic-function">
 <h2><span class="section-number">1.3.5. </span>Example: Real roots of quadratic function<a class="headerlink" href="#example-real-roots-of-quadratic-function" title="Permalink to this headline">¶</a></h2>
 <p>Solve the same problem as before with a user-defined function:</p>
 <div class="cell docutils container">
@@ -996,8 +995,8 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1008,16 +1007,16 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

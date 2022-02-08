@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1.4. Repeated evaluation: for-loops &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -670,7 +669,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="repeated-evaluation-for-loops">
+  <div class="tex2jax_ignore mathjax_ignore section" id="repeated-evaluation-for-loops">
 <span id="for-loops"></span><h1><span class="section-number">1.4. </span>Repeated evaluation: for-loops<a class="headerlink" href="#repeated-evaluation-for-loops" title="Permalink to this headline">¶</a></h1>
 <p>Suppose we want to compute the finite sum <span class="math notranslate nohighlight">\(s_n = \sum_{i=1}^n \frac{1}{i}\)</span> for some integer <span class="math notranslate nohighlight">\(n\ge 1\)</span>. To do this in a computer code, we need a <em>loop</em>, which runs a block of code repeatedly for a given number of times.</p>
 <p>The simplest form of a <em>for-loop</em> has the syntax</p>
@@ -769,7 +768,7 @@
 </div>
 </div>
 </div>
-<section id="example-the-factorial-function">
+<div class="section" id="example-the-factorial-function">
 <h2><span class="section-number">1.4.1. </span>Example: The factorial function<a class="headerlink" href="#example-the-factorial-function" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -858,15 +857,15 @@
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span><span class="mi">1</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="example-taylor-polynomial">
+</div>
+<div class="section" id="example-taylor-polynomial">
 <h2><span class="section-number">1.4.2. </span>Example: Taylor polynomial<a class="headerlink" href="#example-taylor-polynomial" title="Permalink to this headline">¶</a></h2>
 <p>Consider the Taylor polynomial of degree <span class="math notranslate nohighlight">\(2n\)</span> for <span class="math notranslate nohighlight">\(\cos x\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -945,9 +944,9 @@
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span><span class="mi">2</span>
  <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -1005,8 +1004,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="scope-of-variables">
+</div>
+<div class="section" id="scope-of-variables">
 <h2><span class="section-number">1.4.3. </span>Scope of Variables<a class="headerlink" href="#scope-of-variables" title="Permalink to this headline">¶</a></h2>
 <p>The <em>scope</em> of a variable is the region of code within which a variable is visible. A new <em>local scope</em> is introduced by most code blocks. A local scope inherits all the variables from a parent local scope, both for reading and writing, unless the variable is specifically marked with the keyword <code class="docutils literal notranslate"><span class="pre">local</span></code>. This is illustrated in the example below.</p>
 <div class="cell docutils container">
@@ -1037,16 +1036,16 @@
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span><span class="mi">12</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>This can be convenient in for example <em>nested functions</em>, where the variables defined in the top function can be used in the inner function without having to pass it as a parameter.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1057,16 +1056,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

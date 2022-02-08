@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>7.3. Complex numbers &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -650,7 +649,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="complex-numbers">
+  <div class="tex2jax_ignore mathjax_ignore section" id="complex-numbers">
 <h1><span class="section-number">7.3. </span>Complex numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this headline">¶</a></h1>
 <p>Complex numbers can be created using the global constant <code class="docutils literal notranslate"><span class="pre">im</span></code> for the imaginary unit <span class="math notranslate nohighlight">\(\sqrt{-1}\)</span>:</p>
 <div class="cell docutils container">
@@ -794,18 +793,18 @@
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">throw_complex_domainerror</span><span class="p">(</span><span class="n">f</span><span class="p">::</span><span class="n">Symbol</span><span class="p">,</span> <span class="n">x</span><span class="p">::</span><span class="n">Float64</span><span class="p">)</span>
    <span class="o">@</span> <span class="n">Base</span><span class="o">.</span><span class="n">Math</span> <span class="o">./</span><span class="n">math</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">33</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Float64</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span><span class="o">.</span><span class="n">Math</span> <span class="o">./</span><span class="n">math</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">567</span>
+   <span class="o">@</span> <span class="n">Base</span><span class="o">.</span><span class="n">Math</span> <span class="o">./</span><span class="n">math</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">582</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span><span class="mi">1</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="example-roots-of-quadratic-function">
+<div class="section" id="example-roots-of-quadratic-function">
 <h2><span class="section-number">7.3.1. </span>Example: Roots of quadratic function<a class="headerlink" href="#example-roots-of-quadratic-function" title="Permalink to this headline">¶</a></h2>
 <p>We can now update our previous example of the quadratic formula to handle all cases, including complex roots. We make sure that the argument to the <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> function is complex:</p>
 <div class="cell docutils container">
@@ -864,8 +863,8 @@
 </div>
 </div>
 <p>If desired, one could easily write the function such that it returns real numbers for these cases.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -876,16 +875,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Data_Types"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

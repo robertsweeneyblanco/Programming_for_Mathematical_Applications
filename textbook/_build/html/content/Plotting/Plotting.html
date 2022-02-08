@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3. Plotting &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -680,10 +679,10 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="plotting">
+  <div class="tex2jax_ignore mathjax_ignore section" id="plotting">
 <h1><span class="section-number">3. </span>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h1>
 <p>Plotting data is a very important tool in most areas of scientific and mathematical computing. Julia provides a number of packages and options for this, and here we will focus on the popular <code class="docutils literal notranslate"><span class="pre">PyPlot</span></code> package. It is designed to mimic many of MATLAB’s plotting functions.</p>
-<section id="including-the-pyplot-package">
+<div class="section" id="including-the-pyplot-package">
 <h2><span class="section-number">3.1. </span>Including the PyPlot package<a class="headerlink" href="#including-the-pyplot-package" title="Permalink to this headline">¶</a></h2>
 <p>First of all, when you use a so-called <em>package</em> in Julia, you need to tell it e.g. with the <code class="docutils literal notranslate"><span class="pre">using</span></code> command:</p>
 <div class="cell docutils container">
@@ -693,8 +692,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="basic-plotting">
+</div>
+<div class="section" id="basic-plotting">
 <h2><span class="section-number">3.2. </span>Basic plotting<a class="headerlink" href="#basic-plotting" title="Permalink to this headline">¶</a></h2>
 <p>The basic plotting function is <code class="docutils literal notranslate"><span class="pre">plot(x,y)</span></code>, which draws straight lines between the x,y-coordinates in the vectors <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
 <p>The example below illustrates some basic usage by drawing two geometric objects. Some more comments about this code:</p>
@@ -723,16 +722,11 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Plotting_4_0.png" src="../../_images/Plotting_4_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
-</div>
 </div>
 </div>
 <p>As of late 2021 (and Julia 1.7), there is a slight issue on the backend of <code class="docutils literal notranslate"><span class="pre">PyPlot</span></code> which causes it to produce the warning you see above. This is not an actual issue, and you can safely ignore this warning in case it appears on your version as well.</p>
-</section>
-<section id="plotting-functions">
+</div>
+<div class="section" id="plotting-functions">
 <h2><span class="section-number">3.3. </span>Plotting functions<a class="headerlink" href="#plotting-functions" title="Permalink to this headline">¶</a></h2>
 <p>We can use arrays to evaluate and plot functions of the form <span class="math notranslate nohighlight">\(y=f(x)\)</span>. While there are good packages to do this automatically, the most common approach is to manually create an array of <span class="math notranslate nohighlight">\(x\)</span>-values, evaluate the corresponding <span class="math notranslate nohighlight">\(y\)</span>-values, and plot by drawing straight lines between the points. Clearly this method has potential issues (e.g. it is unclear how many points are needed, and discontinuous functions will not be drawn correctly).</p>
 <p>As an example, consider the function <span class="math notranslate nohighlight">\(f(x) = \sin (5\pi x) + 0.2\sin (25\pi x) - 0.3x\)</span>. On the interval <span class="math notranslate nohighlight">\(x\in [0,10]\)</span>, the code below shows how to plot <span class="math notranslate nohighlight">\(f(x)\)</span>, <span class="math notranslate nohighlight">\(f(x-3)\)</span>, and <span class="math notranslate nohighlight">\(-0.7f(x^2)\)</span>. It also illustrates several new features:</p>
@@ -757,8 +751,8 @@
 <img alt="../../_images/Plotting_7_0.png" src="../../_images/Plotting_7_0.png" />
 </div>
 </div>
-</section>
-<section id="plotting-parametric-curves">
+</div>
+<div class="section" id="plotting-parametric-curves">
 <h2><span class="section-number">3.4. </span>Plotting parametric curves<a class="headerlink" href="#plotting-parametric-curves" title="Permalink to this headline">¶</a></h2>
 <p>The technique from above can easily be extended for plotting parametric curves. For example, consider</p>
 <div class="math notranslate nohighlight">
@@ -786,8 +780,8 @@ y = r\sin(10\pi s)
 <img alt="../../_images/Plotting_9_0.png" src="../../_images/Plotting_9_0.png" />
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -798,16 +792,16 @@ y = r\sin(10\pi s)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Plotting"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

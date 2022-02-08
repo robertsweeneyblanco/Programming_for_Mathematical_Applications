@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>17.2. Sparse Matrices in Julia &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -670,7 +669,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="sparse-matrices-in-julia">
+  <div class="tex2jax_ignore mathjax_ignore section" id="sparse-matrices-in-julia">
 <h1><span class="section-number">17.2. </span>Sparse Matrices in Julia<a class="headerlink" href="#sparse-matrices-in-julia" title="Permalink to this headline">¶</a></h1>
 <p>Julia supports sparse matrices in the <code class="docutils literal notranslate"><span class="pre">SparseMatrixCSC</span></code> type. It uses
 the CSC format, and the datatype <code class="docutils literal notranslate"><span class="pre">Tv</span></code> for the non-zeros and all indices <code class="docutils literal notranslate"><span class="pre">Ti</span></code>
@@ -712,7 +711,7 @@ takes a vector <code class="docutils literal notranslate"><span class="pre">rows
 and a vector <code class="docutils literal notranslate"><span class="pre">vals</span></code> of stored values (essentially the COO format).</p>
 <p>The inverse of this syntax is <code class="docutils literal notranslate"><span class="pre">rows,cols,vals</span> <span class="pre">=</span> <span class="pre">findnz(A)</span></code>.</p>
 <p>The number of non-zeros of a matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> are returned by the <code class="docutils literal notranslate"><span class="pre">nnz(A)</span></code> function.</p>
-<section id="example">
+<div class="section" id="example">
 <h2><span class="section-number">17.2.1. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>For the matrix considered above, the easiest approach is to start from the COO format
 and use <code class="docutils literal notranslate"><span class="pre">sparse(rows,</span> <span class="pre">cols,</span> <span class="pre">vals)</span></code>. The size of the matrix is determined from the
@@ -776,8 +775,8 @@ to a dense matrix:</p>
 <img alt="../../_images/Sparse_Matrices_In_Julia_7_0.png" src="../../_images/Sparse_Matrices_In_Julia_7_0.png" />
 </div>
 </div>
-</section>
-<section id="operations-on-sparse-matrices">
+</div>
+<div class="section" id="operations-on-sparse-matrices">
 <h2><span class="section-number">17.2.2. </span>Operations on sparse matrices<a class="headerlink" href="#operations-on-sparse-matrices" title="Permalink to this headline">¶</a></h2>
 <p>Many operations work exactly the same for sparse matrices as for dense matrices,
 including arithmetic operations, indexing, assignment, and concatenation:</p>
@@ -804,8 +803,8 @@ including arithmetic operations, indexing, assignment, and concatenation:</p>
 <p>However, note that some standard operations can make the matrix more dense, and it might
 not make sense to use a sparse storage format for the result. Also, inserting new elements
 is expensive (for example the operation on the 4th column of <code class="docutils literal notranslate"><span class="pre">B</span></code> in the example above).</p>
-</section>
-<section id="incremental-matrix-construction">
+</div>
+<div class="section" id="incremental-matrix-construction">
 <h2><span class="section-number">17.2.3. </span>Incremental matrix construction<a class="headerlink" href="#incremental-matrix-construction" title="Permalink to this headline">¶</a></h2>
 <p>Since Julia uses the CSC format for sparse matrices, it is inefficient to create
 matrices incrementally (that is, to insert new non-zeros into the matrix).
@@ -846,9 +845,9 @@ at random positions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000244 seconds (1.01 k allocations: 122.719 KiB)
-  0.010900 seconds (10.02 k allocations: 1.409 MiB)
-  1.374354 seconds (100.02 k allocations: 11.361 MiB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000132 seconds (1.02 k allocations: 127.406 KiB)
+  0.005980 seconds (10.03 k allocations: 1.425 MiB)
+  0.744758 seconds (100.04 k allocations: 13.233 MiB)
 </pre></div>
 </div>
 </div>
@@ -894,19 +893,19 @@ and only call <code class="docutils literal notranslate"><span class="pre">spars
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000077 seconds (29 allocations: 99.547 KiB)
-  0.001233 seconds (44 allocations: 1.285 MiB)
-  0.013096 seconds (53 allocations: 8.764 MiB)
-  0.216052 seconds (62 allocations: 62.151 MiB, 12.05% gc time)
-  3.843811 seconds (682 allocations: 768.594 MiB, 6.99% gc time, 0.14% compilation time)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000056 seconds (41 allocations: 82.922 KiB)
+  0.000554 seconds (59 allocations: 1.080 MiB)
+  0.015821 seconds (71 allocations: 9.283 MiB, 49.91% gc time)
+  0.116066 seconds (80 allocations: 59.809 MiB, 2.94% gc time)
+  2.816851 seconds (702 allocations: 715.109 MiB, 6.32% gc time, 0.09% compilation time)
 </pre></div>
 </div>
 </div>
 </div>
 <p>This version is magnitudes faster than the previous one, although it does not quite achieve
 linear dependency on <span class="math notranslate nohighlight">\(N\)</span> (possibly because of the sorting inside <code class="docutils literal notranslate"><span class="pre">sparse</span></code>).</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -917,16 +916,16 @@ linear dependency on <span class="math notranslate nohighlight">\(N\)</span> (po
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Sparse_Matrices"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

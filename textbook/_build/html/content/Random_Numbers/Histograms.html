@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>5.2. Histograms &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -660,9 +659,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="histograms">
+  <div class="tex2jax_ignore mathjax_ignore section" id="histograms">
 <h1><span class="section-number">5.2. </span>Histograms<a class="headerlink" href="#histograms" title="Permalink to this headline">¶</a></h1>
-<section id="visualization-using-histograms">
+<div class="section" id="visualization-using-histograms">
 <h2><span class="section-number">5.2.1. </span>Visualization using histograms<a class="headerlink" href="#visualization-using-histograms" title="Permalink to this headline">¶</a></h2>
 <p>We can visualize a set of random numbers by counting their frequencies and plot a <em>histogram</em>. The function below counts how many times each integer in 1 up to <code class="docutils literal notranslate"><span class="pre">nbr_outcomes</span></code> appears in <code class="docutils literal notranslate"><span class="pre">sequence</span></code>:</p>
 <div class="cell docutils container">
@@ -702,11 +701,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Histograms_4_0.png" src="../../_images/Histograms_4_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
-</div>
 </div>
 </div>
 <p>As a generalization, we can simulate rolling a die <span class="math notranslate nohighlight">\(n\)</span> times and adding all the outcomes:</p>
@@ -743,8 +737,8 @@
 <img alt="../../_images/Histograms_8_0.png" src="../../_images/Histograms_8_0.png" />
 </div>
 </div>
-</section>
-<section id="general-histogram-into-bins">
+</div>
+<div class="section" id="general-histogram-into-bins">
 <h2><span class="section-number">5.2.2. </span>General histogram into bins<a class="headerlink" href="#general-histogram-into-bins" title="Permalink to this headline">¶</a></h2>
 <p>PyPlot also provides a histogram function which can automatically choose an arbitrary number of “bins”. For example, this code histograms 10000 random numbers from the normal distribution by counting the frequencies inside each of 50 equally sized bins:</p>
 <div class="cell docutils container">
@@ -762,8 +756,8 @@
 <img alt="../../_images/Histograms_10_0.png" src="../../_images/Histograms_10_0.png" />
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -774,16 +768,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Random_Numbers"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

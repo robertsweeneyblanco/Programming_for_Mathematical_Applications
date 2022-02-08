@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>4. Debugging &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -670,7 +669,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="debugging">
+  <div class="tex2jax_ignore mathjax_ignore section" id="debugging">
 <h1><span class="section-number">4. </span>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
 <p>A crucial concept that readers have hopefully started to pick up at this point is <em>debugging</em>. Simply put, this is the process by which one fixes code until it accomplishes what it is expected to accomplish. In practice, this can feel like being a detective in a crime movie where you are also the murderer.</p>
 <p>There are three types of errors to debug:</p>
@@ -692,7 +691,7 @@
 </li>
 </ul>
 <p>We will explore these one at a time below.</p>
-<section id="syntax-errors">
+<div class="section" id="syntax-errors">
 <h2><span class="section-number">4.1. </span>Syntax errors<a class="headerlink" href="#syntax-errors" title="Permalink to this headline">¶</a></h2>
 <p>Syntax errors are errors that prevent a compiler or interpreter from understanding the source code and generating a working program.</p>
 <p>They are often due to typos, and are the easiest of the errors to fix. Thankfully, they appear less frequently as you master a specific programming language, although it is unreasonably to expect them to go away entirely.</p>
@@ -713,9 +712,9 @@
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="mi">1</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -740,9 +739,9 @@
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="mi">5</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -779,9 +778,9 @@
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">4</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -808,16 +807,16 @@
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span><span class="mi">4</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>A final syntax error to explore. Julia reports that line 4 cannot have a line break in a vectorized expression using “:”. If we explore just around that line number, we’ll see that again the issue was carried over from the previous line. There is an extra <code class="docutils literal notranslate"><span class="pre">:</span></code> after <code class="docutils literal notranslate"><span class="pre">size(array,1)</span></code>.</p>
-</section>
-<section id="runtime-errors">
+</div>
+<div class="section" id="runtime-errors">
 <h2><span class="section-number">4.2. </span>Runtime errors<a class="headerlink" href="#runtime-errors" title="Permalink to this headline">¶</a></h2>
 <p>Runtime errors are errors that take place while executing a program.</p>
 <p>These errors can sometimes be caused by typos, but are often more complex than syntax errors. You should fully read the error message(s) before attempting to fix them. If you are unsure how to interpret an error message you have never seen before, please google the exact expression reported in the error message. You are certainly not the first person to cause this error, and there may be a post online from another user who has already solved your exact issue (such as on <a class="reference external" href="http://StackOverflow.com">StackOverflow.com</a> or <a class="reference external" href="http://discourse.julialang.org">discourse.julialang.org</a>).</p>
@@ -850,9 +849,9 @@
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span><span class="mi">10</span>
  <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -875,17 +874,16 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: objects of type Float64 are not callable
-<span class="n">Maybe</span> <span class="n">you</span> <span class="n">forgot</span> <span class="n">to</span> <span class="n">use</span> <span class="n">an</span> <span class="n">operator</span> <span class="n">such</span> <span class="k">as</span> <span class="o">*</span><span class="p">,</span> <span class="o">^</span><span class="p">,</span> <span class="o">%</span><span class="p">,</span> <span class="o">/</span> <span class="n">etc</span><span class="o">.</span> <span class="o">?</span>
 
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">lots_of_math2</span><span class="p">(</span><span class="n">n</span><span class="p">::</span><span class="n">Int64</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span><span class="mi">5</span>
+   <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span><span class="mi">5</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
-   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span><span class="mi">10</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span><span class="mi">10</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -923,9 +921,9 @@
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span><span class="mi">11</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -953,15 +951,15 @@
 
 Stacktrace:
  [1] setindex!
-   @ ./array.jl:905 [inlined]
+   @ ./array.jl:845 [inlined]
  [2] array_init2(m::Int64, n::Int64)
    @ Main ./In[8]:6
  [3] top-level scope
    @ In[8]:12
  [4] eval
-   @ ./boot.jl:373 [inlined]
+   @ ./boot.jl:360 [inlined]
  [5] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
-   @ Base ./loading.jl:1196
+   @ Base ./loading.jl:1116
 </pre></div>
 </div>
 </div>
@@ -990,20 +988,20 @@ Stacktrace:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: no method matching /(::String, ::Int64)
 <span class="n">Closest</span> <span class="n">candidates</span> <span class="n">are</span><span class="p">:</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">},</span> <span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">})</span> <span class="n">at</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.7.0</span><span class="o">-</span><span class="n">rc2</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="nb">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">93</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">StridedArray</span><span class="p">{</span><span class="n">P</span><span class="p">},</span> <span class="p">::</span><span class="n">Real</span><span class="p">)</span> <span class="n">where</span> <span class="n">P</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Dates</span><span class="o">.</span><span class="n">Period</span> <span class="n">at</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.7.0</span><span class="o">-</span><span class="n">rc2</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.7</span><span class="o">/</span><span class="n">Dates</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">deprecated</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">44</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">SparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}},</span> <span class="n">Int64</span><span class="p">},</span> <span class="n">false</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}}},</span> <span class="n">false</span><span class="p">}}</span> <span class="n">where</span> <span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.7.0</span><span class="o">-</span><span class="n">rc2</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.7</span><span class="o">/</span><span class="n">SparseArrays</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sparsevector</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1476</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">},</span> <span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">})</span> <span class="n">at</span> <span class="nb">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">93</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">StridedArray</span><span class="p">{</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">}</span> <span class="n">where</span> <span class="n">N</span><span class="p">,</span> <span class="p">::</span><span class="n">Real</span><span class="p">)</span> <span class="n">where</span> <span class="n">P</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Dates</span><span class="o">.</span><span class="n">Period</span> <span class="n">at</span> <span class="o">/</span><span class="n">buildworker</span><span class="o">/</span><span class="n">worker</span><span class="o">/</span><span class="n">package_linux64</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.6</span><span class="o">/</span><span class="n">Dates</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">deprecated</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">44</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">SparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}},</span> <span class="n">Int64</span><span class="p">},</span> <span class="n">false</span><span class="p">}</span> <span class="n">where</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}}},</span> <span class="n">false</span><span class="p">}</span> <span class="n">where</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">}}</span> <span class="n">where</span> <span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">buildworker</span><span class="o">/</span><span class="n">worker</span><span class="o">/</span><span class="n">package_linux64</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.6</span><span class="o">/</span><span class="n">SparseArrays</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sparsevector</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1450</span>
   <span class="o">...</span>
 
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">divide_by_zero</span><span class="p">(</span><span class="nb">input</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
    <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span><span class="mi">3</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
-   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span><span class="mi">7</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span><span class="mi">6</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -1022,25 +1020,30 @@ Stacktrace:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: no method matching divide_by_zero(::String)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: no method matching /(::String, ::Int64)
 <span class="n">Closest</span> <span class="n">candidates</span> <span class="n">are</span><span class="p">:</span>
-  <span class="n">divide_by_zero</span><span class="p">(::</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="mi">2</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">},</span> <span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">})</span> <span class="n">at</span> <span class="nb">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">93</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">StridedArray</span><span class="p">{</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">}</span> <span class="n">where</span> <span class="n">N</span><span class="p">,</span> <span class="p">::</span><span class="n">Real</span><span class="p">)</span> <span class="n">where</span> <span class="n">P</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Dates</span><span class="o">.</span><span class="n">Period</span> <span class="n">at</span> <span class="o">/</span><span class="n">buildworker</span><span class="o">/</span><span class="n">worker</span><span class="o">/</span><span class="n">package_linux64</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.6</span><span class="o">/</span><span class="n">Dates</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">deprecated</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">44</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">SparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}},</span> <span class="n">Int64</span><span class="p">},</span> <span class="n">false</span><span class="p">}</span> <span class="n">where</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}}},</span> <span class="n">false</span><span class="p">}</span> <span class="n">where</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">}}</span> <span class="n">where</span> <span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">buildworker</span><span class="o">/</span><span class="n">worker</span><span class="o">/</span><span class="n">package_linux64</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.6</span><span class="o">/</span><span class="n">SparseArrays</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sparsevector</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1450</span>
+  <span class="o">...</span>
 
 <span class="ne">Stacktrace</span>:
- <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
-   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="mi">6</span>
- <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">divide_by_zero</span><span class="p">(</span><span class="nb">input</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span><span class="mi">3</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span><span class="mi">6</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nb">eval</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Now the error message makes more sense. There correctly is no function <code class="docutils literal notranslate"><span class="pre">divide_by_zero()</span></code> that takes in a <code class="docutils literal notranslate"><span class="pre">String</span></code> as the input.</p>
 <p>Note: This fix will not take effect until after you restart the Jupyter kernel so that Julia forgets about the previous function <code class="docutils literal notranslate"><span class="pre">divide_by_zero()</span></code> which allowed <code class="docutils literal notranslate"><span class="pre">input</span></code> to be any type.</p>
-</section>
-<section id="semantic-errors">
+</div>
+<div class="section" id="semantic-errors">
 <h2><span class="section-number">4.3. </span>Semantic errors<a class="headerlink" href="#semantic-errors" title="Permalink to this headline">¶</a></h2>
 <p>Semantic errors technically are not errors at all. If there are semantic errors in your program, the computer does not generate any error messages, but the program simply does the wrong thing.</p>
 <p>A classic example of a semantic error is an infinite loop or infinite recursion. There may not be an error message reported, but an infinite loop can never be intended design.</p>
@@ -1063,6 +1066,11 @@ Stacktrace:
     <span class="k">end</span>
     <span class="k">return</span> <span class="n">sum</span>
 <span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array_sum (generic function with 1 method)
 </pre></div>
 </div>
 </div>
@@ -1104,13 +1112,13 @@ Stacktrace:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6.95191766017783e-310]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.0e-323]
 Sum before = 0
-Sum after = 6.95191766017783e-310
-[1.0, 0.0]
+Sum after = 2.0e-323
+[1.0, 6.9237998054352e-310]
 Sum before = 0
 Sum after = 1.0
-[1.0, 2.0, 3.0, 4.0, 5.0e-324]
+[1.0, 2.0, 3.0, 4.0, 1.46486e-319]
 Sum before = 0
 Sum after = 10.0
 </pre></div>
@@ -1118,8 +1126,8 @@ Sum after = 10.0
 </div>
 </div>
 <p>Equipped with all this information, it becomes much more simple to debug the algorithm. We see that there is an issue with initializing the array: the last entry of the array remains undefined even after initialization! That information directly leads us to fix the bounds on the first loop from <code class="docutils literal notranslate"><span class="pre">1:n-1</span></code> to <code class="docutils literal notranslate"><span class="pre">1:n</span></code>. Re-running the tests yields the expected answer, and so we can remove the debugging printouts, comfortable that the algorithm is correct.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1130,16 +1138,16 @@ Sum after = 10.0
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Debugging"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

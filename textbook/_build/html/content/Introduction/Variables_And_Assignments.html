@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1.2. Variables and assignments &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -678,7 +677,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="variables-and-assignments">
+  <div class="tex2jax_ignore mathjax_ignore section" id="variables-and-assignments">
 <h1><span class="section-number">1.2. </span>Variables and assignments<a class="headerlink" href="#variables-and-assignments" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>A <em>variable</em> is a name that refers to a value</p></li>
@@ -731,9 +730,9 @@ and gives it the value of the evaluated expression</p></li>
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="p">:</span><span class="mi">0</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -762,7 +761,7 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </div>
 </div>
-<section id="updating-operators">
+<div class="section" id="updating-operators">
 <h2><span class="section-number">1.2.1. </span>Updating operators<a class="headerlink" href="#updating-operators" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The following <em>updating operators</em> make it convenient to operate on a variable and assign the result back to the variable:</p></li>
@@ -830,8 +829,8 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </div>
 </div>
-</section>
-<section id="numerical-literal-coefficients">
+</div>
+<div class="section" id="numerical-literal-coefficients">
 <h2><span class="section-number">1.2.2. </span>Numerical literal coefficients<a class="headerlink" href="#numerical-literal-coefficients" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Julia allows variables to be immediately preceded by a numeric literal, implying multiplication</p></li>
@@ -888,8 +887,8 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </div>
 </div>
-</section>
-<section id="comments">
+</div>
+<div class="section" id="comments">
 <h2><span class="section-number">1.2.3. </span>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Comments start with the <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol, and everything from the <code class="docutils literal notranslate"><span class="pre">#</span></code> to the end of the line is ignored by Julia</p></li>
@@ -903,8 +902,8 @@ and gives it the value of the evaluated expression</p></li>
 </ul>
 </li>
 </ul>
-</section>
-<section id="example-of-comments">
+</div>
+<div class="section" id="example-of-comments">
 <h2><span class="section-number">1.2.4. </span>Example of comments<a class="headerlink" href="#example-of-comments" title="Permalink to this headline">¶</a></h2>
 <p>The comments in this code make it easy to understand exactly what it does</p>
 <div class="cell docutils container">
@@ -931,8 +930,8 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -943,16 +942,16 @@ and gives it the value of the evaluated expression</p></li>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

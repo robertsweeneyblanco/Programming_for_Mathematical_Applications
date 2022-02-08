@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2.2. Multi-dimensional Arrays &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -658,7 +657,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="multi-dimensional-arrays">
+  <div class="tex2jax_ignore mathjax_ignore section" id="multi-dimensional-arrays">
 <h1><span class="section-number">2.2. </span>Multi-dimensional Arrays<a class="headerlink" href="#multi-dimensional-arrays" title="Permalink to this headline">¶</a></h1>
 <p>Arrays can have multiple dimensions, e.g. 2-d arrays can be used to represent <em>matrices</em>. They can be constructed by using spaces between the number in each row, and semi-colons between the rows:</p>
 <div class="cell docutils container">
@@ -675,7 +674,19 @@
 </div>
 </div>
 </div>
-<p>Note the type <code class="docutils literal notranslate"><span class="pre">Array{Int64,2}</span></code>, indicating that this is a 2-d array (of integers). When accessing elements in a mutli-dimensional array, you supply multiple indices separated by commas inside the square brackets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrix{Int64} (alias for Array{Int64, 2})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the type <code class="docutils literal notranslate"><span class="pre">Matrix{Int64}</span></code>, or the equivalent <code class="docutils literal notranslate"><span class="pre">Array{Int64,2}</span></code>, indicating that this is a 2-d array (of integers). When accessing elements in a mutli-dimensional array, you supply multiple indices separated by commas inside the square brackets:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
@@ -783,7 +794,7 @@
 </div>
 </div>
 </div>
-<section id="multi-dimensional-array-creation">
+<div class="section" id="multi-dimensional-array-creation">
 <h2><span class="section-number">2.2.1. </span>Multi-dimensional array creation<a class="headerlink" href="#multi-dimensional-array-creation" title="Permalink to this headline">¶</a></h2>
 <p>The built-in functions from before extend to arrays of any dimension:</p>
 <table class="colwidths-auto table">
@@ -909,8 +920,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="dot-syntax-and-slices-for-multi-dimensional-arrays">
+</div>
+<div class="section" id="dot-syntax-and-slices-for-multi-dimensional-arrays">
 <h2><span class="section-number">2.2.2. </span>Dot-syntax and slices for multi-dimensional arrays<a class="headerlink" href="#dot-syntax-and-slices-for-multi-dimensional-arrays" title="Permalink to this headline">¶</a></h2>
 <p>The dot-syntax works on multi-dimensional arrays just like before. For example:</p>
 <div class="cell docutils container">
@@ -1016,8 +1027,8 @@
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1028,16 +1039,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Arrays_and_Dictionaries"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

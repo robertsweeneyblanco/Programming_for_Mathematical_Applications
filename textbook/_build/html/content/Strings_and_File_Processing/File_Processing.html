@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>10.3. File Processing &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -690,10 +689,10 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="file-processing">
+  <div class="tex2jax_ignore mathjax_ignore section" id="file-processing">
 <h1><span class="section-number">10.3. </span>File Processing<a class="headerlink" href="#file-processing" title="Permalink to this headline">¶</a></h1>
 <p>Files are commonly used by computer codes, for example to save computed data or to read tables and external data files. Julia has extensive support for working with files, but here we will focus on only the basic functionality.</p>
-<section id="reading-files">
+<div class="section" id="reading-files">
 <h2><span class="section-number">10.3.1. </span>Reading files<a class="headerlink" href="#reading-files" title="Permalink to this headline">¶</a></h2>
 <p>First we consider the most basic way to read a text file. We create an example text file named <code class="docutils literal notranslate"><span class="pre">test_file.txt</span></code> (e.g. using the Jupyter notebook or an editor), containing some lines of text.</p>
 <p>The code below shows how to read each line of this file into a string, which can then be further processed in Julia (here it simply displays each line as a Julia string).</p>
@@ -837,8 +836,8 @@ This is line #4
 </div>
 </div>
 </div>
-</section>
-<section id="writing-files">
+</div>
+<div class="section" id="writing-files">
 <h2><span class="section-number">10.3.2. </span>Writing files<a class="headerlink" href="#writing-files" title="Permalink to this headline">¶</a></h2>
 <p>The syntax for writing files is similar. The basic usage is demonstrated below:</p>
 <div class="cell docutils container">
@@ -876,19 +875,19 @@ This is line #4
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>abpuaafamqwtzorchgzkxstxiguzbkrnerdbhqtbdsgqaofiep
-aacjxapwkqfusaigvkffpdhlffopinwojywttxfiqvognxlkue
-ubticbfrhaubymyrqnnuslytjqczdlcezgjsiwovbslovehqyx
-blwmsuymgbklvrzbaecsujsqnklugpfcovlapzsinwgkziqljk
-zwcwtoxbpvrpotjpkwybkbnumuzcnfcrqthhqewrcitzvplvmn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>krfscnqusyhnmocpkfjuzeooqijpdbtwyuvrxdotvqheaeomwj
+qkxhumxwmguzfefpljnbopktbacxeqrwbbxpqslrhbhfxjxsnq
+cypwayhguydjgqytkahbjcpeddmorczufvdgdzpaemtmwmawxb
+lcstefidiipohlevrnwtmlsvxcdpbczjoprjmmxiaojbrfnnwi
+hwrunzmjmkzuhmjnfkbpbnmcnkindcikrxklsqofotyizphwgk
 
 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352 24157817 39088169 63245986 102334155 165580141 267914296 433494437 701408733 1134903170 1836311903 2971215073 4807526976 7778742049 12586269025 20365011074 32951280099
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="delimited-files">
+</div>
+<div class="section" id="delimited-files">
 <h2><span class="section-number">10.3.3. </span>Delimited files<a class="headerlink" href="#delimited-files" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">DelimitedFiles</span></code> package contains two convenient functions for reading and writing arrays of data:</p>
 <ul class="simple">
@@ -917,14 +916,14 @@ zwcwtoxbpvrpotjpkwybkbnumuzcnfcrqthhqewrcitzvplvmn
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>89,-53,-71
--61,26,100
--30,-92,75
-44,-3,53
-70,-65,-66
--62,-72,54
-48,-78,-31
--3,76,56
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-75,32,9
+36,-55,47
+39,-100,21
+36,72,-25
+-49,3,-48
+-83,54,-52
+32,55,14
+22,-79,9
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
@@ -932,8 +931,8 @@ zwcwtoxbpvrpotjpkwybkbnumuzcnfcrqthhqewrcitzvplvmn
 </div>
 </div>
 </div>
-</section>
-<section id="example-coded-triangle-numbers">
+</div>
+<div class="section" id="example-coded-triangle-numbers">
 <h2><span class="section-number">10.3.4. </span>Example: Coded triangle numbers<a class="headerlink" href="#example-coded-triangle-numbers" title="Permalink to this headline">¶</a></h2>
 <p>Project Euler, problem 42:</p>
 <blockquote>
@@ -978,8 +977,8 @@ two-thousand common English words, how many are triangle words?</p>
 </div>
 </div>
 </div>
-</section>
-<section id="regex">
+</div>
+<div class="section" id="regex">
 <h2><span class="section-number">10.3.5. </span>Regex<a class="headerlink" href="#regex" title="Permalink to this headline">¶</a></h2>
 <p><em>Regular expressions</em> (regex) are used to extract information from strings (often from files) in a systematic way. Defined by a specific search pattern, a regex finds any and all text matching that search pattern. The syntax for these regexes is a bit more archaic than most Julia, but this same syntax is used across (almost) all programming languages. Therefore, the basics are certainly worth learning, for instance <a class="reference external" href="https://regexone.com/">through this tutorial</a>.</p>
 <p>In Julia, a regex is defined as a string prefixed with the character <code class="docutils literal notranslate"><span class="pre">r</span></code>, such as <code class="docutils literal notranslate"><span class="pre">r&quot;word</span> <span class="pre">\d+&quot;</span></code>. One searches a string using the <code class="docutils literal notranslate"><span class="pre">match(Regex,</span> <span class="pre">String)</span></code> function. This function returns a special <code class="docutils literal notranslate"><span class="pre">RegexMatch</span></code> object containing the matching strings, but for most purposes we only need to access these matches as an array of strings, done with <code class="docutils literal notranslate"><span class="pre">m.captures</span></code>.</p>
@@ -1004,9 +1003,9 @@ two-thousand common English words, how many are triangle words?</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×8 Matrix{Int64}:
-  89  -61  -30  44   70  -62   48  -3
- -53   26  -92  -3  -65  -72  -78  76
- -71  100   75  53  -66   54  -31  56
+ -75   36    39   36  -49  -83  32   22
+  32  -55  -100   72    3   54  55  -79
+   9   47    21  -25  -48  -52  14    9
 </pre></div>
 </div>
 </div>
@@ -1046,8 +1045,8 @@ two-thousand common English words, how many are triangle words?</p>
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1058,16 +1057,16 @@ two-thousand common English words, how many are triangle words?</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Strings_and_File_Processing"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

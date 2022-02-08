@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>6.1. Constructing Arrays &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -668,9 +667,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="constructing-arrays">
+  <div class="tex2jax_ignore mathjax_ignore section" id="constructing-arrays">
 <h1><span class="section-number">6.1. </span>Constructing Arrays<a class="headerlink" href="#constructing-arrays" title="Permalink to this headline">¶</a></h1>
-<section id="constructing-arrays-using-comprehensions">
+<div class="section" id="constructing-arrays-using-comprehensions">
 <h2><span class="section-number">6.1.1. </span>Constructing Arrays using Comprehensions<a class="headerlink" href="#constructing-arrays-using-comprehensions" title="Permalink to this headline">¶</a></h2>
 <p><em>Comprehension syntax</em> is a a more general way to create arrays based on expressions.
 It has the following form:</p>
@@ -750,14 +749,14 @@ It has the following form:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×10 Matrix{Float64}:
- -4.0  -1.0  -4.0  5.0  -4.0   0.0  -5.0  4.0  3.0  -2.0
- -4.0   4.0   0.0  1.0   0.0  -5.0   1.0  0.0  5.0  -5.0
+ -4.0   2.0  -1.0  -1.0  -1.0  -1.0  3.0  -2.0   1.0   4.0
+ -1.0  -5.0  -5.0  -3.0  -1.0  -4.0  5.0   3.0  -2.0  -4.0
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="generator-expressions">
+</div>
+<div class="section" id="generator-expressions">
 <h2><span class="section-number">6.1.2. </span>Generator expressions<a class="headerlink" href="#generator-expressions" title="Permalink to this headline">¶</a></h2>
 <p>If you remove the brackets from a comprehension, you create a <em>generator expression</em>. It can be seen as a rule that produces the requested values on demand, without allocating an array to store them. Parentheses are needed to separate the generator from other elements:</p>
 <div class="cell docutils container">
@@ -786,8 +785,8 @@ It has the following form:</p>
 </div>
 </div>
 </div>
-</section>
-<section id="more-on-creating-arrays">
+</div>
+<div class="section" id="more-on-creating-arrays">
 <h2><span class="section-number">6.1.3. </span>More on creating arrays<a class="headerlink" href="#more-on-creating-arrays" title="Permalink to this headline">¶</a></h2>
 <p>Some other useful functions for creating arrays include the <code class="docutils literal notranslate"><span class="pre">reshape</span></code> function, which takes the data from one array and rearranges it into new dimensions:</p>
 <div class="cell docutils container">
@@ -874,8 +873,8 @@ It has the following form:</p>
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -886,16 +885,16 @@ It has the following form:</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Vectorization"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

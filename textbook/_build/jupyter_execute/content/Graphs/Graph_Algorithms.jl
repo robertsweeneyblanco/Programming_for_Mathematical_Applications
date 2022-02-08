@@ -20,7 +20,7 @@ function dfs(g::Graph, start)
     return nothing
 end
 
-plot_graph(g)
+plot(g)
 
 dfs(g,1) 
 
@@ -52,7 +52,7 @@ function plot_path(g, path)
     plot(first.(xypath), last.(xypath), color="red", linewidth=2)
 end
 
-plot_graph(g)
+plot(g)
 path = find_path_dfs(g, 10, 5)
 plot_path(g, path)
 println("Path from 10 to 5: $path")
@@ -106,7 +106,7 @@ end
 
 
 path = shortest_path_bfs(g, 10, 5)
-plot_graph(g)
+plot(g)
 plot_path(g, path)
 println("Shortest path from 10 to 5: $path")
 
@@ -148,5 +148,7 @@ end
 
 path = shortest_path_bfs(g1, 6, 57)
 xypath = [v.coordinates for v in g1.vertices][path]
-plot_graph(g1, scale=0.5)
+plot(g1, scale=0.5)
 plot(first.(xypath), last.(xypath), color="red", linewidth=2)
+
+

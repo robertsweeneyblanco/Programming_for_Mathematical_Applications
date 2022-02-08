@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>7.2. Arbitrary precision floating-point numbers &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -650,7 +649,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="arbitrary-precision-floating-point-numbers">
+  <div class="tex2jax_ignore mathjax_ignore section" id="arbitrary-precision-floating-point-numbers">
 <h1><span class="section-number">7.2. </span>Arbitrary precision floating-point numbers<a class="headerlink" href="#arbitrary-precision-floating-point-numbers" title="Permalink to this headline">¶</a></h1>
 <p>Similarly, the <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> data type can create floating-point numbers with higher precision than the regular <code class="docutils literal notranslate"><span class="pre">Float64</span></code> type. It can also be created from an existing <code class="docutils literal notranslate"><span class="pre">Float64</span></code> number:</p>
 <div class="cell docutils container">
@@ -723,7 +722,7 @@
 </div>
 </div>
 </div>
-<section id="example-cubic-convergence">
+<div class="section" id="example-cubic-convergence">
 <h2><span class="section-number">7.2.1. </span>Example: Cubic convergence<a class="headerlink" href="#example-cubic-convergence" title="Permalink to this headline">¶</a></h2>
 <p><em>Halley’s method</em> is an extension of Newton’s method for solving <span class="math notranslate nohighlight">\(f(x)=0\)</span>, which involves the second derivative but gives cubic convergence:</p>
 <div class="math notranslate nohighlight">
@@ -773,8 +772,8 @@ Error = 0.0
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -785,16 +784,16 @@ Error = 0.0
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Data_Types"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

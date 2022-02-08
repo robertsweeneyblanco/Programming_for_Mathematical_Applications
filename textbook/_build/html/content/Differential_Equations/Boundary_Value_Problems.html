@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>14.3. Boundary Value Problems &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -650,7 +649,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="boundary-value-problems">
+  <div class="tex2jax_ignore mathjax_ignore section" id="boundary-value-problems">
 <h1><span class="section-number">14.3. </span>Boundary Value Problems<a class="headerlink" href="#boundary-value-problems" title="Permalink to this headline">¶</a></h1>
 <p>Another class of ODEs are <em>boundary value problems</em> (BVPs), where conditions on the solution are given at two different values for the independent variable (instead of at only an initial time, as for the IVPs). In these problems the independent variable is often a spatial coordinate, so we denote it by <span class="math notranslate nohighlight">\(x\)</span>. A model BVP problem is the Poisson equation with Dirichlet conditions at the endpoints, for example:</p>
 <div class="math notranslate nohighlight">
@@ -693,7 +692,7 @@ h^2f(x_2) \\
 h^2f(x_n)-\beta
 \end{bmatrix}
 \end{split}\]</div>
-<section id="example-bvp">
+<div class="section" id="example-bvp">
 <h2><span class="section-number">14.3.1. </span>Example BVP<a class="headerlink" href="#example-bvp" title="Permalink to this headline">¶</a></h2>
 <p>For example we consider the boundary value problem</p>
 <div class="math notranslate nohighlight">
@@ -732,15 +731,10 @@ u(1) &amp;= 1
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Boundary_Value_Problems_3_0.png" src="../../_images/Boundary_Value_Problems_3_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -751,16 +745,16 @@ u(1) &amp;= 1
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Differential_Equations"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>6.2. Array Functions &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -670,9 +669,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="array-functions">
+  <div class="tex2jax_ignore mathjax_ignore section" id="array-functions">
 <h1><span class="section-number">6.2. </span>Array Functions<a class="headerlink" href="#array-functions" title="Permalink to this headline">¶</a></h1>
-<section id="introduction-to-array-functions">
+<div class="section" id="introduction-to-array-functions">
 <h2><span class="section-number">6.2.1. </span>Introduction to Array functions<a class="headerlink" href="#introduction-to-array-functions" title="Permalink to this headline">¶</a></h2>
 <p>We have seen before how many for-loops over arrays can be avoided using e.g. the dot-operator, which evaluates functions and operators element-wise. A number of other helper functions are available to extend this so-called <em>vectorization</em> technique, and allow for shorter code that is easier to understand and which might execute faster.</p>
 <p>For example, a very common operation is to sum all the elements of an array. While this is easy to do with a for-loop, the function <code class="docutils literal notranslate"><span class="pre">sum</span></code> makes it even easier:</p>
@@ -684,7 +683,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum of [41, 91, 74, 74, 4] = 284
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum of [48, 88, 90, 40, 29] = 295
 </pre></div>
 </div>
 </div>
@@ -698,9 +697,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×5 Matrix{Int64}:
- 78  54   29  17   -3
- 83  16  -35  65   31
- 79  65   23  80  -63
+  83  -22  -59  -13  95
+ -64  -74    5   70  81
+  57  -11   43    1  22
 </pre></div>
 </div>
 </div>
@@ -713,7 +712,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1×5 Matrix{Int64}:
- 240  135  17  162  -35
+ 76  -107  -11  58  198
 </pre></div>
 </div>
 </div>
@@ -727,9 +726,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×1 Matrix{Int64}:
- 175
- 160
- 184
+  84
+  18
+ 112
 </pre></div>
 </div>
 </div>
@@ -743,11 +742,11 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Int64}:
- 240
- 135
-  17
- 162
- -35
+   76
+ -107
+  -11
+   58
+  198
 </pre></div>
 </div>
 </div>
@@ -763,14 +762,14 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Int64}:
- 24
- 22
- 46
- 42
- 36
+ 77
+ 58
+ 68
+ 93
+  1
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36723456
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28242984
 </pre></div>
 </div>
 </div>
@@ -785,17 +784,17 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×5 Matrix{Int64}:
- 78  54   29  17   -3
- 83  16  -35  65   31
- 79  65   23  80  -63
+  83  -22  -59  -13  95
+ -64  -74    5   70  81
+  57  -11   43    1  22
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1×5 Matrix{Int64}:
- 83  65  29  80  31
+ 83  -11  43  70  95
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1×5 Matrix{Int64}:
- 78  16  -35  17  -63
+ -64  -74  -59  -13  22
 </pre></div>
 </div>
 </div>
@@ -870,8 +869,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="example-taylor-polynomial-using-array-functions">
+</div>
+<div class="section" id="example-taylor-polynomial-using-array-functions">
 <h2><span class="section-number">6.2.2. </span>Example: Taylor polynomial using array functions<a class="headerlink" href="#example-taylor-polynomial-using-array-functions" title="Permalink to this headline">¶</a></h2>
 <p>In part 1, we used for-loops to evaluate the Taylor polynomial for <span class="math notranslate nohighlight">\(\cos x\)</span> of a given degree <span class="math notranslate nohighlight">\(2n\)</span>:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">taylor_cos</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
@@ -932,15 +931,10 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Array_Functions_23_0.png" src="../../_images/Array_Functions_23_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="array-functions-for-indices-and-booleans">
+<div class="section" id="array-functions-for-indices-and-booleans">
 <h2><span class="section-number">6.2.3. </span>Array functions for indices and booleans<a class="headerlink" href="#array-functions-for-indices-and-booleans" title="Permalink to this headline">¶</a></h2>
 <p>Another useful set of array functions are based on indices and boolean variables. For example, the <code class="docutils literal notranslate"><span class="pre">in</span></code> function (or the <span class="math notranslate nohighlight">\(\in\)</span> symbol) will loop through an array and return <code class="docutils literal notranslate"><span class="pre">true</span></code> if a given number appears anywhere in the array:</p>
 <div class="cell docutils container">
@@ -1028,8 +1022,8 @@ false
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1040,16 +1034,16 @@ false
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Vectorization"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

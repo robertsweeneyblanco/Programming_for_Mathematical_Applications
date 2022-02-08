@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>11. Structs and Objects &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -710,10 +709,10 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="structs-and-objects">
+  <div class="tex2jax_ignore mathjax_ignore section" id="structs-and-objects">
 <span id="structs"></span><h1><span class="section-number">11. </span>Structs and Objects<a class="headerlink" href="#structs-and-objects" title="Permalink to this headline">¶</a></h1>
 <p>We have seen a number of different <em>types</em> in Julia, such as <code class="docutils literal notranslate"><span class="pre">Int64</span></code>, <code class="docutils literal notranslate"><span class="pre">Float64</span></code>, <code class="docutils literal notranslate"><span class="pre">Array{Float64,2}</span></code>, etc. Now we will learn how to create new types, how to use them to store data, and how to define new functions (methods) and operators on them. This is closely related to the concept of <em>object orientation</em> in other computer languages.</p>
-<section id="composite-types">
+<div class="section" id="composite-types">
 <h2><span class="section-number">11.1. </span>Composite types<a class="headerlink" href="#composite-types" title="Permalink to this headline">¶</a></h2>
 <p>The keyword <code class="docutils literal notranslate"><span class="pre">struct</span></code> is used to create a so-called composite type, that is, a new user-defined type.
 The type is given a name, and a list of <em>fields</em> (or <em>attributes</em>) which are names that will be used
@@ -829,8 +828,8 @@ a default value in the <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 </div>
-</section>
-<section id="functions-on-types">
+</div>
+<div class="section" id="functions-on-types">
 <h2><span class="section-number">11.2. </span>Functions on types<a class="headerlink" href="#functions-on-types" title="Permalink to this headline">¶</a></h2>
 <p>We can easily define functions on new types, by passing the objects as arguments or return values.
 For example, we can easily define a function that multiplies a polynomial <span class="math notranslate nohighlight">\(p(x)\)</span> by <span class="math notranslate nohighlight">\(x\)</span> in the
@@ -921,8 +920,8 @@ degree function called with Int argument
 </div>
 </div>
 </div>
-</section>
-<section id="customized-printing">
+</div>
+<div class="section" id="customized-printing">
 <h2><span class="section-number">11.3. </span>Customized printing<a class="headerlink" href="#customized-printing" title="Permalink to this headline">¶</a></h2>
 <p>Julia provides a special function <code class="docutils literal notranslate"><span class="pre">show</span></code> in the <code class="docutils literal notranslate"><span class="pre">Base</span></code> package, which can be overloaded to change how objects of a new type are printed. For our polynomials, instead of showing the array of coefficients <code class="docutils literal notranslate"><span class="pre">c</span></code> and the name of the independent variable <code class="docutils literal notranslate"><span class="pre">var</span></code>, we will write it as a polynomial in standard math notation.</p>
 <p>The details of this functions do not matter much, it mostly needs to deal with certain special cases to print polynomials correctly. The main point is that it will <em>only be called</em> for objects of type <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code>.</p>
@@ -991,8 +990,8 @@ degree function called with Int argument
 </div>
 </div>
 </div>
-</section>
-<section id="callable-objects">
+</div>
+<div class="section" id="callable-objects">
 <h2><span class="section-number">11.4. </span>Callable objects<a class="headerlink" href="#callable-objects" title="Permalink to this headline">¶</a></h2>
 <p>One basic operation to perform on a polynomial is evaluation, that is, for a given number <span class="math notranslate nohighlight">\(x\)</span> compute <span class="math notranslate nohighlight">\(p(x)\)</span>. We will implement this using <em>Horner’s rule</em>:</p>
 <div class="math notranslate nohighlight">
@@ -1033,8 +1032,8 @@ p(x) &amp;= a_nx^n + a_{n-1} x^{n-1} + \cdots + a_0 \\
 </div>
 </div>
 </div>
-</section>
-<section id="plotting">
+</div>
+<div class="section" id="plotting">
 <h2><span class="section-number">11.5. </span>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
 <p>Using the evaluation functionality, we can easily implement plotting of polynomials. Again we reuse the name <code class="docutils literal notranslate"><span class="pre">plot</span></code> which is already used in the <code class="docutils literal notranslate"><span class="pre">PyPlot</span></code> package, but we specialize it to our <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> type:</p>
 <div class="cell docutils container">
@@ -1059,18 +1058,13 @@ p(x) &amp;= a_nx^n + a_{n-1} x^{n-1} + \cdots + a_0 \\
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Structs_And_Objects_30_0.png" src="../../_images/Structs_And_Objects_30_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(1⋅x^5 + 1⋅x^4 - 5⋅x^3 - 5⋅x^2 + 4⋅x + 4)
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="operator-overloading">
+</div>
+<div class="section" id="operator-overloading">
 <h2><span class="section-number">11.6. </span>Operator overloading<a class="headerlink" href="#operator-overloading" title="Permalink to this headline">¶</a></h2>
 <p>Operators such as <code class="docutils literal notranslate"><span class="pre">+</span></code> can also be overloaded for new types, by specializing the function definition. These operators are so fundamental to the language itself that they are part of the <code class="docutils literal notranslate"><span class="pre">Base</span></code> package. This special package is automatically included by Julia, so there is no need to call <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">Base</span></code> before using any of its functionality or specify <code class="docutils literal notranslate"><span class="pre">Base.func_name()</span></code> when calling one of its functions. However, when overloading a function in this package, we must still specify that the function is a part of this package with the usual syntax <code class="docutils literal notranslate"><span class="pre">Base.func_name()</span></code>.</p>
 <p>Adding polynomials is of course easy, we simply add the coefficients. However, for our implementation we first need to make sure the coefficient vectors are long enough to contain the sum:</p>
@@ -1115,9 +1109,9 @@ MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span><span class="mi">4</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -1161,8 +1155,8 @@ MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
 <img alt="../../_images/Structs_And_Objects_39_0.png" src="../../_images/Structs_And_Objects_39_0.png" />
 </div>
 </div>
-</section>
-<section id="generic-programming">
+</div>
+<div class="section" id="generic-programming">
 <h2><span class="section-number">11.7. </span>Generic programming<a class="headerlink" href="#generic-programming" title="Permalink to this headline">¶</a></h2>
 <p>In the examples above we have specialized many functions and operators to work in a specific way for objects of type <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code>. However, note the advantages of <em>not</em> limiting the type of a variable or function argument to be of a certain type. For example, in the definition of <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> we did not specify that the coefficients <code class="docutils literal notranslate"><span class="pre">c</span></code> should be of e.g. integer or floating point types (in fact our examples used both). This means our functions work perfectly fine also for rational coefficients and arguments:</p>
 <div class="cell docutils container">
@@ -1244,8 +1238,8 @@ MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1256,16 +1250,16 @@ MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Structs_And_Objects"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

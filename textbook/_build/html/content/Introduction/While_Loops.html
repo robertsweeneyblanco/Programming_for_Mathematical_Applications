@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1.6. Repeated evaluation: while-loops &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -670,7 +669,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="repeated-evaluation-while-loops">
+  <div class="tex2jax_ignore mathjax_ignore section" id="repeated-evaluation-while-loops">
 <h1><span class="section-number">1.6. </span>Repeated evaluation: while-loops<a class="headerlink" href="#repeated-evaluation-while-loops" title="Permalink to this headline">¶</a></h1>
 <p>We have seen above that for-loops are good for looping <em>when you know the number of iterations</em>, e.g to compute the finite sum <span class="math notranslate nohighlight">\(s_n = \sum_{i=1}^n \frac{1}{i}\)</span> for some given integer <span class="math notranslate nohighlight">\(n\ge 1\)</span>. However, suppose the problem statement makes it difficult to predict the number of iterations. For example, if we had to compute the terms in <span class="math notranslate nohighlight">\(s_n\)</span> until a term is smaller than a given number <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <p>For problems like this, when you don’t know the total number of iterations, you can use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. It has the following syntax:</p>
@@ -732,7 +731,7 @@
 </div>
 </div>
 </div>
-<section id="the-break-statement">
+<div class="section" id="the-break-statement">
 <h2><span class="section-number">1.6.1. </span>The break statement<a class="headerlink" href="#the-break-statement" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes it is convenient to determine somewhere inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop that the loop should finish. This can be done with the <code class="docutils literal notranslate"><span class="pre">break</span></code> statement:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="c">#condition</span>
@@ -746,12 +745,12 @@
 </div>
 <p>This will repeat like before, that is, until <code class="docutils literal notranslate"><span class="pre">#condition</span></code> becomes <code class="docutils literal notranslate"><span class="pre">false</span></code>. However, if <code class="docutils literal notranslate"><span class="pre">#termination_condition</span></code> becomes <code class="docutils literal notranslate"><span class="pre">false</span></code>, it will immediately finish the loop.</p>
 <p>This way of writing while loops is common because you can check the condition anywhere in the loop (not just at the top). Another common usage of this is to set <code class="docutils literal notranslate"><span class="pre">#condition</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>, in which case the termination is completely controlled by <code class="docutils literal notranslate"><span class="pre">#termination_condition</span></code>.</p>
-</section>
-<section id="the-continue-statement">
+</div>
+<div class="section" id="the-continue-statement">
 <h2><span class="section-number">1.6.2. </span>The continue statement<a class="headerlink" href="#the-continue-statement" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement is similar to the <code class="docutils literal notranslate"><span class="pre">break</span></code> statement, in that it can appear anywhere inside the loop. However, when a <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement is encounted, the code will immediately go the next iteration and start at the beginning of the loop. This can be convenient to quickly skip an iteration without terminating the repetitions.</p>
-</section>
-<section id="example-square-root">
+</div>
+<div class="section" id="example-square-root">
 <h2><span class="section-number">1.6.3. </span>Example: Square-root<a class="headerlink" href="#example-square-root" title="Permalink to this headline">¶</a></h2>
 <p>A famous way for computing square-roots is to evaluate the following sequence (essentially Newton’s method for <span class="math notranslate nohighlight">\(x^2=a\)</span>):</p>
 <div class="math notranslate nohighlight">
@@ -806,8 +805,8 @@ x = 16.0
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -818,16 +817,16 @@ x = 16.0
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

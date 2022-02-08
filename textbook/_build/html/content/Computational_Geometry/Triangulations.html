@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>12.3. Triangulations &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -648,13 +647,13 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="triangulations">
+  <div class="tex2jax_ignore mathjax_ignore section" id="triangulations">
 <h1><span class="section-number">12.3. </span>Triangulations<a class="headerlink" href="#triangulations" title="Permalink to this headline">¶</a></h1>
 <p>A triangulation of a polygon is a subdivision into triangles. This has numerous applications, for example in computer graphics, visualization, numerical solution of PDEs, and interpolation.</p>
 <p>First let us define a function to plot a triangulation. The function below is based on PyPlot, and it takes an array of points <code class="docutils literal notranslate"><span class="pre">p</span></code> and an array of triangle indices <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span><span class="p">,</span> <span class="n">PyCall</span>
 <span class="k">function</span> <span class="n">tplot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
     <span class="c"># Plot triangular mesh with nodes `p` and triangles `t`</span>
     <span class="n">tris</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">},</span> <span class="n">hcat</span><span class="p">(</span><span class="n">t</span><span class="o">...</span><span class="p">)</span><span class="o">&#39;</span><span class="p">)</span>
@@ -683,43 +682,20 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Triangulations_3_0.png" src="../../_images/Triangulations_3_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
 </div>
 </div>
-</div>
-<section id="delaunay-triangulation">
+<div class="section" id="delaunay-triangulation">
 <h2><span class="section-number">12.3.1. </span>Delaunay triangulation<a class="headerlink" href="#delaunay-triangulation" title="Permalink to this headline">¶</a></h2>
 <p>A <em>Delaunay triangulation</em> for a given set of discrete points in a plane is a triangulation such that no point is inside the circumcircle of any triangle. It can be shown that Delaunay triangulations maximize the minimum angle of all the angles of the triangles in the triangulation, which makes them very useful e.g. in finite element methods for numerical solution of PDEs.</p>
-<p>Many algorithms have been developed for computing a Delaunay triangulation from a set of points, and here we will simply use an existing implementation in the <code class="docutils literal notranslate"><span class="pre">Triangle</span></code> package:</p>
-<div class="cell tag_hide_input tag_hide_output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Pkg</span><span class="p">;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;Triangle&quot;</span><span class="p">)</span> <span class="c"># In case not already installed</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Green">  Updating</span> registry at `~/.julia/registries/General`
-<span class=" -Color -Color-Bold -Color-Bold-Green">  Updating</span> git-repo `https://github.com/JuliaRegistries/General.git`
-?25l?25h<span class=" -Color -Color-Bold -Color-Bold-Green"> Resolving</span> package versions...
-<span class=" -Color -Color-Bold -Color-Bold-Green">  Updating</span> `~/.julia/environments/v1.3/Project.toml`
- [no changes]
-<span class=" -Color -Color-Bold -Color-Bold-Green">  Updating</span> `~/.julia/environments/v1.3/Manifest.toml`
- [no changes]
-</pre></div>
-</div>
-</div>
-</div>
+<p>Many algorithms have been developed for computing a Delaunay triangulation from a set of points, and here we will simply use an existing implementation from the Matplotlib python library:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Triangle</span>
-
-<span class="k">function</span> <span class="n">delaunay</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-    <span class="c"># Delaunay triangulation `t` of array of nodes `p`</span>
-    <span class="n">vertex_map</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}(</span><span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="n">basic_triangulation</span><span class="p">(</span><span class="n">convert</span><span class="p">(</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">},</span> <span class="n">hcat</span><span class="p">(</span><span class="n">p</span><span class="o">...</span><span class="p">)</span><span class="o">&#39;</span><span class="p">),</span> <span class="n">vertex_map</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">delaunay</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="c"># Delaunay triangulation `t` of array of nodes `p`</span>
+<span class="n">tri</span> <span class="o">=</span> <span class="n">pyimport</span><span class="p">(</span><span class="s">&quot;matplotlib.tri&quot;</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">tri</span><span class="p">[</span><span class="ss">:Triangulation</span><span class="p">](</span><span class="n">first</span><span class="o">.</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">last</span><span class="o">.</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="kt">Int64</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="ss">:triangles</span><span class="p">]</span> <span class="o">.+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">]</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -739,7 +715,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Triangulations_8_0.png" src="../../_images/Triangulations_8_0.png" />
+<img alt="../../_images/Triangulations_7_0.png" src="../../_images/Triangulations_7_0.png" />
 </div>
 </div>
 <p>Note that this triangulation is different than our previous one - it satisfies the properties mentioned above.</p>
@@ -753,11 +729,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Triangulations_11_0.png" src="../../_images/Triangulations_11_0.png" />
+<img alt="../../_images/Triangulations_10_0.png" src="../../_images/Triangulations_10_0.png" />
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -768,16 +744,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Computational_Geometry"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

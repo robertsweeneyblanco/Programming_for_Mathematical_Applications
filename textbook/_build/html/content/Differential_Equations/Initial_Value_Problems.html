@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>14.1. Initial Value Problems &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -670,7 +669,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="initial-value-problems">
+  <div class="tex2jax_ignore mathjax_ignore section" id="initial-value-problems">
 <h1><span class="section-number">14.1. </span>Initial Value Problems<a class="headerlink" href="#initial-value-problems" title="Permalink to this headline">¶</a></h1>
 <p>An <em>initial value problem</em> (IVP) can be written as:</p>
 <div class="math notranslate nohighlight">
@@ -689,7 +688,7 @@ y(t_0) &amp;= y_0
 </div>
 </div>
 </div>
-<section id="euler-s-method">
+<div class="section" id="euler-s-method">
 <h2><span class="section-number">14.1.1. </span>Euler’s method<a class="headerlink" href="#euler-s-method" title="Permalink to this headline">¶</a></h2>
 <p>The most basic approach for numerically solving an IVP is <em>Euler’s method</em>, illustrated below.</p>
 <p><img alt="Euler_method" src="../../_images/euler_method.png" />
@@ -701,8 +700,8 @@ y_{n+1} = y_n + hf(t_n,y_n)
 \]</div>
 <p>With some assumptions on the IVP and the step size, these values can be shown to be good approximation to the true solution, that is, <span class="math notranslate nohighlight">\(y_n \approx y(t_n\)</span>).</p>
 <p>While described for scalar-valued functions <span class="math notranslate nohighlight">\(y(t)\)</span>, the method works equally well for systems of equations, that is, when <span class="math notranslate nohighlight">\(y(t)\)</span> and <span class="math notranslate nohighlight">\(f(t,y(t))\)</span> are vector-valued.</p>
-</section>
-<section id="euler-s-method-implementation">
+</div>
+<div class="section" id="euler-s-method-implementation">
 <h2><span class="section-number">14.1.2. </span>Euler’s method, implementation<a class="headerlink" href="#euler-s-method-implementation" title="Permalink to this headline">¶</a></h2>
 <p>We implement a general version of Euler’s method which takes the right-hand side function <span class="math notranslate nohighlight">\(f(t,y(t))\)</span>
 as an argument. In addition, it takes the initial condition <span class="math notranslate nohighlight">\(y_0\)</span>, the step size <span class="math notranslate nohighlight">\(h\)</span>, the number of steps <span class="math notranslate nohighlight">\(N\)</span>, and the starting time <span class="math notranslate nohighlight">\(t_0\)</span> which has a default value of <span class="math notranslate nohighlight">\(0\)</span>. Note that the implementations supports solutions <span class="math notranslate nohighlight">\(y\)</span> that are vector-valued, and the output <code class="docutils literal notranslate"><span class="pre">y</span></code> is a 2D array of the approximate solutions at each time step.</p>
@@ -739,11 +738,6 @@ as an argument. In addition, it takes the initial condition <span class="math no
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Initial_Value_Problems_6_0.png" src="../../_images/Initial_Value_Problems_6_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
-</div>
 </div>
 </div>
 <p>We can compare the results to the exact solution:</p>
@@ -769,8 +763,8 @@ y_\mathrm{exact} = e^{-t} + (\sin t - \cos t + e^{-t}) / 2
 <img alt="../../_images/Initial_Value_Problems_8_0.png" src="../../_images/Initial_Value_Problems_8_0.png" />
 </div>
 </div>
-</section>
-<section id="the-runge-kutta-method">
+</div>
+<div class="section" id="the-runge-kutta-method">
 <h2><span class="section-number">14.1.3. </span>The Runge-Kutta method<a class="headerlink" href="#the-runge-kutta-method" title="Permalink to this headline">¶</a></h2>
 <p>While Euler’s method does give accurate results for small enough time steps <span class="math notranslate nohighlight">\(h\)</span>, its first-order convergence is often considered too slow and much better methods have been developed. One of the most popular methods is the following 4th order accurate Runge-Kutta method (RK4):</p>
 <div class="math notranslate nohighlight">
@@ -842,8 +836,8 @@ y_{n+1} &amp;= y_n + (k_1 + 2k_2 + 2k_3 + k_4) / 6
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -854,16 +848,16 @@ y_{n+1} &amp;= y_n + (k_1 + 2k_2 + 2k_3 + k_4) / 6
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Differential_Equations"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

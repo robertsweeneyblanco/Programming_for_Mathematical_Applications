@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>17.1. Matrix Designs &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -714,9 +713,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="matrix-designs">
+  <div class="tex2jax_ignore mathjax_ignore section" id="matrix-designs">
 <h1><span class="section-number">17.1. </span>Matrix Designs<a class="headerlink" href="#matrix-designs" title="Permalink to this headline">¶</a></h1>
-<section id="sparse-vs-structured-vs-dense-matrices">
+<div class="section" id="sparse-vs-structured-vs-dense-matrices">
 <h2><span class="section-number">17.1.1. </span>Sparse vs. structured vs. dense matrices<a class="headerlink" href="#sparse-vs-structured-vs-dense-matrices" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>A <em>sparse matrix</em> is a matrix with enough zeros that it is worth taking advantage of them [Wilkinson]</p></li>
@@ -757,8 +756,8 @@ e &amp; d &amp; c &amp; b &amp; a
 \bullet &amp; \bullet &amp; \bullet &amp; \bullet &amp; \bullet \\
 \end{bmatrix}
 \end{split}\]</div>
-</section>
-<section id="sparse-matrices-design-considerations">
+</div>
+<div class="section" id="sparse-matrices-design-considerations">
 <h2><span class="section-number">17.1.2. </span>Sparse matrices, design considerations<a class="headerlink" href="#sparse-matrices-design-considerations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Most operations should give the same results for sparse and full matrices</p></li>
@@ -768,7 +767,7 @@ e &amp; d &amp; c &amp; b &amp; a
 <li><p>Time for a sparse operation should be close to the number of floating point
 operations required</p></li>
 </ul>
-<section id="data-structures-for-matrices">
+<div class="section" id="data-structures-for-matrices">
 <h3><span class="section-number">17.1.2.1. </span>Data structures for matrices<a class="headerlink" href="#data-structures-for-matrices" title="Permalink to this headline">¶</a></h3>
 <p>As an example, consider storing the following matrix of size <span class="math notranslate nohighlight">\(m-by-n\)</span> with <span class="math notranslate nohighlight">\(m=n=5\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -781,16 +780,16 @@ operations required</p></li>
  0 &amp; 0 &amp; 0 &amp; 0 &amp; 9
 \end{bmatrix}
 \end{split}\]</div>
-</section>
-<section id="full-dense-storage">
+</div>
+<div class="section" id="full-dense-storage">
 <h3><span class="section-number">17.1.2.2. </span>Full (dense) storage<a class="headerlink" href="#full-dense-storage" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Used in the standard <code class="docutils literal notranslate"><span class="pre">Array</span></code> type</p></li>
 <li><p>Stores all the matrix entries, including zeros</p></li>
 <li><p>Memory usage <span class="math notranslate nohighlight">\(\mathcal{O}(m\cdot n)\)</span>.</p></li>
 </ul>
-</section>
-<section id="list-of-lists-lil">
+</div>
+<div class="section" id="list-of-lists-lil">
 <h3><span class="section-number">17.1.2.3. </span>List of lists (LIL)<a class="headerlink" href="#list-of-lists-lil" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Only store the non-zero values of the matrix</p></li>
@@ -812,8 +811,8 @@ by the matrix</p></li>
 <li><p>Memory usage = <span class="math notranslate nohighlight">\(\mathcal{O}(\mathrm{nnz} + n)\)</span>, where <span class="math notranslate nohighlight">\(\mathrm{nnz}\)</span> is the total
 number of non-zeros in the matrix</p></li>
 </ul>
-</section>
-<section id="coordinate-list-coo">
+</div>
+<div class="section" id="coordinate-list-coo">
 <h3><span class="section-number">17.1.2.4. </span>Coordinate list (COO)<a class="headerlink" href="#coordinate-list-coo" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Store one list with (row, column, value) for each non-zero matrix entry:</p></li>
@@ -835,8 +834,8 @@ number of non-zeros in the matrix</p></li>
 <li><p>Incremental construction possible, but might not preserve sorting</p></li>
 <li><p>Memory usage = <span class="math notranslate nohighlight">\(\mathrm{O}(\mathrm{nnz})\)</span></p></li>
 </ul>
-</section>
-<section id="compressed-sparse-column-csc">
+</div>
+<div class="section" id="compressed-sparse-column-csc">
 <h3><span class="section-number">17.1.2.5. </span>Compressed sparse column (CSC)<a class="headerlink" href="#compressed-sparse-column-csc" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Essentially the COO format, but <em>compressing</em> the column indices (that is, not storing them)</p></li>
@@ -856,9 +855,9 @@ this allows for empty columns, and that <code class="docutils literal notranslat
 <li><p>Efficient for arithmetic operations, column slicing, and matrix-vector products</p></li>
 <li><p>Memory usage = <span class="math notranslate nohighlight">\(\mathcal{O}(\mathrm{nnz} + n)\)</span></p></li>
 </ul>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -869,16 +868,16 @@ this allows for empty columns, and that <code class="docutils literal notranslat
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Sparse_Matrices"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

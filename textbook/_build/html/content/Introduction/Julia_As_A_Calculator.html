@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1.1. Julia as a calculator &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -704,9 +703,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="julia-as-a-calculator">
+  <div class="tex2jax_ignore mathjax_ignore section" id="julia-as-a-calculator">
 <h1><span class="section-number">1.1. </span>Julia as a calculator<a class="headerlink" href="#julia-as-a-calculator" title="Permalink to this headline">¶</a></h1>
-<section id="arithmetics">
+<div class="section" id="arithmetics">
 <h2><span class="section-number">1.1.1. </span>Arithmetics<a class="headerlink" href="#arithmetics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The first thing to try in Julia is the evaluation of arithmetic expressions:</p></li>
@@ -802,8 +801,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="multiple-lines-in-a-cell">
+</div>
+<div class="section" id="multiple-lines-in-a-cell">
 <h2><span class="section-number">1.1.2. </span>Multiple lines in a cell<a class="headerlink" href="#multiple-lines-in-a-cell" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Note that if you have many lines in a cell, the Julia notebook only displays the output of the last:</p></li>
@@ -839,8 +838,8 @@ The result is -0.000123
 </div>
 </div>
 </div>
-</section>
-<section id="primitive-numeric-data-types">
+</div>
+<div class="section" id="primitive-numeric-data-types">
 <h2><span class="section-number">1.1.3. </span>Primitive numeric data types<a class="headerlink" href="#primitive-numeric-data-types" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The previous examples showed that Julia often automatically chooses the right data type for numbers (e.g. integers or floating point numbers)</p></li>
@@ -883,7 +882,7 @@ The result is -0.000123
 </div>
 </div>
 </div>
-<section id="integer-types">
+<div class="section" id="integer-types">
 <h3><span class="section-number">1.1.3.1. </span>Integer types<a class="headerlink" href="#integer-types" title="Permalink to this headline">¶</a></h3>
 <p>These are Julia’s so-called <em>primitive</em> integer types:</p>
 <table class="colwidths-auto table">
@@ -1009,8 +1008,8 @@ The result is -0.000123
 </div>
 </div>
 </div>
-</section>
-<section id="floating-point-types">
+</div>
+<div class="section" id="floating-point-types">
 <h3><span class="section-number">1.1.3.2. </span>Floating point types<a class="headerlink" href="#floating-point-types" title="Permalink to this headline">¶</a></h3>
 <p>These are Julia’s primitive floating-point types:</p>
 <table class="colwidths-auto table">
@@ -1041,9 +1040,9 @@ The result is -0.000123
 <li><p>Double precision represents about 16 decimal digits of a number</p></li>
 <li><p>The largest and smallest double precision positive numbers are about <span class="math notranslate nohighlight">\(10^{308}\)</span> and <span class="math notranslate nohighlight">\(10^{-308}\)</span></p></li>
 </ul>
-</section>
-</section>
-<section id="arithmetic-operations-and-order-of-operations">
+</div>
+</div>
+<div class="section" id="arithmetic-operations-and-order-of-operations">
 <h2><span class="section-number">1.1.4. </span>Arithmetic operations and order of operations<a class="headerlink" href="#arithmetic-operations-and-order-of-operations" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -1109,8 +1108,8 @@ The result is -0.000123
 <li><p>For example: <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">/</span> <span class="pre">2*pi</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">180</span> <span class="pre">*</span> <span class="pre">pi</span></code></p></li>
 <li><p>Use parentheses if you want <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">/</span> <span class="pre">(2*pi)</span></code></p></li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1121,16 +1120,16 @@ The result is -0.000123
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

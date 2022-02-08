@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>10.2. String Functions &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -668,7 +667,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="string-functions">
+  <div class="tex2jax_ignore mathjax_ignore section" id="string-functions">
 <h1><span class="section-number">10.2. </span>String Functions<a class="headerlink" href="#string-functions" title="Permalink to this headline">¶</a></h1>
 <p>Julia defines a number of functions that operate on strings. For example,
 <code class="docutils literal notranslate"><span class="pre">lowercase</span></code> and <code class="docutils literal notranslate"><span class="pre">uppercase</span></code> converts all letters to lower- or upper-case:</p>
@@ -698,7 +697,7 @@
 </div>
 </div>
 </div>
-<section id="searching-for-characters-and-substrings">
+<div class="section" id="searching-for-characters-and-substrings">
 <h2><span class="section-number">10.2.1. </span>Searching for characters and substrings<a class="headerlink" href="#searching-for-characters-and-substrings" title="Permalink to this headline">¶</a></h2>
 <p>The ∈ operator (type “\in” and tab) returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if a characters appears in a string:</p>
 <div class="cell docutils container">
@@ -742,8 +741,8 @@
 </div>
 </div>
 <p>Similarly, <code class="docutils literal notranslate"><span class="pre">findlast</span></code> and <code class="docutils literal notranslate"><span class="pre">findprev</span></code> starts from the end of the string.</p>
-</section>
-<section id="replacing-substrings">
+</div>
+<div class="section" id="replacing-substrings">
 <h2><span class="section-number">10.2.2. </span>Replacing substrings<a class="headerlink" href="#replacing-substrings" title="Permalink to this headline">¶</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">replace(str,</span> <span class="pre">pattern=&gt;repl)</span></code> searches the string <code class="docutils literal notranslate"><span class="pre">str</span></code> for all occurances of the substring <code class="docutils literal notranslate"><span class="pre">pattern</span></code>, and replace them with the string <code class="docutils literal notranslate"><span class="pre">repl</span></code>:</p>
 <div class="cell docutils container">
@@ -760,8 +759,8 @@ Hello there! These are my words.
 </div>
 </div>
 </div>
-</section>
-<section id="converting-strings">
+</div>
+<div class="section" id="converting-strings">
 <h2><span class="section-number">10.2.3. </span>Converting strings<a class="headerlink" href="#converting-strings" title="Permalink to this headline">¶</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">parse(Type,</span> <span class="pre">string;</span> <span class="pre">base)</span></code> lets you parse a string that contains a number into the actual number.</p>
 <div class="cell docutils container">
@@ -817,8 +816,8 @@ Hello there! These are my words.
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -829,16 +828,16 @@ Hello there! These are my words.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Strings_and_File_Processing"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

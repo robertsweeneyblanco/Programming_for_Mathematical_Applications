@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>9.3. Linear Systems and Regression &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -660,7 +659,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="linear-systems-and-regression">
+  <div class="tex2jax_ignore mathjax_ignore section" id="linear-systems-and-regression">
 <h1><span class="section-number">9.3. </span>Linear Systems and Regression<a class="headerlink" href="#linear-systems-and-regression" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -669,7 +668,7 @@
 </div>
 </div>
 </div>
-<section id="linear-systems">
+<div class="section" id="linear-systems">
 <h2><span class="section-number">9.3.1. </span>Linear Systems<a class="headerlink" href="#linear-systems" title="Permalink to this headline">¶</a></h2>
 <p>One of the most common uses of matrices is for solving linear systems of equations. Julia uses the backslash operator <code class="docutils literal notranslate"><span class="pre">\</span></code> for this:</p>
 <div class="cell docutils container">
@@ -716,19 +715,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.452861 seconds (870.39 k allocations: 43.525 MiB, 3.84% gc time, 99.95% compilation time)
-  0.000072 seconds (4 allocations: 63.000 KiB)
-  0.000072 seconds (4 allocations: 63.000 KiB)
-  0.738877 seconds (635.83 k allocations: 63.447 MiB, 4.75% gc time, 52.17% compilation time)
-  0.313166 seconds (5 allocations: 30.564 MiB)
-  0.402282 seconds (5 allocations: 30.564 MiB, 22.05% gc time)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.203973 seconds (502.18 k allocations: 30.133 MiB, 25.28% gc time, 99.92% compilation time)
+  0.000047 seconds (4 allocations: 63.000 KiB)
+  0.000045 seconds (4 allocations: 63.000 KiB)
+  0.286723 seconds (368.03 k allocations: 51.592 MiB, 2.52% gc time, 51.66% compilation time)
+  0.120412 seconds (5 allocations: 30.564 MiB)
+  0.146118 seconds (5 allocations: 30.564 MiB, 17.15% gc time)
 </pre></div>
 </div>
 </div>
 </div>
 <p>The matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> in <code class="docutils literal notranslate"><span class="pre">A\b</span></code> can also be rectangular, in which case a minimum-norm least squares solution is computed.</p>
-</section>
-<section id="linear-regression">
+</div>
+<div class="section" id="linear-regression">
 <h2><span class="section-number">9.3.2. </span>Linear regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h2>
 <p>Suppose you want to approximate a set of <span class="math notranslate nohighlight">\(n\)</span> points <span class="math notranslate nohighlight">\((x_i,y_i)\)</span>, <span class="math notranslate nohighlight">\(i=1,\ldots,n\)</span>, by a straight line. The <em>least squares approximation</em> <span class="math notranslate nohighlight">\(y=a + bx\)</span> is given by the least-squares solution of the following over-determined system:</p>
 <div class="math notranslate nohighlight">
@@ -765,15 +764,10 @@ y_1 \\ y_2 \\ \vdots \\ y_n
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Linear_Systems_And_Regression_11_0.png" src="../../_images/Linear_Systems_And_Regression_11_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -784,16 +778,16 @@ y_1 \\ y_2 \\ \vdots \\ y_n
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Linear_Algebra"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

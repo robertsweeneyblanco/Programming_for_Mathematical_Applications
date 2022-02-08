@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1.5. Conditionals &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -714,10 +713,10 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="conditionals">
+  <div class="tex2jax_ignore mathjax_ignore section" id="conditionals">
 <h1><span class="section-number">1.5. </span>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">¶</a></h1>
 <p>A <strong>conditional statement</strong> allows a block of code to be executed only when a given logical condition is satisfied. Before introducing the so-called <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, we need to learn how to express these conditions.</p>
-<section id="boolean-expressions">
+<div class="section" id="boolean-expressions">
 <h2><span class="section-number">1.5.1. </span>Boolean expressions<a class="headerlink" href="#boolean-expressions" title="Permalink to this headline">¶</a></h2>
 <p>A <strong>boolean expression</strong> is an expression that is either true or false. For example, the operator <code class="docutils literal notranslate"><span class="pre">==</span></code> compares two operands and returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if they are equal and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise:</p>
 <div class="cell docutils container">
@@ -872,8 +871,8 @@
 </div>
 </div>
 <p>Finally a warning about notation: A common mistake is to use single <code class="docutils literal notranslate"><span class="pre">=</span></code> for comparison (since it mimics the mathematical notation), but this is incorrect. Single <code class="docutils literal notranslate"><span class="pre">=</span></code> is an <em>assignment operator</em>, double <code class="docutils literal notranslate"><span class="pre">==</span></code> is a <em>comparison operator</em>.</p>
-</section>
-<section id="logical-operators">
+</div>
+<div class="section" id="logical-operators">
 <h2><span class="section-number">1.5.2. </span>Logical operators<a class="headerlink" href="#logical-operators" title="Permalink to this headline">¶</a></h2>
 <p>More complex boolean expressions can be formulated using the following <strong>logical operators</strong>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&amp;&amp; (and), || (or), and ! (not).
@@ -917,7 +916,7 @@
 </div>
 </div>
 </div>
-<section id="chained-comparisons">
+<div class="section" id="chained-comparisons">
 <h3><span class="section-number">1.5.2.1. </span>Chained comparisons<a class="headerlink" href="#chained-comparisons" title="Permalink to this headline">¶</a></h3>
 <p>In Julia, comparisons can be arbitrarily chained:</p>
 <div class="cell docutils container">
@@ -946,8 +945,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="the-if-statement">
+</div>
+<div class="section" id="the-if-statement">
 <h3><span class="section-number">1.5.2.2. </span>The if-statement<a class="headerlink" href="#the-if-statement" title="Permalink to this headline">¶</a></h3>
 <p>We are now ready to define the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement for conditional execusion. It has the following syntax:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span>
@@ -1023,8 +1022,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="short-circuit-evaluation">
+</div>
+<div class="section" id="short-circuit-evaluation">
 <h3><span class="section-number">1.5.2.3. </span>Short-circuit evaluation<a class="headerlink" href="#short-circuit-evaluation" title="Permalink to this headline">¶</a></h3>
 <p>In a series of boolean expressions connected by these operators, only the minimum number of expressions are evaluated as are necessary to determine the final boolean value of the entire chain. For example:</p>
 <ul class="simple">
@@ -1049,9 +1048,9 @@
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="example-fibonacci-handling-special-cases">
+</div>
+</div>
+<div class="section" id="example-fibonacci-handling-special-cases">
 <h2><span class="section-number">1.5.3. </span>Example: Fibonacci, handling special cases<a class="headerlink" href="#example-fibonacci-handling-special-cases" title="Permalink to this headline">¶</a></h2>
 <p>One common use for if-statements is the handling of special cases. For example, the Fibonacci sequence is defined by <span class="math notranslate nohighlight">\(F_0 = 0\)</span>, <span class="math notranslate nohighlight">\(F_1 = 1\)</span>, and the recurrence relation</p>
 <div class="math notranslate nohighlight">
@@ -1113,8 +1112,8 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
 </div>
 </div>
 </div>
-</section>
-<section id="example-multiples-of-3-and-5">
+</div>
+<div class="section" id="example-multiples-of-3-and-5">
 <h2><span class="section-number">1.5.4. </span>Example: Multiples of 3 and 5<a class="headerlink" href="#example-multiples-of-3-and-5" title="Permalink to this headline">¶</a></h2>
 <p>Project Euler, Problem 1:</p>
 <blockquote>
@@ -1168,8 +1167,8 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1180,16 +1179,16 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

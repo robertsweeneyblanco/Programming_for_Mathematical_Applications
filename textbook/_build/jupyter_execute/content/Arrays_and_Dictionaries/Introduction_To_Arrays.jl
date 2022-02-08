@@ -1,5 +1,7 @@
 x = [1, 2, 4, -3]
 
+typeof(x)
+
 y = [1.1, π, -4/3, 1e-1]
 
 z = Float64[1, 2, 4, -3]    # Without the `Float64`, Julia would make this an integer array
@@ -26,7 +28,7 @@ function SieveOfEratosthenes(n)
     # After the algorithm finishes, prime[i] will be true is i≥2 is a prime
     prime = trues(n)
     
-    for p = 2:floor(Int, sqrt(n))
+    for p = 2:isqrt(n)
         if prime[p]
             for i = p^2:p:n
                 prime[i] = false

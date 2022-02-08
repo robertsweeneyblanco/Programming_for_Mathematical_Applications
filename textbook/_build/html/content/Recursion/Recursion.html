@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>8. Recursion &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -690,7 +689,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="recursion">
+  <div class="tex2jax_ignore mathjax_ignore section" id="recursion">
 <h1><span class="section-number">8. </span>Recursion<a class="headerlink" href="#recursion" title="Permalink to this headline">¶</a></h1>
 <p>A very powerful concept in programming is <em>recursion</em>, or functions which call themselves. A simple example is the factorial function, which can be defined as:</p>
 <div class="math notranslate nohighlight">
@@ -790,7 +789,7 @@ n == 7, finished calling itself, multiplying and returning 7! = 5040
 </div>
 </div>
 <p>This example is highly hypothetical - the factorial function is easier and more efficient to implement using for-loops. But for more complex problems, recursion can be an essential tool.</p>
-<section id="example-the-ackermann-function">
+<div class="section" id="example-the-ackermann-function">
 <h2><span class="section-number">8.1. </span>Example: The Ackermann function<a class="headerlink" href="#example-the-ackermann-function" title="Permalink to this headline">¶</a></h2>
 <p>Think Julia, Exercise 6-5: The Ackermann function, <span class="math notranslate nohighlight">\(A(m, n)\)</span>, is defined:</p>
 <div class="math notranslate nohighlight">
@@ -920,8 +919,8 @@ ack(2,1): Case 3: finished calling itself, returning 5
 </div>
 </div>
 <p>This also shows that the function calls itself for the same parameter values many times, suggesting that this could be done more efficiently by storing values that have already been computed.</p>
-</section>
-<section id="example-the-greatest-common-divisor-gcd">
+</div>
+<div class="section" id="example-the-greatest-common-divisor-gcd">
 <h2><span class="section-number">8.2. </span>Example: The Greatest Common Divisor (GCD)<a class="headerlink" href="#example-the-greatest-common-divisor-gcd" title="Permalink to this headline">¶</a></h2>
 <p>Think Julia, Exercise 6-8: The greatest common divisor (GCD) of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is the largest number that divides both of them with no remainder.</p>
 <p>One way to find the GCD of two numbers is based on the observation that if <span class="math notranslate nohighlight">\(r\)</span> is the remainder when <span class="math notranslate nohighlight">\(a\)</span> is divided by <span class="math notranslate nohighlight">\(b\)</span>, then <code class="docutils literal notranslate"><span class="pre">gcd(a,</span> <span class="pre">b)</span> <span class="pre">=</span> <span class="pre">gcd(b,</span> <span class="pre">r)</span></code>. As a base case, we can use <code class="docutils literal notranslate"><span class="pre">gcd(a,</span> <span class="pre">0)</span> <span class="pre">=</span> <span class="pre">a</span></code>.</p>
@@ -960,8 +959,8 @@ ack(2,1): Case 3: finished calling itself, returning 5
 </div>
 </div>
 </div>
-</section>
-<section id="example-recursive-triangles">
+</div>
+<div class="section" id="example-recursive-triangles">
 <h2><span class="section-number">8.3. </span>Example: Recursive triangles<a class="headerlink" href="#example-recursive-triangles" title="Permalink to this headline">¶</a></h2>
 <p>Consider the shape obtained by the following algorithm:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">the</span> <span class="n">triangle</span> <span class="ow">is</span> <span class="n">big</span> <span class="n">enough</span>
@@ -1022,15 +1021,10 @@ ack(2,1): Case 3: finished calling itself, returning 5
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Recursion_21_0.png" src="../../_images/Recursion_21_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="merge-sort">
+<div class="section" id="merge-sort">
 <h2><span class="section-number">8.4. </span>Merge sort<a class="headerlink" href="#merge-sort" title="Permalink to this headline">¶</a></h2>
 <p>Merge sort is a so-called Divide and Conquer algorithm. It divides an input array into two halves, calls itself for these two halves and then merges the two sorted halves. The method is illustrated below, for a simple test case with 7 elements:
 <img alt="merge_sort" src="../../_images/merge_sort.png" />
@@ -1113,8 +1107,8 @@ ack(2,1): Case 3: finished calling itself, returning 5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[336, 619, 143, 67, 680, 349, 849, 247, 738, 87]
-[67, 87, 143, 247, 336, 349, 619, 680, 738, 849]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[255, 956, 832, 856, 507, 205, 98, 302, 704, 697]
+[98, 205, 255, 302, 507, 697, 704, 832, 856, 956]
 </pre></div>
 </div>
 </div>
@@ -1132,22 +1126,22 @@ ack(2,1): Case 3: finished calling itself, returning 5
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n = 1000
-  0.080596 seconds (52.68 k allocations: 2.782 MiB, 99.71% compilation time)
+  0.044773 seconds (59.02 k allocations: 3.356 MiB, 21.92% gc time, 99.71% compilation time)
 n = 10000
-  0.002353 seconds (20.00 k allocations: 2.145 MiB)
+  0.001240 seconds (20.00 k allocations: 2.665 MiB)
 n = 100000
-  0.038876 seconds (200.06 k allocations: 23.976 MiB, 28.18% gc time)
+  0.016118 seconds (200.06 k allocations: 29.225 MiB)
 n = 1000000
-  0.593117 seconds (2.00 M allocations: 266.090 MiB, 47.88% gc time, 0.92% compilation time)
+  0.195887 seconds (2.00 M allocations: 314.595 MiB, 16.24% gc time)
 n = 10000000
-  3.937098 seconds (20.01 M allocations: 2.834 GiB, 11.18% gc time)
+  2.422515 seconds (20.01 M allocations: 3.352 GiB, 14.30% gc time, 0.12% compilation time)
 </pre></div>
 </div>
 </div>
 </div>
 <p>We can see that at least for the larger values, the execution time is a little more than 10 times larger when <span class="math notranslate nohighlight">\(n\)</span> gets 10 times larger, showing slightly more than a linear dependency on <span class="math notranslate nohighlight">\(n\)</span>.</p>
-</section>
-<section id="saving-intermediate-values-in-a-recursion">
+</div>
+<div class="section" id="saving-intermediate-values-in-a-recursion">
 <h2><span class="section-number">8.5. </span>Saving intermediate values in a recursion<a class="headerlink" href="#saving-intermediate-values-in-a-recursion" title="Permalink to this headline">¶</a></h2>
 <p>The function below implements the so-called <em>McCarthy 91 function</em>:</p>
 <div class="math notranslate nohighlight">
@@ -1220,8 +1214,8 @@ M(M(n+11)), &amp; \text{if } n \le 100
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1232,16 +1226,16 @@ M(M(n+11)), &amp; \text{if } n \le 100
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Recursion"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

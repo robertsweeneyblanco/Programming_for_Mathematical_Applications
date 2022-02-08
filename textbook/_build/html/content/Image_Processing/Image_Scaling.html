@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>13.2. Image Scaling &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -624,7 +623,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="image-scaling">
+  <div class="tex2jax_ignore mathjax_ignore section" id="image-scaling">
 <h1><span class="section-number">13.2. </span>Image Scaling<a class="headerlink" href="#image-scaling" title="Permalink to this headline">¶</a></h1>
 <p>One imporatant image operation is <em>scaling</em>, that is, change the number of pixels along each direction of the image. First consider the so-called <em>downsampling</em> of an image by a factor of 2. While we could simply extract every second pixel in each row and each column, a slightly better option is to average the values in each 2-by-2 block:</p>
 <div class="cell tag_hide_input tag_hide_output docutils container">
@@ -675,11 +674,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Image_Scaling_2_0.png" src="../../_images/Image_Scaling_2_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
-</div>
 </div>
 </div>
 <p><em>Upscaling</em> an image, that is, increasing its size, is a more difficult operation. Is is obviously impossible to know the intensity of the added pixels, but assuming the variations are small one can for example interpolate between the given values. One simple interpolation is <em>bilinear</em>, which for a factor of 2 simply becomes averaging between neighboring pixel values:</p>
@@ -722,7 +716,7 @@
 <img alt="../../_images/Image_Scaling_6_0.png" src="../../_images/Image_Scaling_6_0.png" />
 </div>
 </div>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -733,16 +727,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Image_Processing"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

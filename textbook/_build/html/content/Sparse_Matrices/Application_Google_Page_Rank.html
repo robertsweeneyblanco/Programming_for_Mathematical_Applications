@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>17.4. Application: Google PageRank &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -669,7 +668,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="application-google-pagerank">
+  <div class="tex2jax_ignore mathjax_ignore section" id="application-google-pagerank">
 <h1><span class="section-number">17.4. </span>Application: Google PageRank<a class="headerlink" href="#application-google-pagerank" title="Permalink to this headline">¶</a></h1>
 <p>PageRank (PR) is an algorithm used by Google Search to rank web pages in their search engine results.
 It works by counting the number and the quality of links to a page.</p>
@@ -678,7 +677,7 @@ even though there are fewer links to C; the one link to C comes from an importan
 is of high value.</p>
 <p><img alt="PageRanks-Example.png" src="../../_images/pageranks-example.png" /></p>
 <p>(from <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank">https://en.wikipedia.org/wiki/PageRank</a>)</p>
-<section id="algorithm">
+<div class="section" id="algorithm">
 <h2><span class="section-number">17.4.1. </span>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h2>
 <p>The starting point is the <em>webgraph</em>, which is a graph where each web page is a vertex, and a link
 from one to another is an edge. The goal is to determine weights <span class="math notranslate nohighlight">\(PR(p_j)\)</span> for each vertex (web page)
@@ -690,8 +689,8 @@ PR(p_i) = \frac{1-d}{N} + d \sum_{p_j \in M(p_i)} \frac{PR(p_j)}{L(p_j)}
 \]</div>
 <p><span class="math notranslate nohighlight">\(N\)</span> is the total number of web pages, <span class="math notranslate nohighlight">\(M(p_i)\)</span> is the set of pages that link <em>to</em> page <span class="math notranslate nohighlight">\(p_i\)</span>,
 and <span class="math notranslate nohighlight">\(L(p_j)\)</span> is the number of outbound links from page <span class="math notranslate nohighlight">\(p_j\)</span>.</p>
-</section>
-<section id="iterative-computation">
+</div>
+<div class="section" id="iterative-computation">
 <h2><span class="section-number">17.4.2. </span>Iterative computation<a class="headerlink" href="#iterative-computation" title="Permalink to this headline">¶</a></h2>
 <p>We can solve the equation for the PageRanks iteratively, by first writing it
 in matrix-vector form. Define the (column) vector of all PageRanks
@@ -713,8 +712,8 @@ links to all other pages.</p>
 \]</div>
 <p>until the difference between two iterations is smaller than a tolerance.
 For initial guess, we can use <span class="math notranslate nohighlight">\(\boldsymbol{R}^{\ 0} = \boldsymbol{1} / N\)</span>.</p>
-</section>
-<section id="example">
+</div>
+<div class="section" id="example">
 <h2><span class="section-number">17.4.3. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>As an example, we reproduce the PageRanks for the graph shown above. First we create
 the adjancency matrix <span class="math notranslate nohighlight">\(A\)</span>, including the added links for pages without outbound links:</p>
@@ -783,8 +782,8 @@ the adjancency matrix <span class="math notranslate nohighlight">\(A\)</span>, i
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -795,16 +794,16 @@ the adjancency matrix <span class="math notranslate nohighlight">\(A\)</span>, i
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Sparse_Matrices"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

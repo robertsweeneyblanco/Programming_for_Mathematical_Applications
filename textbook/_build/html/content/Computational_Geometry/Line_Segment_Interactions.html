@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>12.2. Line-segment Intersections &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -624,7 +623,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="line-segment-intersections">
+  <div class="tex2jax_ignore mathjax_ignore section" id="line-segment-intersections">
 <h1><span class="section-number">12.2. </span>Line-segment Intersections<a class="headerlink" href="#line-segment-intersections" title="Permalink to this headline">¶</a></h1>
 <p>A <em>line-segment</em> can be described by its two endpoints, <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span>, and denoted by <span class="math notranslate nohighlight">\(p_1p_2\)</span>. Note that the set of points on this segments can be expressed as <span class="math notranslate nohighlight">\(p_1 + s(p_2-p_1)\)</span> for a parameter value <span class="math notranslate nohighlight">\(s\in[0,1]\)</span>.</p>
 <p>To determine if <span class="math notranslate nohighlight">\(p_1p_2\)</span> intersects another line-segment <span class="math notranslate nohighlight">\(q_1q_2\)</span>, we express the points on both segments in this way (with different parameters <span class="math notranslate nohighlight">\(s,t\)</span>), and set the points equal. This leads to the problem: Find <span class="math notranslate nohighlight">\(s,t\in[0,1]\)</span> s.t.</p>
@@ -704,14 +703,9 @@ q_1 - p_1
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Line_Segment_Interactions_3_0.png" src="../../_images/Line_Segment_Interactions_3_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
 </div>
 </div>
 </div>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -722,16 +716,16 @@ q_1 - p_1
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Computational_Geometry"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

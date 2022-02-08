@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>14.4. The DifferentialEquations Package &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -650,7 +649,7 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="the-differentialequations-package">
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-differentialequations-package">
 <h1><span class="section-number">14.4. </span>The DifferentialEquations Package<a class="headerlink" href="#the-differentialequations-package" title="Permalink to this headline">¶</a></h1>
 <p>Various ODE solvers are implemented in the excellent <code class="docutils literal notranslate"><span class="pre">DifferentialEquations</span></code> package. They are similar to our <code class="docutils literal notranslate"><span class="pre">euler</span></code> and <code class="docutils literal notranslate"><span class="pre">rk4</span></code> functions above in the sense that they accept input arguments that define the problem as well as numerical parameters. But a major difference is that they use automatic step control. Instead of defining time steps <span class="math notranslate nohighlight">\(h\)</span>, you specify absolute and relative tolerances (<code class="docutils literal notranslate"><span class="pre">abstol</span></code> and <code class="docutils literal notranslate"><span class="pre">reltol</span></code>). If needed, the solution can be interpolated to arbitrary time values.</p>
 <p>We demonstrate the package using the pendulum problem from above. The definition of the right-hand side is similar to before, except the order of the arguements is different and it also accepts an argument <code class="docutils literal notranslate"><span class="pre">p</span></code> with (optional) paramters. The initial condition is again simply a vector of values.</p>
@@ -750,14 +749,9 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/DifferentialEquations_Package_11_0.png" src="../../_images/DifferentialEquations_Package_11_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
 </div>
 </div>
-</div>
-<section id="continuous-events">
+<div class="section" id="continuous-events">
 <h2><span class="section-number">14.4.1. </span>Continuous events<a class="headerlink" href="#continuous-events" title="Permalink to this headline">¶</a></h2>
 <p>Another important feature in the differential equation package is the support for <em>events</em>. These can be used to e.g. change the solution when certain conditions are satisfied, or to end the simulation.</p>
 <p>As an example, suppose we want to find the period of the pendulum from before. This is a non-trivial problem, but numerically we can find it by telling the ODE solver to stop when <span class="math notranslate nohighlight">\(\theta'(t)=0\)</span>. This will give the (first) time instance that the pendulum turns, which corresponds to half the period.</p>
@@ -802,8 +796,8 @@
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -814,16 +808,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Differential_Equations"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>12.1. Convex Hull &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -660,9 +659,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="convex-hull">
+  <div class="tex2jax_ignore mathjax_ignore section" id="convex-hull">
 <h1><span class="section-number">12.1. </span>Convex Hull<a class="headerlink" href="#convex-hull" title="Permalink to this headline">¶</a></h1>
-<section id="point-representation">
+<div class="section" id="point-representation">
 <h2><span class="section-number">12.1.1. </span>Point representation<a class="headerlink" href="#point-representation" title="Permalink to this headline">¶</a></h2>
 <p>The first geometric entity to consider is a point. Here we will consider planar problems, so a point can be represented by its <span class="math notranslate nohighlight">\((x,y)\)</span> coordinates, as two <code class="docutils literal notranslate"><span class="pre">Float64</span></code> numbers in Julia. Here we will simply use a vector with 2 elements.</p>
 <p>To store a <em>collection of points</em>, we could store the <span class="math notranslate nohighlight">\((x,y)\)</span> coordinates as the columns or the rows of a 2D array. However, we will instead use an <em>array of arrays</em>, that is, a 1D array of all the points as 1D arrays <span class="math notranslate nohighlight">\((x,y)\)</span>. This simplifies some of the algorithms.</p>
@@ -674,16 +673,16 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10-element Vector{Vector{Float64}}:
- [-0.9285022993710237, -1.2013065748114053]
- [-1.1600343744081472, 1.793411702115841]
- [-0.11836541413228635, -0.34970385551586436]
- [0.5282964741214162, 0.5708467822369161]
- [0.6051069413368764, 1.248971287272271]
- [-0.6473156481591723, 0.4315058368175947]
- [0.9455166914265013, -0.9967700871138128]
- [-0.19455374120323457, -0.2179363298054384]
- [-0.8153222210499158, -0.21110684481811468]
- [1.5882557945959408, -0.09310125829623998]
+ [0.29427335565549234, -0.3852376068424102]
+ [0.3191898373538748, 0.049434356217030094]
+ [0.8748155615884284, -0.4801995628810922]
+ [-0.767998225561079, -0.4960744739671467]
+ [-0.17950752614430496, 0.6421550173352346]
+ [0.7558072688656052, -0.01878645635164385]
+ [0.16794587945907719, 1.5514297406484192]
+ [0.4331586012585234, 0.18220800471400997]
+ [-1.2940328344865475, -1.6974619367648283]
+ [-1.2874933278835297, -1.2828425576675573]
 </pre></div>
 </div>
 </div>
@@ -700,15 +699,10 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Convex_Hull_3_0.png" src="../../_images/Convex_Hull_3_0.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┌ Warning: `vendor()` is deprecated, use `BLAS.get_config()` and inspect the output instead
-│   caller = npyinitialize() at numpy.jl:67
-└ @ PyCall /home/mfranco/.julia/packages/PyCall/L0fLP/src/numpy.jl:67
-</pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="id1">
+<div class="section" id="id1">
 <h2><span class="section-number">12.1.2. </span>Convex hull<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The <em>convex hull</em> of a set <span class="math notranslate nohighlight">\(X\)</span> of points is the smallest convex set that contains <span class="math notranslate nohighlight">\(X\)</span>. In the plane, this is a polygon through a subset of the points. Many algorithms have been proposed for computing the convex hull, and here we will focus on the <em>Jarvis march</em> algorithm, also called the <em>gift wrapping algorithm</em>.</p>
 <p>The method is illustrated below. The main steps are as follows:</p>
@@ -802,8 +796,8 @@ false
 <img alt="../../_images/Convex_Hull_10_0.png" src="../../_images/Convex_Hull_10_0.png" />
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -814,16 +808,16 @@ false
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Computational_Geometry"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               

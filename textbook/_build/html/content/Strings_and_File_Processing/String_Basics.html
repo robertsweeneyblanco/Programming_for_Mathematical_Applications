@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>10.1. String Basics &#8212; Programming for Mathematical Applications</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -698,10 +697,10 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="string-basics">
+  <div class="tex2jax_ignore mathjax_ignore section" id="string-basics">
 <h1><span class="section-number">10.1. </span>String Basics<a class="headerlink" href="#string-basics" title="Permalink to this headline">¶</a></h1>
 <p>Strings are sequences of characters, and they are used in a wide range of programming applications. Julia provides extensive functionality for working with strings and characters, including support for so-called Unicode characters. However, Julia also works efficiently using standard so-called ASCII characters and string, which we will focus on here to keep the presentation shorter.</p>
-<section id="characters">
+<div class="section" id="characters">
 <h2><span class="section-number">10.1.1. </span>Characters<a class="headerlink" href="#characters" title="Permalink to this headline">¶</a></h2>
 <p>ASCII is a 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters.</p>
 <p>The numbers 0 - 31 are used for so-called <em>control characters</em>, including for example the carriage return (number 13). The numbers 32 - 126 define the standard characters (the first character below, corresponding to number 32, is the space character):</p>
@@ -774,8 +773,8 @@
 <span class="mi">23</span>
 </pre></div>
 </div>
-</section>
-<section id="string-creation">
+</div>
+<div class="section" id="string-creation">
 <h2><span class="section-number">10.1.2. </span>String creation<a class="headerlink" href="#string-creation" title="Permalink to this headline">¶</a></h2>
 <p>A string can be created from a sequence of characters using double quotes:</p>
 <div class="cell docutils container">
@@ -842,8 +841,8 @@ Julia is fun
 </div>
 </div>
 </div>
-</section>
-<section id="string-concatenation">
+</div>
+<div class="section" id="string-concatenation">
 <h2><span class="section-number">10.1.3. </span>String concatenation<a class="headerlink" href="#string-concatenation" title="Permalink to this headline">¶</a></h2>
 <p>You can concatenate multiple strings by passing them to the <code class="docutils literal notranslate"><span class="pre">string</span></code> function. An alternative syntax is to use the multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code> operator between the strings:</p>
 <div class="cell docutils container">
@@ -889,7 +888,7 @@ Hello World
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random vector: [0.17919139484369018, 0.3923867746993628, 0.20331948725830185]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random vector: [0.27550878249887933, 0.31477994119482244, 0.07539404983854925]
 sin of 45 degrees = 0.7071067811865476
 </pre></div>
 </div>
@@ -908,8 +907,8 @@ sin of 45 degrees = 0.7071067811865476
 </div>
 </div>
 </div>
-</section>
-<section id="string-comparison">
+</div>
+<div class="section" id="string-comparison">
 <h2><span class="section-number">10.1.4. </span>String comparison<a class="headerlink" href="#string-comparison" title="Permalink to this headline">¶</a></h2>
 <p>You can lexicographically compare strings using the standard comparison operators (from Julia documentation):</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="s">&quot;abracadabra&quot;</span> <span class="o">&lt;</span> <span class="s">&quot;xylophone&quot;</span>
@@ -925,8 +924,8 @@ sin of 45 degrees = 0.7071067811865476
 <span class="nb">true</span>
 </pre></div>
 </div>
-</section>
-<section id="string-indexing">
+</div>
+<div class="section" id="string-indexing">
 <h2><span class="section-number">10.1.5. </span>String indexing<a class="headerlink" href="#string-indexing" title="Permalink to this headline">¶</a></h2>
 <p>Julia strings behave in many ways like a 1D array of characters (but beware of Unicode characters, then the indices might not be consecutive). For example, you can extract a single character from a string by indexing with an integer:</p>
 <div class="cell docutils container">
@@ -1019,15 +1018,15 @@ Character #10 = &#39;j&#39;
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span><span class="mi">1</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">373</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1196</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="example-check-if-string-is-a-palindrome">
+</div>
+<div class="section" id="example-check-if-string-is-a-palindrome">
 <h2><span class="section-number">10.1.6. </span>Example: Check if string is a palindrome<a class="headerlink" href="#example-check-if-string-is-a-palindrome" title="Permalink to this headline">¶</a></h2>
 <p>A palindrome is a sequence of characters which reads the same backward as forward. Using array operations and string comparisons, it is trivial to check if a string is a palindrome:</p>
 <div class="cell docutils container">
@@ -1078,8 +1077,8 @@ Character #10 = &#39;j&#39;
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1090,16 +1089,16 @@ Character #10 = &#39;j&#39;
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.7"
+            mode: "julia-1.6"
         },
         kernelOptions: {
-            kernelName: "julia-1.7",
+            kernelName: "julia-1.6",
             path: "./content/Strings_and_File_Processing"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.7'</script>
+    <script>kernelName = 'julia-1.6'</script>
 
               </div>
               
