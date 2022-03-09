@@ -5,7 +5,7 @@ format: jb-book
 root: index
 title: Home
 options:
-  numbered: True
+  numbered: true
 
 chapters:
 - file: content/Introduction/Chapter_Intro
@@ -164,3 +164,10 @@ chapters:
   - file: content/Sparse_Matrices/Application_Google_Page_Rank
     title: Application; Google Page Rank
 
+- file: content/Appendices/Chapter_Intro
+  title: Appendices
+  sections:
+  - file: content/Appendices/Floating_Point_Arithmetic
+    title: Floating Point Arithmetic
+  - file: content/Appendices/Algorithmic_Efficiency
+    title: Algorithmic Efficiency
