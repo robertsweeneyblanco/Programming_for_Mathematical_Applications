@@ -660,6 +660,28 @@
     <a class="reference internal nav-link" href="#find-largest">
      18.2.4.2. Find largest
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-largest-version-1">
+       18.2.4.2.1. Find largest, version 1
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-largest-version-2">
+       18.2.4.2.2. Find largest, version 2
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-largest-version-3">
+       18.2.4.2.3. Find largest, version 3
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-largest-version-4">
+       18.2.4.2.4. Find largest, version 4
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -712,6 +734,28 @@
     <a class="reference internal nav-link" href="#find-largest">
      18.2.4.2. Find largest
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-largest-version-1">
+       18.2.4.2.1. Find largest, version 1
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-largest-version-2">
+       18.2.4.2.2. Find largest, version 2
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-largest-version-3">
+       18.2.4.2.3. Find largest, version 3
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-largest-version-4">
+       18.2.4.2.4. Find largest, version 4
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -860,8 +904,10 @@ f(x) = \mathcal{O}(g(x))\text{ as }x\rightarrow\infty
 <p>Now let’s look at an example implemented in two different way, with different memory requirements. Consider the problem of computing</p>
 <div class="math notranslate nohighlight">
 \[
-\max_i \sin x_i,\ \ \text{where }\ x_i=i/n\text{ for }i=0,\ldots,n.
+\max_i \sin x_i,\ \ \text{where }\ x_i=10i/n\text{ for }i=0,\ldots,n.
 \]</div>
+<div class="section" id="find-largest-version-1">
+<h4><span class="section-number">18.2.4.2.1. </span>Find largest, version 1<a class="headerlink" href="#find-largest-version-1" title="Permalink to this headline">¶</a></h4>
 <p>Our first version calculates all the <span class="math notranslate nohighlight">\(\sin x_i\)</span> values and stores them in a vector, then it finds the largest element:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -871,7 +917,7 @@ f(x) = \mathcal{O}(g(x))\text{ as }x\rightarrow\infty
     <span class="c"># Compute and store all sin x[i]</span>
     <span class="n">sinx</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span><span class="n">n</span>
-        <span class="n">sinx</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">sinx</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">10</span><span class="n">i</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
     <span class="k">end</span>
     
     <span class="c"># Find the largest</span>
@@ -896,15 +942,16 @@ f(x) = \mathcal{O}(g(x))\text{ as }x\rightarrow\infty
 <li><p>Operations: The first for-loop will perform <span class="math notranslate nohighlight">\(n+1\)</span> divisions and <span class="math notranslate nohighlight">\(n+1\)</span> sin function calls. The second for-loop will perform <span class="math notranslate nohighlight">\(n\)</span> comparisons. In total, this gives an operation count of <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> for the function.</p></li>
 <li><p>Memory: The inputs and the outputs are scalar (that is, <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> memory). However, since we allocate an array of length <span class="math notranslate nohighlight">\(n+1\)</span> to store the sin-values, the total memory usage is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p></li>
 </ul>
-<p>Note that this is true even if we vectorize by using element-wise operations and array functions. The code below is short, elegant, and easy to read, but it still requires <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> memory to store the sin-values:</p>
+</div>
+<div class="section" id="find-largest-version-2">
+<h4><span class="section-number">18.2.4.2.2. </span>Find largest, version 2<a class="headerlink" href="#find-largest-version-2" title="Permalink to this headline">¶</a></h4>
+<p>Note that this is true even if we vectorize by using element-wise operations and array functions. The code below is short, elegant, and easy to read, but it still requires <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> memory to store the array of sin values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">largest_sin_v2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="c"># Vectorized</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">n</span><span class="p">)</span> <span class="o">./</span> <span class="n">n</span>
-    <span class="n">sinx</span> <span class="o">=</span> <span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">largest</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">sinx</span><span class="p">)</span>
-<span class="k">end</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">largest_sin_v2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">10</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">n</span><span class="p">)</span> <span class="o">./</span> <span class="n">n</span><span class="p">))</span>
+
+<span class="c"># Or, equivalently but using array comprehensions:</span>
+<span class="c"># largest_sin_v2(n) = maximum( [ sin(10i/n) for i in 0:n ] )</span>
 </pre></div>
 </div>
 </div>
@@ -918,6 +965,9 @@ f(x) = \mathcal{O}(g(x))\text{ as }x\rightarrow\infty
 <li><p>Operations: Same as before, <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span></p></li>
 <li><p>Memory: Same as before, <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span></p></li>
 </ul>
+</div>
+<div class="section" id="find-largest-version-3">
+<h4><span class="section-number">18.2.4.2.3. </span>Find largest, version 3<a class="headerlink" href="#find-largest-version-3" title="Permalink to this headline">¶</a></h4>
 <p>But it is actually possible to improve on this, by noting that we do not need to store all the <span class="math notranslate nohighlight">\(x_i\)</span> or the sin values. Instead, simply keep track of the largest element as we go through the computations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -925,7 +975,7 @@ f(x) = \mathcal{O}(g(x))\text{ as }x\rightarrow\infty
     <span class="c"># No arrays, constant amount of memory</span>
     <span class="n">largest</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">n</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="n">i</span><span class="o">/</span><span class="n">n</span>
         <span class="n">sinx</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">sinx</span> <span class="o">&gt;</span> <span class="n">largest</span>
             <span class="n">largest</span> <span class="o">=</span> <span class="n">sinx</span>
@@ -947,6 +997,30 @@ f(x) = \mathcal{O}(g(x))\text{ as }x\rightarrow\infty
 <li><p>Memory: Since no arrays are created, the memory usage is now only <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span>.</p></li>
 </ul>
 <p>This shows that the choice of algorithm can greatly influence the time and/or space complexities of a program. In this case, the first two versions would run out of memory for large <span class="math notranslate nohighlight">\(n\)</span>, while the third version would only be limited by computational time.</p>
+</div>
+<div class="section" id="find-largest-version-4">
+<h4><span class="section-number">18.2.4.2.4. </span>Find largest, version 4<a class="headerlink" href="#find-largest-version-4" title="Permalink to this headline">¶</a></h4>
+<p>Is there a way to write short and simple vectorized code, like version 2, without allocating any large arrays, like version 3? In general this is not always possible, vectorization often requires temporary large arrays to perform element-wise operations. However, in this case Julia has functionality for doing it.</p>
+<p>One simple example is the so-called <em>unit-range</em> obtained when we write <code class="docutils literal notranslate"><span class="pre">1:n</span></code>. This can be seen as a vector of length <code class="docutils literal notranslate"><span class="pre">n</span></code>, but it only allocates <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> memory. Instead of storing all the numbers, it knows how to produce the actual values if you e.g. use it in a for-loop.</p>
+<p>To generalize this to our example, the trick is to use <em>generator expressions</em>. They can again be seen as rules that produce requested value on demand, without allocating arrays to store them. The syntax is similar to a an array comprehension, but with parentheses instead of brackets.</p>
+<p>Using this, and the fact that built in Julia functions such as <code class="docutils literal notranslate"><span class="pre">maximum</span></code> also do not allocate any arrays but simply iterate over the elements, we can write:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">largest_sin_v4</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span> <span class="p">(</span> <span class="n">sin</span><span class="p">(</span><span class="mi">10</span><span class="n">i</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">:</span><span class="n">n</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>largest_sin_v4 (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Operations: Same as before, <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span></p></li>
+<li><p>Memory: Again no arrays are created, so the memory usage is the same as before <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span>.</p></li>
+</ul>
+</div>
 </div>
 </div>
 </div>

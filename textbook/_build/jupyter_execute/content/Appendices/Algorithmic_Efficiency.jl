@@ -32,7 +32,7 @@ function largest_sin_v1(n)
     # Compute and store all sin x[i]
     sinx = zeros(n+1) 
     for i = 0:n
-        sinx[i+1] = sin(i/n)
+        sinx[i+1] = sin(10i/n)
     end
     
     # Find the largest
@@ -45,18 +45,16 @@ function largest_sin_v1(n)
     return largest
 end
 
-function largest_sin_v2(n)
-    # Vectorized
-    x = (0:n) ./ n
-    sinx = sin.(x)
-    largest = maximum(sinx)
-end
+largest_sin_v2(n) = maximum(sin.(10(0:n) ./ n))
+
+# Or, equivalently but using array comprehensions:
+# largest_sin_v2(n) = maximum( [ sin(10i/n) for i in 0:n ] )
 
 function largest_sin_v3(n)
     # No arrays, constant amount of memory
     largest = sin(0)
     for i = 1:n
-        x = i/n
+        x = 10i/n
         sinx = sin(x)
         if sinx > largest
             largest = sinx
@@ -64,3 +62,5 @@ function largest_sin_v3(n)
     end
     return largest
 end 
+
+largest_sin_v4(n) = maximum( ( sin(10i/n) for i in 0:n ) )
