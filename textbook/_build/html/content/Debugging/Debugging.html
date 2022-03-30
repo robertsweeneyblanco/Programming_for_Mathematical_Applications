@@ -1029,7 +1029,7 @@ Stacktrace:
 </div>
 </div>
 <p>This error is somewhat unique to Julia because most other programming languages would report dividing a string by the integer zero as a syntax error. However, Julia specifically allows you to write such general code, but will only catch the error when you try and run it. There are many benefits to this approach, but for now let’s just explore this one possible error. We see that the error reports that on line 7 above, we are calling <code class="docutils literal notranslate"><span class="pre">divide_by_zero()</span></code> which tries to compute <code class="docutils literal notranslate"><span class="pre">String/Int64</span></code>, something that has not been programmed.</p>
-<p>This error can be fixed by writing that functionality ourselves using the tools we will explore in <a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html#structs"><span class="std std-ref">Section 11: Structs and Objects</span></a>, or by not trying to divide a string by zero in the first place! This can be enforced by rewriting the function as follows:</p>
+<p>This error can be fixed by writing that functionality ourselves using the tools we will explore in <span class="xref myst">Section 11: Structs and Objects</span>, or by not trying to divide a string by zero in the first place! This can be enforced by rewriting the function as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Divide an input number by 0</span>

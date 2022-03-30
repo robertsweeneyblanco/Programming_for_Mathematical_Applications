@@ -1,15 +1,11 @@
 struct MyPoly
-    c
-    var
+    c::Vector
+    var::Char
 end
 
 p = MyPoly([3,-5,2], 'x')
 
-struct MyPoly
-    c
-    var
-    MyPoly(c, var='x') = new(c, var)
-end
+MyPoly(c) = MyPoly(c, 'x')
 
 p.c
 
@@ -30,7 +26,7 @@ times_x(p)
 function degree(p::MyPoly)
     ix1 = findfirst(p.c .!= 0)
     if ix1 == nothing
-        return 0
+        return -1
     else
         return length(p.c) - ix1
     end
@@ -56,7 +52,7 @@ degree(MyPoly([1,2,3]))
 
 function Base.show(io::IO, p::MyPoly)
     d = degree(p)
-    print(io, "MyPoly(")
+    print(io, "MyPoly: ")
     for k = d:-1:0
         coeff = p.c[end-k]
         if coeff == 0 && d > 0
@@ -87,7 +83,6 @@ function Base.show(io::IO, p::MyPoly)
             print(io, "^", k)
         end
     end
-    print(io, ")")
 end
 
 p
@@ -163,3 +158,5 @@ p.([0, im, -1 - im])
 p = MyPoly(collect(-1.5:3.5))
 
 p(BigFloat(-π))
+
+

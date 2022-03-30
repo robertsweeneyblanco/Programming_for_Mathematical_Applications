@@ -668,19 +668,24 @@ y'(t) = f(t, y(t)) =
 
 <span class="k">function</span> <span class="n">rk4</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">.+</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">y0</span><span class="p">),</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">y0</span><span class="p">))</span>
     
-    <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">.=</span> <span class="n">y0</span>
+    <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="n">y0</span>
     <span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">N</span>
-        <span class="n">k1</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
-        <span class="n">k2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">k3</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">k4</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">k3</span><span class="p">)</span>
-        <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>
+        <span class="n">k1</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">])</span>
+        <span class="n">k2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">+</span> <span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k3</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">+</span> <span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k4</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">+</span> <span class="n">k3</span><span class="p">)</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>
     <span class="k">end</span>
     
     <span class="k">return</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span>
-    <span class="k">end</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rk4 (generic function with 2 methods)
 </pre></div>
 </div>
 </div>
@@ -692,7 +697,7 @@ y'(t) = f(t, y(t)) =
 <span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">rk4</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">round</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="n">T</span><span class="o">/</span><span class="n">h</span><span class="p">))</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">collect</span><span class="p">(</span><span class="n">y</span><span class="o">&#39;</span><span class="p">))</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">legend</span><span class="p">((</span><span class="s">&quot;</span><span class="se">\$\\</span><span class="s">theta(t)</span><span class="se">\$</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\$\\</span><span class="s">theta&#39;(t)</span><span class="se">\$</span><span class="s">&quot;</span><span class="p">));</span>
 </pre></div>
 </div>
@@ -707,7 +712,7 @@ y'(t) = f(t, y(t)) =
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">animation</span> <span class="o">=</span> <span class="n">pyimport</span><span class="p">(</span><span class="s">&quot;matplotlib.animation&quot;</span><span class="p">);</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="k">function</span> <span class="n">update</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-    <span class="n">θ</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">θ</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Circle</span><span class="p">([</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="p">),</span><span class="o">-</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span> <span class="mf">0.1</span><span class="p">))</span>
@@ -907,42 +912,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgb5f96afe118747beb8bec0602959e482">
+  <img id="_anim_img2065943ea10e4fe9bd047732e1a89add">
   <div class="anim-controls">
-    <input id="_anim_sliderb5f96afe118747beb8bec0602959e482" type="range" class="anim-slider"
+    <input id="_anim_slider2065943ea10e4fe9bd047732e1a89add" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animb5f96afe118747beb8bec0602959e482.set_frame(parseInt(this.value));"></input>
+           oninput="anim2065943ea10e4fe9bd047732e1a89add.set_frame(parseInt(this.value));"></input>
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animb5f96afe118747beb8bec0602959e482.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim2065943ea10e4fe9bd047732e1a89add.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animb5f96afe118747beb8bec0602959e482.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim2065943ea10e4fe9bd047732e1a89add.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animb5f96afe118747beb8bec0602959e482.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim2065943ea10e4fe9bd047732e1a89add.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animb5f96afe118747beb8bec0602959e482.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim2065943ea10e4fe9bd047732e1a89add.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animb5f96afe118747beb8bec0602959e482.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim2065943ea10e4fe9bd047732e1a89add.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animb5f96afe118747beb8bec0602959e482.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim2065943ea10e4fe9bd047732e1a89add.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animb5f96afe118747beb8bec0602959e482.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim2065943ea10e4fe9bd047732e1a89add.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animb5f96afe118747beb8bec0602959e482.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim2065943ea10e4fe9bd047732e1a89add.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animb5f96afe118747beb8bec0602959e482.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim2065943ea10e4fe9bd047732e1a89add.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectb5f96afe118747beb8bec0602959e482"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select2065943ea10e4fe9bd047732e1a89add"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_b5f96afe118747beb8bec0602959e482"
+      <input type="radio" name="state" value="once" id="_anim_radio1_2065943ea10e4fe9bd047732e1a89add"
              >
-      <label for="_anim_radio1_b5f96afe118747beb8bec0602959e482">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_b5f96afe118747beb8bec0602959e482"
+      <label for="_anim_radio1_2065943ea10e4fe9bd047732e1a89add">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_2065943ea10e4fe9bd047732e1a89add"
              checked>
-      <label for="_anim_radio2_b5f96afe118747beb8bec0602959e482">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_b5f96afe118747beb8bec0602959e482"
+      <label for="_anim_radio2_2065943ea10e4fe9bd047732e1a89add">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_2065943ea10e4fe9bd047732e1a89add"
              >
-      <label for="_anim_radio3_b5f96afe118747beb8bec0602959e482">Reflect</label>
+      <label for="_anim_radio3_2065943ea10e4fe9bd047732e1a89add">Reflect</label>
     </form>
   </div>
 </div>
@@ -952,9 +957,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgb5f96afe118747beb8bec0602959e482";
-    var slider_id = "_anim_sliderb5f96afe118747beb8bec0602959e482";
-    var loop_select_id = "_anim_loop_selectb5f96afe118747beb8bec0602959e482";
+    var img_id = "_anim_img2065943ea10e4fe9bd047732e1a89add";
+    var slider_id = "_anim_slider2065943ea10e4fe9bd047732e1a89add";
+    var loop_select_id = "_anim_loop_select2065943ea10e4fe9bd047732e1a89add";
     var frames = new Array(101);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -19374,7 +19379,7 @@ My3a7AAAAABJRU5ErkJggg==\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animb5f96afe118747beb8bec0602959e482 = new Animation(frames, img_id, slider_id, 50.0,
+        anim2065943ea10e4fe9bd047732e1a89add = new Animation(frames, img_id, slider_id, 50.0,
                                  loop_select_id);
     }, 0);
   })()

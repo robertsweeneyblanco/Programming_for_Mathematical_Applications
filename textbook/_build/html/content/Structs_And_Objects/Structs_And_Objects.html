@@ -732,7 +732,7 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="structs-and-objects">
-<span id="structs"></span><h1><span class="section-number">11. </span>Structs and Objects<a class="headerlink" href="#structs-and-objects" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">11. </span>Structs and Objects<a class="headerlink" href="#structs-and-objects" title="Permalink to this headline">¶</a></h1>
 <p>We have seen a number of different <em>types</em> in Julia, such as <code class="docutils literal notranslate"><span class="pre">Int64</span></code>, <code class="docutils literal notranslate"><span class="pre">Float64</span></code>, <code class="docutils literal notranslate"><span class="pre">Array{Float64,2}</span></code>, etc. Now we will learn how to create new types, how to use them to store data, and how to define new functions (methods) and operators on them. This is closely related to the concept of <em>object orientation</em> in other computer languages.</p>
 <div class="section" id="composite-types">
 <h2><span class="section-number">11.1. </span>Composite types<a class="headerlink" href="#composite-types" title="Permalink to this headline">¶</a></h2>
@@ -741,12 +741,16 @@ The type is given a name, and a list of <em>fields</em> (or <em>attributes</em>)
 as variables to store data for objects of the new type.</p>
 <p>As an example, we create a new type named <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> for storing and operating on polynomials.
 The fields will be an array of coefficients <code class="docutils literal notranslate"><span class="pre">c</span></code>, and a character <code class="docutils literal notranslate"><span class="pre">var</span></code> to denote the name of the dependent
-variable:</p>
+variable.</p>
+<p>A variable name can also be followed by <code class="docutils literal notranslate"><span class="pre">::</span></code> and a type. This will enforce this type and give an
+error otherwise, which can be useful to ensure the new composite type is used correctly. In our
+example, we specify that <code class="docutils literal notranslate"><span class="pre">c</span></code> must be of type <code class="docutils literal notranslate"><span class="pre">Vector</span></code> (however we do not specify which types of
+numbers in the vector). We also specify that <code class="docutils literal notranslate"><span class="pre">var</span></code> must be a <code class="docutils literal notranslate"><span class="pre">Char</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="kt">MyPoly</span>
-    <span class="n">c</span>
-    <span class="n">var</span>
+    <span class="n">c</span><span class="o">::</span><span class="kt">Vector</span>
+    <span class="n">var</span><span class="o">::</span><span class="kt">Char</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -777,14 +781,16 @@ providing the values for each of the fields. For example, the polynomial
 <p>Note that by default, Julia will print the object using the type name and a list of the field values. Later we will override this and create a specialized output function.</p>
 <p>You can define other ways to specify (or initialize) a polynomial using a so-called <em>constructor</em>,
 which is a function that is called when a type is initiated. For example, if you want to allow for
-a default value in the <code class="docutils literal notranslate"><span class="pre">var</span></code> field, you can add a constructor as shown below:</p>
+creating a polynomial using only a coefficient array <code class="docutils literal notranslate"><span class="pre">c</span></code> but using the default value <code class="docutils literal notranslate"><span class="pre">x</span></code> for the <code class="docutils literal notranslate"><span class="pre">var</span></code>
+field, you can add a so-called outer constructor as shown below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="kt">MyPoly</span>
-    <span class="n">c</span>
-    <span class="n">var</span>
-    <span class="n">MyPoly</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="sc">&#39;x&#39;</span><span class="p">)</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
-<span class="k">end</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">MyPoly</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">MyPoly</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="sc">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly
 </pre></div>
 </div>
 </div>
@@ -875,13 +881,13 @@ following way:</p>
 <p>However, this function should only work if you pass a <code class="docutils literal notranslate"><span class="pre">MyPoly</span></code> type to it. In Julia you can write functions that operate differently on different types. A function which defines the behavior for a specific combination or number of arguments is called a <em>method</em>.</p>
 <p>A function which is specialized for a certain type can be created using a <em>type declaration</em> with the <code class="docutils literal notranslate"><span class="pre">::</span></code> operator. As an example, we create a <code class="docutils literal notranslate"><span class="pre">degree</span></code> function to find the degree <span class="math notranslate nohighlight">\(d\)</span>. The implementation
 is straight-forward, we simply search the for the first (highest degree) non-zero
-coefficient. Note that we define the degree of the zero polynomial to zero.</p>
+coefficient. Note that we define the degree of the zero polynomial to be -1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">degree</span><span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">)</span>
     <span class="n">ix1</span> <span class="o">=</span> <span class="n">findfirst</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">c</span> <span class="o">.!=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ix1</span> <span class="o">==</span> <span class="nb">nothing</span>
-        <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
     <span class="k">else</span>
         <span class="k">return</span> <span class="n">length</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="n">ix1</span>
     <span class="k">end</span>
@@ -905,7 +911,7 @@ coefficient. Note that we define the degree of the zero polynomial to zero.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
 0
 1
 4
@@ -951,7 +957,7 @@ degree function called with Int argument
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">io</span><span class="o">::</span><span class="kt">IO</span><span class="p">,</span> <span class="n">p</span><span class="o">::</span><span class="kt">MyPoly</span><span class="p">)</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">degree</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-    <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;MyPoly(&quot;</span><span class="p">)</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;MyPoly: &quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="n">d</span><span class="o">:-</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span>
         <span class="n">coeff</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="n">k</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">coeff</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span>
@@ -982,7 +988,6 @@ degree function called with Int argument
             <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;^&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
         <span class="k">end</span>
     <span class="k">end</span>
-    <span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="s">&quot;)&quot;</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -995,7 +1000,7 @@ degree function called with Int argument
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(-1⋅x^3 + 3⋅x^2 - 5⋅x + 2)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly: -1⋅x^3 + 3⋅x^2 - 5⋅x + 2
 </pre></div>
 </div>
 </div>
@@ -1007,7 +1012,7 @@ degree function called with Int argument
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(-1.234⋅s^4 + 4.321)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly: -1.234⋅s^4 + 4.321
 </pre></div>
 </div>
 </div>
@@ -1080,7 +1085,7 @@ p(x) &amp;= a_nx^n + a_{n-1} x^{n-1} + \cdots + a_0 \\
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Structs_And_Objects_30_0.png" src="../../_images/Structs_And_Objects_30_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(1⋅x^5 + 1⋅x^4 - 5⋅x^3 - 5⋅x^2 + 4⋅x + 4)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly: 1⋅x^5 + 1⋅x^4 - 5⋅x^3 - 5⋅x^2 + 4⋅x + 4
 </pre></div>
 </div>
 </div>
@@ -1116,9 +1121,9 @@ p(x) &amp;= a_nx^n + a_{n-1} x^{n-1} + \cdots + a_0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(1⋅x^5 + 1⋅x^4 - 5⋅x^3 - 5⋅x^2 + 4⋅x + 4)
-MyPoly(2⋅x^5 + 2⋅x^4 - 10⋅x^3 - 10⋅x^2 + 8⋅x + 8)
-MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly: 1⋅x^5 + 1⋅x^4 - 5⋅x^3 - 5⋅x^2 + 4⋅x + 4
+MyPoly: 2⋅x^5 + 2⋅x^4 - 10⋅x^3 - 10⋅x^2 + 8⋅x + 8
+MyPoly: 1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Cannot</span> <span class="n">add</span> <span class="n">polynomials</span> <span class="n">of</span> <span class="n">different</span> <span class="n">independent</span> <span class="n">variables</span><span class="o">.</span>
@@ -1188,7 +1193,7 @@ MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(1//1⋅x^2 - 2//3⋅x + 6//7)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly: 1//1⋅x^2 - 2//3⋅x + 6//7
 </pre></div>
 </div>
 </div>
@@ -1215,7 +1220,7 @@ MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly((1 + 0im)⋅x^4 + (0 + 1im)⋅x^3 + (-1 + 0im)⋅x^2 + (0 - 1im)⋅x + (1 + 0im))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly: (1 + 0im)⋅x^4 + (0 + 1im)⋅x^3 + (-1 + 0im)⋅x^2 + (0 - 1im)⋅x + (1 + 0im)
 </pre></div>
 </div>
 </div>
@@ -1243,7 +1248,7 @@ MyPoly(1.0⋅x^5 + 1.0⋅x^4 - 5.0⋅x^3 - 5.0⋅x^2 + 5.1⋅x + 6.2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly(-1.5⋅x^5 - 0.5⋅x^4 + 0.5⋅x^3 + 1.5⋅x^2 + 2.5⋅x + 3.5)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MyPoly: -1.5⋅x^5 - 0.5⋅x^4 + 0.5⋅x^3 + 1.5⋅x^2 + 2.5⋅x + 3.5
 </pre></div>
 </div>
 </div>
