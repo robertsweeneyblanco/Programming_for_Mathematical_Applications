@@ -1,729 +1,517 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>10.1. String Basics &#8212; Programming for Mathematical Applications</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Strings_and_File_Processing/String_Basics';</script>
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Strings_and_File_Processing/String_Basics.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="10.2. String Functions" href="String_Functions.html" />
     <link rel="prev" title="10. Strings and File Processing" href="Chapter_Intro.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Programming for Mathematical Applications</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   Programming for Mathematical Applications
-  </a>
- </li>
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Programming for Mathematical Applications - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Programming for Mathematical Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Programming for Mathematical Applications
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Introduction/Chapter_Intro.html">1. Introduction to Julia</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Functions.html">1.3. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/For_Loops.html">1.4. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Conditionals.html">1.5. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/While_Loops.html">1.6. While-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Function_Arguments.html">1.7. Function Arguments</a></li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Introduction/Chapter_Intro.html">
-   1. Introduction to Julia
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">
-     1.1. Julia as a Calculator
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Variables_And_Assignments.html">
-     1.2. Variables and Assignments
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Functions.html">
-     1.3. Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/For_Loops.html">
-     1.4. For-Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Conditionals.html">
-     1.5. Conditionals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/While_Loops.html">
-     1.6. While-Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Function_Arguments.html">
-     1.7. Function Arguments
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">
-   2. Arrays and Dictionaries
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">
-     2.1. Introduction to Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">
-     2.2. Multi-dimensional Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">
-     2.3. Dictionaries
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Plotting/Plotting.html">
-   3. Plotting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Debugging/Debugging.html">
-   4. Debugging
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">
-   5. Random Numbers
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Distributions.html">
-     5.1. Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Histograms.html">
-     5.2. Histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">
-     5.3. Monte Carlo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Vectorization/Chapter_Intro.html">
-   6. Vectorization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Constructing_Arrays.html">
-     6.1. Constructing Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Array_Functions.html">
-     6.2. Array Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Logical_Indexing.html">
-     6.3. Logical Indexing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Data_Types/Chapter_Intro.html">
-   7. Data Types
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">
-     7.1. Arbitrary Precision Integers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">
-     7.2. Arbitrary Precision Floats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Complex_Numbers.html">
-     7.3. Complex Numbers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Rational_Numbers.html">
-     7.4. Rational Numbers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">
-     7.5. Data Types of Arrays
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Recursion/Recursion.html">
-   8. Recursion
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">
-   9. Linear Algebra
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">
-     9.1. Matrix Operations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">
-     9.2. Special Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">
-     9.3. Linear Systems and Regression
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="Chapter_Intro.html">
-   10. Strings and File Processing
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     10.1. String Basics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="String_Functions.html">
-     10.2. String Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="File_Processing.html">
-     10.3. File Processing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">
-   11. Structs and Objects
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">
-   12. Computational Geometry
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">
-     12.1. Convex Hull
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">
-     12.2. Line-segment Interactions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Triangulations.html">
-     12.3. Triangulations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Image_Processing/Chapter_Intro.html">
-   13. Image Processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">
-     13.1. Reading and Plotting Images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Image_Scaling.html">
-     13.2. Image Scaling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Filtering.html">
-     13.3. Filtering
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Fourier_Transform.html">
-     13.4. Fourier Transform
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">
-   14. Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">
-     14.1. Initial Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">
-     14.2. Higher Order Derivatives and Systems of ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">
-     14.3. Boundary Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">
-     14.4. DifferentialEquations Package
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Optimization/Chapter_Intro.html">
-   15. Optimization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">
-     15.1. Gradient Based Optimization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Optimization/Optim_Package.html">
-     15.2. Optim Package
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Graphs/Chapter_Intro.html">
-   16. Graphs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Graphs/Graph_Basics.html">
-     16.1. Graph Basics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Graphs/Graph_Algorithms.html">
-     16.2. Graph Algorithms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">
-   17. Sparse Matrices
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">
-     17.1. Matrix Designs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">
-     17.2. Sparse Matrices in Julia
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">
-     17.3. Application; Graphs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">
-     17.4. Application; Google Page Rank
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Appendices/Chapter_Intro.html">
-   18. Appendices
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Appendices/Floating_Point_Arithmetic.html">
-     18.1. Floating Point Arithmetic
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Appendices/Algorithmic_Efficiency.html">
-     18.2. Algorithmic Efficiency
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">2.1. Introduction to Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">2.2. Multi-dimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">2.3. Dictionaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Plotting/Plotting.html">3. Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Debugging/Debugging.html">4. Debugging</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">5. Random Numbers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Distributions.html">5.1. Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Histograms.html">5.2. Histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">5.3. Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Data_Types/Chapter_Intro.html">7. Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">7.1. Arbitrary Precision Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">7.2. Arbitrary Precision Floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Complex_Numbers.html">7.3. Complex Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Rational_Numbers.html">7.4. Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">7.5. Data Types of Arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Recursion/Recursion.html">8. Recursion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">9. Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">9.1. Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">9.2. Special Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">9.3. Linear Systems and Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Chapter_Intro.html">10. Strings and File Processing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10.1. String Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="String_Functions.html">10.2. String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="File_Processing.html">10.3. File Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">11. Structs and Objects</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">12. Computational Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">12.1. Convex Hull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">12.2. Line-segment Interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Triangulations.html">12.3. Triangulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Image_Processing/Chapter_Intro.html">13. Image Processing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">13.1. Reading and Plotting Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Image_Scaling.html">13.2. Image Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Filtering.html">13.3. Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Fourier_Transform.html">13.4. Fourier Transform</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">14. Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">14.1. Initial Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">14.2. Higher Order Derivatives and Systems of ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">14.3. Boundary Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">14.4. DifferentialEquations Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Optimization/Chapter_Intro.html">15. Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">15.1. Gradient Based Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Optim_Package.html">15.2. Optim Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Graphs/Chapter_Intro.html">16. Graphs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Basics.html">16.1. Graph Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Algorithms.html">16.2. Graph Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">17. Sparse Matrices</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">17.1. Matrix Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">17.2. Sparse Matrices in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">17.3. Application; Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">17.4. Application; Google Page Rank</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Appendices/Chapter_Intro.html">18. Appendices</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Appendices/Floating_Point_Arithmetic.html">18.1. Floating Point Arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Appendices/Algorithmic_Efficiency.html">18.2. Algorithmic Efficiency</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/content/Strings_and_File_Processing/String_Basics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Strings_and_File_Processing/String_Basics.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Strings_and_File_Processing/String_Basics.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        
-        <a class="jupyterhub-button" href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Strings_and_File_Processing/String_Basics.ipynb&branch=master"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="../../_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Strings_and_File_Processing/String_Basics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/Strings_and_File_Processing/String_Basics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>String Basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#characters">
-   10.1.1. Characters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-creation">
-   10.1.2. String creation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-concatenation">
-   10.1.3. String concatenation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-comparison">
-   10.1.4. String comparison
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-indexing">
-   10.1.5. String indexing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-check-if-string-is-a-palindrome">
-   10.1.6. Example: Check if string is a palindrome
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characters">10.1.1. Characters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-creation">10.1.2. String creation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-concatenation">10.1.3. String concatenation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-comparison">10.1.4. String comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-indexing">10.1.5. String indexing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-check-if-string-is-a-palindrome">10.1.6. Example: Check if string is a palindrome</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>String Basics</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#characters">
-   10.1.1. Characters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-creation">
-   10.1.2. String creation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-concatenation">
-   10.1.3. String concatenation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-comparison">
-   10.1.4. String comparison
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#string-indexing">
-   10.1.5. String indexing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-check-if-string-is-a-palindrome">
-   10.1.6. Example: Check if string is a palindrome
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="string-basics">
-<h1><span class="section-number">10.1. </span>String Basics<a class="headerlink" href="#string-basics" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="string-basics">
+<h1><span class="section-number">10.1. </span>String Basics<a class="headerlink" href="#string-basics" title="Permalink to this heading">#</a></h1>
 <p>Strings are sequences of characters, and they are used in a wide range of programming applications. Julia provides extensive functionality for working with strings and characters, including support for so-called Unicode characters. However, Julia also works efficiently using standard so-called ASCII characters and string, which we will focus on here to keep the presentation shorter.</p>
-<div class="section" id="characters">
-<h2><span class="section-number">10.1.1. </span>Characters<a class="headerlink" href="#characters" title="Permalink to this headline">¶</a></h2>
+<section id="characters">
+<h2><span class="section-number">10.1.1. </span>Characters<a class="headerlink" href="#characters" title="Permalink to this heading">#</a></h2>
 <p>ASCII is a 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters.</p>
 <p>The numbers 0 - 31 are used for so-called <em>control characters</em>, including for example the carriage return (number 13). The numbers 32 - 126 define the standard characters (the first character below, corresponding to number 32, is the space character):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> !&quot;#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -732,7 +520,7 @@
 <p>Julia defines the type <code class="docutils literal notranslate"><span class="pre">Char</span></code> for representing characters, and you can create one using single quotes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;Q&#39;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;Q&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -745,7 +533,7 @@
 <p>You can also define the character directly using its number:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c_and</span> <span class="o">=</span> <span class="kt">Char</span><span class="p">(</span><span class="mi">38</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c_and</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Char</span><span class="p">(</span><span class="mi">38</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -758,7 +546,7 @@
 <p>and you can find the number of a <code class="docutils literal notranslate"><span class="pre">Char</span></code> by converting to <code class="docutils literal notranslate"><span class="pre">Int</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c_at</span> <span class="o">=</span> <span class="kt">Int</span><span class="p">(</span><span class="sc">&#39;@&#39;</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Int</span><span class="p">(</span><span class="sc">&#39;@&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -771,7 +559,7 @@
 <p>The control characters can be created using a backslash notation, for example the carriage return:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c_CR</span> <span class="o">=</span> <span class="sc">&#39;\n&#39;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c_CR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -782,26 +570,26 @@
 </div>
 </div>
 <p>You can also do comparisons and a limited amount of arithmetic with <code class="docutils literal notranslate"><span class="pre">Char</span></code> values (from Julia documentation):</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="sc">&#39;A&#39;</span> <span class="o">&lt;</span> <span class="sc">&#39;a&#39;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="sc">&#39;a&#39;</span>
 <span class="nb">true</span>
 
-<span class="n">julia</span><span class="o">&gt;</span> <span class="sc">&#39;A&#39;</span> <span class="o">&lt;=</span> <span class="sc">&#39;a&#39;</span> <span class="o">&lt;=</span> <span class="sc">&#39;Z&#39;</span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">&#39;Z&#39;</span>
 <span class="nb">false</span>
 
-<span class="n">julia</span><span class="o">&gt;</span> <span class="sc">&#39;A&#39;</span> <span class="o">&lt;=</span> <span class="sc">&#39;X&#39;</span> <span class="o">&lt;=</span> <span class="sc">&#39;Z&#39;</span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">&#39;X&#39;</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">&#39;Z&#39;</span>
 <span class="nb">true</span>
 
-<span class="n">julia</span><span class="o">&gt;</span> <span class="sc">&#39;x&#39;</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="sc">&#39;x&#39;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;a&#39;</span>
 <span class="mi">23</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="string-creation">
-<h2><span class="section-number">10.1.2. </span>String creation<a class="headerlink" href="#string-creation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="string-creation">
+<h2><span class="section-number">10.1.2. </span>String creation<a class="headerlink" href="#string-creation" title="Permalink to this heading">#</a></h2>
 <p>A string can be created from a sequence of characters using double quotes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;Hello world!</span><span class="se">\n</span><span class="s">Julia is fun</span><span class="se">\n</span><span class="s">&quot;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello world!</span><span class="se">\n</span><span class="s">Julia is fun</span><span class="se">\n</span><span class="s">&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -828,7 +616,7 @@ Julia is fun
 <p>Since the double quote and the backslash characters have special meanings, as well as the dollar character, you need to put an extra backslash in front of them if used in a string:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str2</span> <span class="o">=</span> <span class="s">&quot;I </span><span class="se">\&quot;</span><span class="s">have</span><span class="se">\&quot;</span><span class="s"> </span><span class="se">\$</span><span class="s">50, A</span><span class="se">\\</span><span class="s">b</span><span class="se">\n</span><span class="s">&quot;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;I </span><span class="se">\&quot;</span><span class="s">have</span><span class="se">\&quot;</span><span class="s"> </span><span class="se">\$</span><span class="s">50, A</span><span class="se">\\</span><span class="s">b</span><span class="se">\n</span><span class="s">&quot;</span>
 <span class="n">print</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -842,11 +630,11 @@ Julia is fun
 <p>Strings can also be created using triple quotes, which is convenient for multiple lines. In this case, the double quote character does not need the extra backslash:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str3</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">    This is some multi-line text. </span>
 <span class="s">    Carriage return is inserted for new lines.</span>
 <span class="s">    Double quotes can be used as-is: &quot;</span>
-<span class="s">    But backslash and dollar still need extra backslashes: </span><span class="se">\\</span><span class="s">, </span><span class="se">\$</span><span class="s"></span>
+<span class="s">    But backslash and dollar still need extra backslashes: </span><span class="se">\\</span><span class="s">, </span><span class="se">\$</span>
 <span class="s">    The indentation of the lines is determined by the position of the final triple-quote.</span>
 <span class="s">&quot;&quot;&quot;</span>
 <span class="n">print</span><span class="p">(</span><span class="n">str3</span><span class="p">)</span>
@@ -863,16 +651,16 @@ Julia is fun
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="string-concatenation">
-<h2><span class="section-number">10.1.3. </span>String concatenation<a class="headerlink" href="#string-concatenation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="string-concatenation">
+<h2><span class="section-number">10.1.3. </span>String concatenation<a class="headerlink" href="#string-concatenation" title="Permalink to this heading">#</a></h2>
 <p>You can concatenate multiple strings by passing them to the <code class="docutils literal notranslate"><span class="pre">string</span></code> function. An alternative syntax is to use the multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code> operator between the strings:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str4a</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span>
-<span class="n">str4b</span> <span class="o">=</span> <span class="s">&quot;World&quot;</span>
-<span class="n">str4ab</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="n">str4a</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">,</span> <span class="n">str4b</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>  <span class="c"># Concatenation</span>
-<span class="n">str5ab</span> <span class="o">=</span> <span class="n">str4a</span> <span class="o">*</span> <span class="s">&quot; &quot;</span> <span class="o">*</span> <span class="n">str4b</span> <span class="o">*</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>       <span class="c"># Same thing</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str4a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span>
+<span class="n">str4b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;World&quot;</span>
+<span class="n">str4ab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="n">str4a</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">str4b</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span><span class="w">  </span><span class="c"># Concatenation</span>
+<span class="n">str5ab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str4a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">str4b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="w">       </span><span class="c"># Same thing</span>
 
 <span class="n">print</span><span class="p">(</span><span class="n">str4ab</span><span class="p">)</span>
 <span class="n">print</span><span class="p">(</span><span class="n">str5ab</span><span class="p">)</span>
@@ -889,7 +677,7 @@ Hello World
 <p>Alternatively, Julia allows <em>interpolation</em> into string literals using the <code class="docutils literal notranslate"><span class="pre">$</span></code> symbol. This is often a more natural syntax for string concatenation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str6ab</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">$str4a</span><span class="s"> </span><span class="si">$str4b</span><span class="se">\n</span><span class="s">&quot;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str6ab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">$str4a</span><span class="s"> </span><span class="si">$str4b</span><span class="se">\n</span><span class="s">&quot;</span>
 <span class="n">print</span><span class="p">(</span><span class="n">str6ab</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -903,14 +691,14 @@ Hello World
 <p>Interpolation allows for general expressions after the <code class="docutils literal notranslate"><span class="pre">$</span></code> sign, inside parentheses unless just a single variable name. These will be evaluated and converted to strings:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;Random vector: </span><span class="si">$vec</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;sin of 45 degrees = </span><span class="si">$</span><span class="p">(</span><span class="n">sind</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random vector: [0.27550878249887933, 0.31477994119482244, 0.07539404983854925]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random vector: [0.00895262685300413, 0.771799934191051, 0.8719362139443655]
 sin of 45 degrees = 0.7071067811865476
 </pre></div>
 </div>
@@ -929,30 +717,30 @@ sin of 45 degrees = 0.7071067811865476
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="string-comparison">
-<h2><span class="section-number">10.1.4. </span>String comparison<a class="headerlink" href="#string-comparison" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="string-comparison">
+<h2><span class="section-number">10.1.4. </span>String comparison<a class="headerlink" href="#string-comparison" title="Permalink to this heading">#</a></h2>
 <p>You can lexicographically compare strings using the standard comparison operators (from Julia documentation):</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="s">&quot;abracadabra&quot;</span> <span class="o">&lt;</span> <span class="s">&quot;xylophone&quot;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;abracadabra&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s">&quot;xylophone&quot;</span>
 <span class="nb">true</span>
 
-<span class="n">julia</span><span class="o">&gt;</span> <span class="s">&quot;abracadabra&quot;</span> <span class="o">==</span> <span class="s">&quot;xylophone&quot;</span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;abracadabra&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;xylophone&quot;</span>
 <span class="nb">false</span>
 
-<span class="n">julia</span><span class="o">&gt;</span> <span class="s">&quot;Hello, world.&quot;</span> <span class="o">!=</span> <span class="s">&quot;Goodbye, world.&quot;</span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;Hello, world.&quot;</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;Goodbye, world.&quot;</span>
 <span class="nb">true</span>
 
-<span class="n">julia</span><span class="o">&gt;</span> <span class="s">&quot;1 + 2 = 3&quot;</span> <span class="o">==</span> <span class="s">&quot;1 + 2 = </span><span class="si">$</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span><span class="s">&quot;</span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;1 + 2 = 3&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;1 + 2 = </span><span class="si">$</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="s">&quot;</span>
 <span class="nb">true</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="string-indexing">
-<h2><span class="section-number">10.1.5. </span>String indexing<a class="headerlink" href="#string-indexing" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="string-indexing">
+<h2><span class="section-number">10.1.5. </span>String indexing<a class="headerlink" href="#string-indexing" title="Permalink to this heading">#</a></h2>
 <p>Julia strings behave in many ways like a 1D array of characters (but beware of Unicode characters, then the indices might not be consecutive). For example, you can extract a single character from a string by indexing with an integer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str</span> <span class="o">=</span> <span class="s">&quot;abcdefghij&quot;</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abcdefghij&quot;</span>
 <span class="n">str</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -992,7 +780,7 @@ sin of 45 degrees = 0.7071067811865476
 <p>Alternatively, it is possible to create a <em>view</em> into a string using the type <code class="docutils literal notranslate"><span class="pre">SubString</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sub</span> <span class="o">=</span> <span class="kt">SubString</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">SubString</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1005,8 +793,8 @@ sin of 45 degrees = 0.7071067811865476
 <p>The length of the string can be found with the <code class="docutils literal notranslate"><span class="pre">length</span></code> function, which can be used to loop over the characters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Character #</span><span class="si">$i</span><span class="s"> = &#39;</span><span class="si">$</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="s">&#39;&quot;</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Character #</span><span class="si">$i</span><span class="s"> = &#39;</span><span class="si">$</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="s">&#39;&quot;</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -1029,7 +817,7 @@ Character #10 = &#39;j&#39;
 <p>Strings in Julia are <em>immutable</em>, which means you cannot change the content of a string after it is created:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span>    <span class="c"># Error - cannot change strings</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">str</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="w">    </span><span class="c"># Error - cannot change strings</span>
 </pre></div>
 </div>
 </div>
@@ -1039,27 +827,23 @@ Character #10 = &#39;j&#39;
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span><span class="mi">1</span>
- <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="example-check-if-string-is-a-palindrome">
-<h2><span class="section-number">10.1.6. </span>Example: Check if string is a palindrome<a class="headerlink" href="#example-check-if-string-is-a-palindrome" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="example-check-if-string-is-a-palindrome">
+<h2><span class="section-number">10.1.6. </span>Example: Check if string is a palindrome<a class="headerlink" href="#example-check-if-string-is-a-palindrome" title="Permalink to this heading">#</a></h2>
 <p>A palindrome is a sequence of characters which reads the same backward as forward. Using array operations and string comparisons, it is trivial to check if a string is a palindrome:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">is_palindrome</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">str</span><span class="p">[</span><span class="k">end</span><span class="o">:-</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">is_palindrome</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="k">end</span><span class="o">:-</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">str</span>
 <span class="k">end</span>
 
-<span class="n">strings</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;racecar&quot;</span><span class="p">,</span> <span class="s">&quot;Sit on a Potato Pan, Otis&quot;</span><span class="p">,</span> <span class="s">&quot;sitonapotatopanotis&quot;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">str</span> <span class="k">in</span> <span class="n">strings</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="si">$str</span><span class="se">\&quot;</span><span class="s">: &quot;</span><span class="p">,</span> <span class="n">is_palindrome</span><span class="p">(</span><span class="n">str</span><span class="p">))</span>
+<span class="n">strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;racecar&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sit on a Potato Pan, Otis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sitonapotatopanotis&quot;</span><span class="p">]</span>
+<span class="k">for</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">strings</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="si">$str</span><span class="se">\&quot;</span><span class="s">: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">is_palindrome</span><span class="p">(</span><span class="n">str</span><span class="p">))</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -1075,18 +859,18 @@ Character #10 = &#39;j&#39;
 <p>However, we can practice recursion, string indexing, and substrings by writing the following recursive version of the function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">is_palindrome_recursive</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">length</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">≤</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="nb">true</span>
-    <span class="k">elseif</span> <span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span><span class="p">[</span><span class="k">end</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">is_palindrome_recursive</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">else</span>
-        <span class="k">return</span> <span class="nb">false</span>
-    <span class="k">end</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">is_palindrome_recursive</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span><span class="k">elseif</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="k">end</span><span class="p">]</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">is_palindrome_recursive</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span>
+<span class="w">    </span><span class="k">end</span>
 <span class="k">end</span>
 
-<span class="k">for</span> <span class="n">str</span> <span class="k">in</span> <span class="n">strings</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="si">$str</span><span class="se">\&quot;</span><span class="s">: &quot;</span><span class="p">,</span> <span class="n">is_palindrome_recursive</span><span class="p">(</span><span class="n">str</span><span class="p">))</span>
+<span class="k">for</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">strings</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="si">$str</span><span class="se">\&quot;</span><span class="s">: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">is_palindrome_recursive</span><span class="p">(</span><span class="n">str</span><span class="p">))</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -1099,8 +883,8 @@ Character #10 = &#39;j&#39;
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1111,55 +895,118 @@ Character #10 = &#39;j&#39;
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.6"
+            mode: "julia-1.9"
         },
         kernelOptions: {
-            kernelName: "julia-1.6",
+            name: "julia-1.9",
             path: "./content/Strings_and_File_Processing"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.6'</script>
+    <script>kernelName = 'julia-1.9'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="Chapter_Intro.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">10. </span>Strings and File Processing</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_Intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Strings and File Processing</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="String_Functions.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="String_Functions.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">10.2. </span>String Functions</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characters">10.1.1. Characters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-creation">10.1.2. String creation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-concatenation">10.1.3. String concatenation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-comparison">10.1.4. String comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-indexing">10.1.5. String indexing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-check-if-string-is-a-palindrome">10.1.6. Example: Check if string is a palindrome</a></li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

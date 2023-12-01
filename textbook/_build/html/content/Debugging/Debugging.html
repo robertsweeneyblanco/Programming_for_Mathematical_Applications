@@ -1,698 +1,513 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>4. Debugging &#8212; Programming for Mathematical Applications</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Debugging/Debugging';</script>
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Debugging/Debugging.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="5. Random Numbers" href="../Random_Numbers/Chapter_Intro.html" />
     <link rel="prev" title="3. Plotting" href="../Plotting/Plotting.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Programming for Mathematical Applications</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   Programming for Mathematical Applications
-  </a>
- </li>
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Programming for Mathematical Applications - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Programming for Mathematical Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Programming for Mathematical Applications
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Introduction/Chapter_Intro.html">1. Introduction to Julia</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Functions.html">1.3. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/For_Loops.html">1.4. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Conditionals.html">1.5. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/While_Loops.html">1.6. While-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Function_Arguments.html">1.7. Function Arguments</a></li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Introduction/Chapter_Intro.html">
-   1. Introduction to Julia
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">
-     1.1. Julia as a Calculator
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Variables_And_Assignments.html">
-     1.2. Variables and Assignments
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Functions.html">
-     1.3. Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/For_Loops.html">
-     1.4. For-Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Conditionals.html">
-     1.5. Conditionals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/While_Loops.html">
-     1.6. While-Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Function_Arguments.html">
-     1.7. Function Arguments
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">
-   2. Arrays and Dictionaries
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">
-     2.1. Introduction to Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">
-     2.2. Multi-dimensional Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">
-     2.3. Dictionaries
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Plotting/Plotting.html">
-   3. Plotting
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   4. Debugging
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">
-   5. Random Numbers
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Distributions.html">
-     5.1. Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Histograms.html">
-     5.2. Histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">
-     5.3. Monte Carlo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Vectorization/Chapter_Intro.html">
-   6. Vectorization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Constructing_Arrays.html">
-     6.1. Constructing Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Array_Functions.html">
-     6.2. Array Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Logical_Indexing.html">
-     6.3. Logical Indexing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Data_Types/Chapter_Intro.html">
-   7. Data Types
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">
-     7.1. Arbitrary Precision Integers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">
-     7.2. Arbitrary Precision Floats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Complex_Numbers.html">
-     7.3. Complex Numbers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Rational_Numbers.html">
-     7.4. Rational Numbers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">
-     7.5. Data Types of Arrays
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Recursion/Recursion.html">
-   8. Recursion
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">
-   9. Linear Algebra
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">
-     9.1. Matrix Operations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">
-     9.2. Special Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">
-     9.3. Linear Systems and Regression
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">
-   10. Strings and File Processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">
-     10.1. String Basics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">
-     10.2. String Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">
-     10.3. File Processing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">
-   11. Structs and Objects
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">
-   12. Computational Geometry
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">
-     12.1. Convex Hull
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">
-     12.2. Line-segment Interactions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Triangulations.html">
-     12.3. Triangulations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Image_Processing/Chapter_Intro.html">
-   13. Image Processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">
-     13.1. Reading and Plotting Images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Image_Scaling.html">
-     13.2. Image Scaling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Filtering.html">
-     13.3. Filtering
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Fourier_Transform.html">
-     13.4. Fourier Transform
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">
-   14. Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">
-     14.1. Initial Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">
-     14.2. Higher Order Derivatives and Systems of ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">
-     14.3. Boundary Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">
-     14.4. DifferentialEquations Package
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Optimization/Chapter_Intro.html">
-   15. Optimization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">
-     15.1. Gradient Based Optimization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Optimization/Optim_Package.html">
-     15.2. Optim Package
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Graphs/Chapter_Intro.html">
-   16. Graphs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Graphs/Graph_Basics.html">
-     16.1. Graph Basics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Graphs/Graph_Algorithms.html">
-     16.2. Graph Algorithms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">
-   17. Sparse Matrices
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">
-     17.1. Matrix Designs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">
-     17.2. Sparse Matrices in Julia
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">
-     17.3. Application; Graphs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">
-     17.4. Application; Google Page Rank
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Appendices/Chapter_Intro.html">
-   18. Appendices
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Appendices/Floating_Point_Arithmetic.html">
-     18.1. Floating Point Arithmetic
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Appendices/Algorithmic_Efficiency.html">
-     18.2. Algorithmic Efficiency
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">2.1. Introduction to Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">2.2. Multi-dimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">2.3. Dictionaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Plotting/Plotting.html">3. Plotting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Debugging</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">5. Random Numbers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Distributions.html">5.1. Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Histograms.html">5.2. Histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">5.3. Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Data_Types/Chapter_Intro.html">7. Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">7.1. Arbitrary Precision Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">7.2. Arbitrary Precision Floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Complex_Numbers.html">7.3. Complex Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Rational_Numbers.html">7.4. Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">7.5. Data Types of Arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Recursion/Recursion.html">8. Recursion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">9. Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">9.1. Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">9.2. Special Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">9.3. Linear Systems and Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">10. Strings and File Processing</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">10.1. String Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">10.2. String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">10.3. File Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">11. Structs and Objects</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">12. Computational Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">12.1. Convex Hull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">12.2. Line-segment Interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Triangulations.html">12.3. Triangulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Image_Processing/Chapter_Intro.html">13. Image Processing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">13.1. Reading and Plotting Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Image_Scaling.html">13.2. Image Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Filtering.html">13.3. Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Fourier_Transform.html">13.4. Fourier Transform</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">14. Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">14.1. Initial Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">14.2. Higher Order Derivatives and Systems of ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">14.3. Boundary Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">14.4. DifferentialEquations Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Optimization/Chapter_Intro.html">15. Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">15.1. Gradient Based Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Optim_Package.html">15.2. Optim Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Graphs/Chapter_Intro.html">16. Graphs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Basics.html">16.1. Graph Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Algorithms.html">16.2. Graph Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">17. Sparse Matrices</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">17.1. Matrix Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">17.2. Sparse Matrices in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">17.3. Application; Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">17.4. Application; Google Page Rank</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Appendices/Chapter_Intro.html">18. Appendices</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Appendices/Floating_Point_Arithmetic.html">18.1. Floating Point Arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Appendices/Algorithmic_Efficiency.html">18.2. Algorithmic Efficiency</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/content/Debugging/Debugging.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Debugging/Debugging.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Debugging/Debugging.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        
-        <a class="jupyterhub-button" href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Debugging/Debugging.ipynb&branch=master"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="../../_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Debugging/Debugging.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/Debugging/Debugging.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Debugging</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#syntax-errors">
-   4.1. Syntax errors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#runtime-errors">
-   4.2. Runtime errors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#semantic-errors">
-   4.3. Semantic errors
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-errors">4.1. Syntax errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-errors">4.2. Runtime errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-errors">4.3. Semantic errors</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Debugging</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#syntax-errors">
-   4.1. Syntax errors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#runtime-errors">
-   4.2. Runtime errors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#semantic-errors">
-   4.3. Semantic errors
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="debugging">
-<h1><span class="section-number">4. </span>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="debugging">
+<h1><span class="section-number">4. </span>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">#</a></h1>
 <p>A crucial concept that readers have hopefully started to pick up at this point is <em>debugging</em>. Simply put, this is the process by which one fixes code until it accomplishes what it is expected to accomplish. In practice, this can feel like being a detective in a crime movie where you are also the murderer.</p>
 <p>There are three types of errors to debug:</p>
 <ul class="simple">
@@ -713,16 +528,16 @@
 </li>
 </ul>
 <p>We will explore these one at a time below.</p>
-<div class="section" id="syntax-errors">
-<h2><span class="section-number">4.1. </span>Syntax errors<a class="headerlink" href="#syntax-errors" title="Permalink to this headline">¶</a></h2>
+<section id="syntax-errors">
+<h2><span class="section-number">4.1. </span>Syntax errors<a class="headerlink" href="#syntax-errors" title="Permalink to this heading">#</a></h2>
 <p>Syntax errors are errors that prevent a compiler or interpreter from understanding the source code and generating a working program.</p>
 <p>They are often due to typos, and are the easiest of the errors to fix. Thankfully, they appear less frequently as you master a specific programming language, although it is unreasonably to expect them to go away entirely.</p>
 <p>Modular programming (or breaking down the functionality of a larger program into independent and potentially interchangeable modules) helps isolate errors. Throughout this course, this means writing small and readable functions that accomplish only one task, separated into different cells of a Jupyter notebook.</p>
 <p>Let’s see some syntax error examples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">fnction</span> <span class="n">mySqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">fnction</span><span class="w"> </span><span class="n">mySqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -733,10 +548,6 @@
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="mi">1</span>
- <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -744,12 +555,12 @@
 <p>Here we see that the stack trace tells us the error is in line 1 of <code class="docutils literal notranslate"><span class="pre">In[1]</span></code>. Specifically the error is ‘an extra token “mySqrt” after end of expression’. Putting these two clues together, we should see that the word “function” on the first line was incorrectly spelled.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">lots_of_math</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        <span class="n">var</span> <span class="o">+=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="p">(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
-    <span class="k">end</span>
-    <span class="k">return</span> <span class="n">var</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">lots_of_math</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">var</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="p">(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">var</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -760,10 +571,6 @@
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="mi">5</span>
- <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -772,23 +579,23 @@
 <p>Here is a helpful tip to zoom in on this issue further. We can track the expression character by character from left to right, counting the number of open parentheses at each character.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="p">(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
 
-    <span class="mi">1</span>      <span class="mi">0</span> <span class="mi">123</span>   <span class="mi">2</span> <span class="mi">3</span>   <span class="mi">21</span> <span class="mi">23</span>   <span class="mi">2</span> <span class="mi">3</span>   <span class="mi">21</span>
+<span class="w">    </span><span class="mi">1</span><span class="w">      </span><span class="mi">0</span><span class="w"> </span><span class="mi">123</span><span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w">   </span><span class="mi">21</span><span class="w"> </span><span class="mi">23</span><span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w">   </span><span class="mi">21</span>
 </pre></div>
 </div>
 <p>This count confirms that the syntax error will be solved with an extra <code class="docutils literal notranslate"><span class="pre">)</span></code> closing the second half of the expression. The extra <code class="docutils literal notranslate"><span class="pre">)</span></code> will ensure our parenthesis count returns to 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">more_math</span><span class="p">()</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">var1</span>
-    <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="p">(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">)))</span>
-    <span class="n">println</span><span class="p">(</span><span class="n">var1</span><span class="p">)</span>
-    
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">20</span>
-    <span class="n">var2</span> <span class="o">=</span> 
-    <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="p">(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span>
-        <span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">)))</span>
-    <span class="n">println</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">more_math</span><span class="p">()</span>
+<span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">    </span><span class="n">var1</span>
+<span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="p">(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">)))</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">var1</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">    </span><span class="n">var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="p">(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span>
+<span class="w">        </span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">)))</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -799,10 +606,6 @@
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">4</span>
- <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -811,13 +614,13 @@
 <p>When debugging, it is helpful to turn on line numbers by selecting View -&gt; Toggle Line Numbers in a Jupyter notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> <span class="n">array_init</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">array</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">}(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-            <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span>
-        <span class="k">end</span>
-    <span class="k">end</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">array_init</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">}(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">            </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">*</span><span class="n">j</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -828,33 +631,29 @@
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span><span class="mi">4</span>
- <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>A final syntax error to explore. Julia reports that line 4 cannot have a line break in a vectorized expression using “:”. If we explore just around that line number, we’ll see that again the issue was carried over from the previous line. There is an extra <code class="docutils literal notranslate"><span class="pre">:</span></code> after <code class="docutils literal notranslate"><span class="pre">size(array,1)</span></code>.</p>
-</div>
-<div class="section" id="runtime-errors">
-<h2><span class="section-number">4.2. </span>Runtime errors<a class="headerlink" href="#runtime-errors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="runtime-errors">
+<h2><span class="section-number">4.2. </span>Runtime errors<a class="headerlink" href="#runtime-errors" title="Permalink to this heading">#</a></h2>
 <p>Runtime errors are errors that take place while executing a program.</p>
 <p>These errors can sometimes be caused by typos, but are often more complex than syntax errors. You should fully read the error message(s) before attempting to fix them. If you are unsure how to interpret an error message you have never seen before, please google the exact expression reported in the error message. You are certainly not the first person to cause this error, and there may be a post online from another user who has already solved your exact issue (such as on <a class="reference external" href="http://StackOverflow.com">StackOverflow.com</a> or <a class="reference external" href="http://discourse.julialang.org">discourse.julialang.org</a>).</p>
 <p>As always, modular programming will help isolate errors. If you have tested other parts of your program and are confident everything else is correct, then the issue is reduced to somewhere only in a few lines of code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Compute the first n terms of the Taylor expansion of e^x centered around x=0</span>
-<span class="k">function</span> <span class="n">taylorExpansion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        <span class="n">sum</span> <span class="o">+=</span> <span class="n">x</span><span class="o">^</span><span class="n">n</span><span class="o">/</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">end</span>
-    <span class="k">return</span> <span class="n">sum</span>
+<span class="k">function</span><span class="w"> </span><span class="n">taylorExpansion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="n">n</span><span class="o">/</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span>
 <span class="k">end</span>
 
-<span class="n">taylorExpansion</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">taylorExpansion</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -870,10 +669,6 @@
    <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span><span class="mi">5</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span><span class="mi">10</span>
- <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -882,12 +677,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Confuse the audience with a compicated math expression</span>
-<span class="k">function</span> <span class="n">lots_of_math2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        <span class="n">var</span> <span class="o">+=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">)))</span>
-    <span class="k">end</span>
-    <span class="k">return</span> <span class="n">var</span>
+<span class="k">function</span><span class="w"> </span><span class="n">lots_of_math2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">var</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)(((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">)))</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">var</span>
 <span class="k">end</span>
 
 <span class="n">lots_of_math2</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -896,38 +691,35 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: objects of type Float64 are not callable
+<span class="n">Maybe</span> <span class="n">you</span> <span class="n">forgot</span> <span class="n">to</span> <span class="n">use</span> <span class="n">an</span> <span class="n">operator</span> <span class="n">such</span> <span class="k">as</span> <span class="o">*</span><span class="p">,</span> <span class="o">^</span><span class="p">,</span> <span class="o">%</span><span class="p">,</span> <span class="o">/</span> <span class="n">etc</span><span class="o">.</span> <span class="o">?</span>
 
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">lots_of_math2</span><span class="p">(</span><span class="n">n</span><span class="p">::</span><span class="n">Int64</span><span class="p">)</span>
    <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span><span class="mi">5</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span><span class="mi">10</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Julia’s error message here has dramatically improved in recent versions. While it reports this as a method error “objects of type <code class="docutils literal notranslate"><span class="pre">Float64</span></code> are not callable,” it also explains that this can be caused by forgetting an operator such as <code class="docutils literal notranslate"><span class="pre">*</span></code>. Indeed, that’s exactly the issue. Comparing this function to <code class="docutils literal notranslate"><span class="pre">lots_of_math1()</span></code> above, we see the issue is a missing multiplication sign between <code class="docutils literal notranslate"><span class="pre">sqrt(2*pi*i)</span></code> and the other expression.</p>
 <p>The reason it says this is a method error is because Julia is interpreting line 5 exactly like:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">var1</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
-<span class="n">var2</span> <span class="o">=</span> <span class="p">((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
-<span class="n">var</span> <span class="o">+=</span> <span class="n">var1</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">var1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+<span class="n">var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
+<span class="n">var</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">var1</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>That is to say, Julia is trying to call the function <code class="docutils literal notranslate"><span class="pre">var1()</span></code> with input <code class="docutils literal notranslate"><span class="pre">var2</span></code>. This clearly does not make sense since <code class="docutils literal notranslate"><span class="pre">var1</span></code> is a floating point number, not a function, hence the error message that <code class="docutils literal notranslate"><span class="pre">Float64</span></code>s are not callable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Print out a comparison between x and y</span>
-<span class="k">function</span> <span class="n">compare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span>
-        <span class="n">relation</span> <span class="o">=</span> <span class="s">&quot;less than&quot;</span>
-    <span class="k">elseif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span>
-        <span class="n">relation</span> <span class="o">=</span> <span class="s">&quot;greater than&quot;</span>
-    <span class="k">end</span>
-    <span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&quot; is &quot;</span><span class="p">,</span> <span class="n">relation</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">function</span><span class="w"> </span><span class="n">compare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span>
+<span class="w">        </span><span class="n">relation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;less than&quot;</span>
+<span class="w">    </span><span class="k">elseif</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span>
+<span class="w">        </span><span class="n">relation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;greater than&quot;</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">relation</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="k">end</span>
 
 <span class="n">compare</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
@@ -935,17 +727,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">UndefVarError</span>: relation not defined
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">UndefVarError</span>: `relation` not defined
 
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">compare</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Int64</span><span class="p">,</span> <span class="n">y</span><span class="p">::</span><span class="n">Int64</span><span class="p">)</span>
    <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span><span class="mi">8</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span><span class="mi">11</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -954,14 +742,14 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize a 2d array to hold first m x n integer products</span>
-<span class="k">function</span> <span class="n">array_init2</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">array</span> <span class="o">=</span> <span class="kt">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">m</span>
-            <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span>
-        <span class="k">end</span>
-    <span class="k">end</span>
-    <span class="k">return</span> <span class="n">array</span>
+<span class="k">function</span><span class="w"> </span><span class="n">array_init2</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">m</span>
+<span class="w">            </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">*</span><span class="n">j</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">array</span>
 <span class="k">end</span>
 
 <span class="n">array_init2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
@@ -973,25 +761,21 @@
 
 Stacktrace:
  [1] setindex!
-   @ ./array.jl:845 [inlined]
+   @ ./array.jl:971 [inlined]
  [2] array_init2(m::Int64, n::Int64)
    @ Main ./In[8]:6
  [3] top-level scope
    @ In[8]:12
- [4] eval
-   @ ./boot.jl:360 [inlined]
- [5] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
-   @ Base ./loading.jl:1116
 </pre></div>
 </div>
 </div>
 </div>
 <p>A classic out-of-bounds error. You will most likely create this error several times throughout this course, and certainly many more times beyond the course!</p>
 <p>To debug this error, we first see that the out-of-bounds error occurs on line 6 where we are accessing <code class="docutils literal notranslate"><span class="pre">array</span></code> at <code class="docutils literal notranslate"><span class="pre">[i,j]</span></code>. Therefore, we can quickly determine that either <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code> are not correct or the overall size of <code class="docutils literal notranslate"><span class="pre">array</span></code> is not correct. At this point, we would have to turn on our brains and actually start figuring out the underlying issue. The matrix is in <span class="math notranslate nohighlight">\(\mathbb{R}^{m \times n}\)</span>, where <span class="math notranslate nohighlight">\(m\)</span> is the number of columns and <span class="math notranslate nohighlight">\(n\)</span> is the number of rows - that makes sense. But we are looping our <code class="docutils literal notranslate"><span class="pre">i</span></code> counter over the first <code class="docutils literal notranslate"><span class="pre">n</span></code> columns and the <code class="docutils literal notranslate"><span class="pre">j</span></code> counter over the first <code class="docutils literal notranslate"><span class="pre">m</span></code> rows. There lies the contradiction. Correct code would swap the <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code> variables:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">m</span>
-        <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span>
-    <span class="k">end</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">m</span>
+<span class="w">        </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">*</span><span class="n">j</span>
+<span class="w">    </span><span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -999,8 +783,8 @@ Stacktrace:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Divide an input number by 0</span>
-<span class="k">function</span> <span class="n">divide_by_zero</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">input</span><span class="o">/</span><span class="mi">0</span>
+<span class="k">function</span><span class="w"> </span><span class="n">divide_by_zero</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">input</span><span class="o">/</span><span class="mi">0</span>
 <span class="k">end</span>
 
 <span class="n">divide_by_zero</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">)</span>
@@ -1009,21 +793,22 @@ Stacktrace:
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: no method matching /(::String, ::Int64)
+
 <span class="n">Closest</span> <span class="n">candidates</span> <span class="n">are</span><span class="p">:</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">},</span> <span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">})</span> <span class="n">at</span> <span class="nb">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">93</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">StridedArray</span><span class="p">{</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">}</span> <span class="n">where</span> <span class="n">N</span><span class="p">,</span> <span class="p">::</span><span class="n">Real</span><span class="p">)</span> <span class="n">where</span> <span class="n">P</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Dates</span><span class="o">.</span><span class="n">Period</span> <span class="n">at</span> <span class="o">/</span><span class="n">buildworker</span><span class="o">/</span><span class="n">worker</span><span class="o">/</span><span class="n">package_linux64</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.6</span><span class="o">/</span><span class="n">Dates</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">deprecated</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">44</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">SparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}},</span> <span class="n">Int64</span><span class="p">},</span> <span class="n">false</span><span class="p">}</span> <span class="n">where</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}}},</span> <span class="n">false</span><span class="p">}</span> <span class="n">where</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">}}</span> <span class="n">where</span> <span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">buildworker</span><span class="o">/</span><span class="n">worker</span><span class="o">/</span><span class="n">package_linux64</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.6</span><span class="o">/</span><span class="n">SparseArrays</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sparsevector</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1450</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">},</span> <span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">})</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="nb">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">97</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">StridedArray</span><span class="p">{</span><span class="n">P</span><span class="p">},</span> <span class="p">::</span><span class="n">Real</span><span class="p">)</span> <span class="n">where</span> <span class="n">P</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Dates</span><span class="o">.</span><span class="n">Period</span>
+   <span class="o">@</span> <span class="n">Dates</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.9.2</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.9</span><span class="o">/</span><span class="n">Dates</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">deprecated</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">44</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractCompressedVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}},</span> <span class="n">Int64</span><span class="p">},</span> <span class="n">false</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}}},</span> <span class="n">false</span><span class="p">}}</span> <span class="n">where</span> <span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="p">::</span><span class="n">Number</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">SparseArrays</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.9.2</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.9</span><span class="o">/</span><span class="n">SparseArrays</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sparsevector</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1654</span>
   <span class="o">...</span>
+
 
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">divide_by_zero</span><span class="p">(</span><span class="nb">input</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
    <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span><span class="mi">3</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span><span class="mi">6</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
@@ -1033,8 +818,8 @@ Stacktrace:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Divide an input number by 0</span>
-<span class="k">function</span> <span class="n">divide_by_zero</span><span class="p">(</span><span class="n">input</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span> <span class="c"># Only allows an input of type Number</span>
-    <span class="k">return</span> <span class="n">input</span><span class="o">/</span><span class="mi">0</span>
+<span class="k">function</span><span class="w"> </span><span class="n">divide_by_zero</span><span class="p">(</span><span class="n">input</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span><span class="w"> </span><span class="c"># Only allows an input of type Number</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">input</span><span class="o">/</span><span class="mi">0</span>
 <span class="k">end</span>
 
 <span class="n">divide_by_zero</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">)</span>
@@ -1043,30 +828,31 @@ Stacktrace:
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: no method matching /(::String, ::Int64)
+
 <span class="n">Closest</span> <span class="n">candidates</span> <span class="n">are</span><span class="p">:</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">},</span> <span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">})</span> <span class="n">at</span> <span class="nb">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">93</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">StridedArray</span><span class="p">{</span><span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">}</span> <span class="n">where</span> <span class="n">N</span><span class="p">,</span> <span class="p">::</span><span class="n">Real</span><span class="p">)</span> <span class="n">where</span> <span class="n">P</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Dates</span><span class="o">.</span><span class="n">Period</span> <span class="n">at</span> <span class="o">/</span><span class="n">buildworker</span><span class="o">/</span><span class="n">worker</span><span class="o">/</span><span class="n">package_linux64</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.6</span><span class="o">/</span><span class="n">Dates</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">deprecated</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">44</span>
-  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">SparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}},</span> <span class="n">Int64</span><span class="p">},</span> <span class="n">false</span><span class="p">}</span> <span class="n">where</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}}},</span> <span class="n">false</span><span class="p">}</span> <span class="n">where</span> <span class="n">var</span><span class="s2">&quot;#s814&quot;</span><span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">}}</span> <span class="n">where</span> <span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">buildworker</span><span class="o">/</span><span class="n">worker</span><span class="o">/</span><span class="n">package_linux64</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.6</span><span class="o">/</span><span class="n">SparseArrays</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sparsevector</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1450</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">},</span> <span class="p">::</span><span class="n">Union</span><span class="p">{</span><span class="n">Int128</span><span class="p">,</span> <span class="n">Int16</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">Int8</span><span class="p">,</span> <span class="n">UInt128</span><span class="p">,</span> <span class="n">UInt16</span><span class="p">,</span> <span class="n">UInt32</span><span class="p">,</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">UInt8</span><span class="p">})</span>
+   <span class="o">@</span> <span class="n">Base</span> <span class="nb">int</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">97</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">StridedArray</span><span class="p">{</span><span class="n">P</span><span class="p">},</span> <span class="p">::</span><span class="n">Real</span><span class="p">)</span> <span class="n">where</span> <span class="n">P</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Dates</span><span class="o">.</span><span class="n">Period</span>
+   <span class="o">@</span> <span class="n">Dates</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.9.2</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.9</span><span class="o">/</span><span class="n">Dates</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">deprecated</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">44</span>
+  <span class="o">/</span><span class="p">(::</span><span class="n">Union</span><span class="p">{</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractCompressedVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseMatrixCSC</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}},</span> <span class="n">Int64</span><span class="p">},</span> <span class="n">false</span><span class="p">},</span> <span class="n">SubArray</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&lt;</span><span class="p">:</span><span class="n">SparseArrays</span><span class="o">.</span><span class="n">AbstractSparseVector</span><span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Slice</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">OneTo</span><span class="p">{</span><span class="n">Int64</span><span class="p">}}},</span> <span class="n">false</span><span class="p">}}</span> <span class="n">where</span> <span class="p">{</span><span class="n">Tv</span><span class="p">,</span> <span class="n">Ti</span><span class="p">},</span> <span class="p">::</span><span class="n">Number</span><span class="p">)</span>
+   <span class="o">@</span> <span class="n">SparseArrays</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">julia</span><span class="o">-</span><span class="mf">1.9.2</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">stdlib</span><span class="o">/</span><span class="n">v1</span><span class="mf">.9</span><span class="o">/</span><span class="n">SparseArrays</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sparsevector</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1654</span>
   <span class="o">...</span>
+
 
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">divide_by_zero</span><span class="p">(</span><span class="nb">input</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
    <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span><span class="mi">3</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
    <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span><span class="mi">6</span>
- <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="nb">eval</span>
-   <span class="o">@</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">360</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
- <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="n">mapexpr</span><span class="p">::</span><span class="n">typeof</span><span class="p">(</span><span class="n">REPL</span><span class="o">.</span><span class="n">softscope</span><span class="p">),</span> <span class="n">mod</span><span class="p">::</span><span class="n">Module</span><span class="p">,</span> <span class="n">code</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">filename</span><span class="p">::</span><span class="n">String</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">1116</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Now the error message makes more sense. There correctly is no function <code class="docutils literal notranslate"><span class="pre">divide_by_zero()</span></code> that takes in a <code class="docutils literal notranslate"><span class="pre">String</span></code> as the input.</p>
 <p>Note: This fix will not take effect until after you restart the Jupyter kernel so that Julia forgets about the previous function <code class="docutils literal notranslate"><span class="pre">divide_by_zero()</span></code> which allowed <code class="docutils literal notranslate"><span class="pre">input</span></code> to be any type.</p>
-</div>
-<div class="section" id="semantic-errors">
-<h2><span class="section-number">4.3. </span>Semantic errors<a class="headerlink" href="#semantic-errors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="semantic-errors">
+<h2><span class="section-number">4.3. </span>Semantic errors<a class="headerlink" href="#semantic-errors" title="Permalink to this heading">#</a></h2>
 <p>Semantic errors technically are not errors at all. If there are semantic errors in your program, the computer does not generate any error messages, but the program simply does the wrong thing.</p>
 <p>A classic example of a semantic error is an infinite loop or infinite recursion. There may not be an error message reported, but an infinite loop can never be intended design.</p>
 <p>Debugging semantic errors might take up the majority of your time while programming, so it is important to set yourself up for success in expectation of these errors. Especially as you work on larger programs and projects, start with small test cases to confirm the logic of your program makes sense. Not to sound like a broken record, but modular programming will certainly help isolate the issues; if you have already tested most of your code successfully and can rely upon it, then you only have to struggle to debug the smaller pieces that fail the tests.</p>
@@ -1074,19 +860,19 @@ Stacktrace:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Returns the sum of the first n integers</span>
-<span class="k">function</span> <span class="n">array_sum</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="c"># Initialization</span>
-    <span class="n">array</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
-        <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-    <span class="k">end</span>
-    
-    <span class="c"># Summation</span>
-    <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">end</span>
-    <span class="k">return</span> <span class="n">sum</span>
+<span class="k">function</span><span class="w"> </span><span class="n">array_sum</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Initialization</span>
+<span class="w">    </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">        </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># Summation</span>
+<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -1109,22 +895,22 @@ Stacktrace:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Returns the sum of the first n integers</span>
-<span class="k">function</span> <span class="n">array_sum</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="c"># Initialization</span>
-    <span class="n">array</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
-        <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-    <span class="k">end</span>
-    <span class="n">println</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="c"># TODO: Debugging</span>
-    
-    <span class="c"># Summation</span>
-    <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Sum before = &quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span> <span class="c"># TODO: Debugging</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
-        <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">end</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Sum after = &quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span> <span class="c"># TODO: Debugging</span>
-    <span class="k">return</span> <span class="n">sum</span>
+<span class="k">function</span><span class="w"> </span><span class="n">array_sum</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Initialization</span>
+<span class="w">    </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">        </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">array</span><span class="p">)</span><span class="w"> </span><span class="c"># TODO: Debugging</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># Summation</span>
+<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Sum before = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">)</span><span class="w"> </span><span class="c"># TODO: Debugging</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Sum after = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">)</span><span class="w"> </span><span class="c"># TODO: Debugging</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span>
 <span class="k">end</span>
 
 <span class="n">array_sum</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -1134,13 +920,13 @@ Stacktrace:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.0e-323]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6.9310064190874e-310]
 Sum before = 0
-Sum after = 2.0e-323
-[1.0, 6.9237998054352e-310]
+Sum after = 6.9310064190874e-310
+[1.0, 6.93086265245077e-310]
 Sum before = 0
 Sum after = 1.0
-[1.0, 2.0, 3.0, 4.0, 1.46486e-319]
+[1.0, 2.0, 3.0, 4.0, 6.9310026199012e-310]
 Sum before = 0
 Sum after = 10.0
 </pre></div>
@@ -1148,8 +934,8 @@ Sum after = 10.0
 </div>
 </div>
 <p>Equipped with all this information, it becomes much more simple to debug the algorithm. We see that there is an issue with initializing the array: the last entry of the array remains undefined even after initialization! That information directly leads us to fix the bounds on the first loop from <code class="docutils literal notranslate"><span class="pre">1:n-1</span></code> to <code class="docutils literal notranslate"><span class="pre">1:n</span></code>. Re-running the tests yields the expected answer, and so we can remove the debugging printouts, comfortable that the algorithm is correct.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1160,55 +946,115 @@ Sum after = 10.0
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.6"
+            mode: "julia-1.9"
         },
         kernelOptions: {
-            kernelName: "julia-1.6",
+            name: "julia-1.9",
             path: "./content/Debugging"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.6'</script>
+    <script>kernelName = 'julia-1.9'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../Plotting/Plotting.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>Plotting</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Plotting/Plotting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Plotting</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../Random_Numbers/Chapter_Intro.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../Random_Numbers/Chapter_Intro.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">5. </span>Random Numbers</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-errors">4.1. Syntax errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-errors">4.2. Runtime errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-errors">4.3. Semantic errors</a></li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

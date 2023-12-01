@@ -1,652 +1,501 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>14.2. Higher-Order Derivatives, Systems of ODEs &#8212; Programming for Mathematical Applications</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs';</script>
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="14.3. Boundary Value Problems" href="Boundary_Value_Problems.html" />
     <link rel="prev" title="14.1. Initial Value Problems" href="Initial_Value_Problems.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Programming for Mathematical Applications</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   Programming for Mathematical Applications
-  </a>
- </li>
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Programming for Mathematical Applications - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Programming for Mathematical Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Programming for Mathematical Applications
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Introduction/Chapter_Intro.html">1. Introduction to Julia</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Functions.html">1.3. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/For_Loops.html">1.4. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Conditionals.html">1.5. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/While_Loops.html">1.6. While-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Function_Arguments.html">1.7. Function Arguments</a></li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Introduction/Chapter_Intro.html">
-   1. Introduction to Julia
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">
-     1.1. Julia as a Calculator
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Variables_And_Assignments.html">
-     1.2. Variables and Assignments
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Functions.html">
-     1.3. Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/For_Loops.html">
-     1.4. For-Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Conditionals.html">
-     1.5. Conditionals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/While_Loops.html">
-     1.6. While-Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Introduction/Function_Arguments.html">
-     1.7. Function Arguments
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">
-   2. Arrays and Dictionaries
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">
-     2.1. Introduction to Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">
-     2.2. Multi-dimensional Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">
-     2.3. Dictionaries
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Plotting/Plotting.html">
-   3. Plotting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Debugging/Debugging.html">
-   4. Debugging
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">
-   5. Random Numbers
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Distributions.html">
-     5.1. Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Histograms.html">
-     5.2. Histograms
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">
-     5.3. Monte Carlo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Vectorization/Chapter_Intro.html">
-   6. Vectorization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Constructing_Arrays.html">
-     6.1. Constructing Arrays
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Array_Functions.html">
-     6.2. Array Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Vectorization/Logical_Indexing.html">
-     6.3. Logical Indexing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Data_Types/Chapter_Intro.html">
-   7. Data Types
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">
-     7.1. Arbitrary Precision Integers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">
-     7.2. Arbitrary Precision Floats
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Complex_Numbers.html">
-     7.3. Complex Numbers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Rational_Numbers.html">
-     7.4. Rational Numbers
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">
-     7.5. Data Types of Arrays
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Recursion/Recursion.html">
-   8. Recursion
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">
-   9. Linear Algebra
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">
-     9.1. Matrix Operations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">
-     9.2. Special Matrices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">
-     9.3. Linear Systems and Regression
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">
-   10. Strings and File Processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">
-     10.1. String Basics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">
-     10.2. String Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">
-     10.3. File Processing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">
-   11. Structs and Objects
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">
-   12. Computational Geometry
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">
-     12.1. Convex Hull
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">
-     12.2. Line-segment Interactions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Computational_Geometry/Triangulations.html">
-     12.3. Triangulations
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Image_Processing/Chapter_Intro.html">
-   13. Image Processing
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">
-     13.1. Reading and Plotting Images
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Image_Scaling.html">
-     13.2. Image Scaling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Filtering.html">
-     13.3. Filtering
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Image_Processing/Fourier_Transform.html">
-     13.4. Fourier Transform
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="Chapter_Intro.html">
-   14. Differential Equations
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="Initial_Value_Problems.html">
-     14.1. Initial Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     14.2. Higher Order Derivatives and Systems of ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Boundary_Value_Problems.html">
-     14.3. Boundary Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="DifferentialEquations_Package.html">
-     14.4. DifferentialEquations Package
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Optimization/Chapter_Intro.html">
-   15. Optimization
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">
-     15.1. Gradient Based Optimization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Optimization/Optim_Package.html">
-     15.2. Optim Package
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Graphs/Chapter_Intro.html">
-   16. Graphs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Graphs/Graph_Basics.html">
-     16.1. Graph Basics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Graphs/Graph_Algorithms.html">
-     16.2. Graph Algorithms
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">
-   17. Sparse Matrices
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">
-     17.1. Matrix Designs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">
-     17.2. Sparse Matrices in Julia
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">
-     17.3. Application; Graphs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">
-     17.4. Application; Google Page Rank
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Appendices/Chapter_Intro.html">
-   18. Appendices
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Appendices/Floating_Point_Arithmetic.html">
-     18.1. Floating Point Arithmetic
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Appendices/Algorithmic_Efficiency.html">
-     18.2. Algorithmic Efficiency
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">2.1. Introduction to Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">2.2. Multi-dimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">2.3. Dictionaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Plotting/Plotting.html">3. Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Debugging/Debugging.html">4. Debugging</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">5. Random Numbers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Distributions.html">5.1. Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Histograms.html">5.2. Histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">5.3. Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Data_Types/Chapter_Intro.html">7. Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Arbitrary_Precision_Integers.html">7.1. Arbitrary Precision Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Arbitrary_Precision_Floats.html">7.2. Arbitrary Precision Floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Complex_Numbers.html">7.3. Complex Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Rational_Numbers.html">7.4. Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Data_Types/Data_Types_of_Arrays.html">7.5. Data Types of Arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Recursion/Recursion.html">8. Recursion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">9. Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">9.1. Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">9.2. Special Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">9.3. Linear Systems and Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">10. Strings and File Processing</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">10.1. String Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">10.2. String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">10.3. File Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Structs_And_Objects/Structs_And_Objects.html">11. Structs and Objects</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">12. Computational Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">12.1. Convex Hull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">12.2. Line-segment Interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Triangulations.html">12.3. Triangulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Image_Processing/Chapter_Intro.html">13. Image Processing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">13.1. Reading and Plotting Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Image_Scaling.html">13.2. Image Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Filtering.html">13.3. Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Fourier_Transform.html">13.4. Fourier Transform</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Chapter_Intro.html">14. Differential Equations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Initial_Value_Problems.html">14.1. Initial Value Problems</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">14.2. Higher Order Derivatives and Systems of ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Boundary_Value_Problems.html">14.3. Boundary Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DifferentialEquations_Package.html">14.4. DifferentialEquations Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Optimization/Chapter_Intro.html">15. Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">15.1. Gradient Based Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Optim_Package.html">15.2. Optim Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Graphs/Chapter_Intro.html">16. Graphs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Basics.html">16.1. Graph Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Algorithms.html">16.2. Graph Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">17. Sparse Matrices</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">17.1. Matrix Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">17.2. Sparse Matrices in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">17.3. Application; Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">17.4. Application; Google Page Rank</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Appendices/Chapter_Intro.html">18. Appendices</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Appendices/Floating_Point_Arithmetic.html">18.1. Floating Point Arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Appendices/Algorithmic_Efficiency.html">18.2. Algorithmic Efficiency</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/content/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        
-        <a class="jupyterhub-button" href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.ipynb&branch=master"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="../../_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Higher-Order Derivatives, Systems of ODEs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Higher-Order Derivatives, Systems of ODEs</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="higher-order-derivatives-systems-of-odes">
-<h1><span class="section-number">14.2. </span>Higher-Order Derivatives, Systems of ODEs<a class="headerlink" href="#higher-order-derivatives-systems-of-odes" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="higher-order-derivatives-systems-of-odes">
+<h1><span class="section-number">14.2. </span>Higher-Order Derivatives, Systems of ODEs<a class="headerlink" href="#higher-order-derivatives-systems-of-odes" title="Permalink to this heading">#</a></h1>
 <p>Our implementation of RK4 supports systems of ODEs, that is, problems with vector-valued solutions <span class="math notranslate nohighlight">\(y(t)\)</span>. This can also be used to solve scalar-valued equations with higher-order derivatives. Consider e.g. the motion of a pendulum, with an angle <span class="math notranslate nohighlight">\(\theta\)</span> from the vertical axis and normalized physical constants:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -664,22 +513,22 @@ y'(t) = f(t, y(t)) =
 <p>This is implemented below, and solved for an initial condition <span class="math notranslate nohighlight">\(y(0) = (\theta(0), \theta'(0)) = (2.5,0)\)</span> using a step size of <span class="math notranslate nohighlight">\(h=0.1\)</span> up to time <span class="math notranslate nohighlight">\(T=10\)</span>:</p>
 <div class="cell tag_hide_input tag_hide_output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">PyPlot</span><span class="p">,</span> <span class="n">PyCall</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">PyPlot</span><span class="p">,</span><span class="w"> </span><span class="n">PyCall</span>
 
-<span class="k">function</span> <span class="n">rk4</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">.+</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">y0</span><span class="p">))</span>
-    
-    <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="n">y0</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">N</span>
-        <span class="n">k1</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">])</span>
-        <span class="n">k2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">+</span> <span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">k3</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">+</span> <span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">k4</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">+</span> <span class="n">k3</span><span class="p">)</span>
-        <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>
-    <span class="k">end</span>
-    
-    <span class="k">return</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span>
+<span class="k">function</span><span class="w"> </span><span class="n">rk4</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t0</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">y0</span><span class="p">))</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span><span class="w"> </span><span class="o">.=</span><span class="w"> </span><span class="n">y0</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">N</span>
+<span class="w">        </span><span class="n">k1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">])</span>
+<span class="w">        </span><span class="n">k2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">        </span><span class="n">k3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">        </span><span class="n">k4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k3</span><span class="p">)</span>
+<span class="w">        </span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="o">:</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">k1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="n">k2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="n">k3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k4</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="n">y</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -692,36 +541,36 @@ y'(t) = f(t, y(t)) =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
-<span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">rk4</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">round</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="n">T</span><span class="o">/</span><span class="n">h</span><span class="p">))</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+<span class="n">y0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rk4</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">/</span><span class="n">h</span><span class="p">))</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">((</span><span class="s">&quot;</span><span class="se">\$\\</span><span class="s">theta(t)</span><span class="se">\$</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\$\\</span><span class="s">theta&#39;(t)</span><span class="se">\$</span><span class="s">&quot;</span><span class="p">));</span>
+<span class="n">legend</span><span class="p">((</span><span class="s">&quot;</span><span class="se">\$\\</span><span class="s">theta(t)</span><span class="se">\$</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\$\\</span><span class="s">theta&#39;(t)</span><span class="se">\$</span><span class="s">&quot;</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Higher_Order_Derivatives_Systems_Of_ODEs_2_0.png" src="../../_images/Higher_Order_Derivatives_Systems_Of_ODEs_2_0.png" />
+<img alt="../../_images/efb716dd15b3b67bb80234f8e2fe64533e786816e13fdeef6ef46809afe80fb7.png" src="../../_images/efb716dd15b3b67bb80234f8e2fe64533e786816e13fdeef6ef46809afe80fb7.png" />
 </div>
 </div>
 <p>The motion of the pendulum can also be animated:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">animation</span> <span class="o">=</span> <span class="n">pyimport</span><span class="p">(</span><span class="s">&quot;matplotlib.animation&quot;</span><span class="p">);</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">function</span> <span class="n">update</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-    <span class="n">θ</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Circle</span><span class="p">([</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="p">),</span><span class="o">-</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span> <span class="mf">0.1</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pyimport</span><span class="p">(</span><span class="s">&quot;matplotlib.animation&quot;</span><span class="p">);</span>
+<span class="n">fig</span><span class="p">,</span><span class="w"> </span><span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">function</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+<span class="w">    </span><span class="n">θ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">frame</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="w">    </span><span class="n">ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="w">    </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span><span class="w"> </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Circle</span><span class="p">([</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="p">),</span><span class="o">-</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="p">)],</span><span class="w"> </span><span class="mf">0.1</span><span class="p">))</span>
+<span class="w">    </span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<span class="w">    </span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
 <span class="k">end</span>
-<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ani</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="w"> </span><span class="n">update</span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">=</span><span class="n">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="w"> </span><span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">close</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">_fig</span><span class="p">)</span>
-<span class="nd">@pyimport</span> <span class="n">IPython</span><span class="o">.</span><span class="n">display</span> <span class="n">as</span> <span class="n">d</span>
+<span class="nd">@pyimport</span><span class="w"> </span><span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">d</span>
 <span class="n">d</span><span class="o">.</span><span class="kt">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -912,42 +761,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img2065943ea10e4fe9bd047732e1a89add">
+  <img id="_anim_img1c67058265514ea4aa308837aef99885">
   <div class="anim-controls">
-    <input id="_anim_slider2065943ea10e4fe9bd047732e1a89add" type="range" class="anim-slider"
+    <input id="_anim_slider1c67058265514ea4aa308837aef99885" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim2065943ea10e4fe9bd047732e1a89add.set_frame(parseInt(this.value));"></input>
+           oninput="anim1c67058265514ea4aa308837aef99885.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim2065943ea10e4fe9bd047732e1a89add.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim1c67058265514ea4aa308837aef99885.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim2065943ea10e4fe9bd047732e1a89add.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim1c67058265514ea4aa308837aef99885.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim2065943ea10e4fe9bd047732e1a89add.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim1c67058265514ea4aa308837aef99885.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim2065943ea10e4fe9bd047732e1a89add.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim1c67058265514ea4aa308837aef99885.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim2065943ea10e4fe9bd047732e1a89add.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim1c67058265514ea4aa308837aef99885.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim2065943ea10e4fe9bd047732e1a89add.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim1c67058265514ea4aa308837aef99885.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim2065943ea10e4fe9bd047732e1a89add.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim1c67058265514ea4aa308837aef99885.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim2065943ea10e4fe9bd047732e1a89add.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim1c67058265514ea4aa308837aef99885.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim2065943ea10e4fe9bd047732e1a89add.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim1c67058265514ea4aa308837aef99885.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select2065943ea10e4fe9bd047732e1a89add"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select1c67058265514ea4aa308837aef99885"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_2065943ea10e4fe9bd047732e1a89add"
+      <input type="radio" name="state" value="once" id="_anim_radio1_1c67058265514ea4aa308837aef99885"
              >
-      <label for="_anim_radio1_2065943ea10e4fe9bd047732e1a89add">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_2065943ea10e4fe9bd047732e1a89add"
+      <label for="_anim_radio1_1c67058265514ea4aa308837aef99885">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_1c67058265514ea4aa308837aef99885"
              checked>
-      <label for="_anim_radio2_2065943ea10e4fe9bd047732e1a89add">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_2065943ea10e4fe9bd047732e1a89add"
+      <label for="_anim_radio2_1c67058265514ea4aa308837aef99885">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_1c67058265514ea4aa308837aef99885"
              >
-      <label for="_anim_radio3_2065943ea10e4fe9bd047732e1a89add">Reflect</label>
+      <label for="_anim_radio3_1c67058265514ea4aa308837aef99885">Reflect</label>
     </form>
   </div>
 </div>
@@ -957,13 +806,13 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img2065943ea10e4fe9bd047732e1a89add";
-    var slider_id = "_anim_slider2065943ea10e4fe9bd047732e1a89add";
-    var loop_select_id = "_anim_loop_select2065943ea10e4fe9bd047732e1a89add";
+    var img_id = "_anim_img1c67058265514ea4aa308837aef99885";
+    var slider_id = "_anim_slider1c67058265514ea4aa308837aef99885";
+    var loop_select_id = "_anim_loop_select1c67058265514ea4aa308837aef99885";
     var frames = new Array(101);
-
+    
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAosUlEQVR4nO3de3xU5YH/8e+QywSQDErMTUMAlYuACGEhYQui1EioqbdlQVyK\
 +9vS4qUuRNaKVAVbRbuWsi4oP1oVFWxpDXiDUrJbAvZHUIKJIDdvgURMuAmZBCSB8Pz+CIzGXExI\
 Jmfmmc/79ZrXyzk5Z+Y5MxM+nnnmZFzGGCMAABDUOjg9AAAA0HoEHQAACxB0AAAsQNABALAAQQcA\
@@ -1150,7 +999,7 @@ LEDQAQCwAEEHAMACBB0AAAsQdAAALEDQAQCwAEEHAMACBB0AAAsQdAAALEDQAQCwAEEHAMAC/x/P\
 DXk57qLKpwAAAABJRU5ErkJggg==\
 "
   frames[1] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApjUlEQVR4nO3de3hU9b3v8c+QywSQDELMTUMIFgICYghHErYgyjESKscLpSiU\
 4j6tLVbqhpS2IraCpxb1KKWKymOLt4pbug1xa0E2ObsE7CYogQRRLqIGEjGRizATbkkIv/MHZbZp\
 QiAkkzXzm/freeZ5XIu1Zr5rMvB2Zs1kXMYYIwAAENI6OT0AAABoO4IOAIAFCDoAABYg6AAAWICg\
@@ -1341,7 +1190,7 @@ BwDAAgQdAAALEHQAACxA0AEAsABBBwDAAgQdAAALEHQAACxA0AEAsABBBwDAAv8fNT+Kwfd+5kYA\
 AAAASUVORK5CYII=\
 "
   frames[2] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApkklEQVR4nO3de3xU9Z3/8feQywQ0GYSQmyQBVMIdQ1AIv6IgNRKU9bYURRG7\
 XbvQWguRdUWrgr9a1FWkltvSRVHRir8GrD5AavooAXYJyiURkIuogURMDCDMJCATEs7vj8jUmIuE\
 ZHJmvvN6Ph7zeHgO58x8zszAy5lM5jgsy7IEAACCWge7BwAAAK1H0AEAMABBBwDAAAQdAAADEHQA\
@@ -1532,7 +1381,7 @@ AAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAzw/wGdE31/\
 NHbCowAAAABJRU5ErkJggg==\
 "
   frames[3] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApfElEQVR4nO3de3xU9Z3/8feQy4RLMgghNwwBrATkVkgqCS0oUiOhUm9LQTTi\
 tlWxdflBylKRWsCuRVxLWRcFab2CVboNuFoQyXYJ2CUoiYncETWQiImR20zCJYHk/P6ITI0JgZBM\
 zsw3r+fjMY+H53DOzOfMDLw8yUnGYVmWJQAAENA62D0AAABoOYIOAIABCDoAAAYg6AAAGICgAwBg\
@@ -1722,7 +1571,7 @@ DEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0A\
 AAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADPD/AVT1iAYH68dfAAAAAElFTkSuQmCC\
 "
   frames[4] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApeUlEQVR4nO3dfVzUdb738ffIzeAdY0rAUIhaieZdBiV41rI8kVie7o7H7pD2\
 Knet0+ko69Wm3WnnlNXlllfH0rUsNWvXcxb1qqPrymNXtL3EEoPUVLJEQQMR0xnUBIXf+YOclUAS\
 ZfjNfHk9H495PPqNv9/M5zeMvprhC+OwLMsSAAAIah3sHgAAAFw8gg4AgAEIOgAABiDoAAAYgKAD\
@@ -1912,7 +1761,7 @@ BwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA\
 EHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAzwP9IThOqnUWWnAAAAAElFTkSuQmCC\
 "
   frames[5] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApmklEQVR4nO3de3xU9Z3/8feQyyRoMggxNwwhXgjI7RcSLmELoqyRUFlvPyrV\
 xsAqLbb+KKRsK1or+KtF/VnLul5YLAYQu9I24OqC1HRLwJYgCU0Q5KKVSCImBBAyhEtCkvP7gzJr\
 zMWEZHJmvvN6Ph7zeHgO58x8zszAy8nMyTgsy7IEAAD8Wi+7BwAAAF1H0AEAMABBBwDAAAQdAAAD\
@@ -2103,7 +1952,7 @@ AEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAA\
 DPD/AdUSnMPa+MOdAAAAAElFTkSuQmCC\
 "
   frames[6] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApoElEQVR4nO3de3SU9b3v8c+QyxCQDEogFwkBUS4CIgSBcAoqHCNhS7VSNxaJ\
 oV6x27og5VRRq9C1LNpj2ZweVEq5X3a1NsKpG7Rmbbm4S4CEJgrlJjWQSBMjt5kEdhJIfucPNrMa\
 czEhmTwzv7xfa81aPpPnmfk+MxPePslMHpcxxggAAIS0Tk4PAAAAWo+gAwBgAYIOAIAFCDoAABYg\
@@ -2294,7 +2143,7 @@ LEDQAQCwAEEHAMACBB0AAAsQdAAALEDQAQCwAEEHAMACBB0AAAsQdAAALEDQAQCwAEEHAMACBB0A\
 AAsQdAAALPD/ASsnrhLKl+6fAAAAAElFTkSuQmCC\
 "
   frames[7] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApbklEQVR4nO3deXzU9Z3H8feQY8KVQQm5NCTgQkCuQiIktCBKDQRl8ViKghE8\
 aLHrWkjZVrQq2FXUtZR1QRHlFLW0jbha0JLdctglHKGJoJxqIBGJAYSZhCOB5Ld/ILOmCTHX5Dfz\
 zev5eMzj4e/H7zfz+c2MeeWXzGQclmVZAgAAAa2N3QMAAICmI+gAABiAoAMAYACCDgCAAQg6AAAG\
@@ -2484,7 +2333,7 @@ AAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEI\
 OgAABiDoAAAYgKADAGCA/wP0aZjqZ8QVXgAAAABJRU5ErkJggg==\
 "
   frames[8] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAnoklEQVR4nO3de3hU9YH/8c8QkgkgGSohNw0htBIQkIUgJLQoSI2GSr2wFIVi\
 cCst9udaiKwruirYtajrujwuILVyx666jbhaKCXPUwK0BCE0Qe5eCCQCkYsww0WSEL6/P5DBmBAT\
 mMmZ+eb9ep7zPM7hnJnvmRl8c5L5znEZY4wAAEBYa+X0AAAAwJUj6AAAWICgAwBgAYIOAIAFCDoA\
@@ -2666,7 +2515,7 @@ BB0AAAsQdAAALEDQAQCwAEEHAMACBB0AAAsQdAAALEDQAQCwAEEHAMACBB0AAAsQdAAALEDQAQCw\
 AEEHAMACBB0AAAv8f6XsmatrBPK0AAAAAElFTkSuQmCC\
 "
   frames[9] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApPUlEQVR4nO3de3xU9Z3/8ffkNuGSDELITUMIrgTKrRAqCRUEaSOhslKpRdGI\
 ++ta0WVdSGkrWhVsbdSqZS0i0uI1amkboFqQkt0S0CUoiYmAQLwFEjEhcpsJIElIzu8PyrQxFwnJ\
 5Mx883o+HvN4OIdzZj5nZuDlmTPJOCzLsgQAAAJakN0DAACAjiPoAAAYgKADAGAAgg4AgAEIOgAA\
@@ -2855,7 +2704,7 @@ AEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAA\
 DEDQAQAwAEEHAMAABB0AAAMQdAAADPD/AZWKiYQrIKYpAAAAAElFTkSuQmCC\
 "
   frames[10] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAoxklEQVR4nO3de3yU1YH/8e+QywSUDELMDUMIKgG5G4oJLQiyRoJSVBax+qLY\
 bbHYdV2I1Ip4AbuKWkV+rhd+tHjFbtEGrC5Iya4E3CUowYT7xUsgERMjtxkCkkA4+wcyGhNiQjJ5\
 Zk4+79drXi/n8Dwz55kZ+PgkM3NcxhgjAAAQ0to5PQEAANB8BB0AAAsQdAAALEDQAQCwAEEHAMAC\
@@ -3042,7 +2891,7 @@ YAGCDgCABQg6AAAWIOgAAFiAoAMAYAGCDgCABQg6AAAWIOgAAFiAoAMAYAGCDgCABQg6AAAWIOgA\
 AFiAoAMAYAGCDgCABQg6AAAW+D8qqnMLlVW7bwAAAABJRU5ErkJggg==\
 "
   frames[11] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAojklEQVR4nO3dfXhU5YH38d/kbQJKBiHkDUMICgGCLxhWEloQoQaCIr48XFhd\
 xLZLi63rQkqtaBVw16KupayLSm1RVOxT92lEURBJVwJsCQo0qRggoEYSMSEEYSYBSUhy7x8+jsYE\
 JC+TM7nz/VzXuS7n5pyZ+8wMfD0nMzkuY4wRAADo0kKcngAAAGg/gg4AgAUIOgAAFiDoAABYgKAD\
@@ -3228,7 +3077,7 @@ AGABgg4AgAUIOgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDo\
 AABYgKADAGABgg4AgAUIOgAAFvhfDmyIzoG9wroAAAAASUVORK5CYII=\
 "
   frames[12] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAoLklEQVR4nO3de3TU9Z3/8dcQkklQMighyQTIhTsCUgyFBAsCWaPBsmpdVqtF\
 7O9XKlrkB1lOK7qt0HNatMe6riKgFUXF7tptwKMLtfATAlQCAk0UBSKXQAImBCLMJFwSCJ/fH/4Y\
 nU24hGTynXzyfJwz5zjf+X5n3t+Z0affyVxcxhgjAADQpnVwegAAANB8BB0AAAsQdAAALEDQAQCw\
@@ -3413,7 +3262,7 @@ IOgAAFiAoAMAYAGCDgCABQg6AAAWIOgAAFiAoAMAYAGCDgCABf4foKFNEr7QpC8AAAAASUVORK5C\
 YII=\
 "
   frames[13] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAjVElEQVR4nO3df3BU9f3v8dfyawOWLEpMstEQsNVAQS2GSoJVUcZIqIy/vnyx\
 OhF7W1r0Og6kfK1oVXDGol5LuY4itUX8gb2lNeBXv1Br7lcCTAlKaKIoEGkbSKQJEYTdgJLw43P/\
 4LJjzA/ya3N233k+Zs6Me3LO7uecXX16Np/N+pxzTgAAIK718XoAAACg6wg6AAAGEHQAAAwg6AAA\
@@ -3576,7 +3425,7 @@ AIABBB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAA/4fhv4nIOac\
 ynIAAAAASUVORK5CYII=\
 "
   frames[14] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkgElEQVR4nO3df3BU9b3/8dcSyAJKFmTzU0NALwQK6sXwlYRKQJlGw5VR6/DV\
 2kHsbWlpx+lALtdLaqvgTEu1Xss4/uDaiz/pncvcG/CrX7iWzEgILUGBSSrKT9tAIk0kQdgF1IQf\
 n+8flv2a5of5tXt233k+Zs7M3cM5u59zdnufnt39ZH3OOScAAJDQBnk9AAAA0HcEHQAAAwg6AAAG\
@@ -3744,7 +3593,7 @@ AAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg6AAA\
 GEDQAQAw4P8BsBX7/UcfNfoAAAAASUVORK5CYII=\
 "
   frames[15] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkqUlEQVR4nO3df3BU9f3v8dcSkuVXsgghycaGgMqvgvUijBK+xV9MI6FyrXW4\
 WDs0dlpa2vF2IF/GGq0KzvRLba3lOojU7xd/Ym+Z24DfOlBrvrcEvF9CBb5JBfkh2kAiJgQQdhOQ\
 BMLn/gFZSRNifm3O7jvPx8yZdk/O2f2c3W2fnLN79vicc04AACCu9fN6AAAAoPsIOgAABhB0AAAM\
@@ -3913,7 +3762,7 @@ MICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg6AAAGEDQAQAwgKADAGDA/wdK0cwM86Cg\
 LQAAAABJRU5ErkJggg==\
 "
   frames[16] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAjBklEQVR4nO3de3TU9f3n8deYyxCUjErMzYaAXQkU1MVQSfgJXlgjoXK8LYvV\
 E2PX0qLH40LKsaJVwf1Z1FrLehQpLYqKPeV3GnD1ByrZXwm4JShhk4rctG0kERMRhBkCOIHw2T+A\
 KTEXCcnkO3nn+Tjne07mm8935vP9znCefOeS8TnnnAAAQK92ltcTAAAAXUfQAQAwgKADAGAAQQcA\
@@ -4074,7 +3923,7 @@ AAADCDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgA\
 ABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAA/4/xRmHa/TgVlAAAAAASUVORK5CYII=\
 "
   frames[17] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkPklEQVR4nO3df3BU9b3/8deSHxt+ZZHE/NIQYr8SKKgXw0DCFEQZI6Fl0DqM\
 1n5zsd+Wlt6v40DKWJHbCs60qNdSvh1/MPRr/VG8t8y3EUcvlJr2EnCGYIFJFH+A3DaSiInIr10C\
 sgvJ5/sHsBITQkKyOZt3no+ZM80eztn9nN21z3POnk18zjknAADQrw3yegAAAKDnCDoAAAYQdAAA\
@@ -4241,7 +4090,7 @@ AQAwgKADAGAAQQcAwACCDgCAAQQdAAADCDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAgP8P\
 F7W7P6DLd0EAAAAASUVORK5CYII=\
 "
   frames[18] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAmNUlEQVR4nO3df3BU9b3/8deSH5sEkk0g5pckIbYSEJSGUCDcgj8Yo+HKUPX6\
 1dpvip2WSu/X8Ysp02v0WsGZFu3XepkOKkPHK6K2lzs34ujApWa+JeD9EipgovgD1DaSiIkBTHYT\
 gQ2E8/0D2ZqbHxKSzdl95/mY2ZnuyTm7n7Nny9PP2V8ex3EcAQCAqDbG7QEAAIChI+gAABhA0AEA\
@@ -4417,7 +4266,7 @@ DgCAAQQdAAADCDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIAB/x+W5BzMbA4GQQAA\
 AABJRU5ErkJggg==\
 "
   frames[19] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAnf0lEQVR4nO3df3RU9Z3/8dcQwgQ0GZSQXxACWgmUXwsJQtjyS75GglJ/sIBr\
 l4aeli3u1+MXKUdF2wo9x1I9ruXbpcriWtHidkEjfnWxluxKgF2CJjQRREHUQAImBBBmEtBEwv3+\
 QZk15ocJyeTOvPN8nDPndO7cO/O5c8c+uZPPzHgcx3EEAAAiWg+3BwAAADqOoAMAYABBBwDAAIIO\
@@ -4598,7 +4447,7 @@ ADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4A\
 gAEEHQAAAwg6AAAGEHQAAAwg6AAAGEDQAQAwgKADAGDA/wen5VsdpkxnsAAAAABJRU5ErkJggg==\
 "
   frames[20] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAmOElEQVR4nO3de3TU9Z3/8deQhAkoGYSYWw0hWgk3pRhWEirIpUZCoVYtq6ub\
 hl44xR7XhZRVkarQXYu6FtkuKksXRUu75fw24LaFIvltE3B/hErYpCA3b4FETIwgzABKAuH7+4My\
 Jc2FhGTynXnn+Thnzul88/3OfL7zmfpkkpn5eBzHcQQAACJaL7cHAAAAOo+gAwBgAEEHAMAAgg4A\
@@ -4774,7 +4623,7 @@ DCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABjw/wFIr38x0V6i\
 HQAAAABJRU5ErkJggg==\
 "
   frames[21] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAp1ElEQVR4nO3de1yUdd7/8fdwGjwxpsSpELEDmpYZpqBZmhuFm9lx7XCTteVm\
 5XYr66/N3N2037ZWW62/bk9raWp2cDek2luzuO9ESzHFhdI8dUAhg1CTGfAAgtfvD3I2ViRRhmvm\
 y+v5eFyPR3NxXTOfa2bi5cAwl8OyLEsAACCgBdk9AAAAOHMEHQAAAxB0AAAMQNABADAAQQcAwAAE\
@@ -4966,7 +4815,7 @@ AAxA0AEAMABBBwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQd\
 AAAD/H8EgRHD8HT0cwAAAABJRU5ErkJggg==\
 "
   frames[22] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAoH0lEQVR4nO3de3RU9b338c+QhAloMigxmURCwBbCVYrhkqAgSo2EyqPWY1E8\
 GNRSscflgZRjBbyA61jUo8hjEXlQEBA9xTZA7YEi6ZKApwRNaKLcvUWSQkIEYYaLJhD280dkIOYC\
 uUz2zG/er7X2Wp1h75nfnhn7ZpL5Mg7LsiwBAICg1s7uBQAAgJYj6AAAGICgAwBgAIIOAIABCDoA\
@@ -5150,7 +4999,7 @@ QQcAwAAEHQAAAxB0AAAMQNABADAAQQcAwAAEHQAAAxB0AAAMQNABADAAQQcAwAAEHQAAAxB0AAAM\
 QNABADAAQQcAwAAEHQAAAxB0AAAM8P8BTUa2lMYRFH4AAAAASUVORK5CYII=\
 "
   frames[23] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApKElEQVR4nO3dfXjT9f3v8VfoTcpdg1B6A5ZSVMqtiGXSMgGFWSlab48/nA5x\
 v40z9PLngY45kang5lCHjDlUDhuKijvz/Kx4VJDRTQo6ilLWKgoU0EIrtpYiJC1ISsv3/FGJdr2h\
 d+k3+fT5uK5clwnfb/L+JoGnaZNPHJZlWQIAAEGtm90DAACA9iPoAAAYgKADAGAAgg4AgAEIOgAA\
@@ -5339,7 +5188,7 @@ AQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMA\
 YID/D3TzoYKFJGieAAAAAElFTkSuQmCC\
 "
   frames[24] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAnOElEQVR4nO3df3BU9aH38c+SHxt+ZRFCsomGACoB+dUYRhIqiHINhMIF6/ho\
 9YnY2/pc2uvjhZTbK9JW6ExL9aqX6aAytipa7JRpQ5AWSs29JuBcghKeLIJA1DaQGBIiEXYDSkLC\
 ef4IbFkTQn7tnt1v3q+ZM+Meztn9nt2VN7t7dr8Oy7IsAQCAiDbA7gEAAIDeI+gAABiAoAMAYACC\
@@ -5519,7 +5368,7 @@ gAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKAD\
 AGAAgg4AgAEIOgAABiDoAAAY4P8DYYAhsX0foRUAAAAASUVORK5CYII=\
 "
   frames[25] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAl5klEQVR4nO3dfXBU9eHv8c8Skk2CZBFCnjQEQiVQQC+GKwm3IMIYCZXr02W0\
 eiP2tkyx4ziQMla0KjjXov4s5TqoXFoUFTtlfg04dqBI7pSAHYICkygq4FMgKSaGIOwmIAkk3/tH\
 mi1rHsjT5ux+9/2a2Rn2cM7u9+wuvj27393jMsYYAQCAsDbI6QEAAIC+I+gAAFiAoAMAYAGCDgCA\
@@ -5693,7 +5542,7 @@ WICgAwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoA\
 ABYg6AAAWICgAwBgAYIOAIAFCDoAABb4/4RluW2OIE3iAAAAAElFTkSuQmCC\
 "
   frames[26] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkbUlEQVR4nO3df3RU9f3n8deQH5NgyViJ+aUhYL8KFNTF8JWEUxTlGA2VtdXl\
 YHUj9rRU7HFdSDlWpCq4p0X9WstxUTm0/iztlu82YPVAkexXAn6XoEATRQW0bSSRJiIUZkDJhB+f\
 /YNmNvNNiIRkcjPv+3ycM+cwl3tnPndmLk/uzL0zAeecEwAASGqDvB4AAADoPYIOAIABBB0AAAMI\
@@ -5861,7 +5710,7 @@ AQAwgKADAGAAQQcAwACCDgCAAQQdAAADCDoAAAYQdAAADCDoAAAYQNABADDg/wEUs2eHISmBpAAA\
 AABJRU5ErkJggg==\
 "
   frames[27] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAmS0lEQVR4nO3dfXBU9eHv8c8Skk1Qsggx2Y2GBL0SKKjFpJJwi6JMo6HlanUY\
 rN6InZYWe/05kHJb0VrB31hqx1Km4wM/Wh9LH7i/Rrw6UEvuLQGnBE1yE594UGsgERMClOwmCBsI\
 3/tHzJptHkggm7P73fdrZmfc5Zzd79nd9N2ze/Z8XcYYIwAAENNGOT0AAABw/gg6AAAWIOgAAFiA\
@@ -6037,7 +5886,7 @@ OgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDoAABYgKADAGAB\
 gg4AgAUIOgAAFvj/PUfYlKm49ywAAAAASUVORK5CYII=\
 "
   frames[28] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAoJElEQVR4nO3de3TU9Z3/8deQyyQgGYSYm+ZGK5eCWgyFBEVRjpHQst6WxcvG\
 aK272OPPA1lOV7St0D0t2p9r+XlQ+bnLTdGtv27Any7UktMSsBKU0ERBAbGGJEJiTISZBCQJyef3\
 B8v8iLmYkEy+M595Ps6Zc5gv3+/M+zsz4clMZr7jMsYYAQCAkDbM6QEAAMDAEXQAACxA0AEAsABB\
@@ -6221,7 +6070,7 @@ QQcAwAIEHQAACxB0AAAsQNABALAAQQcAwAIEHQAACxB0AAAsQNABALAAQQcAwAIEHQAACxB0AAAs\
 QNABALAAQQcAwAIEHQAACxB0AAAsQNABALDA/wPmPhrmrtwZdQAAAABJRU5ErkJggg==\
 "
   frames[29] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApbElEQVR4nO3de3xU9Z3/8ffkNgFJBiXkZkMCFhLkkmIoEFouQg0EpXgpYnUR\
 +9vaYtefP4isingBu4p4QerPC8tWRUt3CxpgdUFK2hLwV4ICv4SLQEQNJGJCBGEmAZnczv5BmTXN\
 BQKZnJlvXs/H4zwenpNzZj5nZsLLmUwyDsuyLAEAgKAWYvcAAADg0hF0AAAMQNABADAAQQcAwAAE\
@@ -6411,7 +6260,7 @@ DEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0A\
 AAMQdAAADEDQAQAwwH8Du7175bBcvyoAAAAASUVORK5CYII=\
 "
   frames[30] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApBklEQVR4nO3de3hU9b3v8c+QywSUDELMTUMAlYuAiEFIOIIoNRIqxUvZKDRC\
 q1S0Hjek1IrUCvZY1FrK9iByUBAVqbQGrG4oJd0l4N4EBEwEuYkaSMCEyG0GUBKS/M4fyNQ0IRKS\
 yZr55f16nvU8rsVaM981M/B2JjMZlzHGCAAAhLRWTg8AAAAaj6ADAGABgg4AgAUIOgAAFiDoAABY\
@@ -6599,7 +6448,7 @@ AAAsQNABALAAQQcAwAIEHQAACxB0AAAsQNABALAAQQcAwAIEHQAACxB0AAAsQNABALAAQQcAwAIE\
 HQAACxB0AAAsQNABALAAQQcAwAIEHQAAC/x/ys6P5Opg/FkAAAAASUVORK5CYII=\
 "
   frames[31] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAo90lEQVR4nO3df3RU9Z3/8deQhElSyESIySQYAlQNP6IQkgrhW0DkGAgVqfhF\
 UA+Luy0t7delkLIqahXcdRFXEVxQlh6qIlbYNkDrQpH0lIAtQYFOlB8SUQNJY2IAyUzCjySE+/2D\
 ZdqUEBPI5M588nycM+c4H+7NvO/M4JNJ7mQclmVZAgAAIa2L3QMAAIBrR9ABADAAQQcAwAAEHQAA\
@@ -6787,7 +6636,7 @@ AQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQ\
 dAAADEDQAQAwwP8HRwN99k3CvjoAAAAASUVORK5CYII=\
 "
   frames[32] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAmdElEQVR4nO3df3RU9YH38c8YYAJKBiEmmWAIAUJAUBaTQkILAsFIqNRfa3H1\
 pLjb8hR9LMQspxXZVeg5ltpHLbioPOxSlerucs4GfHShlPAj4C5BCZsoCISggaSYEEGYAayJJN/n\
 j8jUISESksmdfPN+nXPP6dz53pnvvTPl7Z0fGZcxxggAAHRp1zg9AQAA0H4EHQAACxB0AAAsQNAB\
@@ -6964,7 +6813,7 @@ AABYgKADAGABgg4AgAUIOgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDoAABYgKADAGCB/w+mqide\
 Ey/j6QAAAABJRU5ErkJggg==\
 "
   frames[33] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAmhUlEQVR4nO3df3CU9aHv8c+SHxuQZBFCdhMNCagETJCLQSBUEKWGhCPXqsNg\
 9abYaemhZxwHchiP6LFC7/WgHY+H00Fl6FBRsS13GnHqQIG0JeAZggInUQg/RA0kYpYAwm4CkkD4\
 3j8ie02zREKyeTbfvF8zO9N9+D6732d37TvP7j77uIwxRgAAoFfr5/QEAABA1xF0AAAsQNABALAA\
@@ -7141,7 +6990,7 @@ gg4AgAUIOgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDoAABY\
 gKADAGABgg4AgAX+H+ZF2SGyEjoLAAAAAElFTkSuQmCC\
 "
   frames[34] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkaElEQVR4nO3df3BU9f3v8deSHxuQZBFifmkIWCFQUIvhasK3+IsxGiqDP75c\
 rDaNnZaWdrxezJdpQVsFv2Op/VrKOKgM/VKRYltnGnD0Qim5twScISgwScUf/LCNJGJCBGE3AUkg\
 fu4fyJZtQkxINmfzzvMxc0bP4Zzdzzm7+PTsnt31OeecAABAvzbI6wEAAICeI+gAABhA0AEAMICg\
@@ -7309,7 +7158,7 @@ dAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABvx/8uyKzmyYjVAAAAAASUVO\
 RK5CYII=\
 "
   frames[35] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAiXElEQVR4nO3df3BU9f3v8deShA20ZKnEJJsaAjoSEJTB5CsJtyDCNRIqF38M\
 F6s3hk5Lix3HgZSxIFXBGb+oYylfB5VLh4qIbZlvA14dKCV3SsD7JShwk4oiaDWQlCYiCLuAZQPh\
 c//gy15jfkhINmfzzvMxcybuyfnsfs7Z1adnf2R9zjknAADQo/XxegIAAKDzCDoAAAYQdAAADCDo\
@@ -7467,7 +7316,7 @@ DgCAAQQdAAADCDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0\
 AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAH/D8JARvJ1XGuEAAAAAElFTkSuQmCC\
 "
   frames[36] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAj00lEQVR4nO3de3DU9f3v8deSywY0WZWQZGNDwFYCBbQYfprQ4o0xEirjbThY\
 nRg7LS16PA6kHAtaFTxjUWspx+OttHjFTulpwNGBUnJ+JeCUoMAvqSgXbY0k0sQYhN0EZQPhe/7A\
 rKy5kJBsvpt3no+Z74z7zee7+/l+d+WZ716yHsdxHAEAgAFtiNsTAAAAvUfQAQAwgKADAGAAQQcA\
@@ -7632,7 +7481,7 @@ CDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABhA\
 0AEAMOD/A8kK33v+Jdb2AAAAAElFTkSuQmCC\
 "
   frames[37] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkfklEQVR4nO3df3DU9b3v8dcSwgKaLJWYZCMhYEcC5YcX4UrCOSDKaTRWrrUO\
 V2tPir09VNpxOpAy1uhRwTs9aOuxXK8/qC2KSk/LTANOvVBLpiXQU4ICkwjyS7SRBEwMINlNUDYQ\
 PvcPDltjfpBfm+/mnedjZme6X77f3c/3+9322e/uZ7M+55wTAADo1wZ5PQAAANBzBB0AAAMIOgAA\
@@ -7800,7 +7649,7 @@ BB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg\
 6AAAGPD/AYB4MRKdVstGAAAAAElFTkSuQmCC\
 "
   frames[38] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAm5UlEQVR4nO3df3DU9b3v8ddCwgaULEpINmgI4JGAwXIwHEnoEVFqQqxcq14u\
 VifimR5OacfphRzGQj1WcMZSW4/lOqiUiuKvtt7biFMvHCBtCXBLQKDJEQIEf0Q20mwCAXYDSELg\
 e/9A9pjmBwnJ5pu883zM7Iz75fvd/Xz3u84z39397Hocx3EEAAB6tX5uDwAAAHQeQQcAwACCDgCA\
@@ -7979,7 +7828,7 @@ OgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAz4//l0DuD5\
 4RD/AAAAAElFTkSuQmCC\
 "
   frames[39] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAoRklEQVR4nO3df3TU9Z3v8deQHxN+ZRBCfmnIoJWAgBZDIckWRLlGQuX663Kg\
 2hh6Wrq0x+OBLMeKbhV6b0v1upbb6w+WXRQQu3XbgKsXSs1uCbiboIRNCirgr/wCE0IQZsKvBML3\
 /uEl1zEhEpLJN3nn+ThnznG+P2Y+3/mM58l8Mz88juM4AgAAfdoAtwcAAAC6jqADAGAAQQcAwACC\
@@ -8164,7 +8013,7 @@ OgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg6AAAGEDQ\
 AQAw4P8CiXWf3h1XX+gAAAAASUVORK5CYII=\
 "
   frames[40] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApA0lEQVR4nO3dfXRU9b3v8c+QhwkoGZSQJwghFAgKyMVwhFBBFA2ESm31cLV6\
 EXtbemjr9UCKD+ipQtfqQSmlXI8PLHtQfOqpbQPeekAkrQnYEhRoIqgkIAYSMCEGYSY8JZDs+4dl\
 ZJoQCWSyk2/er7X2Ws7O3jO/Pb9hvZ2nPR7HcRwBAIBOrZvbAwAAABePoAMAYABBBwDAAIIOAIAB\
@@ -8352,7 +8201,7 @@ ABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg6AAAGEDQAQAwgKADAGAAQQcA\
 wACCDgCAAQQdAAADCDoAAAYQdAAADPj/Se1Rheu6InoAAAAASUVORK5CYII=\
 "
   frames[41] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApsklEQVR4nO3deXxU9b3/8feQZQKaDELMpiGASkBBLgYloQZEaiAodeXiUkRv\
 RbGlFCI/r4gLeK+lWkspdeHiAipa6c8I6gWR2JKElqCEJgoIESWQiAkQhJmEJRvn/oFMTRNiApmc\
 mW9ez8fjPB6dwzkznzMzPl49mc1hWZYlAAAQ0DrZPQAAADhzBB0AAAMQdAAADEDQAQAwAEEHAMAA\
@@ -8543,7 +8392,7 @@ dAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAA\
 BB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAP8Hx5wEtNUCh07AAAAAElFTkSuQmCC\
 "
   frames[42] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkyklEQVR4nO3de3zU9Z3v8fcYkgkoGSoxN4WAVi4LymKoJLQgyKORUFNRl8XL\
 SWPPri1uXQ6knK5orWDXoj2uSz1eeNCiINgu3UasLpQlZ0uA3QQlbKKoEC8NJGJiJMIMQZ1A+J0/\
 KFPTXMxt8pv5zOv5ePwe7fzy+818fzOjL39z+Y7HcRxHAAAgqp3n9gAAAEDfEXQAAAwg6AAAGEDQ\
@@ -8712,7 +8561,7 @@ dAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICg\
 AwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAG/H8f6QHVqFAWAgAAAABJRU5ErkJggg==\
 "
   frames[43] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApxklEQVR4nO3de3xU9Z3/8feQy4RLMggxFzCEqNwEpBiEJIiC1EiwFJClKDaG\
 XlBU1gWWbUVshXaV6q91XReQ0iIXsS0/DaAWSsljS0BNQIKJgkBECSRiYgBhJoAkkJz9IzprlhDJ\
 ZXJmvnk9H495PDon58x8zszQl2dyJuOwLMsSAAAIaO3sHgAAADQfQQcAwAAEHQAAAxB0AAAMQNAB\
@@ -8904,7 +8753,7 @@ OgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABvgf4vIXKNifmacA\
 AAAASUVORK5CYII=\
 "
   frames[44] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApUUlEQVR4nO3de3xU9Z3/8feQyyRcMggxNwwBVC4CKiaFJC3eWCOhsl4QUSxE\
 qyj257qQ8mtFaoX+1qKutdRVRAQEQSvWAKsLa0m3BOwmIKEJIpeAGkiEhBCETACZQDi/PwKjaUIk\
 JJMz883r+XjM47FzOGfmc2bGvnaSmW8clmVZAgAAAa2D3QMAAICWI+gAABiAoAMAYACCDgCAAQg6\
@@ -9094,7 +8943,7 @@ gKADAGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAY4P8Dh6f4PJDjgeoAAAAA\
 SUVORK5CYII=\
 "
   frames[45] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApDElEQVR4nO3de3xU9Z3/8feQywSQDErMDUIAlYvcCkFIaFGUNRJq1tuyCC7G\
 C1i0rgspa0WrgvuzqD9rWReVglyUi7oaoFooJW0J2BKuJoJcAtZAIiREEGYCyITL2T8iU1NCTEhm\
 zsw3r+fjcR6PnpNzZj5nZvDVuSTjsCzLEgAACGkt7B4AAAA0HkEHAMAABB0AAAMQdAAADEDQAQAw\
@@ -9282,7 +9131,7 @@ AwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg\
 6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBggP8DZebax3v5APQAAAAASUVORK5CYII=\
 "
   frames[46] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApqUlEQVR4nO3de3RU9b338c8QkgmXZBBibhoCWG4CUkiEhFNA5RgJlccLj/XW\
 EJBisfX4QORY0argqkWtpSyLSqnc0cqpAS8LSs05JcApARJMFOQiaiQRE8MtM4RLAsl+/ohMmyYg\
 IZnZM7+8X2vNWt2bvWe+e2bSt5OZ7HFYlmUJAAAEtXZ2DwAAAFqOoAMAYACCDgCAAQg6AAAGIOgA\
@@ -9473,7 +9322,7 @@ BB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAw\
 AEEHAMAABB0AAAMQdAAADPD/ATFgzYLkiIIKAAAAAElFTkSuQmCC\
 "
   frames[47] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApUklEQVR4nO3de1jUdd7/8dfIYfAAY4qcChEr0dTMwAOWZvmLxM3ttK4dbsQO\
 lrVuq6x3m7lt2n23Vndr/ro7uJansjb3DvWuW9dkfyvarlhgkGezQiGDUNMZDwmK398f5LTcoIIw\
 fGc+PB/XNdfVjN/vzPs7M1zPZpgP47AsyxIAAAhobeweAAAANB1BBwDAAAQdAAADEHQAAAxA0AEA\
@@ -9663,7 +9512,7 @@ GICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGOD/AxHktwPG3WBPAAAA\
 AElFTkSuQmCC\
 "
   frames[48] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApgUlEQVR4nO3de3xU9Z3/8feQy4RbBiHkpiEElYAgGEIhUFGRNRKU9cJSFBuw\
 P4uiZV1IqYp4ge5axLXIz0VAFETEVroNUC0USVcC/pagJCbKXdRAIiSG60y4JZCc/QOZn9mESEgm\
 Z+ab1/PxmMej53DOzOfMTPpyJpMzDsuyLAEAgIDWyu4BAABA4xF0AAAMQNABADAAQQcAwAAEHQAA\
@@ -9853,7 +9702,7 @@ gAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKAD\
 AGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABvgf5VqfU6irnpkAAAAASUVORK5CYII=\
 "
   frames[49] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAphUlEQVR4nO3df1yUdb738ffwa/AXY4kwUAjYKpq/UjwpnizLjcTytvK0lkW2\
 966bdVyPkltZbWn3ac22XO/WzDxbWdkP20XbOpor965oe8RSAjV/ZYVCBhEaM+APELzuP8zZWNBE\
 GK6ZL6/n4zGPx14X1zXzuWbGfTXDDJfDsixLAAAgqIXYPQAAAGg5gg4AgAEIOgAABiDoAAAYgKAD\
@@ -10044,7 +9893,7 @@ GICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAb4/y0ZirFB0s8SAAAAAElFTkSu\
 QmCC\
 "
   frames[50] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApvElEQVR4nO3de3xU9Z3/8ffkNuGSDJeQm4YAKgG5CaFAaEGUNRIq660UBBG7\
 rRYsPwqRtuIV7NqoVUpdBNYuigpWrAFWF0SyW25dghJIFAQiaiARE2KQZMItCcn5/ZEya5oECcnk\
 zHzzej4e83h4DufMfM7M5PHyzEwyDsuyLAEAAL8WYPcAAACg+Qg6AAAGIOgAABiAoAMAYACCDgCA\
@@ -10236,7 +10085,7 @@ AwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg\
 gg==\
 "
   frames[51] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApXElEQVR4nO3dfXjT9b3/8Vd6l4LSoJTeSSmgUBAQS5lQjiDIrBTleMMYiAdx\
 v40NHTqoXE5kKnh+DnWOMQfIcVMRlYnHgkd/MKQ7o+BGUQqtokDxprQVW+5JWm5aKN/fH4XMrjdS\
 2vSbfPJ8XFeu6yR8v8n7m8TzXPJJGodlWZYAAEBAC7F7AAAA0HIEHQAAAxB0AAAMQNABADAAQQcA\
@@ -10426,7 +10275,7 @@ AQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABjg/wM3\
 HbbbpVtETQAAAABJRU5ErkJggg==\
 "
   frames[52] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApCklEQVR4nO3de3hU9Z3H8c+QywSEDErMDUOIFgICYggrCVsQpUZCpd5KRXxi\
 7G7tYktZSKkFbBVsK+JSpBaRpcUr0tIasPpAKemWgLsEBUzkHlEDiZgQQJgJtwTC2T8Co2lCJCQz\
 Z+Y379fzzPN0DufMfM/M0LeT3wxxWJZlCQAABLUOdg8AAADajqADAGAAgg4AgAEIOgAABiDoAAAY\
@@ -10614,7 +10463,7 @@ wAAEHQAAAxB0AAAMQNABADAAQQcAwAAEHQAAAxB0AAAMQNABADAAQQcAwAAEHQAAAxB0AAAMQNAB\
 ADAAQQcAwAAEHQAAAxB0AAAMQNABADAAQQcAwAD/D5s1nyAyfqydAAAAAElFTkSuQmCC\
 "
   frames[53] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApmUlEQVR4nO3deXxU9b3/8feQZQKSDEvIhiEJCgEBWYJCsCjCNRKUi0spCBex\
 v15aXEohohUpFfzVol4XrgXk2uIOLdqA1QeUkv5k648gi4mAQNQaSMQEDMtMwpKQ5Nw/UqamCZGQ\
 TM7MN6/n4zGPR8/hnJnPmZn05clMZhyWZVkCAAABrY3dAwAAgKYj6AAAGICgAwBgAIIOAIABCDoA\
@@ -10805,7 +10654,7 @@ BB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAw\
 wP8CYPmYhsz61XwAAAAASUVORK5CYII=\
 "
   frames[54] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApS0lEQVR4nO3dfVzUdb738ffIzaApY0owUIhYCaZmiFeCZ73fSNy8ujuudkN2\
 rj1u1mlLyW0zt9L2as22Op7Km9Meu9U2d0O9anVdObui7RFTCcpSyQqFDERNZ1ATFH7XH+hsLEgi\
 DL+ZL6/n4zGPx/mNv9/M5zczndcODN9xWJZlCQAABLVOdg8AAABaj6ADAGAAgg4AgAEIOgAABiDo\
@@ -10995,7 +10844,7 @@ CDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBggP8PyY2VWe9CRFoAAAAASUVORK5C\
 YII=\
 "
   frames[55] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApu0lEQVR4nO3de3xU9Z3/8ffkNgmXDEjITUMAlYDchLCSsIIgayRU6q0UFAP2\
 10XRsv4gpdZgreC2Ra211CIiKl7AW9cAq4VSaUvAXYKSkAjIRdRAIk2M4TITjCQhOb8/kPk1TUBC\
 Mjkz33k9H495PDyHc2Y+Z2bwxUxOZhyWZVkCAAABLcTuAQAAQNsRdAAADEDQAQAwAEEHAMAABB0A\
@@ -11186,7 +11035,7 @@ AIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICg\
 AwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAb4fxa4nk28JPw/AAAAAElFTkSuQmCC\
 "
   frames[56] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAprklEQVR4nO3de3hU9b3v8c+QyyRcMgghNw0BVAJyExIkoUVRtpGgbG+leIuh\
 VSy6ORxI2a1IVXAfi1qLHDcipYKAaGW3AbcWSkkrAXcJmtBEkEvwEkjEhHCd4ZqQsM4fkTlNE5CQ\
 TNbML+/X88zzuBZrzXzXzOR5O5OZLIdlWZYAAEBAa2f3AAAAoPkIOgAABiDoAAAYgKADAGAAgg4A\
@@ -11377,7 +11226,7 @@ BB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAw\
 AEEHAMAABB0AAAMQdAAADEDQAQAwwP8D7v2oD/IYWlkAAAAASUVORK5CYII=\
 "
   frames[57] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApI0lEQVR4nO3de3SU9b3v8c+Qy4RbBiHkhiEElYCACEEgVBBlNxIq2wsbcWtj\
 QKWi23ogZVuRquBZbtStyHGhUlquopWeBty6oZS0JeDZBCGYCHIJXgKJmBBBmElAEi7P+SMwmiZE\
 QjLzzPzyfq01azlPnmfm+8yM680kk18clmVZAgAAQa2N3QMAAIDmI+gAABiAoAMAYACCDgCAAQg6\
@@ -11566,7 +11415,7 @@ AAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAzw/wG6\
 Sq9Dv8OYCQAAAABJRU5ErkJggg==\
 "
   frames[58] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApoUlEQVR4nO3deXRUdZ738U9lqxAlhRCyYQigssgmBCFhGlw4RkObdmsbhIZg\
 Kzb2oAfSPI5Idwt9jtI6SvMoKgOy40KPAR59QJrMyDZDWIIJIrKpgURMiCCkCEiFJPf5A6mnM4RI\
 SKpu1S/v1zn3HO/l3qrvrSp8U5WqlMOyLEsAACCohdg9AAAAaDqCDgCAAQg6AAAGIOgAABiAoAMA\
@@ -11757,7 +11606,7 @@ ABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6\
 AAAGIOgAABjg/wHm9ceF47fccQAAAABJRU5ErkJggg==\
 "
   frames[59] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApzklEQVR4nO3deXhUdZ7v8U9lqwRMiiVmw5DgQlBABhIhYRpFuUbCNOPWiMLE\
 2NosdjtcyNC2aNuCc3tQh2a4PYCIomxqowYcvSANz20CzCUIwUQB2bQDiWlCWKsSloQk5/5BU4/p\
 BCSQyqn65f16nvM8XSfnVH1PVdFvT6Uq5bAsyxIAAAhoQXYPAAAArh1BBwDAAAQdAAADEHQAAAxA\
@@ -11949,7 +11798,7 @@ DEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAA/x9B\
 5dz8LWcpQwAAAABJRU5ErkJggg==\
 "
   frames[60] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApz0lEQVR4nO3dfVyUdb7/8ffIzaApY4rcGaJW3qRmiilQVuaJxM1NbV3dOoTb\
 yVLr9FPWX5u1le75tVanbTv98mYtTct2sxWx+um6ek6iHUETg9K8yYqEDLxnBu9A4Pr9Yc5ZViQR\
 hmvmy+v5eMzj0Vxc18znmhkfry7mGsZhWZYlAAAQ0FrZPQAAAGg8gg4AgAEIOgAABiDoAAAYgKAD\
@@ -12141,7 +11990,7 @@ AAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwwP8H\
 NIsLeDpFqQ4AAAAASUVORK5CYII=\
 "
   frames[61] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAp+0lEQVR4nO3de1yUdd7/8ffIYZCCMUVOhqiVh7RMMQUT07ozsezktna4Tffe\
 tbUyU27vNrOD9thut35tta6puZml2b1WiJu3rqv7uMUsycQFs1Q6oZCCiukMeBgErt8f5mwseEAY\
 LubL6/l4zOOxc3FdM59rZuy118UM47AsyxIAAAhoreweAAAANBxBBwDAAAQdAAADEHQAAAxA0AEA\
@@ -12334,7 +12183,7 @@ BwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA\
 RU5ErkJggg==\
 "
   frames[62] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAp0ElEQVR4nO3deXxU9b3/8fdkmwCSQQnZMISgsshWDEoSZVE0EGrqVopLEXsr\
 FVtrIaVWpFbwVlFvi9SLyKXFFfuTXgMuBZH0lhA0AQlNFGURNZAIiTEIMwnIhCTn9wcyNSWBhGRy\
 Jt+8no/HeTw6J+fMfM7M0JcnmcVhWZYlAADQoQXZPQAAAGg9gg4AgAEIOgAABiDoAAAYgKADAGAA\
@@ -12526,7 +12375,7 @@ AwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAb4\
 /yus86vlvi6aAAAAAElFTkSuQmCC\
 "
   frames[63] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAo5UlEQVR4nO3df3RU5b3v8c+QHxNAMgghvzSEoJAgIBfDAULLL6mBoNRaj1er\
 B9HT2mKvxwspVZFWoXcp6rGWelEpLYqKLjm3AZceEMmpBGgJCDRR1BBQAomYEEDIBJAEwr5/cBiY\
 JkQCmezkm/drrVmrs9l75tnzjOvdmTwz43EcxxEAAGjTOrg9AAAAcOkIOgAABhB0AAAMIOgAABhA\
@@ -12714,7 +12563,7 @@ AAAGEHQAAAwg6AAAGEDQAQAwgKADAGAAQQcAwACCDgCAAQQdAAADCDoAAAYQdAAADPj/yASGM4fq\
 5hQAAAAASUVORK5CYII=\
 "
   frames[64] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAm1UlEQVR4nO3df3DU9b3v8dcakgUsWYRIftj84lR+KwdDIaEGQY6RUHPVeilW\
 TwztEQ/tOA6kXCvaKnSuRb2tZXpRGRREgc6xbcSDFw6SmRJIm4CEkyjKD1FCEiEBgpAlIAmE7/2D\
 wx5jfkh+bL7JO8/HzM50v/v97n6++9n6ZDebTzyO4zgCAAA92jVuDwAAAHQcQQcAwACCDgCAAQQd\
@@ -12892,7 +12741,7 @@ AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg6AAAGEDQAQAwgKAD\
 AGAAQQcAwACCDgCAAQQdAAADCDoAAAYQdAAADCDoAAAY8P8BYCLm2VLYp1EAAAAASUVORK5CYII=\
 "
   frames[65] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAnpklEQVR4nO3de3DU9b3/8deSywaQLEJIslEIYCVQLvlhqBBa8UIbCZKx1cNP\
 qxOx08OROk5HUsZKbSt0fj1Ufx7LdLxQjxe89PQw50QcUyiStlxsCUo4CSCXeGkgkSSEIOwmXBII\
 398fyP5MN0Ry2Xw37zwfMzvjfvfz3f1897v4zN6+63EcxxEAAOjTBrg9AQAA0H0EHQAAAwg6AAAG\
@@ -13074,7 +12923,7 @@ CDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABhA\
 0AEAMICgAwBgAEEHAMCA/wdfsjb2YMc/3wAAAABJRU5ErkJggg==\
 "
   frames[66] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAmX0lEQVR4nO3df3RU9Z3/8deQH8MPkyEQ8wvzA10JCGoxUQgt/uIYjStrrV9X\
 a0/EPVu2tMfTL2Q5rui2Qs/pUl3rsi4iteJPuivfsxG3Hlhrvt8ScEuoCU0U5YdW88uYGAnJTMKP\
 BJL7/SMwNc0PE5LJnbzzfJwz53Ru7p353Lljn9yZe+d6HMdxBAAAxrQJbg8AAAAMH0EHAMAAgg4A\
@@ -13250,7 +13099,7 @@ BB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg\
 BwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABjw/wHoo2peytQE0AAAAABJRU5ErkJggg==\
 "
   frames[67] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkh0lEQVR4nO3dfXRU9b3v8c8QkklQMiAxyYSGgD3yUFAuwpKEHnziNBpOOdq6\
 WHr0pth1Di31unohZXmgnlZw3RZtrWW5fDpWfCr21HMa8NoDtWTdEnCVoMBJFOWhtkYSQ2IMJjM8\
 JYHkd/9Apox5ME+TPfnm/VprL52dvWd+e8+0b/fsPTM+55wTAAAY0kZ4PQAAANB/BB0AAAMIOgAA\
@@ -13418,7 +13267,7 @@ CDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABhA\
 DgCAAQQdAAADCDoAAAb8f6SwLS6d/I89AAAAAElFTkSuQmCC\
 "
   frames[68] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAiLklEQVR4nO3df3BU9f3v8dcawgZasiox2Y0NAasECuiXhmrCLQjyNRAqX6pe\
 BqsTY6u02PE6kHK9IFXBGYs6lDIOKkOLomKnzG3AWwdKybQEnCEo8E0qKiC1kURMjCDsgj8ShM/9\
 A1lZ8kNCsjmbd56PmZ16zp6z+z5nt/P0JLvG55xzAgAA3dpFXg8AAAA6jqADAGAAQQcAwACCDgCA\
@@ -13576,7 +13425,7 @@ BB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg\
 RK5CYII=\
 "
   frames[69] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAjqUlEQVR4nO3de3DU9f3v8dcSyIYgWQwhN5sE9EiggA6GHyScggo/I6Fy8PLz\
 aHXS2GlpseN4IGUsSFVwpj/Un7WMg8rQQ0XFtpxpwNGBUnJOCXgOQYFfUvEC2jaykSYit12uCZfP\
 +QNZiblILpvv5p3nY2an2W++393P97trn3x3P5v1OeecAABAj9bH6wEAAIDOI+gAABhA0AEAMICg\
@@ -13740,7 +13589,7 @@ oAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEE\
 HQAAAwg6AAAGEHQAAAwg6AAAGPD/AY4Qc2GYHNKsAAAAAElFTkSuQmCC\
 "
   frames[70] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAmAUlEQVR4nO3de3BUdZ738U+TS3ORNJh7NISgEBCUxbCSMHJRaqJhhnXU4tHR\
 zeDuLLvMlo8FWcoV3RnBqhnGKcflmUJl2WW8jO6sVRvw0YJ1SdWSwA5RgScZ8RZQA4mYmAShO4Ak\
 EH7PH0jvZHIxIemczjfvV1VXTZ/8Tvp3unt8czqnz/E555wAAMCQNsLrCQAAgP4j6AAAGEDQAQAw\
@@ -13915,7 +13764,7 @@ OgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAz4/0dL4/Rn\
 qAY+AAAAAElFTkSuQmCC\
 "
   frames[71] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAno0lEQVR4nO3dfXTU9YHv8c+QhAloMggxTxryoBIQ0MVESZDgA2skXClV62K1\
 abCKpT1eD6acrui2gue21F7rcnpQWSgVEWvZbcDVC5ea3SWElvAQmlRUQGsCiTHhSZhJQBII3/sH\
 l1nHhEBIJr/Jd96vc+Yc5/cw8/3NjL79zXwn4zLGGAEAgH5tgNMDAAAAPUfQAQCwAEEHAMACBB0A\
@@ -14097,7 +13946,7 @@ AgQdAAALEHQAACxA0AEAsABBBwDAAgQdAAALEHQAACxA0AEAsABBBwDAAgQdAAALEHQAACxA0AEA\
 sABBBwDAAgQdAAAL/D+s+CQgNA7b6QAAAABJRU5ErkJggg==\
 "
   frames[72] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAojklEQVR4nO3dfVyUdaL38e/Iw6AmY0o8FQKWgvm0hpvgyYdyI7G4rdRTWzdr\
 3bvu2r66O0r2YG6l3aelrHU93Vaue9rMbHc7hXbXaiZ7EvUcscQFtVSyQiECn9IZ1ASF6/7DdZQV\
 EIThmvnxeb9e1+vV/Lyumd81M/nxN8wwDsuyLAEAgIDWxe4JAACAtiPoAAAYgKADAGAAgg4AgAEI\
@@ -14283,7 +14132,7 @@ AAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIO\
 AIABCDoAAAYg6AAAGICgAwBggP8PUwh5HyKZ1xAAAAAASUVORK5CYII=\
 "
   frames[73] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApa0lEQVR4nO3de3xU9Z3/8feQy4RbBiTmJiHACgEBKQZJwm9RkTUQlPVWiqIx\
 WKVi6/KAlLWiVcGui3at8nO9sFYuIlppG7C2UGrcErA/wiU0qSgQlA0k0oQAwkwASSB8f38gs00T\
 AoFMzsw3r+fjMY+Hczhn5nNmBl6ezEyOyxhjBAAAQloHpwcAAACXjqADAGABgg4AgAUIOgAAFiDo\
@@ -14473,7 +14322,7 @@ AYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg6AAA\
 WICgAwBgAYIOAIAF/j9VLqlozRdUDwAAAABJRU5ErkJggg==\
 "
   frames[74] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApSElEQVR4nO3de3xU9Z3/8feQywQwGYSYm4YACgG5GcJCwq8IyhoJynorBXER\
 +9uyxRYtRNYVqQK2FXUtZV1Q1q2KiihtQ6wWpGRXAnYJSnCC3MEaSMCEmzCTcEkgOftHZDRNgoRk\
 cma+eT0fj3k8OCfnzHzOzMCLyZlkHJZlWQIAAEGtnd0DAACA5iPoAAAYgKADAGAAgg4AgAEIOgAA\
@@ -14662,7 +14511,7 @@ YACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgA\
 ABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAf4PoemA495nwkgAAAAASUVORK5CYII=\
 "
   frames[75] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAoPElEQVR4nO3de3TU9Z3/8deQy4RbhkLITUMSEAKCshgWEir3NRIqP7WWxWox\
 disVu64/yPJT0baC51iqx6XUgvLDoqh0f3VtwNUFkVQToEtQwiaKchEwkIgJIUBmAkoC4fv7IzIS\
 E0Juk+/MZ56Pc+YcZ/L9zry/MxOefjKTjMOyLEsAACCgdbN7AAAA0HEEHQAAAxB0AAAMQNABADAA\
@@ -14847,7 +14696,7 @@ AQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAA/x/Xlyq5\
 LmrA8QAAAABJRU5ErkJggg==\
 "
   frames[76] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAm1klEQVR4nO3dfXAU54Hn8d+gl+FVA9agN0eIl4Ag4LAgypY482JTlhEb1rFd\
 lL3OYby1YZekfC5QKK+xkxhy5WBnvV4u5xfOiV+D95baCHzOQRx0t0jiCmEjLMXYvMYWkoIlCwmY\
 EcJokPTcH4RZJhJCb6Oeeeb7qZoqptU98/TMSF96umfaZYwxAgAAUW2Y0wMAAAADR9ABALAAQQcA\
@@ -15025,7 +14874,7 @@ AIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg6AAAWICg\
 AwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABb4/61410nceznAAAAAAElFTkSuQmCC\
 "
   frames[77] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkx0lEQVR4nO3df3BU9f3v8deSHxsiZBViftkQsJUfBXUwjCS04A+mkdAy/hqv\
 Vgext6WlHceBlLEiVcE7flHHUq7jD4ZWRcVOudOAX3uhSO4tAecSlDBJRQW0NZJIEyMBsgQkgeRz\
 /+CbLduESCCbk32f52NmZ9zDObufs7vw9OyeHwHnnBMAAIhrg7weAAAAuHAEHQAAAwg6AAAGEHQA\
@@ -15194,7 +15043,7 @@ BhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQAAAwg6AAAGEDQAQAw\
 gKADAGAAQQcAwACCDgCAAQQdAAAD/j+RAZ0ycj2tegAAAABJRU5ErkJggg==\
 "
   frames[78] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAlL0lEQVR4nO3df3BU9cHv8c8Skg0IWQox2U0NAXwkUEAeDCMJUxClBkLl8dcw\
 WJ0YO5UWe70OpIwVrQre6YM6ljJeVC4tiop9ykwDjhaKZJ4SsJeghJsUVEBaA4mYGEGym/BjA+Hc\
 PzDbrPlBQrI5e777fs3sjHtyzu737K6+PefsOeuyLMsSAABwtH52DwAAAPQcQQcAwAAEHQAAAxB0\
@@ -15365,7 +15214,7 @@ AwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg\
 CDoAAAYg6AAAGOD/A0e0j/8vZ/viAAAAAElFTkSuQmCC\
 "
   frames[79] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAnOUlEQVR4nO3df3TU9Z3v8deQhEn4kUEI+aUhBCshAloMBxKugEiJhMqx1evB\
 6klxb5ezdNfjhZTrimwVeo+ldq1le/3BcYtVi71L24DHXVhKWhOgS7CEmwjyI6IGkkJCCD9mAkgC\
 yff+kWWWaX6QX9/5znzm+ThnznG+fL8z7+/M4JP5+XVZlmUJAACEtUFODwAAAPqPoAMAYACCDgCA\
@@ -15545,7 +15394,7 @@ AwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg6AAAGICgAwBgAIIOAIABCDoAAAYg\
 6AAAGICgAwBgAIIOAIABCDoAAAb4/8gIH8ju2BWTAAAAAElFTkSuQmCC\
 "
   frames[80] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApMklEQVR4nO3df3xU9Z3v8feQH5OAySDEZBIIIQgEBaQYCgka5EcJhMr11+Vq\
 9SJ2LVdsrYWURdHdin08ulSLSF1U1orir27Z24jXLiwQKwFaohKaVFQIqIFETAggmUkQEkjO/SPL\
 aMwP82tyZr55PR+P86hzOGfmc2amvDiZmYzDsixLAAAgqPWxewAAANB1BB0AAAMQdAAADEDQAQAw\
@@ -15734,7 +15583,7 @@ AQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMA\
 YACCDgCAAQg6AAAG+P8QyoDwJlQlgAAAAABJRU5ErkJggg==\
 "
   frames[81] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAprElEQVR4nO3de3RU9b338c/kNuGWQYi5aQhgIVylIRQIFVF5jITKUfGxqBjR\
 07qAHg4HUqoipwqeY1GrlMcioD1YFLTSY8DqAZH0kYB9CAoh4RrwFkjEhACSmQCSQLKfPyKzjAkx\
 IZnsmV/er7X2Ws5m75nvnhl5M8nMbIdlWZYAAEBAC7J7AAAA0HIEHQAAAxB0AAAMQNABADAAQQcA\
@@ -15925,7 +15774,7 @@ AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACC\
 DgCAAQg6AAAGIOgAABiAoAMAYID/D2iy2CO+5hUfAAAAAElFTkSuQmCC\
 "
   frames[82] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAptklEQVR4nO3de3hU9b3v8c/kNgEhgxByAcNNJSBBxVBIsCBKjYbKg4IUbzHY\
 SgV1eyClbpG9Feq2qFspxypQFEUEldaA2xak5BwJ2CYIwURBLt4CiZiAIMyEW0KSdf6IzDEliYTM\
 ZM388n49z3qeznKtme+amfp2MrNmHJZlWQIAAEEtxO4BAABAyxF0AAAMQNABADAAQQcAwAAEHQAA\
@@ -16116,7 +15965,7 @@ AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAGIOgAABiAoAMAYACC\
 DgCAAQg6AAAGIOgAABiAoAMAYACCDgCAAQg6AAAG+H/layu9l8PYEQAAAABJRU5ErkJggg==\
 "
   frames[83] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAp4ElEQVR4nO3dfVxUdd7/8ffIzYAJY4rcFQJWoqm5hqtieVMWieXazbZ2c6m1\
 u26225aSV5u1W9rvaq02zW0tXbfSyrrW6wpt89ItaRN0E01c2MyUrFDIQJR0RjRB4Pz+MGdjQRJh\
 ODNfXs/H4zwezfGcmc+ZmXw5cGbGYVmWJQAAENA62T0AAABoPYIOAIABCDoAAAYg6AAAGICgAwBg\
@@ -16308,7 +16157,7 @@ AAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA0AEAMABBBwDAAAQdAAADEHQAAAxA0AEAMABB\
 BwDAAAQdAAADEHQAAAzw/wGsexJtov4S4AAAAABJRU5ErkJggg==\
 "
   frames[84] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAoVElEQVR4nO3de3zU9Z3v8feQywSQDEJMMoGQgFVAboVQSbJyUdpoUI4XltXq\
 pmF36xH34XGRclrRtkL3uKgPq5weqjzougVEK7sNWLtQarYS8GwCEpooIiLa3MTECMIMF0kg/M4f\
 HLIdEyIhmfxmPnk9H4/f4+H8LjPf33yHvJzJTMbjOI4jAAAQ1fq4PQAAANB1BB0AAAMIOgAABhB0\
@@ -16493,7 +16342,7 @@ AIABBB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEHAMAAgg4AgAEEHQAAAwg6AAAGEHQA\
 AAwg6AAAGEDQAQAwgKADAGDA/wOmTo4XC5qXqgAAAABJRU5ErkJggg==\
 "
   frames[85] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAmmUlEQVR4nO3df3BU9b3/8deSHxvAZJGs+WVDCFEDBfSLoZCkBVG+RkLLqPV6\
 9dpviv3e0uIdx8FcxorcKnS+LdpruYzjD4Z+vSrFttxpxKkDpWZuCfg1QQk3qfgDFIgkYmJMgF0C\
 kkA43z+Avab5ISHZnN13no+ZnXEP5+x+zp6VJ2f3nD0ex3EcAQCAqDbC7QEAAICBI+gAABhA0AEA\
@@ -16670,7 +16519,7 @@ gKADAGAAQQcAwACCDgCAAQQdAAADCDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIOAIAB\
 BB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgwP8HyuBHSrCDafUAAAAASUVORK5CYII=\
 "
   frames[86] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkYklEQVR4nO3df3BU9b3/8dcSkk1QsighycaGgL0SENSLoZIwBX/wNRoqxR/D\
 xeo3jf22VOw4Xki5rWhVcMaijrWM4w8ujhUV2zJjxK8OlJrvtwT8XoICTSr+gNo2EoTEGEp2A0IC\
 4fP9A7KXmB8mJJuzeef5mNnBPTln93POrnnm7Dm763POOQEAgAFtiNcDAAAAvUfQAQAwgKADAGAA\
@@ -16837,7 +16686,7 @@ AQAwgKADAGAAQQcAwACCDgCAAQQdAAADCDoAAAYQdAAADCDoAAAYQNABADCAoAMAYABBBwDAAIIO\
 AIABBB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgwP8HGJv/F3DK0mYAAAAASUVORK5CYII=\
 "
   frames[87] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAiRElEQVR4nO3df3BU9f3v8dcSkg0oWZSYXzWE4FcCBfViqCS0IMI1Eirjr3Kx\
 emPstLTo168DKWNBvyo4Y6N+LWUcREqLomJvubcBRwdKyXeagFOCAk0qyg9tjSSliRGEXX7UBMLn\
 /kHZGvNDQrI5m3eej5kz9px8zu7nnN3Ok7M/Ep9zzgkAAPRq/byeAAAA6DqCDgCAAQQdAAADCDoA\
@@ -16995,7 +16844,7 @@ EHQAAAwg6AAAGEDQAQAwgKADAGAAQQcAwACCDgCAAQQdAAADCDoAAAYQdAAADCDoAAAYQNABADCA\
 oAMAYMD/B0nPUjYeOmD+AAAAAElFTkSuQmCC\
 "
   frames[88] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAkPElEQVR4nO3df3TU9Z3v8dcQkkmiZBBCfmkS0CuBBfUiHE3ogijXSFi5Vr1e\
 rb0Y97Ts0l5PF7KsJXVbwXNatHVdTq+itYui0r3L3ga89sBSc08J9JSgQJOK8kPbxkzAROTXTCCQ\
 QPK5fwAjMSHm1+Q7eef5OOd7dL58vzOf73cGn36/850Zn3POCQAADGrDvB4AAADoO4IOAIABBB0A\
@@ -17162,7 +17011,7 @@ GEDQAQAwgKADAGAAQQcAwACCDgCAAQQdAAADCDoAAAYQdAAADCDoAAAYQNABADCAoAMAYMD/BwcF\
 sVkOe+nqAAAAAElFTkSuQmCC\
 "
   frames[89] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAiiklEQVR4nO3df3BU9f3v8dcSkgUsWSQxyUZDAL8aKKCDcCWhBVHGSKiMPxgu\
 VifGTkuLXscLKWNFq4IzLWotZfyiUloUFZ06twFHB0rJTAk4JSjQpKL80NbARkxEEHZBJYH4uX9Y\
 9mvMD8mPzdl95/mYOTPdk3N232d37ZOz2c36nHNOAAAgofXxegAAANB1BB0AAAMIOgAABhB0AAAM\
@@ -17321,7 +17170,7 @@ AAAYQNABADCAoAMAYABBBwDAAIIOAIABBB0AAAMIOgAABhB0AAAMIOgAABhA0AEAMICgAwBgAEEH\
 AMAAgg4AgAEEHQAAAwg6AAAG/H98fgbctPsPHQAAAABJRU5ErkJggg==\
 "
   frames[90] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAnCklEQVR4nO3df3CU9aHv8c8Skk1QsgghySaGAB4JyC9jOJLQoijHSKgU0HG0\
 diJ2zqEHO04v5HCtaFuhc1u0Yz3cjj+oLYqWnqlzG8PRA1LTWwKOBAXORkEgYg0khoQQfuwmIAkk\
 3/sHsrdxk0hINs/uN+/XzDPjPvs8u99ns/r22R/fdRljjAAAQFQb5PQAAABA7xF0AAAsQNABALAA\
@@ -17500,7 +17349,7 @@ AIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg6AAAWICg\
 AwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAF/h+FCyvPA5wqbgAAAABJRU5ErkJggg==\
 "
   frames[91] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAnnElEQVR4nO3df3SU9YHv8c9AkgloMighvzAJCZWAgC6GQgJCQNZoqFx/HarV\
 jdjtoqHr7YEsp5V2rdBzumjXtdxexEiLP7Fbbxvw2gsq2ZYEKkGBJor8EiGQiAkhCDMJSgLJ9/5B\
 mXVIiIRk8ky+eb/OmXOcZ55nnu8zM/r2mZlvxmWMMQIAAL1aP6cHAAAAuo6gAwBgAYIOAIAFCDoA\
@@ -17682,7 +17531,7 @@ AwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg6AAAWICgAwBgAYIOAIAFCDoAABYg\
 CDoAABb4/0B6SPauZgY+AAAAAElFTkSuQmCC\
 "
   frames[92] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAoM0lEQVR4nO3de3zU5YHv8e+QywSUDELIzSYhIISbuhgqCQqC1EgQVq3r4uoi\
 dltatG4XIseCV9Aq4rGUehSRLl6xXfYY8KggJVsJ2BLk0kRRQgANJGJiuM6EWwLhOX9QRqYJkZBM\
 fpMnn/frNa9X58nvN/P8ZqZ8/M0zybiMMUYAAKBN6+D0BAAAQPMRdAAALEDQAQCwAEEHAMACBB0A\
@@ -17867,7 +17716,7 @@ BwDAAgQdAAALEHQAACxA0AEAsABBBwDAAgQdAAALEHQAACxA0AEAsABBBwDAAgQdAAALEHQAACxA\
 RU5ErkJggg==\
 "
   frames[93] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAo0klEQVR4nO3deXSUVYL38V+RpcKWQgjZNARQCMg2GEYSRhZljISWcUEGBwex\
 325s7HF8IY0LruCMjQsyHMeFQzeu2NO8EnC0oWky0wTsJiihExaBiBpIxIRNqEpAEpLc9w+kNJ2w\
 hKTyVN18P+c853TdPE/VfaoKv30rVSmXMcYIAACEtHZOTwAAADQfQQcAwAIEHQAACxB0AAAsQNAB\
@@ -18054,7 +17903,7 @@ AAAWIOgAAFiAoAMAYAGCDgCABQg6AAAWIOgAAFiAoAMAYAGCDgCABQg6AAAWIOgAAFiAoAMAYAGC\
 DgCABQg6AAAWIOgAAFiAoAMAYAGCDgCABQg6AAAW+P8z74AL9jmEYQAAAABJRU5ErkJggg==\
 "
   frames[94] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApGUlEQVR4nO3de3zU9Z3v8feQy4RbBiHkphCClYCAGEIhoQVBayRUFtRlQRCx\
 Z48ttBwOpNSCV3CPRa110eWmFUUFj6wNcHShlGxLwC1BCSSKXIKXQCImhutMAmZCkt/5gzJrmoCE\
 ZPKb+eb1fDzm8ej8+P1mPr+Zsa/8JpPfOCzLsgQAAIJaO7sHAAAAzUfQAQAwAEEHAMAABB0AAAMQ\
@@ -18243,7 +18092,7 @@ wAAEHQAAAxB0AAAMQNABADAAQQcAwAAEHQAAAxB0AAAMQNABADAAQQcAwAD/H+oCmc+ikLs+AAAA\
 AElFTkSuQmCC\
 "
   frames[95] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAm7UlEQVR4nO3de3hU9YH/8c+QwASQjELIzYYkthIQEDFcEioIskZC5eetLFSL\
 waoVu/5YyLJd0KrgrkWti9QfIqVyE9wtzzbg0y4sJW4JuCUoYZOCcrUNJFJCBGEmEUggfH9/sMwa\
 c5EkMzkz37xfzzPP4xzOmfmemcE3Z+bMfF3GGCMAABDWOjk9AAAA0HYEHQAACxB0AAAsQNABALAA\
@@ -18422,7 +18271,7 @@ gg4AgAUIOgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDoAABYgKADAGABgg4AgAUIOgAAFiDoAABY\
 4P8DQGyXVI5Y/NUAAAAASUVORK5CYII=\
 "
   frames[96] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApgUlEQVR4nO3deXRUdZ738U9lqwQhhRKyICHgQkC2iUFIUFTkGAkNR9SmQRDj\
 ho3THA+kGRUdFZzHRm3bRh9URFkE9GnsDtjaIE26h4AzBCF0IsomrYEETNiEqgSkAsl9/mCoMSZE\
 slRu1S/v1zl1jnW5t+p7qwre3lodlmVZAgAAQS3E7gEAAEDzEXQAAAxA0AEAMABBBwDAAAQdAAAD\
@@ -18612,7 +18461,7 @@ gAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKAD\
 AGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABvj/EcqNvSHswCMAAAAASUVORK5CYII=\
 "
   frames[97] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApxElEQVR4nO3deXTU9b3/8deQZUIwGYSYTUMIlk1QikGScMqi1Gio1IVrsWgM\
 Kljsz2shcq1IVbDXol6rnB5UiuyC1XuNeLVQSs6VgC1hCU0UZXGLJGJiDJKZhCUhyff3B2WOaUJM\
 SCbfmU+ej3PmHL9fvt+Z93dm4Ol3MpNxWJZlCQAABLQedg8AAAA6jqADAGAAgg4AgAEIOgAABiDo\
@@ -18804,7 +18653,7 @@ DEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADPD/AeXWuXCJpXY9AAAA\
 AElFTkSuQmCC\
 "
   frames[98] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAAppElEQVR4nO3de3xU9Z3/8feQywQkGZSQG4YEVAJyKwSBUEGUNRKU9bYUL41B\
 LRWt60JKrUhVcB8W9WcpP+uF0nIVa2kNuLpQSnZLwC1BCCZc5KKWQCIkhOtMwiUJ4ewflFnTXEgg\
 kzPzzev5eMzj4TmcM/M5MwMvZzI547AsyxIAAAho7eweAAAAXDmCDgCAAQg6AAAGIOgAABiAoAMA\
@@ -18995,7 +18844,7 @@ AEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAADEDQAQAwAEEHAMAABB0AAAMQdAAA\
 DEDQAQAwAEEHAMAA/wvMH62Tbx0xeAAAAABJRU5ErkJggg==\
 "
   frames[99] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApnklEQVR4nO3de3xU9Z3/8feQyyQgGYSYm4YAKgG5iYmS8CiIUCOhUqz+WCyK\
 oesN+7AWUtaKVgV/a1F/FmmLwqIgKNrSNcDqQinZlYC7BCWYCHITNZAACREkM4RLEpLz+4MyNSRE\
 QjI5M995PR+PeTw8x3NmPmdm4MVMzmQclmVZAgAAAa2D3QMAAIDWI+gAABiAoAMAYACCDgCAAQg6\
@@ -19186,7 +19035,7 @@ gg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAYgKADAGAAgg4AgAEIOgAABiDoAAAY\
 gKADAGCA/w9Gyo4/M285JwAAAABJRU5ErkJggg==\
 "
   frames[100] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
-bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAA9h\
+bGliIHZlcnNpb24zLjUuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8qNh9FAAAACXBIWXMAAA9h\
 AAAPYQGoP6dpAAApIElEQVR4nO3de3xU9Z3/8feQy4RbhktMMsEQgpWAgAhhJaFFUbaRoNRbLYqN\
 2G1R9GctpKwVqQruWtRays9FRLZeuGilbcCfLpRCtwRsCUowURCIqIFEmhjDZSYBSSA5vz8CozEX\
 CcnkzHzn9Xw85vHonJwz8zkzg69O8k3GYVmWJQAAENS62D0AAABoP4IOAIABCDoAAAYg6AAAGICg\
@@ -19379,14 +19228,14 @@ My3a7AAAAABJRU5ErkJggg==\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim2065943ea10e4fe9bd047732e1a89add = new Animation(frames, img_id, slider_id, 50.0,
+        anim1c67058265514ea4aa308837aef99885 = new Animation(frames, img_id, slider_id, 50.0,
                                  loop_select_id);
     }, 0);
   })()
 </script>
 </div></div>
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -19397,55 +19246,99 @@ My3a7AAAAABJRU5ErkJggg==\
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.6"
+            mode: "julia-1.9"
         },
         kernelOptions: {
-            kernelName: "julia-1.6",
+            name: "julia-1.9",
             path: "./content/Differential_Equations"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.6'</script>
+    <script>kernelName = 'julia-1.9'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="Initial_Value_Problems.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">14.1. </span>Initial Value Problems</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Initial_Value_Problems.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">14.1. </span>Initial Value Problems</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="Boundary_Value_Problems.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="Boundary_Value_Problems.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">14.3. </span>Boundary Value Problems</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
-
-
-      </div>
-    </div>
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
