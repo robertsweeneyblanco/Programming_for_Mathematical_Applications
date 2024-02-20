@@ -536,7 +536,7 @@ f(x) = \mathcal{O}(g(x))\text{ as }x\rightarrow\infty
 \[
 (n+1)^2 = \mathcal{O}(n^2)
 \]</div>
-<p>since <span class="math notranslate nohighlight">\((n+1)^2 = n^2 + 2n + 1 \le 2n^2\)</span> for <span class="math notranslate nohighlight">\(n\ge2\)</span>.</p>
+<p>since <span class="math notranslate nohighlight">\((n+1)^2 = n^2 + 2n + 1 \le 2n^2\)</span> for <span class="math notranslate nohighlight">\(n\ge3\)</span>.</p>
 </section>
 <section id="common-asymptotic-time-complexities">
 <h2><span class="section-number">18.2.2. </span>Common asymptotic time complexities<a class="headerlink" href="#common-asymptotic-time-complexities" title="Permalink to this heading">#</a></h2>
@@ -587,7 +587,7 @@ f(x) = \mathcal{O}(g(x))\text{ as }x\rightarrow\infty
 <section id="time-and-space-complexities">
 <h2><span class="section-number">18.2.3. </span>Time and Space complexities<a class="headerlink" href="#time-and-space-complexities" title="Permalink to this heading">#</a></h2>
 <p>We will mostly be concerned about the <em>time</em> the program needs to finish, and how much <em>space</em> it uses.</p>
-<p><strong>Time</strong>: Instead of measuring exact times in seconds, we usually count the number of operations the program needs to perform. These can e.g. by floating point operations, such as <code class="docutils literal notranslate"><span class="pre">+</span></code>,<code class="docutils literal notranslate"><span class="pre">-</span></code>,<code class="docutils literal notranslate"><span class="pre">*</span></code>,<code class="docutils literal notranslate"><span class="pre">/</span></code> on <code class="docutils literal notranslate"><span class="pre">Float64</span></code> or other standard standard mathematical functions. But it can also be as simple as comparing two entries, any integer operation, etc.</p>
+<p><strong>Time</strong>: Instead of measuring exact times in seconds, we usually count the number of operations the program needs to perform. These can e.g. be floating point operations, such as <code class="docutils literal notranslate"><span class="pre">+</span></code>,<code class="docutils literal notranslate"><span class="pre">-</span></code>,<code class="docutils literal notranslate"><span class="pre">*</span></code>,<code class="docutils literal notranslate"><span class="pre">/</span></code> on <code class="docutils literal notranslate"><span class="pre">Float64</span></code> or other standard standard mathematical functions. But it can also be as simple as comparing two entries, any integer operation, etc.</p>
 <p>Note that the actual running time (in seconds) will be very different from the operation count, it is even in a different unit and depends on the computer and the details of the operations. However, since the Big O notation is only concerned with the asymtotic growth and ignores e.g. multiplicative constants, we can still use the operation count as a good proxy for the actual time the program will take to run.</p>
 <p><strong>Space</strong>: Data types such as <code class="docutils literal notranslate"><span class="pre">Float64</span></code> need a fixed amount of memory to store, e.g. 64 bits / 8 bytes. However, again we are not concerned about the constant but rather how much the memory usage grows with a parameter. Therefore, we will measure memory usage by considering the size of the arrays that we create (and possibly other array-like types such as strings).</p>
 </section>
