@@ -3,7 +3,7 @@
 # Overall book settings
 title: Programming for Mathematical Applications
 author: Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco
-copyright : "2022"
+copyright : "2022-2025"
 logo: content/logo.png
 
 # Force re-execution of notebooks on each build?

@@ -97,8 +97,8 @@ chapters:
   - file: content/Strings_and_File_Processing/File_Processing
     title: File Processing
   
-- file: content/Structs_And_Objects/Structs_And_Objects
-  title: Structs and Objects
+- file: content/Composite_Types_and_Objects/Composite_Types_and_Objects
+  title: Composite Types and Objects
   
 - file: content/Computational_Geometry/Chapter_Intro
   title: Computational Geometry
@@ -156,7 +156,6 @@ chapters:
 
 - file: content/Symbolic_Algebra/Chapter_Intro
   title: Symbolic Algebra
-  sections:
   
 - file: content/Optimization/Chapter_Intro
   title: Optimization

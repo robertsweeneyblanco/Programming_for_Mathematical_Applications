@@ -1,5 +1,3 @@
------
-
 # Programming for Mathematical Applications
 
 ### By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco
