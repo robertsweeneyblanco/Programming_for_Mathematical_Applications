@@ -1,3 +1,5 @@
 # Introduction to Julia
 
-This section will cover the basics of the Julia programming language. After this chapter, readers should know how to write and execute Julia code to perform basic calculations. The big picture lessons from this chapter can be applied to almost any programming language, but the syntax and conventions will be specific to Julia. 
+This chapter introduces the fundamentals of the Julia programming language, a powerful tool designed for scientific and mathematical computing. By the end of this section, you'll be able to write and execute your first lines of code to perform basic calculations.
+
+While the core programming concepts we'll cover are transferable to nearly any language, the specific **syntax** and conventions discussed here are unique to Julia.

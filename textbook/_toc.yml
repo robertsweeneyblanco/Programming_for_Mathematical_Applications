@@ -23,8 +23,6 @@ chapters:
     title: Conditionals
   - file: content/Introduction/While_Loops
     title: While-Loops
-  - file: content/Introduction/Function_Arguments
-    title: Function Arguments
 
 - file: content/Arrays_and_Dictionaries/Chapter_Intro
   title: Arrays and Dictionaries
@@ -62,19 +60,19 @@ chapters:
   - file: content/Vectorization/Logical_Indexing
     title: Logical Indexing
   
-- file: content/Data_Types/Chapter_Intro
-  title: Data Types
+- file: content/Special_Number_Types/Chapter_Intro
+  title: Special Number Types
   sections:
-  - file: content/Data_Types/Arbitrary_Precision_Integers
+  - file: content/Special_Number_Types/Arbitrary_Precision_Integers
     title: Arbitrary Precision Integers
-  - file: content/Data_Types/Arbitrary_Precision_Floats
+  - file: content/Special_Number_Types/Arbitrary_Precision_Floats
     title: Arbitrary Precision Floats 
-  - file: content/Data_Types/Complex_Numbers
+  - file: content/Special_Number_Types/Complex_Numbers
     title: Complex Numbers
-  - file: content/Data_Types/Rational_Numbers
+  - file: content/Special_Number_Types/Rational_Numbers
     title: Rational Numbers
-  - file: content/Data_Types/Data_Types_of_Arrays
-    title: Data Types of Arrays
+  - file: content/Special_Number_Types/Arrays_of_Special_Numbers
+    title: Arrays of Special Numbers
 
 - file: content/Recursion/Recursion
   title: Recursion
@@ -136,14 +134,6 @@ chapters:
   - file: content/Differential_Equations/DifferentialEquations_Package
     title: DifferentialEquations Package
   
-- file: content/Optimization/Chapter_Intro
-  title: Optimization
-  sections:
-  - file: content/Optimization/Gradient_Based_Optimization
-    title: Gradient Based Optimization
-  - file: content/Optimization/Optim_Package
-    title: Optim Package
-  
 - file: content/Graphs/Chapter_Intro
   title: Graphs
   sections:
@@ -164,6 +154,18 @@ chapters:
   - file: content/Sparse_Matrices/Application_Google_Page_Rank
     title: Application; Google Page Rank
 
+- file: content/Symbolic_Algebra/Chapter_Intro
+  title: Symbolic Algebra
+  sections:
+  
+- file: content/Optimization/Chapter_Intro
+  title: Optimization
+  sections:
+  - file: content/Optimization/Gradient_Based_Optimization
+    title: Gradient Based Optimization
+  - file: content/Optimization/Optim_Package
+    title: Optim Package
+  
 - file: content/Appendices/Chapter_Intro
   title: Appendices
   sections:
