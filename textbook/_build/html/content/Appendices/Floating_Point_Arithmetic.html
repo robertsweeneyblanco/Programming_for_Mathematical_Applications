@@ -1,0 +1,1719 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>19.1. Floating Point Arithmetic &#8212; Programming for Mathematical Applications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Appendices/Floating_Point_Arithmetic';</script>
+    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Appendices/Floating_Point_Arithmetic.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="19.2. Algorithmic Efficiency" href="Algorithmic_Efficiency.html" />
+    <link rel="prev" title="19. Appendices" href="Chapter_Intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Programming for Mathematical Applications - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Programming for Mathematical Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Programming for Mathematical Applications
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Introduction/Chapter_Intro.html">1. Introduction to Julia</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Functions.html">1.3. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/For_Loops.html">1.4. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Conditionals.html">1.5. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/While_Loops.html">1.6. While-Loops</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Introduction_To_Arrays.html">2.1. Introduction to Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Multi_Dimensional_Arrays.html">2.2. Multi-dimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Arrays_and_Dictionaries/Dictionaries.html">2.3. Dictionaries</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Plotting/Plotting.html">3. Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Debugging/Debugging.html">4. Debugging</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">5. Random Numbers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Distributions.html">5.1. Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Histograms.html">5.2. Histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">5.3. Monte Carlo</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Special_Number_Types/Chapter_Intro.html">7. Special Number Types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Arbitrary_Precision_Integers.html">7.1. Arbitrary Precision Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Arbitrary_Precision_Floats.html">7.2. Arbitrary Precision Floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Complex_Numbers.html">7.3. Complex Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Rational_Numbers.html">7.4. Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Arrays_of_Special_Numbers.html">7.5. Arrays of Special Numbers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Recursion/Recursion.html">8. Recursion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">9. Linear Algebra</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">9.1. Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">9.2. Special Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">9.3. Linear Systems and Regression</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">10. Strings and File Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">10.1. String Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">10.2. String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">10.3. File Processing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Composite_Types_and_Objects/Composite_Types_and_Objects.html">11. Composite Types and Objects</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">12. Computational Geometry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">12.1. Convex Hull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">12.2. Line-segment Interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Triangulations.html">12.3. Triangulations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Image_Processing/Chapter_Intro.html">13. Image Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">13.1. Reading and Plotting Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Image_Scaling.html">13.2. Image Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Filtering.html">13.3. Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Fourier_Transform.html">13.4. Fourier Transform</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">14. Differential Equations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">14.1. Initial Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">14.2. Higher Order Derivatives and Systems of ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">14.3. Boundary Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">14.4. DifferentialEquations Package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Graphs/Chapter_Intro.html">15. Graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Basics.html">15.1. Graph Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Algorithms.html">15.2. Graph Algorithms</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">16. Sparse Matrices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">16.1. Matrix Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">16.2. Sparse Matrices in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">16.3. Application; Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">16.4. Application; Google Page Rank</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Symbolic_Algebra/Chapter_Intro.html">17. Symbolic Algebra</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Optimization/Chapter_Intro.html">18. Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">18.1. Gradient Based Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Optim_Package.html">18.2. Optim Package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Chapter_Intro.html">19. Appendices</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">19.1. Floating Point Arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Algorithmic_Efficiency.html">19.2. Algorithmic Efficiency</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Appendices/Floating_Point_Arithmetic.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Appendices/Floating_Point_Arithmetic.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/Appendices/Floating_Point_Arithmetic.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Floating Point Arithmetic</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-numbers">19.1.1. Binary numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-numbers">19.1.1.1. Signed numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-point-numbers">19.1.1.2. Fixed point numbers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-numbers">19.1.2. Floating point numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-notation">19.1.2.1. Scientific notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-floating-point-numbers">19.1.2.2. Properties of floating point numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#special-quantities">19.1.2.3. Special quantities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ieee-single-precision">19.1.2.4. IEEE Single Precision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ieee-floating-point-data-types">19.1.2.5. IEEE Floating Point Data Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ieee-floating-point-demo">19.1.3. IEEE Floating point demo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-floating-point-numbers-approximately">19.1.3.1. Comparing floating point numbers approximately</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overflow-underflow">19.1.3.2. Overflow/underflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancellation">19.1.3.3. Cancellation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon">19.1.3.4. Epsilon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-zeros">19.1.3.5. Signed zeros</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinity">19.1.3.6. Infinity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nan-not-a-number">19.1.3.7. NaN (Not-a-Number)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-for-nan">19.1.3.8. Check for NaN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#round-to-even">19.1.3.9. Round to even</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-hex-bin-representations">19.1.3.10. View hex/bin representations</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="floating-point-arithmetic">
+<h1><span class="section-number">19.1. </span>Floating Point Arithmetic<a class="headerlink" href="#floating-point-arithmetic" title="Link to this heading">#</a></h1>
+<section id="binary-numbers">
+<h2><span class="section-number">19.1.1. </span>Binary numbers<a class="headerlink" href="#binary-numbers" title="Link to this heading">#</a></h2>
+<p>Integers in a computer are stored as <em>binary numbers</em>, that is, using base-2. For example, the binary number <span class="math notranslate nohighlight">\(1011001_2\)</span> corresponds to the decimal number</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+1011001_2 &amp;= 1\times 2^6 + 0\times 2^5 + 1\times 2^4 + 1\times 2^3 + 0\times 2^2 + 0\times 2^1 + 1 \times 2^0 \\
+          &amp;= 2^6 + 2^4 + 2^3 + 2^0 = 89_{10}
+\end{align*}
+\end{split}\]</div>
+<p>or, in Julia:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="kt">Int</span><span class="p">(</span><span class="mb">0b1011001</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>89
+</pre></div>
+</div>
+</div>
+</div>
+<p>Unsigned integers can be represented in Julia using the types <code class="docutils literal notranslate"><span class="pre">UInt8</span></code>, <code class="docutils literal notranslate"><span class="pre">UInt16</span></code>, etc. The actual binary representation in the computer can be seen as a bitstring:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">bitstring</span><span class="p">(</span><span class="kt">UInt8</span><span class="p">(</span><span class="mi">89</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;01011001&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, for example the <code class="docutils literal notranslate"><span class="pre">UInt64</span></code> type can represent numbers between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1111\ldots 1111_2 = 2^{63} + 2^{62} + \cdots + 2^1 + 2^0 = 2^{64} - 1\)</span></p>
+<section id="signed-numbers">
+<h3><span class="section-number">19.1.1.1. </span>Signed numbers<a class="headerlink" href="#signed-numbers" title="Link to this heading">#</a></h3>
+<p>There are various ways of representing negative numbers, for example by using one of the bits as a “sign bit” (0 meaning positive, 1 meaning negative). However, the so-called <em>two’s complement</em> format is widely used to store signed integers. When the most significant bit (representing the highest power) is equal to 1, the number is negative. For <span class="math notranslate nohighlight">\(n\)</span> bits, the two’s complement is defined by the sum of the number and its two’s complement equals <span class="math notranslate nohighlight">\(2^n\)</span>. For example, with 8 bits, the two’s complement of <span class="math notranslate nohighlight">\(01011001_2\)</span> is <span class="math notranslate nohighlight">\(10100111_2\)</span>, since</p>
+<div class="math notranslate nohighlight">
+\[
+01011001_2 + 10100111_2 = 100000000_2 = 2^8 = 256_{10}
+\]</div>
+<p>This means that with signed integers, the number <span class="math notranslate nohighlight">\(10100111_2\)</span> represents the negative of <span class="math notranslate nohighlight">\(01011001_2\)</span>, that is, <span class="math notranslate nohighlight">\(-89_{10}\)</span>.</p>
+<p>In Julia, signed integers are represented using the types <code class="docutils literal notranslate"><span class="pre">Int8</span></code>, <code class="docutils literal notranslate"><span class="pre">Int16</span></code>, etc:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">bitstring</span><span class="p">(</span><span class="kt">Int8</span><span class="p">(</span><span class="mi">89</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;01011001&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">bitstring</span><span class="p">(</span><span class="kt">Int8</span><span class="p">(</span><span class="o">-</span><span class="mi">89</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;10100111&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this format, the type <code class="docutils literal notranslate"><span class="pre">Int64</span></code> can for example represent numbers between <span class="math notranslate nohighlight">\(11111\ldots1111_2 = -2^{63}\)</span> and <span class="math notranslate nohighlight">\(01111\ldots1111_2 = 2^{63} - 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">typemin</span><span class="p">(</span><span class="kt">Int64</span><span class="p">)</span><span class="w"> </span><span class="n">typemax</span><span class="p">(</span><span class="kt">Int64</span><span class="p">);</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="w"> </span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×2 Matrix{Int64}:
+ -9223372036854775808  9223372036854775807
+ -9223372036854775808  9223372036854775807
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fixed-point-numbers">
+<h3><span class="section-number">19.1.1.2. </span>Fixed point numbers<a class="headerlink" href="#fixed-point-numbers" title="Link to this heading">#</a></h3>
+<p>One way to represent fractional numbers is as <em>fixed-points</em>. For example,</p>
+<div class="math notranslate nohighlight">
+\[
+101.1011_2 = 2^2 + 2^0 + 2^{-1} + 2^{-3} + 2^{-4} = 5.6875_{10}
+\]</div>
+<p>This could be useful for applications that need a fixed number of binary digits. But since most scientific applications need numbers with wide ranges of magnitudes, computers use floating point instead of fixed point to represent fractional numbers.</p>
+</section>
+</section>
+<section id="floating-point-numbers">
+<h2><span class="section-number">19.1.2. </span>Floating point numbers<a class="headerlink" href="#floating-point-numbers" title="Link to this heading">#</a></h2>
+<section id="scientific-notation">
+<h3><span class="section-number">19.1.2.1. </span>Scientific notation<a class="headerlink" href="#scientific-notation" title="Link to this heading">#</a></h3>
+<p>Recall how a (decimal) number is written using <em>scientific notation</em>:</p>
+<div class="math notranslate nohighlight">
+\[
+{\LARGE
+\begin{align*}
+\underbrace{-}_{\large \text{sign}}
+\underbrace{1.602\rule[-2pt]{0pt}{0pt}}_{\large \text{significand}}
+\times
+\underbrace{10\rule[-2pt]{0pt}{0pt}}_{\large \text{base}}
+\underbrace{\,^{-19}\rule[-2pt]{0pt}{0pt}}_{\large \text{exponent}}
+\end{align*}
+}
+\]</div>
+<p>Floating point numbers are represented in a similar way, as</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+\pm \left( d_0 + d_1\beta^{-1} + \ldots + d_{p-1} \beta^{-(p-1)} \right)
+ \beta^e,\quad 0\le d_i&lt;\beta
+\end{align*}
+\]</div>
+<p>with <em>base</em> <span class="math notranslate nohighlight">\(\beta\)</span> and <em>precision</em> <span class="math notranslate nohighlight">\(p\)</span>. The number is <em>normalized</em>
+if <span class="math notranslate nohighlight">\(d_0\ne0\)</span> (use a special case to represent <span class="math notranslate nohighlight">\(0\)</span>).</p>
+</section>
+<section id="properties-of-floating-point-numbers">
+<h3><span class="section-number">19.1.2.2. </span>Properties of floating point numbers<a class="headerlink" href="#properties-of-floating-point-numbers" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The gaps between adjacent numbers scale with the size of the numbers</p></li>
+<li><p>For all <span class="math notranslate nohighlight">\(x\)</span>, there exists a floating point <span class="math notranslate nohighlight">\(x'\)</span> such that <span class="math notranslate nohighlight">\(|x-x'| \le \epsilon_\mathrm{machine} |x|\)</span></p></li>
+<li><p>Example: <span class="math notranslate nohighlight">\(\beta=2, p=3, e_\mathrm{min}=-1, e_\mathrm{max}=2\)</span></p></li>
+</ul>
+<p><img alt="floating_point_number_line" src="../../_images/floating_point_number_line.png" /></p>
+</section>
+<section id="special-quantities">
+<h3><span class="section-number">19.1.2.3. </span>Special quantities<a class="headerlink" href="#special-quantities" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pm\infty\)</span> is returned when an operation overflows</p></li>
+<li><p><span class="math notranslate nohighlight">\(x/\pm\infty=0\)</span> for any number <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(x/0=\pm\infty\)</span> for any nonzero number <span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p>Operations with infinity are defined as limits, e.g.
+<span class="math notranslate nohighlight">\(
+4-\infty = \lim_{x\rightarrow\infty} 4-x = -\infty
+\)</span></p></li>
+<li><p>NaN (Not a Number) is returned when the an operation has no well-defined finite or infinite result</p></li>
+<li><p>Examples: <span class="math notranslate nohighlight">\(\infty-\infty\)</span>, <span class="math notranslate nohighlight">\(\infty/\infty\)</span>, <span class="math notranslate nohighlight">\(0/0\)</span>, <span class="math notranslate nohighlight">\(\sqrt{-1}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{NaN}\odot x\)</span></p></li>
+</ul>
+</section>
+<section id="ieee-single-precision">
+<h3><span class="section-number">19.1.2.4. </span>IEEE Single Precision<a class="headerlink" href="#ieee-single-precision" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>1 sign bit, 8 exponent bits, 23 significand bits:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c|c|c}
+\text{x} &amp; \text{xxxxxxxx} &amp; \text{xxxxxxxxxxxxxxxxxxxxxxx} \\ \hline
+S &amp;      E      &amp;                      C                      
+\end{array}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Represented number:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+{\LARGE
+\begin{align*}
+(-1)^S \times 1.M \times 2^{E-127}
+\end{align*}
+}
+\]</div>
+<ul class="simple">
+<li><p>Special cases:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c|c|c|c}
+      &amp; E=0 &amp; 0&lt;E&lt;255 &amp; E=255 \\ \hline
+    M=0 &amp; \pm0 &amp; \text{Powers of 2} &amp; \pm\infty \\ \hline
+    M\ne0 &amp; \text{Denormalized} &amp; \text{Ordinary numbers} &amp; \text{NaN}
+\end{array}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Examples:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c|c|c|l}
+    S &amp;    E     &amp;              M    &amp; \text{Quantity} \\ \hline
+0 &amp; 11111111 &amp; 00000100000000000000000 &amp; \text{NaN} \\ \hline
+1 &amp; 11111111 &amp; 00100010001001010101010 &amp; \text{NaN} \\ \hline
+0 &amp; 11111111 &amp; 00000000000000000000000 &amp; \infty \\ \hline
+0 &amp; 10000001 &amp; 10100000000000000000000 &amp; +1 \cdot 2^{129-127} \cdot 1.101 = 6.5 \\ \hline
+0 &amp; 10000000 &amp; 00000000000000000000000 &amp; +1 \cdot 2^{128-127} \cdot 1.0 = 2 \\ \hline
+0 &amp; 00000001 &amp; 00000000000000000000000 &amp; +1 \cdot 2^{1-127} \cdot 1.0 = 2^{-126} \\ \hline
+0 &amp; 00000000 &amp; 10000000000000000000000 &amp; +1 \cdot 2^{-126} \cdot 0.1 = 2^{-127} \\ \hline
+0 &amp; 00000000 &amp; 00000000000000000000001 &amp; +1 \cdot 2^{-126} \cdot 2^{-23} = 2^{-149} \\ \hline
+0 &amp; 00000000 &amp; 00000000000000000000000 &amp; 0 \\ \hline
+1 &amp; 00000000 &amp; 00000000000000000000000 &amp; -0  \\ \hline
+1 &amp; 10000001 &amp; 10100000000000000000000 &amp; -1 \cdot 2^{129-127} \cdot 1.101 = -6.5 \\ \hline
+1 &amp; 11111111 &amp; 00000000000000000000000 &amp; -\infty
+\end{array}
+\end{split}\]</div>
+</section>
+<section id="ieee-floating-point-data-types">
+<h3><span class="section-number">19.1.2.5. </span>IEEE Floating Point Data Types<a class="headerlink" href="#ieee-floating-point-data-types" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l|l|l}
+ &amp; \text{Single precision} &amp; \text{Double precision} \\ \hline
+\text{Significand size} (p) &amp; \text{24 bits} &amp; \text{53 bits} \\ \hline
+\text{Exponent size} &amp; \text{8 bits} &amp; \text{11 bits} \\ \hline
+\text{Total size} &amp; \text{32 bits} &amp; \text{64 bits} \\ \hline 
+e_\mathrm{max} &amp; +127 &amp; +1023 \\ \hline
+e_\mathrm{min} &amp; -126 &amp; -1022 \\ \hline
+\text{Smallest normalized} &amp;  2^{-126}\approx 10^{-38} &amp; 2^{-1022}\approx 10^{-308} \\ \hline
+\text{Largest normalized} &amp;  2^{127}\approx 10^{38} &amp; 2^{1023}\approx 10^{308} \\ \hline
+\epsilon_\mathrm{machine} &amp; 2^{-24}\approx 6\cdots 10^{-8} &amp;
+  2^{-53} \approx 10^{-16}
+\end{array}
+\end{split}\]</div>
+</section>
+</section>
+<section id="ieee-floating-point-demo">
+<h2><span class="section-number">19.1.3. </span>IEEE Floating point demo<a class="headerlink" href="#ieee-floating-point-demo" title="Link to this heading">#</a></h2>
+<section id="comparing-floating-point-numbers-approximately">
+<h3><span class="section-number">19.1.3.1. </span>Comparing floating point numbers approximately<a class="headerlink" href="#comparing-floating-point-numbers-approximately" title="Link to this heading">#</a></h3>
+<p>Always expect small relative errors in floating point computations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">5</span><span class="w">     </span><span class="c"># Approximately 5/3</span>
+<span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="o">/</span><span class="mi">3</span><span class="w">              </span><span class="c"># Not exactly 5/3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
+</pre></div>
+</div>
+</div>
+</div>
+<p>To check for equality, instead compute the error and check that it is small:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.220446049250313e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, use the julia <code class="docutils literal notranslate"><span class="pre">isapprox</span></code> or <code class="docutils literal notranslate"><span class="pre">≈</span></code> method, which uses a combination of an appropriate relative and absolute tolerance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">≈</span><span class="w"> </span><span class="mi">5</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="overflow-underflow">
+<h3><span class="section-number">19.1.3.2. </span>Overflow/underflow<a class="headerlink" href="#overflow-underflow" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1e100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0e100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1e-100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0e-100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1e308</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0e308
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1e308</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1e-308</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0e-308
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1e-308</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="o">^</span><span class="mi">51</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0e-324
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1e-308</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="o">^</span><span class="mi">52</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cancellation">
+<h3><span class="section-number">19.1.3.3. </span>Cancellation<a class="headerlink" href="#cancellation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2504304619588281
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1e10</span>
+<span class="n">y1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1e10</span>
+<span class="n">z1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2504310607910156
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.988321875038949e-7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="epsilon">
+<h3><span class="section-number">19.1.3.4. </span>Epsilon<a class="headerlink" href="#epsilon" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1e-20</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1e-20</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1e-16</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2e-16</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000000002
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2e-16</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.220446049250313e-16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="k">while</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="o">/</span><span class="mi">2</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
+0.25
+0.125
+0.0625
+0.03125
+0.015625
+0.0078125
+0.00390625
+0.001953125
+0.0009765625
+0.00048828125
+0.000244140625
+0.0001220703125
+6.103515625e-5
+3.0517578125e-5
+1.52587890625e-5
+7.62939453125e-6
+3.814697265625e-6
+1.9073486328125e-6
+9.5367431640625e-7
+4.76837158203125e-7
+2.384185791015625e-7
+1.1920928955078125e-7
+5.960464477539063e-8
+2.9802322387695312e-8
+1.4901161193847656e-8
+7.450580596923828e-9
+3.725290298461914e-9
+1.862645149230957e-9
+9.313225746154785e-10
+4.656612873077393e-10
+2.3283064365386963e-10
+1.1641532182693481e-10
+5.820766091346741e-11
+2.9103830456733704e-11
+1.4551915228366852e-11
+7.275957614183426e-12
+3.637978807091713e-12
+1.8189894035458565e-12
+9.094947017729282e-13
+4.547473508864641e-13
+2.2737367544323206e-13
+1.1368683772161603e-13
+5.684341886080802e-14
+2.842170943040401e-14
+1.4210854715202004e-14
+7.105427357601002e-15
+3.552713678800501e-15
+1.7763568394002505e-15
+8.881784197001252e-16
+4.440892098500626e-16
+2.220446049250313e-16
+1.1102230246251565e-16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">eps</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.220446049250313e-16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">^</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2676506002282294e30
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">eps</span><span class="p">()</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.81474976710656e14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">eps</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="signed-zeros">
+<h3><span class="section-number">19.1.3.5. </span>Signed zeros<a class="headerlink" href="#signed-zeros" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="infinity">
+<h3><span class="section-number">19.1.3.6. </span>Infinity<a class="headerlink" href="#infinity" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0</span><span class="o">/</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-Inf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="o">/</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mi">1</span><span class="o">/-</span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">*</span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">Inf</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">Inf</span><span class="o">^</span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inf
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nan-not-a-number">
+<h3><span class="section-number">19.1.3.7. </span>NaN (Not-a-Number)<a class="headerlink" href="#nan-not-a-number" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">Inf</span><span class="o">-</span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">Inf</span><span class="o">/</span><span class="nb">Inf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="o">/</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">NaN</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">123</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-for-nan">
+<h3><span class="section-number">19.1.3.8. </span>Check for NaN<a class="headerlink" href="#check-for-nan" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NaN</span>
+<span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NaN</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">isnan</span><span class="o">.</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nb">NaN</span><span class="p">,</span><span class="w"> </span><span class="nb">Inf</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element BitVector:
+ 0
+ 0
+ 0
+ 1
+ 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">isinf</span><span class="o">.</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nb">NaN</span><span class="p">,</span><span class="w"> </span><span class="nb">Inf</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element BitVector:
+ 0
+ 0
+ 0
+ 0
+ 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="round-to-even">
+<h3><span class="section-number">19.1.3.9. </span>Round to even<a class="headerlink" href="#round-to-even" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eps</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span>
+<span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">e</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000000002
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">e</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">e</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">e</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="n">e</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">e</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">mul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="mi">16</span>
+<span class="w">    </span><span class="n">println</span><span class="p">([</span><span class="n">mul</span><span class="p">,</span><span class="w"> </span><span class="p">((</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mul</span><span class="o">*</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">e</span><span class="p">])</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0, 0.0]
+[1.0, 0.0]
+[2.0, 2.0]
+[3.0, 4.0]
+[4.0, 4.0]
+[5.0, 4.0]
+[6.0, 6.0]
+[7.0, 8.0]
+[8.0, 8.0]
+[9.0, 8.0]
+[10.0, 10.0]
+[11.0, 12.0]
+[12.0, 12.0]
+[13.0, 12.0]
+[14.0, 14.0]
+[15.0, 16.0]
+[16.0, 16.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="view-hex-bin-representations">
+<h3><span class="section-number">19.1.3.10. </span>View hex/bin representations<a class="headerlink" href="#view-hex-bin-representations" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Printf</span>
+<span class="n">split32</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">10</span><span class="o">:</span><span class="mi">32</span><span class="p">]</span>
+<span class="n">showbits</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@printf</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%10.8g</span><span class="s">  =  </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">split32</span><span class="p">(</span><span class="n">bitstring</span><span class="p">(</span><span class="kt">Float32</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+
+<span class="n">showbits</span><span class="o">.</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="nb">Inf</span><span class="p">,</span><span class="w"> </span><span class="nb">NaN</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="nb">NaN</span><span class="p">]);</span>
+<span class="n">showbits</span><span class="o">.</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">showbits</span><span class="o">.</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="mi">10</span><span class="p">)</span><span class="o">.*</span><span class="mi">2</span><span class="o">^-</span><span class="mi">23</span><span class="p">);</span>
+<span class="n">showbits</span><span class="o">.</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="o">:-</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">)</span><span class="o">.*</span><span class="mi">2</span><span class="o">^-</span><span class="mi">23</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         0  =  0 00000000 00000000000000000000000
+         0  =  0 00000000 00000000000000000000000
+       Inf  =  0 11111111 00000000000000000000000
+      -Inf  =  1 11111111 00000000000000000000000
+       NaN  =  0 11111111 10000000000000000000000
+       NaN  =  1 11111111 10000000000000000000000
+         1  =  0 01111111 00000000000000000000000
+         2  =  0 10000000 00000000000000000000000
+         3  =  0 10000000 10000000000000000000000
+         4  =  0 10000001 00000000000000000000000
+         5  =  0 10000001 01000000000000000000000
+         6  =  0 10000001 10000000000000000000000
+         7  =  0 10000001 11000000000000000000000
+         8  =  0 10000010 00000000000000000000000
+         9  =  0 10000010 00100000000000000000000
+        10  =  0 10000010 01000000000000000000000
+         1  =  0 01111111 00000000000000000000000
+ 1.0000001  =  0 01111111 00000000000000000000001
+ 1.0000002  =  0 01111111 00000000000000000000010
+ 1.0000004  =  0 01111111 00000000000000000000011
+ 1.0000005  =  0 01111111 00000000000000000000100
+ 1.0000006  =  0 01111111 00000000000000000000101
+ 1.0000007  =  0 01111111 00000000000000000000110
+ 1.0000008  =  0 01111111 00000000000000000000111
+  1.000001  =  0 01111111 00000000000000000001000
+ 1.0000011  =  0 01111111 00000000000000000001001
+ 1.0000012  =  0 01111111 00000000000000000001010
+ 1.9999988  =  0 01111111 11111111111111111110110
+ 1.9999989  =  0 01111111 11111111111111111110111
+  1.999999  =  0 01111111 11111111111111111111000
+ 1.9999992  =  0 01111111 11111111111111111111001
+ 1.9999993  =  0 01111111 11111111111111111111010
+ 1.9999994  =  0 01111111 11111111111111111111011
+ 1.9999995  =  0 01111111 11111111111111111111100
+ 1.9999996  =  0 01111111 11111111111111111111101
+ 1.9999998  =  0 01111111 11111111111111111111110
+ 1.9999999  =  0 01111111 11111111111111111111111
+         2  =  0 10000000 00000000000000000000000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.9"
+        },
+        kernelOptions: {
+            name: "julia-1.9",
+            path: "./content/Appendices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.9'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_Intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Appendices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Algorithmic_Efficiency.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">19.2. </span>Algorithmic Efficiency</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-numbers">19.1.1. Binary numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-numbers">19.1.1.1. Signed numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-point-numbers">19.1.1.2. Fixed point numbers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-numbers">19.1.2. Floating point numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-notation">19.1.2.1. Scientific notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-floating-point-numbers">19.1.2.2. Properties of floating point numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#special-quantities">19.1.2.3. Special quantities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ieee-single-precision">19.1.2.4. IEEE Single Precision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ieee-floating-point-data-types">19.1.2.5. IEEE Floating Point Data Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ieee-floating-point-demo">19.1.3. IEEE Floating point demo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-floating-point-numbers-approximately">19.1.3.1. Comparing floating point numbers approximately</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overflow-underflow">19.1.3.2. Overflow/underflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancellation">19.1.3.3. Cancellation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon">19.1.3.4. Epsilon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-zeros">19.1.3.5. Signed zeros</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinity">19.1.3.6. Infinity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nan-not-a-number">19.1.3.7. NaN (Not-a-Number)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-for-nan">19.1.3.8. Check for NaN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#round-to-even">19.1.3.9. Round to even</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-hex-bin-representations">19.1.3.10. View hex/bin representations</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
