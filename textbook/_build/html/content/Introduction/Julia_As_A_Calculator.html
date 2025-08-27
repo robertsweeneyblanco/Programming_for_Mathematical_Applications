@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.1. Julia as a calculator &#8212; Programming for Mathematical Applications</title>
+    <title>1.1. Julia as a Calculator &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -63,7 +63,7 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Introduction/Julia_As_A_Calculator.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.2. Variables and assignments" href="Variables_And_Assignments.html" />
+    <link rel="next" title="1.2. Variables and Assignments" href="Variables_And_Assignments.html" />
     <link rel="prev" title="1. Introduction to Julia" href="Chapter_Intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -187,9 +187,10 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">1.1. Julia as a Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Functions.html">1.3. Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.4. For-Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.5. Conditionals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.6. While-Loops</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.5. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.6. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.7. While-Loops</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -493,7 +494,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Julia as a calculator</h1>
+    <h1>Julia as a Calculator</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -503,14 +504,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetics">1.1.1. Arithmetics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-lines-in-a-cell">1.1.2. Multiple lines in a cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-numeric-data-types">1.1.3. Primitive numeric data types</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-types">1.1.3.1. Integer types</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-types">1.1.3.2. Floating point types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic">1.1.1. Arithmetic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-lines-in-a-cell">1.1.2. Multiple Lines in a Cell</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-numeric-data-types">1.1.3. Primitive Numeric Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-types">1.1.3.1. Integer Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-types">1.1.3.2. Floating-Point Types</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operations-and-order-of-operations">1.1.4. Arithmetic operations and order of operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operators-and-order-of-operations">1.1.4. Arithmetic Operators and Order of Operations</a></li>
 </ul>
             </nav>
         </div>
@@ -523,15 +524,13 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="julia-as-a-calculator">
-<h1><span class="section-number">1.1. </span>Julia as a calculator<a class="headerlink" href="#julia-as-a-calculator" title="Link to this heading">#</a></h1>
-<section id="arithmetics">
-<h2><span class="section-number">1.1.1. </span>Arithmetics<a class="headerlink" href="#arithmetics" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>The first thing to try in Julia is the evaluation of arithmetic expressions:</p></li>
-</ul>
+<h1><span class="section-number">1.1. </span>Julia as a Calculator<a class="headerlink" href="#julia-as-a-calculator" title="Link to this heading">#</a></h1>
+<section id="arithmetic">
+<h2><span class="section-number">1.1.1. </span>Arithmetic<a class="headerlink" href="#arithmetic" title="Link to this heading">#</a></h2>
+<p>At its most basic level, you can use Julia as a powerful calculator. Let’s start by evaluating some simple arithmetic expressions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">123.4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">234.5</span><span class="w">     </span><span class="c"># This is a comment, ignored by Julia</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">123.4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">234.5</span><span class="w">     </span><span class="c"># The &#39;#&#39; character starts a comment, which is ignored by Julia.</span>
 </pre></div>
 </div>
 </div>
@@ -543,7 +542,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="w">             </span><span class="c"># Integer division returns floating point</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="w">             </span><span class="c"># Standard division with `/` always returns a floating-point number.</span>
 </pre></div>
 </div>
 </div>
@@ -555,7 +554,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="mi">3</span><span class="w">             </span><span class="c"># Truncated integer division (type \div and press tab)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="mi">3</span><span class="w">             </span><span class="c"># For truncated integer division, use the `÷` operator (type \div then press Tab).</span>
 </pre></div>
 </div>
 </div>
@@ -567,7 +566,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w">             </span><span class="c"># Remainder</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w">             </span><span class="c"># The `%` operator calculates the remainder of a division.</span>
 </pre></div>
 </div>
 </div>
@@ -579,7 +578,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">^</span><span class="mi">7</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="w">           </span><span class="c"># All integer expression which returns an integer</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">^</span><span class="mi">7</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="w">           </span><span class="c"># An expression involving only integers returns an integer.</span>
 </pre></div>
 </div>
 </div>
@@ -591,7 +590,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">4.2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">9.7</span><span class="p">)</span><span class="w">   </span><span class="c"># Use parentheses to control the order of operations</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">4.2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">9.7</span><span class="p">)</span><span class="w">   </span><span class="c"># Use parentheses to control the order of operations.</span>
 </pre></div>
 </div>
 </div>
@@ -603,14 +602,14 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># We will later learn why the previous result is not exact</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># We&#39;ll explore why the previous result isn&#39;t exact in a later chapter on floating-point numbers.</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">5.6e7</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mf">0.1</span><span class="w">       </span><span class="c"># Scientific notation, means 5.6⋅10⁷ (not e⁷)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">5.6e7</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mf">0.1</span><span class="w">       </span><span class="c"># Julia supports scientific notation: `5.6e7` means 5.6 × 10⁷.</span>
 </pre></div>
 </div>
 </div>
@@ -622,10 +621,8 @@ document.write(`
 </div>
 </section>
 <section id="multiple-lines-in-a-cell">
-<h2><span class="section-number">1.1.2. </span>Multiple lines in a cell<a class="headerlink" href="#multiple-lines-in-a-cell" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Note that if you have many lines in a cell, the Julia notebook only displays the output of the last:</p></li>
-</ul>
+<h2><span class="section-number">1.1.2. </span>Multiple Lines in a Cell<a class="headerlink" href="#multiple-lines-in-a-cell" title="Link to this heading">#</a></h2>
+<p>A Jupyter cell with multiple lines of code will only display the output of the final line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span>
@@ -639,14 +636,12 @@ document.write(`
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>You can suppress the output by ending the line with a semi-colon, and you can use the <code class="docutils literal notranslate"><span class="pre">println</span></code> function to get more control over what is shown in the output, including descriptive text:</p></li>
-</ul>
+<p>You can suppress the output of any line by ending it with a semicolon (<code class="docutils literal notranslate"><span class="pre">;</span></code>). To display multiple outputs or add descriptive text, use the <code class="docutils literal notranslate"><span class="pre">println()</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2.1</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;The result is &quot;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">123</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">)</span>
-<span class="mi">34</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c"># The output will not be displayed</span>
+<span class="mi">34</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c"># This output is suppressed by the semicolon.</span>
 </pre></div>
 </div>
 </div>
@@ -659,12 +654,9 @@ The result is -0.000123
 </div>
 </section>
 <section id="primitive-numeric-data-types">
-<h2><span class="section-number">1.1.3. </span>Primitive numeric data types<a class="headerlink" href="#primitive-numeric-data-types" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>The previous examples showed that Julia often automatically chooses the right data type for numbers (e.g. integers or floating point numbers)</p></li>
-<li><p>However, it is often useful to know what types are used, and to choose them manually</p></li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">typeof</span></code> function to find the type of a value:</p></li>
-</ul>
+<h2><span class="section-number">1.1.3. </span>Primitive Numeric Data Types<a class="headerlink" href="#primitive-numeric-data-types" title="Link to this heading">#</a></h2>
+<p>As we’ve seen, Julia automatically chooses an appropriate data type (like an integer or a floating-point number) for your values. However, it’s often useful to understand which types are being used and how to specify them manually.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">typeof()</span></code> function reveals the data type of any value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
@@ -702,8 +694,8 @@ The result is -0.000123
 </div>
 </div>
 <section id="integer-types">
-<h3><span class="section-number">1.1.3.1. </span>Integer types<a class="headerlink" href="#integer-types" title="Link to this heading">#</a></h3>
-<p>These are Julia’s so-called <em>primitive</em> integer types:</p>
+<h3><span class="section-number">1.1.3.1. </span>Integer Types<a class="headerlink" href="#integer-types" title="Link to this heading">#</a></h3>
+<p>Julia provides a range of <em>primitive</em> integer types, which differ in the number of bits they use for storage and whether they can store negative values (signed vs. unsigned).</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Type</p></th>
@@ -721,7 +713,7 @@ The result is -0.000123
 <td class="text-left"><p>2^7 - 1</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UInt8</span></code></p></td>
-<td class="text-left"><p> </p></td>
+<td class="text-left"><p></p></td>
 <td class="text-left"><p>8</p></td>
 <td class="text-left"><p>0</p></td>
 <td class="text-left"><p>2^8 - 1</p></td>
@@ -733,7 +725,7 @@ The result is -0.000123
 <td class="text-left"><p>2^15 - 1</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UInt16</span></code></p></td>
-<td class="text-left"><p> </p></td>
+<td class="text-left"><p></p></td>
 <td class="text-left"><p>16</p></td>
 <td class="text-left"><p>0</p></td>
 <td class="text-left"><p>2^16 - 1</p></td>
@@ -745,7 +737,7 @@ The result is -0.000123
 <td class="text-left"><p>2^31 - 1</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UInt32</span></code></p></td>
-<td class="text-left"><p> </p></td>
+<td class="text-left"><p></p></td>
 <td class="text-left"><p>32</p></td>
 <td class="text-left"><p>0</p></td>
 <td class="text-left"><p>2^32 - 1</p></td>
@@ -757,7 +749,7 @@ The result is -0.000123
 <td class="text-left"><p>2^63 - 1</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UInt64</span></code></p></td>
-<td class="text-left"><p> </p></td>
+<td class="text-left"><p></p></td>
 <td class="text-left"><p>64</p></td>
 <td class="text-left"><p>0</p></td>
 <td class="text-left"><p>2^64 - 1</p></td>
@@ -769,7 +761,7 @@ The result is -0.000123
 <td class="text-left"><p>2^127 - 1</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UInt128</span></code></p></td>
-<td class="text-left"><p> </p></td>
+<td class="text-left"><p></p></td>
 <td class="text-left"><p>128</p></td>
 <td class="text-left"><p>0</p></td>
 <td class="text-left"><p>2^128 - 1</p></td>
@@ -783,13 +775,13 @@ The result is -0.000123
 </tbody>
 </table>
 </div>
-<p>You can find the minimum and maximum representable values of primitive numeric types using the <code class="docutils literal notranslate"><span class="pre">typemin</span></code> and <code class="docutils literal notranslate"><span class="pre">typemax</span></code> functions:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">typemin()</span></code> and <code class="docutils literal notranslate"><span class="pre">typemax()</span></code> functions show the range of values a numeric type can represent:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">typemin</span><span class="p">(</span><span class="kt">Int64</span><span class="p">))</span>
-<span class="n">println</span><span class="p">(</span><span class="n">typemax</span><span class="p">(</span><span class="kt">Int64</span><span class="p">))</span>
-<span class="n">println</span><span class="p">(</span><span class="n">typemin</span><span class="p">(</span><span class="kt">Int128</span><span class="p">))</span>
-<span class="n">println</span><span class="p">(</span><span class="n">typemax</span><span class="p">(</span><span class="kt">Int128</span><span class="p">))</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">typemin</span><span class="p">(</span><span class="kt">Int64</span><span class="p">))</span><span class="w">  </span><span class="c"># Smallest 64-bit signed integer</span>
+<span class="n">println</span><span class="p">(</span><span class="n">typemax</span><span class="p">(</span><span class="kt">Int64</span><span class="p">))</span><span class="w">  </span><span class="c"># Largest 64-bit signed integer</span>
+<span class="n">println</span><span class="p">(</span><span class="n">typemin</span><span class="p">(</span><span class="kt">Int128</span><span class="p">))</span><span class="w"> </span><span class="c"># Smallest 128-bit signed integer</span>
+<span class="n">println</span><span class="p">(</span><span class="n">typemax</span><span class="p">(</span><span class="kt">Int128</span><span class="p">))</span><span class="w"> </span><span class="c"># Largest 128-bit signed integer</span>
 </pre></div>
 </div>
 </div>
@@ -802,10 +794,10 @@ The result is -0.000123
 </div>
 </div>
 </div>
-<p>By default, Julia on a 64-bit system uses <code class="docutils literal notranslate"><span class="pre">Int64</span></code> for integers. This can result in <em>overflow</em> for large numbers. Consider for example the computation of <span class="math notranslate nohighlight">\(1000^7\)</span>:</p>
+<p>On a 64-bit system, Julia’s default integer type is <code class="docutils literal notranslate"><span class="pre">Int64</span></code>. If a calculation exceeds the maximum value this type can hold, it results in an <strong>overflow</strong> error, where the number ‘wraps around’, leading to an incorrect answer. For example, consider the computation of <span class="math notranslate nohighlight">\(1000^7\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1000</span><span class="o">^</span><span class="mi">7</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1000</span><span class="o">^</span><span class="mi">7</span><span class="w"> </span><span class="c"># This calculation overflows, producing an incorrect result.</span>
 </pre></div>
 </div>
 </div>
@@ -815,10 +807,10 @@ The result is -0.000123
 </div>
 </div>
 </div>
-<p>which is clearly completely wrong. But this particular number can be represented by an <code class="docutils literal notranslate"><span class="pre">Int128</span></code> (or floating-point types):</p>
+<p>This result is clearly wrong. To handle such large numbers, we can explicitly use a larger integer type like <code class="docutils literal notranslate"><span class="pre">Int128</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="kt">Int128</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">^</span><span class="mi">7</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="kt">Int128</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">^</span><span class="mi">7</span><span class="w"> </span><span class="c"># By converting 1000 to Int128 first, the calculation is correct.</span>
 </pre></div>
 </div>
 </div>
@@ -828,10 +820,37 @@ The result is -0.000123
 </div>
 </div>
 </div>
+<p>Choosing the right data type is crucial. For calculations requiring a very high number of digits (limited only by memory and time), Julia provides an <strong>arbitrary-precision</strong> integer type called <code class="docutils literal notranslate"><span class="pre">BigInt</span></code>. You can create one using the <code class="docutils literal notranslate"><span class="pre">big&quot;...&quot;</span></code> string macro:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="sa">big</span><span class="s">&quot;1000&quot;</span><span class="o">^</span><span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000000000000000000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="sa">big</span><span class="s">&quot;1234567890&quot;</span><span class="o">^</span><span class="mi">100</span><span class="w"> </span><span class="c"># This calculation is exact, thanks to BigInt.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1417417260103558770214252423976142668502309843289216833019048237594757708238986182489372231899746980921982728329402793285767462862882464121635860400730716254039942351084846547018518131114125220170734365519774681825663555080960088448187700306662591033835497547065849829393393851336850513516716654954594842407071059129565467264692831108320130483612672587797723547589358874240495338978427064891700798459028240889817739929243620390292500203679620864971533914260827834601579209314189120626901904458486936727622905582367388818325467159626747054599568953786703562122799941680845141148189896305104641344839457223830507901762718528867396981775965176554700698356765830690713630912519126290583362303892345035739308972274807594103376959348593678587147932967060392101430789829817061010598621196674073173467189374435975660010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that when an expression involves a <code class="docutils literal notranslate"><span class="pre">BigInt</span></code> and a standard integer (like the exponents above), Julia automatically <strong>promotes</strong> the entire calculation to use <code class="docutils literal notranslate"><span class="pre">BigInt</span></code> to maintain precision.</p>
+<p>We’ll dive deeper into these special number types in a later chapter.</p>
 </section>
 <section id="floating-point-types">
-<h3><span class="section-number">1.1.3.2. </span>Floating point types<a class="headerlink" href="#floating-point-types" title="Link to this heading">#</a></h3>
-<p>These are Julia’s primitive floating-point types:</p>
+<h3><span class="section-number">1.1.3.2. </span>Floating-Point Types<a class="headerlink" href="#floating-point-types" title="Link to this heading">#</a></h3>
+<p>Julia also has primitive floating-point types for representing real numbers:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Type</p></th>
@@ -855,16 +874,78 @@ The result is -0.000123
 </tbody>
 </table>
 </div>
-<p>We will learn more about the term <em>precision</em> later on, but for now it is enough to know that</p>
+<p>We will discuss <strong>precision</strong> in detail later, but for now, here are the key takeaways:</p>
 <ul class="simple">
-<li><p>The default floating point type is <code class="docutils literal notranslate"><span class="pre">Float64</span></code>, or <em>double precision</em></p></li>
-<li><p>Double precision represents about 16 decimal digits of a number</p></li>
-<li><p>The largest and smallest double precision positive numbers are about <span class="math notranslate nohighlight">\(10^{308}\)</span> and <span class="math notranslate nohighlight">\(10^{-308}\)</span></p></li>
+<li><p>The default type for decimal numbers is <code class="docutils literal notranslate"><span class="pre">Float64</span></code>, also known as <em>double precision</em>.</p></li>
+<li><p>It can represent a number with about <strong>16 decimal digits</strong> of accuracy.</p></li>
+<li><p>Its range is approximately from <span class="math notranslate nohighlight">\(10^{-308}\)</span> to <span class="math notranslate nohighlight">\(10^{308}\)</span>.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.3333333333333335
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">589</span><span class="w">   </span><span class="c"># This is OK (just barely within the Float64 range).</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.453246228910832e307
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">590</span><span class="w">   </span><span class="c"># This calculation exceeds the Float64 range, resulting in `Inf` (infinity).</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inf
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">BigInt</span></code>, Julia provides <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> for arbitrary-precision floating-point arithmetic. This is useful when you need more precision than the standard <code class="docutils literal notranslate"><span class="pre">Float64</span></code> can offer. You can create a <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> using the <code class="docutils literal notranslate"><span class="pre">big&quot;...&quot;</span></code> string macro:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="sa">big</span><span class="s">&quot;10&quot;</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c"># Note the increased number of digits compared to the standard 10 / 3.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.333333333333333333333333333333333333333333333333333333333333333333333333333322
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="sa">big</span><span class="s">&quot;10&quot;</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mi">1000000</span><span class="w">    </span><span class="c"># This works perfectly, avoiding the overflow error seen with Float64.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.562632099157128865882114862625068529147801916401519743970961486254075585953082e+522878
+</pre></div>
+</div>
+</div>
+</div>
+<p>As with integers, Julia automatically promotes the other numbers in the expression (like <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">1000000</span></code>) to the most general type, ensuring that the entire calculation is performed using <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code>’s high precision.</p>
 </section>
 </section>
-<section id="arithmetic-operations-and-order-of-operations">
-<h2><span class="section-number">1.1.4. </span>Arithmetic operations and order of operations<a class="headerlink" href="#arithmetic-operations-and-order-of-operations" title="Link to this heading">#</a></h2>
+<section id="arithmetic-operators-and-order-of-operations">
+<h2><span class="section-number">1.1.4. </span>Arithmetic Operators and Order of Operations<a class="headerlink" href="#arithmetic-operators-and-order-of-operations" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Expression</p></th>
@@ -875,61 +956,56 @@ The result is -0.000123
 <tbody>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">+x</span></code></p></td>
 <td class="text-left"><p>unary plus</p></td>
-<td class="text-left"><p>the identity operation</p></td>
+<td class="text-left"><p>The identity operation</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">-x</span></code></p></td>
 <td class="text-left"><p>unary minus</p></td>
-<td class="text-left"><p>maps values to their additive inverses</p></td>
+<td class="text-left"><p>Maps a value to its additive inverse</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code></p></td>
 <td class="text-left"><p>binary plus</p></td>
-<td class="text-left"><p>performs addition</p></td>
+<td class="text-left"><p>Performs addition</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-</span> <span class="pre">y</span></code></p></td>
 <td class="text-left"><p>binary minus</p></td>
-<td class="text-left"><p>performs subtraction</p></td>
+<td class="text-left"><p>Performs subtraction</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code></p></td>
 <td class="text-left"><p>times</p></td>
-<td class="text-left"><p>performs multiplication</p></td>
+<td class="text-left"><p>Performs multiplication</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">/</span> <span class="pre">y</span></code></p></td>
 <td class="text-left"><p>divide</p></td>
-<td class="text-left"><p>performs division</p></td>
+<td class="text-left"><p>Performs division</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">÷</span> <span class="pre">y</span></code></p></td>
 <td class="text-left"><p>integer divide</p></td>
-<td class="text-left"><p>x / y, truncated to an integer</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">/</span> <span class="pre">y</span></code>, truncated to an integer</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">\</span> <span class="pre">y</span></code></p></td>
 <td class="text-left"><p>inverse divide</p></td>
-<td class="text-left"><p>equivalent to <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">/</span> <span class="pre">x</span></code></p></td>
+<td class="text-left"><p>Equivalent to <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">/</span> <span class="pre">x</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">^</span> <span class="pre">y</span></code></p></td>
 <td class="text-left"><p>power</p></td>
-<td class="text-left"><p>raises <code class="docutils literal notranslate"><span class="pre">x</span></code> to the <code class="docutils literal notranslate"><span class="pre">y</span></code>th power</p></td>
+<td class="text-left"><p>Raises <code class="docutils literal notranslate"><span class="pre">x</span></code> to the <code class="docutils literal notranslate"><span class="pre">y</span></code>-th power</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">%</span> <span class="pre">y</span></code></p></td>
 <td class="text-left"><p>remainder</p></td>
-<td class="text-left"><p>equivalent to <code class="docutils literal notranslate"><span class="pre">rem(x,y)</span></code></p></td>
+<td class="text-left"><p>Equivalent to <code class="docutils literal notranslate"><span class="pre">rem(x,y)</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Julia follows the standard mathematical order of operations:</p>
 <ul class="simple">
-<li><p>Order of operations:</p>
-<ul>
-<li><p>Parentheses</p></li>
-<li><p>Power</p></li>
-<li><p>Multiplication / division</p></li>
-<li><p>Addition / subtraction</p></li>
+<li><p>Parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code></p></li>
+<li><p>Exponentiation <code class="docutils literal notranslate"><span class="pre">^</span></code></p></li>
+<li><p>Multiplication <code class="docutils literal notranslate"><span class="pre">*</span></code> and Division <code class="docutils literal notranslate"><span class="pre">/</span></code></p></li>
+<li><p>Addition <code class="docutils literal notranslate"><span class="pre">+</span></code> and Subtraction <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
 </ul>
-</li>
-<li><p>Operators with the same precedence are evaluated from left to right
-(except exponentiation)</p></li>
-<li><p>For example: <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">/</span> <span class="pre">2*pi</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">180</span> <span class="pre">*</span> <span class="pre">pi</span></code></p></li>
-<li><p>Use parentheses if you want <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">/</span> <span class="pre">(2*pi)</span></code></p></li>
-</ul>
+<p>Operators with the same precedence are evaluated from left to right (except for <code class="docutils literal notranslate"><span class="pre">^</span></code>, which is right-associative).</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">pi</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">(360</span> <span class="pre">/</span> <span class="pre">2)</span> <span class="pre">*</span> <span class="pre">pi</span></code>, which is <code class="docutils literal notranslate"><span class="pre">180</span> <span class="pre">*</span> <span class="pre">pi</span></code>. Always use parentheses to clarify the order when in doubt, e.g., <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">/</span> <span class="pre">(2</span> <span class="pre">*</span> <span class="pre">pi)</span></code>.</p>
 </section>
 </section>
 
@@ -942,16 +1018,16 @@ The result is -0.000123
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -977,7 +1053,7 @@ The result is -0.000123
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.2. </span>Variables and assignments</p>
+        <p class="prev-next-title"><span class="section-number">1.2. </span>Variables and Assignments</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -997,14 +1073,14 @@ The result is -0.000123
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetics">1.1.1. Arithmetics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-lines-in-a-cell">1.1.2. Multiple lines in a cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-numeric-data-types">1.1.3. Primitive numeric data types</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-types">1.1.3.1. Integer types</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-types">1.1.3.2. Floating point types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic">1.1.1. Arithmetic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-lines-in-a-cell">1.1.2. Multiple Lines in a Cell</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primitive-numeric-data-types">1.1.3. Primitive Numeric Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-types">1.1.3.1. Integer Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-types">1.1.3.2. Floating-Point Types</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operations-and-order-of-operations">1.1.4. Arithmetic operations and order of operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operators-and-order-of-operations">1.1.4. Arithmetic Operators and Order of Operations</a></li>
 </ul>
   </nav></div>
 

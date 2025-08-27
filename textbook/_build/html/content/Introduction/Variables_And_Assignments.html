@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.2. Variables and assignments &#8212; Programming for Mathematical Applications</title>
+    <title>1.2. Variables and Assignments &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="1.3. Functions" href="Functions.html" />
-    <link rel="prev" title="1.1. Julia as a calculator" href="Julia_As_A_Calculator.html" />
+    <link rel="prev" title="1.1. Julia as a Calculator" href="Julia_As_A_Calculator.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,9 +185,10 @@
 <li class="toctree-l2"><a class="reference internal" href="Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">1.2. Variables and Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Functions.html">1.3. Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.4. For-Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.5. Conditionals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.6. While-Loops</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.5. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.6. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.7. While-Loops</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -491,7 +492,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Variables and assignments</h1>
+    <h1>Variables and Assignments</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -501,10 +502,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-operators">1.2.1. Updating operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-literal-coefficients">1.2.2. Numerical literal coefficients</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">1.2.3. Comments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-comments">1.2.4. Example of comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-naming-rules">1.2.1. Variable Naming Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-operators">1.2.2. Updating Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-literal-coefficients">1.2.3. Numerical Literal Coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">1.2.4. Comments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-good-commenting">1.2.4.1. Example of Good Commenting</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -517,24 +521,19 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="variables-and-assignments">
-<h1><span class="section-number">1.2. </span>Variables and assignments<a class="headerlink" href="#variables-and-assignments" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">1.2. </span>Variables and Assignments<a class="headerlink" href="#variables-and-assignments" title="Link to this heading">#</a></h1>
+<p>A <strong>variable</strong> is a name used to store a value. Think of it as a labeled box where you can keep a piece of information.</p>
+<section id="variable-naming-rules">
+<h2><span class="section-number">1.2.1. </span>Variable Naming Rules<a class="headerlink" href="#variable-naming-rules" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>A <em>variable</em> is a name that refers to a value</p></li>
-<li><p>Variable names:</p>
-<ul>
-<li><p>Can contain most unicode characters, but cannot begin
-with a number</p></li>
-<li><p>Are case sensitive (e.g. <code class="docutils literal notranslate"><span class="pre">Tau</span></code> is different from <code class="docutils literal notranslate"><span class="pre">tau</span></code>)</p></li>
-<li><p>Should ideally be a good description of what
-the variable represents</p></li>
+<li><p><strong>Characters:</strong> Variable names can contain most Unicode characters, but they cannot begin with a number.</p></li>
+<li><p><strong>Case-Sensitivity:</strong> Names are case-sensitive, so <code class="docutils literal notranslate"><span class="pre">mass</span></code> and <code class="docutils literal notranslate"><span class="pre">Mass</span></code> are treated as two different variables.</p></li>
+<li><p><strong>Style:</strong> Good variable names are descriptive and clearly state what the variable represents (e.g., <code class="docutils literal notranslate"><span class="pre">user_age</span></code> is better than <code class="docutils literal notranslate"><span class="pre">x</span></code>).</p></li>
 </ul>
-</li>
-<li><p>An <em>assignment statement</em> has the form <code class="docutils literal notranslate"><span class="pre">variable_name</span> <span class="pre">=</span> <span class="pre">expression</span></code>, and it creates a new variable
-and gives it the value of the evaluated expression</p></li>
-</ul>
+<p>An <strong>assignment statement</strong> uses the <code class="docutils literal notranslate"><span class="pre">=</span></code> operator to create a variable and assign it a value. It has the form <code class="docutils literal notranslate"><span class="pre">variable_name</span> <span class="pre">=</span> <span class="pre">expression</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.2</span><span class="w">            </span><span class="c"># Assignment</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.2</span><span class="w">    </span><span class="c"># Assigns the value 1.2 to the variable `my_number`.</span>
 </pre></div>
 </div>
 </div>
@@ -546,7 +545,7 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">pi</span><span class="w">                         </span><span class="c"># Pre-defined variable</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">pi</span><span class="w">                 </span><span class="c"># Julia has many pre-defined variables, like π.</span>
 </pre></div>
 </div>
 </div>
@@ -558,19 +557,20 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">My_number</span><span class="w">                  </span><span class="c"># Error - was defined without capital M</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">My_number</span><span class="w">          </span><span class="c"># This will cause an error because `My_number` is not the same as `my_number`.</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">UndefVarError</span>: `My_number` not defined
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">UndefVarError</span>: `My_number` not defined in `Main`
+<span class="ne">Suggestion</span>: check for spelling errors or missing imports.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">δ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span><span class="w">                  </span><span class="c"># Unicode characters allowed (type \delta and press tab)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">δ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span><span class="w">          </span><span class="c"># Unicode characters are valid (type \delta then press Tab).</span>
 </pre></div>
 </div>
 </div>
@@ -582,7 +582,7 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_number_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">my_number</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">δ</span><span class="w">     </span><span class="c"># Use pre-defined variables in expressions</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_number_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">my_number</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">δ</span><span class="w">     </span><span class="c"># You can use existing variables in expressions.</span>
 </pre></div>
 </div>
 </div>
@@ -592,17 +592,48 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </div>
 </div>
+</section>
 <section id="updating-operators">
-<h2><span class="section-number">1.2.1. </span>Updating operators<a class="headerlink" href="#updating-operators" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>The following <em>updating operators</em> make it convenient to operate on a variable and assign the result back to the variable:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+=  -=  *=  /=  \=  ÷=  %=  ^=
-</pre></div>
+<h2><span class="section-number">1.2.2. </span>Updating Operators<a class="headerlink" href="#updating-operators" title="Link to this heading">#</a></h2>
+<p>It’s common to perform an operation on a variable and assign the result back to itself (e.g., <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">1</span></code>). Julia provides convenient <strong>updating operators</strong> as a shortcut for this:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operator</p></th>
+<th class="head text-left"><p>Example</p></th>
+<th class="head text-left"><p>Equivalent To</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">+=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">-=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-=</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">1</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">*=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*=</span> <span class="pre">2</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">/=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">/=</span> <span class="pre">2</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">2</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">^=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">^=</span> <span class="pre">3</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">^</span> <span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">%=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">%=</span> <span class="pre">2</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">%</span> <span class="pre">2</span></code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">               </span><span class="c"># counter = 1</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -614,7 +645,7 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w">              </span><span class="c"># counter = counter + 1</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w">              </span><span class="c"># Increment the counter by 1.</span>
 </pre></div>
 </div>
 </div>
@@ -626,7 +657,7 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="mi">4</span><span class="w">              </span><span class="c"># counter = counter ^ 4</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="mi">4</span><span class="w">              </span><span class="c"># Raise the counter to the power of 4.</span>
 </pre></div>
 </div>
 </div>
@@ -638,7 +669,7 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span><span class="w">                </span><span class="c"># degrees</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">angle_degrees</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span>
 </pre></div>
 </div>
 </div>
@@ -650,7 +681,7 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">angle</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nb">π</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">180</span><span class="w">          </span><span class="c"># convert to radians</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">angle_degrees</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nb">π</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">180</span><span class="w">  </span><span class="c"># Convert the angle to radians.</span>
 </pre></div>
 </div>
 </div>
@@ -662,17 +693,14 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </section>
 <section id="numerical-literal-coefficients">
-<h2><span class="section-number">1.2.2. </span>Numerical literal coefficients<a class="headerlink" href="#numerical-literal-coefficients" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Julia allows variables to be immediately preceded by a numeric literal, implying multiplication</p></li>
-<li><p>This can make expressions easier to read, and look more like mathematical notation</p></li>
-</ul>
+<h2><span class="section-number">1.2.3. </span>Numerical Literal Coefficients<a class="headerlink" href="#numerical-literal-coefficients" title="Link to this heading">#</a></h2>
+<p>In Julia, you can place a numeric literal directly before a variable to imply multiplication. This feature makes code look more like standard mathematical notation, which can improve readability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
-<span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="n">println</span><span class="p">(</span><span class="mf">1.5</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">.5</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
-<span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">       </span><span class="c"># Equivalent to 2*x^2 - 3*x + 1</span>
+<span class="n">println</span><span class="p">(</span><span class="mf">1.5</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">   </span><span class="c"># Works with floating-point numbers too</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c"># Also works with parenthesized expressions</span>
 </pre></div>
 </div>
 </div>
@@ -684,13 +712,11 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Numeric literal coefficients have higher precedence than <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">/</span></code>:</p></li>
-</ul>
+<p>This notation has higher precedence than other multiplication and division operators, which can sometimes lead to surprising results:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="mi">360</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">π</span><span class="p">)</span><span class="w">  </span><span class="c"># Left first - equals 180*π</span>
-<span class="n">println</span><span class="p">(</span><span class="mi">360</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="nb">π</span><span class="p">)</span><span class="w">   </span><span class="c"># Right first - equals 180/π</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="mi">360</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">π</span><span class="p">)</span><span class="w">  </span><span class="c"># Evaluates as (360 / 2) * π = 180π</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">360</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="nb">π</span><span class="p">)</span><span class="w">   </span><span class="c"># Evaluates as 360 / (2 * π) = 180/π</span>
 </pre></div>
 </div>
 </div>
@@ -701,13 +727,11 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>For exponentiation <code class="docutils literal notranslate"><span class="pre">^</span></code>, numeric literal coefficients behave similarly to unary operators:</p></li>
-</ul>
+<p>When used with exponentiation (<code class="docutils literal notranslate"><span class="pre">^</span></code>), numeric literal coefficients behave like unary operators:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">2</span><span class="n">x</span><span class="p">)</span><span class="w">       </span><span class="c"># 2^(2x), not (4)x</span>
-<span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="w">       </span><span class="c"># 2*(x^2), not (2x)^2</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">2</span><span class="n">x</span><span class="p">)</span><span class="w">       </span><span class="c"># Interpreted as 2^(2*x), not (2^2)*x</span>
+<span class="n">println</span><span class="p">(</span><span class="mi">2</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="w">       </span><span class="c"># Interpreted as 2*(x^2), not (2*x)^2</span>
 </pre></div>
 </div>
 </div>
@@ -720,38 +744,37 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </section>
 <section id="comments">
-<h2><span class="section-number">1.2.3. </span>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.2.4. </span>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h2>
+<p>Good code is well-commented code. Comments are notes for human readers that are ignored by the computer.</p>
 <ul class="simple">
-<li><p>Comments start with the <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol, and everything from the <code class="docutils literal notranslate"><span class="pre">#</span></code> to the end of the line is ignored by Julia</p></li>
-<li><p>Alternatively, you can write multi-line comments by wrapping the text inside <code class="docutils literal notranslate"><span class="pre">#=</span></code> and <code class="docutils literal notranslate"><span class="pre">=#</span></code></p></li>
-<li><p>Comments are very important, but should be descriptive. Do not comment on obvious things.</p></li>
-<li><p>Typical uses of comments:</p>
-<ul>
-<li><p>Start each program (script) with a concise description of what it does</p></li>
-<li><p>Define each important variable/constant</p></li>
-<li><p>Top a block of code for a specific task with a concise comment</p></li>
+<li><p><strong>Single-line comments</strong> start with <code class="docutils literal notranslate"><span class="pre">#</span></code>. Everything from the <code class="docutils literal notranslate"><span class="pre">#</span></code> to the end of the line is ignored.</p></li>
+<li><p><strong>Multi-line comments</strong> are enclosed between <code class="docutils literal notranslate"><span class="pre">#=</span></code> and <code class="docutils literal notranslate"><span class="pre">=#</span></code>.</p></li>
 </ul>
-</li>
+<p>Comments should be descriptive without stating the obvious. Use them to:</p>
+<ul class="simple">
+<li><p>Provide a high-level description of a script or program.</p></li>
+<li><p>Explain the purpose of important variables and constants.</p></li>
+<li><p>Clarify the goal of a complex block of code.</p></li>
 </ul>
-</section>
-<section id="example-of-comments">
-<h2><span class="section-number">1.2.4. </span>Example of comments<a class="headerlink" href="#example-of-comments" title="Link to this heading">#</a></h2>
-<p>The comments in this code make it easy to understand exactly what it does</p>
+<section id="example-of-good-commenting">
+<h3><span class="section-number">1.2.4.1. </span>Example of Good Commenting<a class="headerlink" href="#example-of-good-commenting" title="Link to this heading">#</a></h3>
+<p>The comments in the following code make its purpose clear and easy to understand.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="cm">#=</span>
-<span class="cm">   Experiments with spheres</span>
+<span class="cm">  This script calculates the volume of a hollow sphere</span>
+<span class="cm">  by subtracting the volume of an inner sphere from an outer one.</span>
 <span class="cm">=#</span>
 
-<span class="n">radius1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="w">     </span><span class="c"># Outer sphere radius</span>
-<span class="n">radius2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="w">      </span><span class="c"># Inner sphere radius </span>
+<span class="n">radius_outer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="w">     </span><span class="c"># Radius of the outer sphere (in cm)</span>
+<span class="n">radius_inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="w">      </span><span class="c"># Radius of the inner sphere (in cm)</span>
 
-<span class="c"># Compute the volume of each sphere</span>
-<span class="n">vol1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="nb">π</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius1</span><span class="o">^</span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span>
-<span class="n">vol2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="nb">π</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius2</span><span class="o">^</span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span>
+<span class="c"># Calculate the volume of each sphere using V = (4/3)πr³</span>
+<span class="n">vol_outer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">π</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius_outer</span><span class="o">^</span><span class="mi">3</span>
+<span class="n">vol_inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">π</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius_inner</span><span class="o">^</span><span class="mi">3</span>
 
-<span class="c"># Compute the volume of a hollow sphere</span>
-<span class="n">vol_hollow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vol1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vol2</span>
+<span class="c"># The final volume is the difference between the two</span>
+<span class="n">vol_hollow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vol_outer</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vol_inner</span>
 </pre></div>
 </div>
 </div>
@@ -761,6 +784,7 @@ and gives it the value of the evaluated expression</p></li>
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -773,16 +797,16 @@ and gives it the value of the evaluated expression</p></li>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -800,7 +824,7 @@ and gives it the value of the evaluated expression</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.1. </span>Julia as a calculator</p>
+        <p class="prev-next-title"><span class="section-number">1.1. </span>Julia as a Calculator</p>
       </div>
     </a>
     <a class="right-next"
@@ -828,10 +852,13 @@ and gives it the value of the evaluated expression</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-operators">1.2.1. Updating operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-literal-coefficients">1.2.2. Numerical literal coefficients</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">1.2.3. Comments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-comments">1.2.4. Example of comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-naming-rules">1.2.1. Variable Naming Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-operators">1.2.2. Updating Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-literal-coefficients">1.2.3. Numerical Literal Coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">1.2.4. Comments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-good-commenting">1.2.4.1. Example of Good Commenting</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

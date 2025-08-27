@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.5. Conditionals &#8212; Programming for Mathematical Applications</title>
+    <title>1.6. Conditionals &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -63,8 +63,8 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Introduction/Conditionals.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.6. Repeated evaluation: while-loops" href="While_Loops.html" />
-    <link rel="prev" title="1.4. Repeated evaluation: for-loops" href="For_Loops.html" />
+    <link rel="next" title="1.7. Repeated Evaluation: While-Loops" href="While_Loops.html" />
+    <link rel="prev" title="1.5. Repeated Evaluation: For-Loops" href="For_Loops.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,9 +187,10 @@
 <li class="toctree-l2"><a class="reference internal" href="Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Functions.html">1.3. Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.4. For-Loops</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.5. Conditionals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.6. While-Loops</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.5. For-Loops</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.6. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.7. While-Loops</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -503,15 +504,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-expressions">1.5.1. Boolean expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">1.5.2. Logical operators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-comparisons">1.5.2.1. Chained comparisons</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.5.2.2. The if-statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#short-circuit-evaluation">1.5.2.3. Short-circuit evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-expressions">1.6.1. Boolean Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators">1.6.1.1. Relational Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">1.6.1.2. Logical Operators</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-fibonacci-handling-special-cases">1.5.3. Example: Fibonacci, handling special cases</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-multiples-of-3-and-5">1.5.4. Example: Multiples of 3 and 5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-comparisons">1.6.2. Chained Comparisons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.6.3. The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">1.6.4. The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-conditionals-with-elseif">1.6.5. Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-fibonacci-sequence">1.6.6. Example: The Fibonacci Sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-project-euler-problem-1">1.6.7. Example: Project Euler Problem 1</a></li>
 </ul>
             </nav>
         </div>
@@ -524,11 +527,11 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="conditionals">
-<h1><span class="section-number">1.5. </span>Conditionals<a class="headerlink" href="#conditionals" title="Link to this heading">#</a></h1>
-<p>A <strong>conditional statement</strong> allows a block of code to be executed only when a given logical condition is satisfied. Before introducing the so-called <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, we need to learn how to express these conditions.</p>
+<h1><span class="section-number">1.6. </span>Conditionals<a class="headerlink" href="#conditionals" title="Link to this heading">#</a></h1>
+<p>A <strong>conditional statement</strong> allows a block of code to be executed only if a certain condition is met. To build these statements, we first need to understand how to express logical conditions.</p>
 <section id="boolean-expressions">
-<h2><span class="section-number">1.5.1. </span>Boolean expressions<a class="headerlink" href="#boolean-expressions" title="Link to this heading">#</a></h2>
-<p>A <strong>boolean expression</strong> is an expression that is either true or false. For example, the operator <code class="docutils literal notranslate"><span class="pre">==</span></code> compares two operands and returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if they are equal and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise:</p>
+<h2><span class="section-number">1.6.1. </span>Boolean Expressions<a class="headerlink" href="#boolean-expressions" title="Link to this heading">#</a></h2>
+<p>A <strong>boolean expression</strong> is an expression that evaluates to either <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>. For example, the operator <code class="docutils literal notranslate"><span class="pre">==</span></code> compares two values and returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if they are equal and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">123</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">123</span>
@@ -543,19 +546,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">123</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">23</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">123</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">-</span><span class="mi">123</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">123</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">124</span>
 </pre></div>
 </div>
 </div>
@@ -565,7 +556,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> are special values that belong to the <code class="docutils literal notranslate"><span class="pre">type</span></code> Bool:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
@@ -578,122 +568,81 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bool
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="mi">45</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">45</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bool
-</pre></div>
-</div>
-</div>
-</div>
-<p>Other <strong>comparison</strong> or <strong>relational operators</strong> are listed below</p>
+<section id="relational-operators">
+<h3><span class="section-number">1.6.1.1. </span>Relational Operators<a class="headerlink" href="#relational-operators" title="Link to this heading">#</a></h3>
+<p>These operators compare two values and produce a boolean result.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Operator</p></th>
-<th class="head text-left"><p>Name</p></th>
+<th class="head text-left"><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
-<td class="text-left"><p>equality</p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code></p></td>
+<td class="text-left"><p>Is <code class="docutils literal notranslate"><span class="pre">x</span></code> equal to <code class="docutils literal notranslate"><span class="pre">y</span></code>?</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">≠</span></code></p></td>
-<td class="text-left"><p>inequality (type \ne + TAB)</p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">!=</span> <span class="pre">y</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">≠</span> <span class="pre">y</span></code></p></td>
+<td class="text-left"><p>Is <code class="docutils literal notranslate"><span class="pre">x</span></code> not equal to <code class="docutils literal notranslate"><span class="pre">y</span></code>?</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
-<td class="text-left"><p>less than</p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code></p></td>
+<td class="text-left"><p>Is <code class="docutils literal notranslate"><span class="pre">x</span></code> greater than <code class="docutils literal notranslate"><span class="pre">y</span></code>?</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">≤</span></code></p></td>
-<td class="text-left"><p>less than or equal to (type \le + TAB)</p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">y</span></code></p></td>
+<td class="text-left"><p>Is <code class="docutils literal notranslate"><span class="pre">x</span></code> less than <code class="docutils literal notranslate"><span class="pre">y</span></code>?</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
-<td class="text-left"><p>greater than</p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;=</span> <span class="pre">y</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">≥</span> <span class="pre">y</span></code></p></td>
+<td class="text-left"><p>Is <code class="docutils literal notranslate"><span class="pre">x</span></code> greater than or equal to <code class="docutils literal notranslate"><span class="pre">y</span></code>?</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">≥</span></code></p></td>
-<td class="text-left"><p>greater than or equal to (type \ge + TAB)</p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">y</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">≤</span> <span class="pre">y</span></code></p></td>
+<td class="text-left"><p>Is <code class="docutils literal notranslate"><span class="pre">x</span></code> less than or equal to <code class="docutils literal notranslate"><span class="pre">y</span></code>?</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>and here are some more simple examples:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">23</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span><span class="w"> </span><span class="o">≠</span><span class="w"> </span><span class="mi">44</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that comparison between floating point numbers and integers work as you would expect:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mf">1.000000000001</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
-</pre></div>
-</div>
-</div>
-</div>
-<p>Finally a warning about notation: A common mistake is to use single <code class="docutils literal notranslate"><span class="pre">=</span></code> for comparison (since it mimics the mathematical notation), but this is incorrect. Single <code class="docutils literal notranslate"><span class="pre">=</span></code> is an <em>assignment operator</em>, double <code class="docutils literal notranslate"><span class="pre">==</span></code> is a <em>comparison operator</em>.</p>
+<p><em>Note: To type the special Unicode characters like <code class="docutils literal notranslate"><span class="pre">≠</span></code>, <code class="docutils literal notranslate"><span class="pre">≥</span></code>, and <code class="docutils literal notranslate"><span class="pre">≤</span></code>, type their LaTeX command (e.g., <code class="docutils literal notranslate"><span class="pre">\ne</span></code>, <code class="docutils literal notranslate"><span class="pre">\ge</span></code>, <code class="docutils literal notranslate"><span class="pre">\le</span></code>) and press the <code class="docutils literal notranslate"><span class="pre">&lt;Tab&gt;</span></code> key.</em></p>
 </section>
 <section id="logical-operators">
-<h2><span class="section-number">1.5.2. </span>Logical operators<a class="headerlink" href="#logical-operators" title="Link to this heading">#</a></h2>
-<p>More complex boolean expressions can be formulated using the following <strong>logical operators</strong>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&amp;&amp; (and), || (or), and ! (not).
-</pre></div>
+<h3><span class="section-number">1.6.1.2. </span>Logical Operators<a class="headerlink" href="#logical-operators" title="Link to this heading">#</a></h3>
+<p>These operators are used to combine boolean expressions.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operator</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">!a</span></code></p></td>
+<td class="text-left"><p>NOT <code class="docutils literal notranslate"><span class="pre">a</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if <code class="docutils literal notranslate"><span class="pre">a</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&amp;&amp;</span> <span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a</span></code> AND <code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if both <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are <code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code>a || b</code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a</span></code> OR <code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if either <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span></code> (or both) are <code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> has higher precedence than <code class="docutils literal notranslate"><span class="pre">||</span></code> does.</p>
-<p>Examples:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="mi">10</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w">  </span><span class="c"># Is x (strictly) between 5 and 20?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="c"># Is x (strictly) between 15 and 20?</span>
 </pre></div>
 </div>
 </div>
@@ -705,34 +654,25 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">-</span><span class="mi">15</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="mi">10</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w">             </span><span class="c"># Is it false that x is greater than 5?</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="w"> </span><span class="o">≥</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+</section>
 <section id="chained-comparisons">
-<h3><span class="section-number">1.5.2.1. </span>Chained comparisons<a class="headerlink" href="#chained-comparisons" title="Link to this heading">#</a></h3>
-<p>In Julia, comparisons can be arbitrarily chained:</p>
+<h2><span class="section-number">1.6.2. </span>Chained Comparisons<a class="headerlink" href="#chained-comparisons" title="Link to this heading">#</a></h2>
+<p>Unlike many other languages, Julia allows you to chain comparison operators for a more natural, mathematical syntax. The chained expression is evaluated from left to right as a series of <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> (AND) operations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">5</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is equivalent to (1 &lt; 2) &amp;&amp; (2 &lt;= 2) &amp;&amp; (2 &lt; 3) &amp;&amp; ...</span>
+<span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">5</span>
 </pre></div>
 </div>
 </div>
@@ -742,10 +682,13 @@ document.write(`
 </div>
 </div>
 </div>
-<p>This syntax is convenient to, for example, determine if a variable is in a given range:</p>
+<p>This syntax makes checking if a variable falls within a certain range incredibly concise and readable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">2.3</span>
+
+<span class="c"># A clean way to check if x is in the closed interval [-3, 4].</span>
+<span class="c"># (Type \le or \ge and press Tab for ≤ and ≥).</span>
 <span class="o">-</span><span class="mi">3</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="mi">4</span>
 </pre></div>
 </div>
@@ -758,137 +701,205 @@ document.write(`
 </div>
 </section>
 <section id="the-if-statement">
-<h3><span class="section-number">1.5.2.2. </span>The if-statement<a class="headerlink" href="#the-if-statement" title="Link to this heading">#</a></h3>
-<p>We are now ready to define the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement for conditional execusion. It has the following syntax:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is less than y&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="k">elseif</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is greater than y&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is equal to y&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="k">end</span>
+<h2><span class="section-number">1.6.3. </span>The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement<a class="headerlink" href="#the-if-statement" title="Link to this heading">#</a></h2>
+<p>An <code class="docutils literal notranslate"><span class="pre">if</span></code> statement uses a boolean expression to decide which block of code to execute. The syntax is:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="n">condition</span>
+<span class="w">    </span><span class="c"># Code to run if condition is true</span>
+<span class="k">end</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>First <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">y</span></code> is evaluated, if <code class="docutils literal notranslate"><span class="pre">true</span></code> then the corresponding block is evaluated</p></li>
-<li><p>Otherwise, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code> is evaluated, if <code class="docutils literal notranslate"><span class="pre">true</span></code> then the corresponding block is evaluated</p></li>
-<li><p>If neither expression is <code class="docutils literal notranslate"><span class="pre">true</span></code>, the else block is evaluated</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">elseif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> blocks are optional, and <code class="docutils literal notranslate"><span class="pre">elseif</span></code> can be repeated</p></li>
-</ul>
+<p>If the <code class="docutils literal notranslate"><span class="pre">condition</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, the code inside the block is executed. If it’s <code class="docutils literal notranslate"><span class="pre">false</span></code>, the code is skipped.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Examples of if-else statements</span>
-
-<span class="k">function</span><span class="w"> </span><span class="n">check_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="mi">10</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is between 0 and 10&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="k">elseif</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is not between 0 and 10, and x is not negative (meaning x &gt; 10)&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is not between 0 and 10, and x is not not negative (meaning x is negative)&quot;</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">print_positivity</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The number is positive.&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>check_x (generic function with 1 method)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>print_positivity (generic function with 1 method)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">check_x</span><span class="p">(</span><span class="nb">π</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">print_positivity</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is between 0 and 10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The number is positive.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">check_x</span><span class="p">(</span><span class="mf">10.000001</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is not between 0 and 10, and x is not negative (meaning x &gt; 10)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">check_x</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="w">        </span><span class="c"># trick question - causes Int64 overflow</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is not between 0 and 10, and x is not not negative (meaning x is negative)
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Nothing is printed because the condition x &gt; 0 is false.</span>
+<span class="n">print_positivity</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="short-circuit-evaluation">
-<h3><span class="section-number">1.5.2.3. </span>Short-circuit evaluation<a class="headerlink" href="#short-circuit-evaluation" title="Link to this heading">#</a></h3>
-<p>In a series of boolean expressions connected by these operators, only the minimum number of expressions are evaluated as are necessary to determine the final boolean value of the entire chain. For example:</p>
-<ul class="simple">
-<li><p>In the expression <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&amp;&amp;</span> <span class="pre">b</span></code>, the subexpression <code class="docutils literal notranslate"><span class="pre">b</span></code> is only evaluated if <code class="docutils literal notranslate"><span class="pre">a</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
-<li><p>In the expression <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">||</span> <span class="pre">b</span></code>, the subexpression <code class="docutils literal notranslate"><span class="pre">b</span></code> is only evaluated if <code class="docutils literal notranslate"><span class="pre">a</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
-</ul>
-<p>This allows for convenient error handling, for example the following code will never take the square root of a negative number (which would cause an error):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span>
-<span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">≥</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span>
-<span class="w">    </span><span class="c"># do something</span>
+<section id="the-if-else-statement">
+<h2><span class="section-number">1.6.4. </span>The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement<a class="headerlink" href="#the-if-else-statement" title="Link to this heading">#</a></h2>
+<p>You can add an <code class="docutils literal notranslate"><span class="pre">else</span></code> block to provide an alternative path for when the <code class="docutils literal notranslate"><span class="pre">if</span></code> condition is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="n">condition</span>
+<span class="w">    </span><span class="c"># Code to run if condition is true</span>
 <span class="k">else</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Sorry, need a non-negative number with square root strictly less than 10&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Code to run if condition is false</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">print_parity</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; is even.&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; is odd.&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sorry, need a non-negative number with square root strictly less than 10
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>print_parity (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">print_parity</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 is even.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">print_parity</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9 is odd.
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+<section id="chained-conditionals-with-elseif">
+<h2><span class="section-number">1.6.5. </span>Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code><a class="headerlink" href="#chained-conditionals-with-elseif" title="Link to this heading">#</a></h2>
+<p>To handle more than two possibilities, you can chain conditions using <code class="docutils literal notranslate"><span class="pre">elseif</span></code>.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="n">condition1</span>
+<span class="w">    </span><span class="c"># Code for condition1</span>
+<span class="k">elseif</span><span class="w"> </span><span class="n">condition2</span>
+<span class="w">    </span><span class="c"># Code for condition2</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="c"># Code if no conditions are met</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Julia checks the conditions in order. As soon as one is found to be <code class="docutils literal notranslate"><span class="pre">true</span></code>, its corresponding code block is executed, and the rest of the chain is skipped.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">compare</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; is less than &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="k">elseif</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; is greater than &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; is equal to &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>compare (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">compare</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 is less than 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">compare</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 is greater than 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">compare</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 is equal to 5
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="example-fibonacci-handling-special-cases">
-<h2><span class="section-number">1.5.3. </span>Example: Fibonacci, handling special cases<a class="headerlink" href="#example-fibonacci-handling-special-cases" title="Link to this heading">#</a></h2>
-<p>One common use for if-statements is the handling of special cases. For example, the Fibonacci sequence is defined by <span class="math notranslate nohighlight">\(F_0 = 0\)</span>, <span class="math notranslate nohighlight">\(F_1 = 1\)</span>, and the recurrence relation</p>
-<div class="math notranslate nohighlight">
-\[
-F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
-\]</div>
-<p>In the implementation below, the special cases <span class="math notranslate nohighlight">\(F_0\)</span> and <span class="math notranslate nohighlight">\(F_1\)</span> are handled separately, and for all other numbers the recurrence relation is used.</p>
+<section id="example-the-fibonacci-sequence">
+<h2><span class="section-number">1.6.6. </span>Example: The Fibonacci Sequence<a class="headerlink" href="#example-the-fibonacci-sequence" title="Link to this heading">#</a></h2>
+<p>A common use for <code class="docutils literal notranslate"><span class="pre">if</span></code> statements is to handle special cases or initial conditions before starting a more general computation. The Fibonacci sequence is a perfect example.</p>
+<p>The sequence is defined by its first two terms, <span class="math notranslate nohighlight">\(F_0 = 0\)</span> and <span class="math notranslate nohighlight">\(F_1 = 1\)</span>, and the recurrence relation:
+$<span class="math notranslate nohighlight">\( F_{k} = F_{k-1} + F_{k-2} \qquad \text{for } k \ge 2 \)</span>$</p>
+<p>In our implementation, we’ll first check for the special cases of <span class="math notranslate nohighlight">\(n=0\)</span> and <span class="math notranslate nohighlight">\(n=1\)</span>. For any other value of <span class="math notranslate nohighlight">\(n\)</span>, we’ll use the recurrence relation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="w">    </span><span class="c"># First special cases</span>
+<span class="w">    </span><span class="c"># Handle the base cases first.</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="k">elseif</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">        </span><span class="c"># General case n ≥ 2 - initialize and iterate</span>
-<span class="w">        </span><span class="n">Fkold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">        </span><span class="n">Fk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span>
-<span class="w">            </span><span class="n">Fknew</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Fkold</span>
-<span class="w">            </span><span class="c"># Swap previous values</span>
-<span class="w">            </span><span class="n">Fkold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fk</span>
-<span class="w">            </span><span class="n">Fk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fknew</span>
-<span class="w">        </span><span class="k">end</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Fk</span>
 <span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># General case (n ≥ 2): initialize and iterate.</span>
+<span class="w">    </span><span class="n">f_k_minus_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">  </span><span class="c"># Represents F_{k-2}, starts at F₀</span>
+<span class="w">    </span><span class="n">f_k_minus_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="c"># Represents F_{k-1}, starts at F₁</span>
+<span class="w">    </span><span class="n">f_k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">          </span><span class="c"># Will hold the current Fₖ</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="c"># Calculate the next Fibonacci number.</span>
+<span class="w">        </span><span class="n">f_k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_k_minus_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f_k_minus_2</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c"># Update the previous two values for the next iteration.</span>
+<span class="w">        </span><span class="n">f_k_minus_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_k_minus_1</span>
+<span class="w">        </span><span class="n">f_k_minus_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_k</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">f_k</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -913,49 +924,69 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="w">   </span><span class="c"># Again be careful with overflow of Int64, but this one is OK</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The result for n=100 fits within an Int64.</span>
+<span class="n">fibonacci</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>817770325994397771
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3736710778780434371
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># However, n=110 causes an overflow. For larger numbers, you would need</span>
+<span class="c"># to modify the function to use BigInt instead of Int64.</span>
+<span class="n">fibonacci</span><span class="p">(</span><span class="mi">110</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4433243247116178887
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="example-multiples-of-3-and-5">
-<h2><span class="section-number">1.5.4. </span>Example: Multiples of 3 and 5<a class="headerlink" href="#example-multiples-of-3-and-5" title="Link to this heading">#</a></h2>
-<p>Project Euler, Problem 1:</p>
+<section id="example-project-euler-problem-1">
+<h2><span class="section-number">1.6.7. </span>Example: Project Euler Problem 1<a class="headerlink" href="#example-project-euler-problem-1" title="Link to this heading">#</a></h2>
+<p>Let’s solve the following computational number theory problem using loops and conditionals.</p>
 <blockquote>
-<div><p>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
-<p>Find the sum of all the multiples of 3 or 5 below 1000.</p>
+<div><p><em>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</em></p>
+<p><em>Find the sum of all the multiples of 3 or 5 below 1000.</em></p>
 </div></blockquote>
-<p>Let us create a general function that solves the problem for numbers below a given value <code class="docutils literal notranslate"><span class="pre">n</span></code>. Note that we can use the remainder operator <code class="docutils literal notranslate"><span class="pre">%</span></code> to check if a number is a multiple of another number.</p>
+<p>We need to loop through numbers from 1 to 999 and check if each number is divisible by 3 OR 5. If it is, we add it to a running total.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">PE1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">solve_euler1</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Initialize the sum</span>
 <span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># Loop through all numbers from 1 to N-1</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="c"># Check if i is a multiple of 3 or 5</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
 <span class="w">            </span><span class="n">s</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span>
 <span class="w">        </span><span class="k">end</span>
 <span class="w">    </span><span class="k">end</span>
-<span class="w">    </span><span class="n">s</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PE1 (generic function with 1 method)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>solve_euler1 (generic function with 1 method)
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can now confirm that our function gives the right answer for the example provided:</p>
+<p>First, let’s confirm that our function gives the right answer for the simple example provided in the problem description:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">PE1</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">solve_euler1</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="c"># Should be 23</span>
 </pre></div>
 </div>
 </div>
@@ -965,10 +996,10 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
 </div>
 </div>
 </div>
-<p>and we can answer the main question:</p>
+<p>Now we can solve the main problem for numbers below 1000:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">PE1</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">solve_euler1</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -990,16 +1021,16 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -1017,7 +1048,7 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.4. </span>Repeated evaluation: for-loops</p>
+        <p class="prev-next-title"><span class="section-number">1.5. </span>Repeated Evaluation: For-Loops</p>
       </div>
     </a>
     <a class="right-next"
@@ -1025,7 +1056,7 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.6. </span>Repeated evaluation: while-loops</p>
+        <p class="prev-next-title"><span class="section-number">1.7. </span>Repeated Evaluation: While-Loops</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1045,15 +1076,17 @@ F_{k} = F_{k-1} + F_{k-2}\qquad \text{for }k\ge 2.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-expressions">1.5.1. Boolean expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">1.5.2. Logical operators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-comparisons">1.5.2.1. Chained comparisons</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.5.2.2. The if-statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#short-circuit-evaluation">1.5.2.3. Short-circuit evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-expressions">1.6.1. Boolean Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators">1.6.1.1. Relational Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">1.6.1.2. Logical Operators</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-fibonacci-handling-special-cases">1.5.3. Example: Fibonacci, handling special cases</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-multiples-of-3-and-5">1.5.4. Example: Multiples of 3 and 5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-comparisons">1.6.2. Chained Comparisons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.6.3. The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">1.6.4. The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-conditionals-with-elseif">1.6.5. Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-fibonacci-sequence">1.6.6. Example: The Fibonacci Sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-project-euler-problem-1">1.6.7. Example: Project Euler Problem 1</a></li>
 </ul>
   </nav></div>
 

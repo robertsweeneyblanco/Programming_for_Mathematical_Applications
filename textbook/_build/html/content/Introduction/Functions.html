@@ -63,8 +63,8 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Introduction/Functions.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.4. Repeated evaluation: for-loops" href="For_Loops.html" />
-    <link rel="prev" title="1.2. Variables and assignments" href="Variables_And_Assignments.html" />
+    <link rel="next" title="1.5. Repeated Evaluation: For-Loops" href="For_Loops.html" />
+    <link rel="prev" title="1.2. Variables and Assignments" href="Variables_And_Assignments.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,9 +187,10 @@
 <li class="toctree-l2"><a class="reference internal" href="Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">1.3. Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.4. For-Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.5. Conditionals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.6. While-Loops</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.5. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.6. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.7. While-Loops</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -503,17 +504,26 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-and-hyperbolic-functions">1.3.1. Trigonometric and hyperbolic functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-e-to-the-pi-minus-pi">1.3.2. Example: e to the pi Minus pi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-roots-of-quadratic">1.3.3. Example: Real roots of quadratic</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-defined-functions">1.3.4. User-defined functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-assignment-form">1.3.4.1. Compact “assignment” form</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-functions">1.3.4.2. Anonymous functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-return-values">1.3.4.3. Multiple return values</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1.3. Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-and-hyperbolic-functions">1.3.1. Trigonometric and Hyperbolic Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ramanujan-s-constant">1.3.2. Example: Ramanujan’s Constant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-roots-of-a-quadratic">1.3.3. Example: Real Roots of a Quadratic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-defined-functions">1.3.4. User-Defined Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-assignment-form">1.3.4.1. Compact Assignment Form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-functions">1.3.4.2. Anonymous Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-return-values">1.3.4.3. Multiple Return Values</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-roots-of-quadratic-function">1.3.5. Example: Real roots of quadratic function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-quadratic-roots-function">1.3.5. Example: Quadratic Roots Function</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-and-keyword-arguments">1.4. Optional and Keyword Arguments</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-arguments">1.4.1. Optional Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyword-arguments">1.4.2. Keyword Arguments</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -526,12 +536,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="functions">
 <h1><span class="section-number">1.3. </span>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p>A <em>function</em> is a named sequence of statements that performs a computation</p></li>
-<li><p>You can <em>call</em> the function by its name followed by parentheses, optionally passing comma-separated expressions inside the parentheses as <em>arguments</em></p></li>
-<li><p>For example, we already used the <code class="docutils literal notranslate"><span class="pre">println(x)</span></code> function, which prints <code class="docutils literal notranslate"><span class="pre">x</span></code> and returns nothing</p></li>
-<li><p>Julia defines a number of standard mathematical functions, e.g.</p></li>
-</ul>
+<p>A <strong>function</strong> is a named block of reusable code that performs a specific task. To use a function, you <strong>call</strong> it by its name, followed by parentheses. You can pass values into the function by placing them inside the parentheses; these values are called <strong>arguments</strong>.</p>
+<p>For example, we’ve already used <code class="docutils literal notranslate"><span class="pre">println(x)</span></code>, a built-in function that prints the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> to the console.</p>
+<p>Julia provides a rich library of standard mathematical functions. Here are a few common ones:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Function</p></th>
@@ -540,40 +547,38 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">abs(x)</span></code></p></td>
-<td class="text-left"><p>a positive value with the magnitude of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td class="text-left"><p>The absolute value of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sign(x)</span></code></p></td>
-<td class="text-left"><p>indicates the sign of <code class="docutils literal notranslate"><span class="pre">x</span></code>, returning -1, 0, or +1</p></td>
+<td class="text-left"><p>The sign of <code class="docutils literal notranslate"><span class="pre">x</span></code> (-1, 0, or 1)</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sqrt(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">√x</span></code></p></td>
-<td class="text-left"><p>square root of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sqrt(x)</span></code> or <code class="docutils literal notranslate"><span class="pre">√x</span></code></p></td>
+<td class="text-left"><p>The square root of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">cbrt(x)</span></code>, <code class="docutils literal notranslate"><span class="pre">∛x</span></code></p></td>
-<td class="text-left"><p>cube root of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">cbrt(x)</span></code> or <code class="docutils literal notranslate"><span class="pre">∛x</span></code></p></td>
+<td class="text-left"><p>The cube root of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">exp(x)</span></code></p></td>
-<td class="text-left"><p>natural exponential function at <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td class="text-left"><p>The natural exponential <span class="math notranslate nohighlight">\(e^x\)</span></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">log(x)</span></code></p></td>
-<td class="text-left"><p>natural logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td class="text-left"><p>The natural logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">log(b,x)</span></code></p></td>
-<td class="text-left"><p>base <code class="docutils literal notranslate"><span class="pre">b</span></code> logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td class="text-left"><p>The base-<code class="docutils literal notranslate"><span class="pre">b</span></code> logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">log2(x)</span></code></p></td>
-<td class="text-left"><p>base 2 logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td class="text-left"><p>The base-2 logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">log10(x)</span></code></p></td>
-<td class="text-left"><p>base 10 logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td class="text-left"><p>The base-10 logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <section id="trigonometric-and-hyperbolic-functions">
-<h2><span class="section-number">1.3.1. </span>Trigonometric and hyperbolic functions<a class="headerlink" href="#trigonometric-and-hyperbolic-functions" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>All the standard trigonometric and hyperbolic functions are also defined:</p></li>
-</ul>
+<h2><span class="section-number">1.3.1. </span>Trigonometric and Hyperbolic Functions<a class="headerlink" href="#trigonometric-and-hyperbolic-functions" title="Link to this heading">#</a></h2>
+<p>All standard trigonometric and hyperbolic functions are built-in. The default trigonometric functions expect angles in <strong>radians</strong>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sin</span>    <span class="n">cos</span>    <span class="n">tan</span>    <span class="n">cot</span>    <span class="n">sec</span>    <span class="n">csc</span>
 <span class="n">sinh</span>   <span class="n">cosh</span>   <span class="n">tanh</span>   <span class="n">coth</span>   <span class="n">sech</span>   <span class="n">csch</span>
 <span class="n">asin</span>   <span class="n">acos</span>   <span class="n">atan</span>   <span class="n">acot</span>   <span class="n">asec</span>   <span class="n">acsc</span>
@@ -581,17 +586,15 @@ document.write(`
 <span class="n">sinc</span>   <span class="n">cosc</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>The following trigonometric functions use degrees instead of radians:</p></li>
-</ul>
+<p>For convenience, Julia also provides versions that work with angles in <strong>degrees</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sind</span>   <span class="n">cosd</span>   <span class="n">tand</span>   <span class="n">cotd</span>   <span class="n">secd</span>   <span class="n">cscd</span>
 <span class="n">asind</span>  <span class="n">acosd</span>  <span class="n">atand</span>  <span class="n">acotd</span>  <span class="n">asecd</span>  <span class="n">acscd</span>
 </pre></div>
 </div>
 </section>
-<section id="example-e-to-the-pi-minus-pi">
-<h2><span class="section-number">1.3.2. </span>Example: e to the pi Minus pi<a class="headerlink" href="#example-e-to-the-pi-minus-pi" title="Link to this heading">#</a></h2>
-<p>Evaluate <span class="math notranslate nohighlight">\(e^\pi - \pi\)</span>, see if it equals 20 (it should not, but it is remarkably close):</p>
+<section id="example-ramanujan-s-constant">
+<h2><span class="section-number">1.3.2. </span>Example: Ramanujan’s Constant<a class="headerlink" href="#example-ramanujan-s-constant" title="Link to this heading">#</a></h2>
+<p>Let’s evaluate the expression <span class="math notranslate nohighlight">\(e^\pi - \pi\)</span>. While not an integer, it is famously close to 20.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span><span class="p">(</span><span class="nb">π</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">π</span>
@@ -604,69 +607,62 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="xkcd217_e_to_the_pi_minus_pi" src="../../_images/e_to_the_pi_minus_pi.png" /></p>
-<p>(from <a class="reference external" href="https://xkcd.com/217">https://xkcd.com/217</a>)</p>
 </section>
-<section id="example-real-roots-of-quadratic">
-<h2><span class="section-number">1.3.3. </span>Example: Real roots of quadratic<a class="headerlink" href="#example-real-roots-of-quadratic" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Use the quadratic formula</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-\]</div>
-<p>to solve the equation <span class="math notranslate nohighlight">\(x^2 + 5x + 6 = 0\)</span> (assuming the roots are real, more about complex numbers later)</p>
+<section id="example-real-roots-of-a-quadratic">
+<h2><span class="section-number">1.3.3. </span>Example: Real Roots of a Quadratic<a class="headerlink" href="#example-real-roots-of-a-quadratic" title="Link to this heading">#</a></h2>
+<p>We can use the quadratic formula to find the roots of the equation <span class="math notranslate nohighlight">\(x^2 + 5x + 6 = 0\)</span>.
+$<span class="math notranslate nohighlight">\( r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \)</span>$
+For now, we will assume the roots are real; we’ll cover complex numbers in a later chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Solve x^2 + 5x + 6 = 0 using the quadratic formula (real arithmetics)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Solve x² + 5x + 6 = 0 using the quadratic formula.</span>
 
-<span class="c"># Coefficients a,b,c in ax^2 + bx + c = 0</span>
+<span class="c"># Coefficients for ax² + bx + c = 0</span>
 <span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
 <span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span>
 <span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span>
 
-<span class="c"># The quadratic formula</span>
-<span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
-<span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="n">a</span>
-<span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="n">a</span>
-<span class="n">println</span><span class="p">(</span><span class="s">&quot;The roots are &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; and &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">)</span>
+<span class="c"># Apply the quadratic formula</span>
+<span class="n">discriminant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
+<span class="n">root1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">discriminant</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="n">a</span><span class="p">)</span>
+<span class="n">root2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">discriminant</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="n">a</span><span class="p">)</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;The roots are &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">root1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; and &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">root2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The roots are -3.0 and -2.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The roots are -3.0 and -2.0.
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="user-defined-functions">
-<h2><span class="section-number">1.3.4. </span>User-defined functions<a class="headerlink" href="#user-defined-functions" title="Link to this heading">#</a></h2>
-<p>You can also define your own functions. This can help make your program easier to read, and eliminate repetitive code. For example, consider the following function named <code class="docutils literal notranslate"><span class="pre">myfunc</span></code>:</p>
+<h2><span class="section-number">1.3.4. </span>User-Defined Functions<a class="headerlink" href="#user-defined-functions" title="Link to this heading">#</a></h2>
+<p>You can define your own functions to make your code more organized and reusable. Here’s a simple function named <code class="docutils literal notranslate"><span class="pre">my_func</span></code> that takes two arguments, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">myfunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">my_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>myfunc (generic function with 1 method)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>my_func (generic function with 1 method)
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>This function takes two <em>arguments</em>, and assigns them to <em>parameters</em> named <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
-<li><p>The function evaluates the sum of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code></p></li>
-<li><p>The function returns (by default) the last expression evaluated, which in this case is the sum (use the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword to change this behavior)</p></li>
-<li><p>The function can be called using the standard parentheses syntax</p></li>
+<li><p>The values passed to the function are assigned to its <strong>parameters</strong>, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
+<li><p>By default, a function <strong>returns</strong> the value of the last expression evaluated inside it (in this case, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>). You can also use the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword for explicit returns.</p></li>
+<li><p>Once defined, you can call the function using the standard parentheses syntax:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -677,14 +673,13 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </div>
 <section id="compact-assignment-form">
-<h3><span class="section-number">1.3.4.1. </span>Compact “assignment” form<a class="headerlink" href="#compact-assignment-form" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Functions that consist of a single expression can also be defined using the following syntax:</p></li>
-</ul>
+<h3><span class="section-number">1.3.4.1. </span>Compact Assignment Form<a class="headerlink" href="#compact-assignment-form" title="Link to this heading">#</a></h3>
+<p>For functions that contain only a single expression, Julia offers a more concise syntax:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">myfunc2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="n">y</span>
-<span class="n">myfunc2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_func2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="n">y</span>
+
+<span class="n">my_func2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -696,51 +691,49 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </section>
 <section id="anonymous-functions">
-<h3><span class="section-number">1.3.4.2. </span>Anonymous functions<a class="headerlink" href="#anonymous-functions" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Yet another way to define a function, which has the benefit that it does not need to be given a name which can be convenient e.g. if it is only used temporarily:</p></li>
-</ul>
+<h3><span class="section-number">1.3.4.2. </span>Anonymous Functions<a class="headerlink" href="#anonymous-functions" title="Link to this heading">#</a></h3>
+<p>You can also create <strong>anonymous functions</strong>—functions without a name. This is useful for short, one-off operations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">myfunc3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="n">y</span>
-<span class="n">myfunc3</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define an anonymous function and assign it to a variable</span>
+<span class="n">my_func3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="n">y</span>
+<span class="n">println</span><span class="p">(</span><span class="n">my_func3</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
 
-<span class="c"># Same thing without giving the function a name:</span>
-<span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="n">y</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="c"># Define and call an anonymous function in a single line</span>
+<span class="n">println</span><span class="p">(((</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="n">y</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18
+18
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="multiple-return-values">
-<h3><span class="section-number">1.3.4.3. </span>Multiple return values<a class="headerlink" href="#multiple-return-values" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>A function can return multiple values, separated by commas:</p></li>
-</ul>
+<h3><span class="section-number">1.3.4.3. </span>Multiple Return Values<a class="headerlink" href="#multiple-return-values" title="Link to this heading">#</a></h3>
+<p>Functions can also return multiple values. Simply list them at the end of the function, separated by commas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">mynewfunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">my_new_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="w">    </span><span class="n">out1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
 <span class="w">    </span><span class="n">out2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="w">    </span><span class="n">out1</span><span class="p">,</span><span class="w"> </span><span class="n">out2</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">out1</span><span class="p">,</span><span class="w"> </span><span class="n">out2</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mynewfunc (generic function with 1 method)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>my_new_func (generic function with 1 method)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mynewfunc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_new_func</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -750,19 +743,61 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="example-real-roots-of-quadratic-function">
-<h2><span class="section-number">1.3.5. </span>Example: Real roots of quadratic function<a class="headerlink" href="#example-real-roots-of-quadratic-function" title="Link to this heading">#</a></h2>
-<p>Solve the same problem as before with a user-defined function:</p>
+<p>When a function returns multiple values, it technically returns a single object called a <strong>tuple</strong>. A tuple is an ordered, immutable collection of elements.</p>
+<p>You can create your own tuples using parentheses:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">real_roots_of_quadratic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
-<span class="w">    </span><span class="c"># Compute the real roots of the quadratic ax^2 + bx + c = 0</span>
-<span class="w">    </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
-<span class="w">    </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="n">a</span>
-<span class="w">    </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="n">a</span>
-<span class="w">    </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_tuple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">123</span><span class="p">,</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(123, 234, &quot;hello&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Access elements of a tuple using square brackets (Julia is 1-indexed):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w">   </span><span class="c"># Access the second element</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>234
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can <strong>unpack</strong> a tuple by assigning it to a comma-separated list of variables. This is exactly what we did with the return values of <code class="docutils literal notranslate"><span class="pre">my_new_func</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="n">num2</span><span class="p">,</span><span class="w"> </span><span class="n">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_tuple</span>
+
+<span class="n">println</span><span class="p">(</span><span class="n">greeting</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;, you have numbers &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; and &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">num2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello, you have numbers 123 and 234.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-quadratic-roots-function">
+<h2><span class="section-number">1.3.5. </span>Example: Quadratic Roots Function<a class="headerlink" href="#example-quadratic-roots-function" title="Link to this heading">#</a></h2>
+<p>Let’s revisit the quadratic roots problem, this time encapsulating the logic in a function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">real_roots_of_quadratic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Computes the real roots of the quadratic equation ax² + bx + c = 0.</span>
+<span class="w">    </span><span class="n">discriminant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">discriminant</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="n">a</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">discriminant</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="n">a</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -799,6 +834,224 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 </div>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-and-keyword-arguments">
+<h1><span class="section-number">1.4. </span>Optional and Keyword Arguments<a class="headerlink" href="#optional-and-keyword-arguments" title="Link to this heading">#</a></h1>
+<p>Functions can be made more flexible by using <strong>optional</strong> and <strong>keyword</strong> arguments. This allows you to write functions that are easier to call in different situations.</p>
+<section id="optional-arguments">
+<h2><span class="section-number">1.4.1. </span>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Link to this heading">#</a></h2>
+<p>You can make function arguments optional by providing them with a <strong>default value</strong>. If a caller doesn’t provide a value for that argument, the default is used automatically.</p>
+<p>Let’s consider solving the equation <span class="math notranslate nohighlight">\(2x = \tan x\)</span> using the fixed-point iteration <span class="math notranslate nohighlight">\(x_{n+1} = \tan^{-1}(2x_n)\)</span>. Our function could take two arguments:</p>
+<ul class="simple">
+<li><p>A termination tolerance <code class="docutils literal notranslate"><span class="pre">δ</span></code>.</p></li>
+<li><p>A starting value <code class="docutils literal notranslate"><span class="pre">x0</span></code>.</p></li>
+</ul>
+<p>By setting default values, we can make both of these optional.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">solve_fixed_point</span><span class="p">(</span><span class="n">δ</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span>
+<span class="w">    </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">        </span><span class="n">iter</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="n">x_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atan</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x_prev</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Iteration &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x_prev</span><span class="p">)</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="n">δ</span>
+<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Converged after &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; iterations.&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>solve_fixed_point (generic function with 3 methods)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can call the function in several ways:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 1. No arguments: use both default values.</span>
+<span class="n">solve_fixed_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 1.1071487177940904
+Iteration 2: x = 1.1466039045135867
+Iteration 3: x = 1.1595864584933437
+Iteration 4: x = 1.1636959143671342
+Iteration 5: x = 1.1649805955397385
+Iteration 6: x = 1.165380637446075
+
+Converged after 6 iterations.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.165380637446075
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 2. One argument: overrides the first default value (δ).</span>
+<span class="n">solve_fixed_point</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 1.1071487177940904
+Iteration 2: x = 1.1466039045135867
+Iteration 3: x = 1.1595864584933437
+Iteration 4: x = 1.1636959143671342
+Iteration 5: x = 1.1649805955397385
+Iteration 6: x = 1.165380637446075
+Iteration 7: x = 1.1655050559893403
+Iteration 8: x = 1.1655437371644453
+Iteration 9: x = 1.1655557615495353
+Iteration 10: x = 1.165559499298558
+
+Converged after 10 iterations.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.165559499298558
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 3. Two arguments: overrides both default values.</span>
+<span class="n">solve_fixed_point</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 0.7853981633974483
+Iteration 2: x = 1.0038848218538872
+Iteration 3: x = 1.108697830869966
+Iteration 4: x = 1.147128141357208
+Iteration 5: x = 1.1597539140293118
+Iteration 6: x = 1.1637484136986498
+Iteration 7: x = 1.1649969581251391
+Iteration 8: x = 1.1653857278508495
+Iteration 9: x = 1.1655066387105377
+Iteration 10: x = 1.1655442291805418
+Iteration 11: x = 1.165555914492745
+Iteration 12: x = 1.1655595468401398
+
+Converged after 12 iterations.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1655595468401398
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="keyword-arguments">
+<h2><span class="section-number">1.4.2. </span>Keyword Arguments<a class="headerlink" href="#keyword-arguments" title="Link to this heading">#</a></h2>
+<p>When a function has many arguments, it can be hard to remember their correct order. <strong>Keyword arguments</strong> solve this problem by allowing you to specify arguments by their name.</p>
+<p>To define keyword arguments, use a semicolon <code class="docutils literal notranslate"><span class="pre">;</span></code> in the function signature:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">my_func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">arg2</span><span class="p">;</span><span class="w"> </span><span class="n">keyword1</span><span class="o">=</span><span class="n">val1</span><span class="p">,</span><span class="w"> </span><span class="n">keyword2</span><span class="o">=</span><span class="n">val2</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># ...</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>When calling the function, you also use the names to pass values, and their order doesn’t matter.</p>
+<p>Let’s add a <code class="docutils literal notranslate"><span class="pre">maxiter</span></code> keyword argument to our solver to prevent it from running forever.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">solve_fixed_point_v2</span><span class="p">(</span><span class="n">δ</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span><span class="w"> </span><span class="n">maxiter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">maxiter</span>
+<span class="w">        </span><span class="n">x_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atan</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x_prev</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Iteration &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x_prev</span><span class="p">)</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="n">δ</span>
+<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Converged after &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; iterations.&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Did not converge within &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">maxiter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; iterations.&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>solve_fixed_point_v2 (generic function with 3 methods)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can provide the optional positional arguments (<code class="docutils literal notranslate"><span class="pre">δ</span></code>, <code class="docutils literal notranslate"><span class="pre">x0</span></code>) and the keyword argument (<code class="docutils literal notranslate"><span class="pre">maxiter</span></code>) in a clear and flexible way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Use default values for δ and x0, but specify maxiter.</span>
+<span class="n">solve_fixed_point_v2</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 1.1071487177940904
+Iteration 2: x = 1.1466039045135867
+Iteration 3: x = 1.1595864584933437
+Iteration 4: x = 1.1636959143671342
+Iteration 5: x = 1.1649805955397385
+
+Did not converge within 5 iterations.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1649805955397385
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Specify δ and maxiter, but use the default x0.</span>
+<span class="c"># Note that the keyword argument can be placed anywhere after the semicolon.</span>
+<span class="n">solve_fixed_point_v2</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">;</span><span class="w"> </span><span class="n">maxiter</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 1.1071487177940904
+Iteration 2: x = 1.1466039045135867
+Iteration 3: x = 1.1595864584933437
+Iteration 4: x = 1.1636959143671342
+Iteration 5: x = 1.1649805955397385
+Iteration 6: x = 1.165380637446075
+Iteration 7: x = 1.1655050559893403
+Iteration 8: x = 1.1655437371644453
+Iteration 9: x = 1.1655557615495353
+Iteration 10: x = 1.165559499298558
+Iteration 11: x = 1.1655606611549096
+Iteration 12: x = 1.1655610223095458
+Iteration 13: x = 1.1655611345717263
+Iteration 14: x = 1.165561169467562
+
+Converged after 14 iterations.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.165561169467562
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -809,16 +1062,16 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Introduction"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -836,7 +1089,7 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.2. </span>Variables and assignments</p>
+        <p class="prev-next-title"><span class="section-number">1.2. </span>Variables and Assignments</p>
       </div>
     </a>
     <a class="right-next"
@@ -844,7 +1097,7 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.4. </span>Repeated evaluation: for-loops</p>
+        <p class="prev-next-title"><span class="section-number">1.5. </span>Repeated Evaluation: For-Loops</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -864,17 +1117,26 @@ r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-and-hyperbolic-functions">1.3.1. Trigonometric and hyperbolic functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-e-to-the-pi-minus-pi">1.3.2. Example: e to the pi Minus pi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-roots-of-quadratic">1.3.3. Example: Real roots of quadratic</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-defined-functions">1.3.4. User-defined functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-assignment-form">1.3.4.1. Compact “assignment” form</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-functions">1.3.4.2. Anonymous functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-return-values">1.3.4.3. Multiple return values</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1.3. Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-and-hyperbolic-functions">1.3.1. Trigonometric and Hyperbolic Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ramanujan-s-constant">1.3.2. Example: Ramanujan’s Constant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-roots-of-a-quadratic">1.3.3. Example: Real Roots of a Quadratic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-defined-functions">1.3.4. User-Defined Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-assignment-form">1.3.4.1. Compact Assignment Form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-functions">1.3.4.2. Anonymous Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-return-values">1.3.4.3. Multiple Return Values</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-roots-of-quadratic-function">1.3.5. Example: Real roots of quadratic function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-quadratic-roots-function">1.3.5. Example: Quadratic Roots Function</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-and-keyword-arguments">1.4. Optional and Keyword Arguments</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-arguments">1.4.1. Optional Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyword-arguments">1.4.2. Keyword Arguments</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
