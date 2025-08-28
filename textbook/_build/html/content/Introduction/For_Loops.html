@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.5. Repeated Evaluation: For-Loops &#8212; Programming for Mathematical Applications</title>
+    <title>1.4. Repeated Evaluation: For-Loops &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -63,7 +63,7 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Introduction/For_Loops.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.6. Conditionals" href="Conditionals.html" />
+    <link rel="next" title="1.5. Conditionals" href="Conditionals.html" />
     <link rel="prev" title="1.3. Functions" href="Functions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -187,10 +187,9 @@
 <li class="toctree-l2"><a class="reference internal" href="Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Functions.html">1.3. Functions</a></li>
-
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.5. For-Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.6. Conditionals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.7. While-Loops</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.4. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.5. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.6. While-Loops</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -504,12 +503,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-factorial-function">1.5.1. Example: The Factorial Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-taylor-polynomial-for-cosine">1.5.2. Example: Taylor Polynomial for Cosine</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-approach">1.5.2.1. A Better Approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-factorial-function">1.4.1. Example: The Factorial Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-taylor-polynomial-for-cosine">1.4.2. Example: Taylor Polynomial for Cosine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-approach">1.4.2.1. A Better Approach</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-of-variables">1.5.3. Scope of Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-of-variables">1.4.3. Scope of Variables</a></li>
 </ul>
             </nav>
         </div>
@@ -522,7 +521,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="repeated-evaluation-for-loops">
-<h1><span class="section-number">1.5. </span>Repeated Evaluation: For-Loops<a class="headerlink" href="#repeated-evaluation-for-loops" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">1.4. </span>Repeated Evaluation: For-Loops<a class="headerlink" href="#repeated-evaluation-for-loops" title="Link to this heading">#</a></h1>
 <p>A <strong>loop</strong> is a fundamental programming construct that allows you to execute a block of code repeatedly. This is essential for automating repetitive tasks.</p>
 <p>For example, suppose we want to compute the finite sum <span class="math notranslate nohighlight">\(s_n = \sum_{i=1}^n \frac{1}{i}\)</span> for some integer <span class="math notranslate nohighlight">\(n \ge 1\)</span>. A <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop is the perfect tool for this.</p>
 <p>The basic syntax for a <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop is:</p>
@@ -629,8 +628,27 @@ document.write(`
 </div>
 </div>
 </div>
+<p>More generally, a <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop can iterate over any <strong>collection</strong> of items. Instead of a range, you can provide a tuple (or other collection types like arrays, which we will see later) of values to loop over.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The loop variable `i` will take on each value from the tuple in order.</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The current value of i is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The current value of i is 3
+The current value of i is 5
+The current value of i is 11
+The current value of i is 20
+</pre></div>
+</div>
+</div>
+</div>
 <section id="example-the-factorial-function">
-<h2><span class="section-number">1.5.1. </span>Example: The Factorial Function<a class="headerlink" href="#example-the-factorial-function" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.4.1. </span>Example: The Factorial Function<a class="headerlink" href="#example-the-factorial-function" title="Link to this heading">#</a></h2>
 <p>The factorial function, <span class="math notranslate nohighlight">\(n!\)</span>, is defined as the product of all positive integers up to <span class="math notranslate nohighlight">\(n\)</span>. We can implement this using a <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -710,14 +728,14 @@ document.write(`
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">::</span><span class="n">Int64</span><span class="p">)</span>
    <span class="o">@</span> <span class="n">Base</span> <span class="o">./</span><span class="n">combinatorics</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">27</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
-   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span><span class="mi">2</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="example-taylor-polynomial-for-cosine">
-<h2><span class="section-number">1.5.2. </span>Example: Taylor Polynomial for Cosine<a class="headerlink" href="#example-taylor-polynomial-for-cosine" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.4.2. </span>Example: Taylor Polynomial for Cosine<a class="headerlink" href="#example-taylor-polynomial-for-cosine" title="Link to this heading">#</a></h2>
 <p>Consider the Taylor polynomial of degree <span class="math notranslate nohighlight">\(2n\)</span> for <span class="math notranslate nohighlight">\(\cos x\)</span>:
 $<span class="math notranslate nohighlight">\(
 \cos x \approx \sum_{k=0}^n \frac{(-1)^k}{(2k)!}x^{2k}
@@ -790,18 +808,21 @@ cos(10):   -0.8390715290764524
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">factorial</span>
    <span class="o">@</span> <span class="o">./</span><span class="n">combinatorics</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">27</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">taylor_cos_bad</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Int64</span><span class="p">,</span> <span class="n">n</span><span class="p">::</span><span class="n">Int64</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span><span class="mi">5</span>
+   <span class="o">@</span> <span class="n">Main</span> <span class="o">./</span><span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span><span class="mi">5</span>
  <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
-   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">]:</span><span class="mi">2</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="a-better-approach">
-<h3><span class="section-number">1.5.2.1. </span>A Better Approach<a class="headerlink" href="#a-better-approach" title="Link to this heading">#</a></h3>
-<p>A much more robust method is to compute each term <strong>incrementally</strong> from the previous one. Notice the relationship between term <span class="math notranslate nohighlight">\(k\)</span> and term <span class="math notranslate nohighlight">\(k-1\)</span>:
-$<span class="math notranslate nohighlight">\( \text{term}_k = \text{term}_{k-1} \cdot \frac{-x^2}{(2k)(2k-1)} \)</span>$
-This avoids large intermediate calculations involving factorials and powers, preventing overflow and improving efficiency.</p>
+<h3><span class="section-number">1.4.2.1. </span>A Better Approach<a class="headerlink" href="#a-better-approach" title="Link to this heading">#</a></h3>
+<p>A much more robust method is to compute each term <strong>incrementally</strong> from the previous one. Notice the relationship between term <span class="math notranslate nohighlight">\(k\)</span> and term <span class="math notranslate nohighlight">\(k-1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{term}_k = \text{term}_{k-1} \cdot \frac{-x^2}{(2k)(2k-1)}
+\]</div>
+<p>This avoids large intermediate calculations involving factorials and powers, preventing overflow and improving efficiency.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">taylor_cos</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
@@ -859,7 +880,7 @@ cos(10):     -0.8390715290764524
 </section>
 </section>
 <section id="scope-of-variables">
-<h2><span class="section-number">1.5.3. </span>Scope of Variables<a class="headerlink" href="#scope-of-variables" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.4.3. </span>Scope of Variables<a class="headerlink" href="#scope-of-variables" title="Link to this heading">#</a></h2>
 <p>The <strong>scope</strong> of a variable is the region of code where it is visible and can be accessed. A new <strong>local scope</strong> is introduced by most code blocks, including <code class="docutils literal notranslate"><span class="pre">for</span></code>-loops and functions.</p>
 <p>By default, a local scope inherits variables from its parent scope. However, you can use the <code class="docutils literal notranslate"><span class="pre">local</span></code> keyword to declare a new variable that is visible only inside that local scope, even if a variable with the same name exists in the parent scope.</p>
 <div class="cell docutils container">
@@ -935,7 +956,7 @@ y is still 10
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.6. </span>Conditionals</p>
+        <p class="prev-next-title"><span class="section-number">1.5. </span>Conditionals</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -955,12 +976,12 @@ y is still 10
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-factorial-function">1.5.1. Example: The Factorial Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-taylor-polynomial-for-cosine">1.5.2. Example: Taylor Polynomial for Cosine</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-approach">1.5.2.1. A Better Approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-factorial-function">1.4.1. Example: The Factorial Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-taylor-polynomial-for-cosine">1.4.2. Example: Taylor Polynomial for Cosine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-better-approach">1.4.2.1. A Better Approach</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-of-variables">1.5.3. Scope of Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-of-variables">1.4.3. Scope of Variables</a></li>
 </ul>
   </nav></div>
 

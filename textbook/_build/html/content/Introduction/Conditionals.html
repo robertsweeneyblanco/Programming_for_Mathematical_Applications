@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.6. Conditionals &#8212; Programming for Mathematical Applications</title>
+    <title>1.5. Conditionals &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -63,8 +63,8 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Introduction/Conditionals.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.7. Repeated Evaluation: While-Loops" href="While_Loops.html" />
-    <link rel="prev" title="1.5. Repeated Evaluation: For-Loops" href="For_Loops.html" />
+    <link rel="next" title="1.6. Repeated Evaluation: While-Loops" href="While_Loops.html" />
+    <link rel="prev" title="1.4. Repeated Evaluation: For-Loops" href="For_Loops.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,10 +187,9 @@
 <li class="toctree-l2"><a class="reference internal" href="Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Functions.html">1.3. Functions</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.5. For-Loops</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.6. Conditionals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.7. While-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.4. For-Loops</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.5. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="While_Loops.html">1.6. While-Loops</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -504,17 +503,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-expressions">1.6.1. Boolean Expressions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators">1.6.1.1. Relational Operators</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">1.6.1.2. Logical Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-expressions">1.5.1. Boolean Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators">1.5.1.1. Relational Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">1.5.1.2. Logical Operators</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-comparisons">1.6.2. Chained Comparisons</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.6.3. The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">1.6.4. The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-conditionals-with-elseif">1.6.5. Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-fibonacci-sequence">1.6.6. Example: The Fibonacci Sequence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-project-euler-problem-1">1.6.7. Example: Project Euler Problem 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-comparisons">1.5.2. Chained Comparisons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.5.3. The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">1.5.4. The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-conditionals-with-elseif">1.5.5. Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-fibonacci-sequence">1.5.6. Example: The Fibonacci Sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-project-euler-problem-1">1.5.7. Example: Project Euler Problem 1</a></li>
 </ul>
             </nav>
         </div>
@@ -527,10 +526,10 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="conditionals">
-<h1><span class="section-number">1.6. </span>Conditionals<a class="headerlink" href="#conditionals" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">1.5. </span>Conditionals<a class="headerlink" href="#conditionals" title="Link to this heading">#</a></h1>
 <p>A <strong>conditional statement</strong> allows a block of code to be executed only if a certain condition is met. To build these statements, we first need to understand how to express logical conditions.</p>
 <section id="boolean-expressions">
-<h2><span class="section-number">1.6.1. </span>Boolean Expressions<a class="headerlink" href="#boolean-expressions" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5.1. </span>Boolean Expressions<a class="headerlink" href="#boolean-expressions" title="Link to this heading">#</a></h2>
 <p>A <strong>boolean expression</strong> is an expression that evaluates to either <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>. For example, the operator <code class="docutils literal notranslate"><span class="pre">==</span></code> compares two values and returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if they are equal and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -569,7 +568,7 @@ document.write(`
 </div>
 </div>
 <section id="relational-operators">
-<h3><span class="section-number">1.6.1.1. </span>Relational Operators<a class="headerlink" href="#relational-operators" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.5.1.1. </span>Relational Operators<a class="headerlink" href="#relational-operators" title="Link to this heading">#</a></h3>
 <p>These operators compare two values and produce a boolean result.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -602,7 +601,7 @@ document.write(`
 <p><em>Note: To type the special Unicode characters like <code class="docutils literal notranslate"><span class="pre">≠</span></code>, <code class="docutils literal notranslate"><span class="pre">≥</span></code>, and <code class="docutils literal notranslate"><span class="pre">≤</span></code>, type their LaTeX command (e.g., <code class="docutils literal notranslate"><span class="pre">\ne</span></code>, <code class="docutils literal notranslate"><span class="pre">\ge</span></code>, <code class="docutils literal notranslate"><span class="pre">\le</span></code>) and press the <code class="docutils literal notranslate"><span class="pre">&lt;Tab&gt;</span></code> key.</em></p>
 </section>
 <section id="logical-operators">
-<h3><span class="section-number">1.6.1.2. </span>Logical Operators<a class="headerlink" href="#logical-operators" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.5.1.2. </span>Logical Operators<a class="headerlink" href="#logical-operators" title="Link to this heading">#</a></h3>
 <p>These operators are used to combine boolean expressions.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -667,7 +666,7 @@ document.write(`
 </section>
 </section>
 <section id="chained-comparisons">
-<h2><span class="section-number">1.6.2. </span>Chained Comparisons<a class="headerlink" href="#chained-comparisons" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5.2. </span>Chained Comparisons<a class="headerlink" href="#chained-comparisons" title="Link to this heading">#</a></h2>
 <p>Unlike many other languages, Julia allows you to chain comparison operators for a more natural, mathematical syntax. The chained expression is evaluated from left to right as a series of <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> (AND) operations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -701,7 +700,7 @@ document.write(`
 </div>
 </section>
 <section id="the-if-statement">
-<h2><span class="section-number">1.6.3. </span>The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement<a class="headerlink" href="#the-if-statement" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5.3. </span>The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement<a class="headerlink" href="#the-if-statement" title="Link to this heading">#</a></h2>
 <p>An <code class="docutils literal notranslate"><span class="pre">if</span></code> statement uses a boolean expression to decide which block of code to execute. The syntax is:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="n">condition</span>
 <span class="w">    </span><span class="c"># Code to run if condition is true</span>
@@ -747,7 +746,7 @@ document.write(`
 </div>
 </section>
 <section id="the-if-else-statement">
-<h2><span class="section-number">1.6.4. </span>The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement<a class="headerlink" href="#the-if-else-statement" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5.4. </span>The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement<a class="headerlink" href="#the-if-else-statement" title="Link to this heading">#</a></h2>
 <p>You can add an <code class="docutils literal notranslate"><span class="pre">else</span></code> block to provide an alternative path for when the <code class="docutils literal notranslate"><span class="pre">if</span></code> condition is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="n">condition</span>
 <span class="w">    </span><span class="c"># Code to run if condition is true</span>
@@ -800,7 +799,7 @@ document.write(`
 </div>
 </section>
 <section id="chained-conditionals-with-elseif">
-<h2><span class="section-number">1.6.5. </span>Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code><a class="headerlink" href="#chained-conditionals-with-elseif" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5.5. </span>Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code><a class="headerlink" href="#chained-conditionals-with-elseif" title="Link to this heading">#</a></h2>
 <p>To handle more than two possibilities, you can chain conditions using <code class="docutils literal notranslate"><span class="pre">elseif</span></code>.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="n">condition1</span>
 <span class="w">    </span><span class="c"># Code for condition1</span>
@@ -870,7 +869,7 @@ document.write(`
 </div>
 </section>
 <section id="example-the-fibonacci-sequence">
-<h2><span class="section-number">1.6.6. </span>Example: The Fibonacci Sequence<a class="headerlink" href="#example-the-fibonacci-sequence" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5.6. </span>Example: The Fibonacci Sequence<a class="headerlink" href="#example-the-fibonacci-sequence" title="Link to this heading">#</a></h2>
 <p>A common use for <code class="docutils literal notranslate"><span class="pre">if</span></code> statements is to handle special cases or initial conditions before starting a more general computation. The Fibonacci sequence is a perfect example.</p>
 <p>The sequence is defined by its first two terms, <span class="math notranslate nohighlight">\(F_0 = 0\)</span> and <span class="math notranslate nohighlight">\(F_1 = 1\)</span>, and the recurrence relation:
 $<span class="math notranslate nohighlight">\( F_{k} = F_{k-1} + F_{k-2} \qquad \text{for } k \ge 2 \)</span>$</p>
@@ -951,7 +950,7 @@ $<span class="math notranslate nohighlight">\( F_{k} = F_{k-1} + F_{k-2} \qquad 
 </div>
 </section>
 <section id="example-project-euler-problem-1">
-<h2><span class="section-number">1.6.7. </span>Example: Project Euler Problem 1<a class="headerlink" href="#example-project-euler-problem-1" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5.7. </span>Example: Project Euler Problem 1<a class="headerlink" href="#example-project-euler-problem-1" title="Link to this heading">#</a></h2>
 <p>Let’s solve the following computational number theory problem using loops and conditionals.</p>
 <blockquote>
 <div><p><em>If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</em></p>
@@ -1048,7 +1047,7 @@ $<span class="math notranslate nohighlight">\( F_{k} = F_{k-1} + F_{k-2} \qquad 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.5. </span>Repeated Evaluation: For-Loops</p>
+        <p class="prev-next-title"><span class="section-number">1.4. </span>Repeated Evaluation: For-Loops</p>
       </div>
     </a>
     <a class="right-next"
@@ -1056,7 +1055,7 @@ $<span class="math notranslate nohighlight">\( F_{k} = F_{k-1} + F_{k-2} \qquad 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.7. </span>Repeated Evaluation: While-Loops</p>
+        <p class="prev-next-title"><span class="section-number">1.6. </span>Repeated Evaluation: While-Loops</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1076,17 +1075,17 @@ $<span class="math notranslate nohighlight">\( F_{k} = F_{k-1} + F_{k-2} \qquad 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-expressions">1.6.1. Boolean Expressions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators">1.6.1.1. Relational Operators</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">1.6.1.2. Logical Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-expressions">1.5.1. Boolean Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators">1.5.1.1. Relational Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">1.5.1.2. Logical Operators</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-comparisons">1.6.2. Chained Comparisons</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.6.3. The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">1.6.4. The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-conditionals-with-elseif">1.6.5. Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-fibonacci-sequence">1.6.6. Example: The Fibonacci Sequence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-project-euler-problem-1">1.6.7. Example: Project Euler Problem 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-comparisons">1.5.2. Chained Comparisons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.5.3. The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">1.5.4. The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chained-conditionals-with-elseif">1.5.5. Chained Conditionals with <code class="docutils literal notranslate"><span class="pre">elseif</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-fibonacci-sequence">1.5.6. Example: The Fibonacci Sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-project-euler-problem-1">1.5.7. Example: Project Euler Problem 1</a></li>
 </ul>
   </nav></div>
 

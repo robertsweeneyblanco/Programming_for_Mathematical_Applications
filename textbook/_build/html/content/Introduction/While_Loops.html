@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.7. Repeated Evaluation: While-Loops &#8212; Programming for Mathematical Applications</title>
+    <title>1.6. Repeated Evaluation: While-Loops &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="2. Arrays and Dictionaries" href="../Arrays_and_Dictionaries/Chapter_Intro.html" />
-    <link rel="prev" title="1.6. Conditionals" href="Conditionals.html" />
+    <link rel="prev" title="1.5. Conditionals" href="Conditionals.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,10 +187,9 @@
 <li class="toctree-l2"><a class="reference internal" href="Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Functions.html">1.3. Functions</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.5. For-Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.6. Conditionals</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.7. While-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="For_Loops.html">1.4. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Conditionals.html">1.5. Conditionals</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.6. While-Loops</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Arrays_and_Dictionaries/Chapter_Intro.html">2. Arrays and Dictionaries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -504,12 +503,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">1.7.1. Key Points</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-break-statement">1.7.2. The <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continue-statement">1.7.3. The <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-square-root-calculation">1.7.4. Example: Square Root Calculation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-while-true-and-break">1.7.4.1. Method 1: Using <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-condition-in-the-while-statement">1.7.4.2. Method 2: Condition in the <code class="docutils literal notranslate"><span class="pre">while</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">1.6.1. Key Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-break-statement">1.6.2. The <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continue-statement">1.6.3. The <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-square-root-calculation">1.6.4. Example: Square Root Calculation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-while-true-and-an-if-statement">1.6.4.1. Method 1: Using <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-condition-in-the-while-statement">1.6.4.2. Method 2: Condition in the <code class="docutils literal notranslate"><span class="pre">while</span></code> Statement</a></li>
 </ul>
 </li>
 </ul>
@@ -524,7 +523,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="repeated-evaluation-while-loops">
-<h1><span class="section-number">1.7. </span>Repeated Evaluation: While-Loops<a class="headerlink" href="#repeated-evaluation-while-loops" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">1.6. </span>Repeated Evaluation: While-Loops<a class="headerlink" href="#repeated-evaluation-while-loops" title="Link to this heading">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">for</span></code>-loops are ideal when you know the number of iterations in advance, like when computing a finite sum <span class="math notranslate nohighlight">\(s_n = \sum_{i=1}^n \frac{1}{i}\)</span>.</p>
 <p>However, sometimes the number of iterations isn’t known beforehand. For example, what if we needed to add terms to <span class="math notranslate nohighlight">\(s_n\)</span> until the next term becomes smaller than some tolerance <span class="math notranslate nohighlight">\(\delta\)</span>? For problems like this, a <code class="docutils literal notranslate"><span class="pre">while</span></code>-loop is the perfect tool.</p>
 <p>The basic syntax is:</p>
@@ -534,7 +533,7 @@ document.write(`
 </pre></div>
 </div>
 <section id="key-points">
-<h2><span class="section-number">1.7.1. </span>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.6.1. </span>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>If the <code class="docutils literal notranslate"><span class="pre">condition</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> initially, the loop body will never execute.</p></li>
 <li><p>If the <code class="docutils literal notranslate"><span class="pre">condition</span></code> <em>never</em> becomes <code class="docutils literal notranslate"><span class="pre">false</span></code>, you will create an <strong>infinite loop</strong>.</p></li>
@@ -591,7 +590,7 @@ document.write(`
 </div>
 </section>
 <section id="the-break-statement">
-<h2><span class="section-number">1.7.2. </span>The <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement<a class="headerlink" href="#the-break-statement" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.6.2. </span>The <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement<a class="headerlink" href="#the-break-statement" title="Link to this heading">#</a></h2>
 <p>Sometimes it is useful to exit a loop from somewhere in the middle of its body. The <code class="docutils literal notranslate"><span class="pre">break</span></code> statement allows you to do this immediately.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="n">condition</span>
 <span class="w">    </span><span class="c"># ... some code ...</span>
@@ -605,17 +604,21 @@ document.write(`
 <p>This pattern is very common. A popular technique is to create a deliberate infinite loop with <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and then use an <code class="docutils literal notranslate"><span class="pre">if</span></code> condition with <code class="docutils literal notranslate"><span class="pre">break</span></code> to control the exit.</p>
 </section>
 <section id="the-continue-statement">
-<h2><span class="section-number">1.7.3. </span>The <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement<a class="headerlink" href="#the-continue-statement" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.6.3. </span>The <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement<a class="headerlink" href="#the-continue-statement" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement is similar to <code class="docutils literal notranslate"><span class="pre">break</span></code>, but instead of exiting the loop entirely, it immediately skips to the <strong>next iteration</strong>, bypassing any remaining code in the current iteration. This is useful for skipping certain steps under specific conditions.</p>
 </section>
 <section id="example-square-root-calculation">
-<h2><span class="section-number">1.7.4. </span>Example: Square Root Calculation<a class="headerlink" href="#example-square-root-calculation" title="Link to this heading">#</a></h2>
-<p>A classic way to compute square roots is with <strong>Newton’s method</strong>. To find <span class="math notranslate nohighlight">\(\sqrt{a}\)</span>, we can iteratively improve an estimate <span class="math notranslate nohighlight">\(x_n\)</span> using the formula:
-$<span class="math notranslate nohighlight">\( x_{n+1} = \frac{1}{2} \left( x_n + \frac{a}{x_n} \right) \)</span><span class="math notranslate nohighlight">\(
-We start with an initial guess, like \)</span>x_0 = 1.0<span class="math notranslate nohighlight">\(, and repeat until the change between successive estimates is smaller than some tolerance \)</span>\varepsilon$. This is a perfect task for a <code class="docutils literal notranslate"><span class="pre">while</span></code>-loop, and we will explore two common ways to structure it.</p>
-<section id="method-1-using-while-true-and-break">
-<h3><span class="section-number">1.7.4.1. </span>Method 1: Using <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code><a class="headerlink" href="#method-1-using-while-true-and-break" title="Link to this heading">#</a></h3>
-<p>One popular and readable pattern is to create an infinite loop with <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and then use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to <code class="docutils literal notranslate"><span class="pre">break</span></code> out of it once the convergence criterion is met. This keeps the termination logic cleanly separated inside the loop body.</p>
+<h2><span class="section-number">1.6.4. </span>Example: Square Root Calculation<a class="headerlink" href="#example-square-root-calculation" title="Link to this heading">#</a></h2>
+<p>A classic way to compute square roots is with <strong>Newton’s method</strong>. To find <span class="math notranslate nohighlight">\(\sqrt{a}\)</span>, we can iteratively improve an estimate <span class="math notranslate nohighlight">\(x_n\)</span> using the formula:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{n+1} = \frac{1}{2} \left( x_n + \frac{a}{x_n} \right)
+\]</div>
+<p>We start with an initial guess, like <span class="math notranslate nohighlight">\(x_0 = 1.0\)</span>, and repeat until the change between successive estimates is smaller than some tolerance <span class="math notranslate nohighlight">\(\varepsilon\)</span>. This is a perfect task for a <code class="docutils literal notranslate"><span class="pre">while</span></code>-loop, and we will explore two common ways to structure it.</p>
+<section id="method-1-using-while-true-and-an-if-statement">
+<h3><span class="section-number">1.6.4.1. </span>Method 1: Using <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement<a class="headerlink" href="#method-1-using-while-true-and-an-if-statement" title="Link to this heading">#</a></h3>
+<p>One popular and readable pattern is to create an infinite loop with <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and then use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to exit once the convergence criterion is met. This keeps the termination logic cleanly separated inside the loop body.</p>
+<p>While <code class="docutils literal notranslate"><span class="pre">break</span></code> is often used to exit a loop, it’s even more direct to use <code class="docutils literal notranslate"><span class="pre">return</span></code> when the loop is inside a function. This immediately exits the entire function and sends back the final value, making the code more concise.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">my_sqrt_v1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">ε</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-15</span><span class="p">)</span><span class="w"> </span><span class="c"># Use a default value for the tolerance ε</span>
@@ -668,7 +671,7 @@ Current estimate: x = 16.0
 </div>
 </section>
 <section id="method-2-condition-in-the-while-statement">
-<h3><span class="section-number">1.7.4.2. </span>Method 2: Condition in the <code class="docutils literal notranslate"><span class="pre">while</span></code> Statement<a class="headerlink" href="#method-2-condition-in-the-while-statement" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.6.4.2. </span>Method 2: Condition in the <code class="docutils literal notranslate"><span class="pre">while</span></code> Statement<a class="headerlink" href="#method-2-condition-in-the-while-statement" title="Link to this heading">#</a></h3>
 <p>A more traditional approach is to place the termination logic directly in the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop’s condition. This requires carefully initializing variables <em>before</em> the loop starts to ensure the condition can be evaluated correctly on the first pass.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -757,7 +760,7 @@ Current estimate: x = 16.0
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.6. </span>Conditionals</p>
+        <p class="prev-next-title"><span class="section-number">1.5. </span>Conditionals</p>
       </div>
     </a>
     <a class="right-next"
@@ -785,12 +788,12 @@ Current estimate: x = 16.0
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">1.7.1. Key Points</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-break-statement">1.7.2. The <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continue-statement">1.7.3. The <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-square-root-calculation">1.7.4. Example: Square Root Calculation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-while-true-and-break">1.7.4.1. Method 1: Using <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-condition-in-the-while-statement">1.7.4.2. Method 2: Condition in the <code class="docutils literal notranslate"><span class="pre">while</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">1.6.1. Key Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-break-statement">1.6.2. The <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continue-statement">1.6.3. The <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-square-root-calculation">1.6.4. Example: Square Root Calculation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-while-true-and-an-if-statement">1.6.4.1. Method 1: Using <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> and an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-condition-in-the-while-statement">1.6.4.2. Method 2: Condition in the <code class="docutils literal notranslate"><span class="pre">while</span></code> Statement</a></li>
 </ul>
 </li>
 </ul>
