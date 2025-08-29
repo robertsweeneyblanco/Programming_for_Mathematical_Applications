@@ -1,0 +1,1377 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.1. Introduction to Arrays &#8212; Programming for Mathematical Applications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Arrays_and_Collections/Introduction_To_Arrays';</script>
+    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Arrays_and_Collections/Introduction_To_Arrays.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.2. Multi-dimensional Arrays" href="Multi_Dimensional_Arrays.html" />
+    <link rel="prev" title="2. Arrays and Other Collections" href="Chapter_Intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Programming for Mathematical Applications - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Programming for Mathematical Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Programming for Mathematical Applications
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Introduction/Chapter_Intro.html">1. Introduction to Julia</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Julia_As_A_Calculator.html">1.1. Julia as a Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Variables_And_Assignments.html">1.2. Variables and Assignments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Functions.html">1.3. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/For_Loops.html">1.4. For-Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/Conditionals.html">1.5. Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Introduction/While_Loops.html">1.6. While-Loops</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Chapter_Intro.html">2. Arrays and Other Collections</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1. Introduction to Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Multi_Dimensional_Arrays.html">2.2. Multi-dimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tuples.html">2.3. Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dictionaries.html">2.4. Dictionaries</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Plotting/Plotting.html">3. Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Debugging/Debugging.html">4. Debugging</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Random_Numbers/Chapter_Intro.html">5. Random Numbers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Distributions.html">5.1. Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Histograms.html">5.2. Histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Random_Numbers/Monte_Carlo.html">5.3. Monte Carlo</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Special_Number_Types/Chapter_Intro.html">7. Special Number Types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Arbitrary_Precision_Integers.html">7.1. Arbitrary Precision Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Arbitrary_Precision_Floats.html">7.2. Arbitrary Precision Floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Complex_Numbers.html">7.3. Complex Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Rational_Numbers.html">7.4. Rational Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Special_Number_Types/Arrays_of_Special_Numbers.html">7.5. Arrays of Special Numbers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Recursion/Recursion.html">8. Recursion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Linear_Algebra/Chapter_Intro.html">9. Linear Algebra</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Matrix_Operations.html">9.1. Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Special_Matrices.html">9.2. Special Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Linear_Algebra/Linear_Systems_And_Regression.html">9.3. Linear Systems and Regression</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Strings_and_File_Processing/Chapter_Intro.html">10. Strings and File Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/String_Basics.html">10.1. String Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/String_Functions.html">10.2. String Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Strings_and_File_Processing/File_Processing.html">10.3. File Processing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Composite_Types_and_Objects/Composite_Types_and_Objects.html">11. Composite Types and Objects</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Computational_Geometry/Chapter_Intro.html">12. Computational Geometry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Convex_Hull.html">12.1. Convex Hull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Line_Segment_Interactions.html">12.2. Line-segment Interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Computational_Geometry/Triangulations.html">12.3. Triangulations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Image_Processing/Chapter_Intro.html">13. Image Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Reading_And_Plotting_Images.html">13.1. Reading and Plotting Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Image_Scaling.html">13.2. Image Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Filtering.html">13.3. Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Image_Processing/Fourier_Transform.html">13.4. Fourier Transform</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Differential_Equations/Chapter_Intro.html">14. Differential Equations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Initial_Value_Problems.html">14.1. Initial Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Higher_Order_Derivatives_Systems_Of_ODEs.html">14.2. Higher Order Derivatives and Systems of ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/Boundary_Value_Problems.html">14.3. Boundary Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Differential_Equations/DifferentialEquations_Package.html">14.4. DifferentialEquations Package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Graphs/Chapter_Intro.html">15. Graphs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Basics.html">15.1. Graph Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Graphs/Graph_Algorithms.html">15.2. Graph Algorithms</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Sparse_Matrices/Chapter_Intro.html">16. Sparse Matrices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Matrix_Designs.html">16.1. Matrix Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Sparse_Matrices_In_Julia.html">16.2. Sparse Matrices in Julia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Graphs.html">16.3. Application; Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sparse_Matrices/Application_Google_Page_Rank.html">16.4. Application; Google Page Rank</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Symbolic_Algebra/Chapter_Intro.html">17. Symbolic Algebra</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Optimization/Chapter_Intro.html">18. Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Gradient_Based_Optimization.html">18.1. Gradient Based Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Optimization/Optim_Package.html">18.2. Optim Package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Appendices/Chapter_Intro.html">19. Appendices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Appendices/Floating_Point_Arithmetic.html">19.1. Floating Point Arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Appendices/Algorithmic_Efficiency.html">19.2. Algorithmic Efficiency</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Arrays_and_Collections/Introduction_To_Arrays.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Arrays_and_Collections/Introduction_To_Arrays.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/Arrays_and_Collections/Introduction_To_Arrays.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Arrays</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-1-d-arrays-vectors">2.1.1. Creating 1-D Arrays (Vectors)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays-with-functions">2.1.1.1. Creating Arrays with Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-elements-to-an-array">2.1.1.2. Adding Elements to an Array</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-and-modifying-elements">2.1.2. Accessing and Modifying Elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traversing-an-array">2.1.3. Traversing an Array</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-by-index">2.1.3.1. Looping by Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-elements-directly">2.1.3.2. Looping Over Elements Directly</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-sieve-of-eratosthenes">2.1.4. Example: The Sieve of Eratosthenes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-wise-operations-dot-syntax">2.1.5. Element-wise Operations (Dot Syntax)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting-rules">2.1.5.1. Broadcasting Rules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-slicing">2.1.6. Array Slicing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays-from-ranges">2.1.6.1. Creating Arrays from Ranges</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-references-how-arrays-behave">2.1.7. Shared References: How Arrays Behave</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#behavior-in-functions">2.1.7.1. Behavior in Functions</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-arrays">
+<h1><span class="section-number">2.1. </span>Introduction to Arrays<a class="headerlink" href="#introduction-to-arrays" title="Link to this heading">#</a></h1>
+<p>An <strong>array</strong> in Julia is an ordered collection of elements. These elements can be of any type, though arrays of numbers (like integers or floating-point numbers) are very common for representing <strong>vectors</strong>, <strong>matrices</strong>, and <strong>tensors</strong>. The individual values in an array are called its elements.</p>
+<p>Julia’s array implementation is highly optimized and serves as a fundamental data structure for scientific and technical computing. Unlike some other languages, Julia does not require a “vectorized” style for performance; its compiler generates highly efficient code even for standard scalar indexing loops.</p>
+<section id="creating-1-d-arrays-vectors">
+<h2><span class="section-number">2.1.1. </span>Creating 1-D Arrays (Vectors)<a class="headerlink" href="#creating-1-d-arrays-vectors" title="Link to this heading">#</a></h2>
+<p>The simplest way to create a 1D array (or a <strong>vector</strong>) is to enclose a comma-separated list of its elements in square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Int64}:
+  1
+  2
+  4
+ -3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vector{Int64} (alias for Array{Int64, 1})
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output shows that <code class="docutils literal notranslate"><span class="pre">x</span></code> has the type <code class="docutils literal notranslate"><span class="pre">Vector{Int64}</span></code>. As <code class="docutils literal notranslate"><span class="pre">typeof</span></code> reveals, <code class="docutils literal notranslate"><span class="pre">Vector</span></code> is a convenient alias for a 1-dimensional <code class="docutils literal notranslate"><span class="pre">Array</span></code>. Julia automatically inferred that the elements are integers and used the default type, <code class="docutils literal notranslate"><span class="pre">Int64</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># If the elements are mixed numeric types, Julia promotes them to a common type.</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="nb">π</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1e-1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Float64}:
+  1.1
+  3.141592653589793
+ -1.3333333333333333
+  0.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">y</span></code> is also a vector, but since its elements include floating-point numbers, Julia promotes all elements to the default floating-point type, <code class="docutils literal notranslate"><span class="pre">Float64</span></code>.</p>
+<p>You can also explicitly specify the element type when creating an array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Create a vector of Float64s from a list of integers.</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Float64</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Float64}:
+  1.0
+  2.0
+  4.0
+ -3.0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="creating-arrays-with-functions">
+<h3><span class="section-number">2.1.1.1. </span>Creating Arrays with Functions<a class="headerlink" href="#creating-arrays-with-functions" title="Link to this heading">#</a></h3>
+<p>Arrays can also be created using built-in functions. The most common ones are:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Function</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">zeros(T,</span> <span class="pre">n)</span></code></p></td>
+<td class="text-left"><p>Creates a vector of length <code class="docutils literal notranslate"><span class="pre">n</span></code> filled with zeros of type <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ones(T,</span> <span class="pre">n)</span></code></p></td>
+<td class="text-left"><p>Creates a vector of length <code class="docutils literal notranslate"><span class="pre">n</span></code> filled with ones of type <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">trues(n)</span></code></p></td>
+<td class="text-left"><p>Creates a boolean vector of length <code class="docutils literal notranslate"><span class="pre">n</span></code> with all values <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">falses(n)</span></code></p></td>
+<td class="text-left"><p>Creates a boolean vector of length <code class="docutils literal notranslate"><span class="pre">n</span></code> with all values <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fill(value,</span> <span class="pre">n)</span></code></p></td>
+<td class="text-left"><p>Creates a vector of length <code class="docutils literal notranslate"><span class="pre">n</span></code> with every element set to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">zeros</span></code> and <code class="docutils literal notranslate"><span class="pre">ones</span></code>, the type <code class="docutils literal notranslate"><span class="pre">T</span></code> is optional and defaults to <code class="docutils literal notranslate"><span class="pre">Float64</span></code>.</p>
+<blockquote>
+<div><p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">fill</span></code> function is very general and can reproduce the behavior of the others. For example, <code class="docutils literal notranslate"><span class="pre">zeros(Int32,</span> <span class="pre">5)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">fill(Int32(0),</span> <span class="pre">5)</span></code>, and <code class="docutils literal notranslate"><span class="pre">trues(3)</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">fill(true,</span> <span class="pre">3)</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="adding-elements-to-an-array">
+<h3><span class="section-number">2.1.1.2. </span>Adding Elements to an Array<a class="headerlink" href="#adding-elements-to-an-array" title="Link to this heading">#</a></h3>
+<p>You can also add new elements to an array (changing the size). For example, <code class="docutils literal notranslate"><span class="pre">push!</span></code> adds a new element to the end of an array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">push!</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Float64}:
+  1.0
+  2.0
+  4.0
+ -3.0
+ 10.0
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Convention:</strong> The exclamation mark <code class="docutils literal notranslate"><span class="pre">!</span></code> at the end of a function’s name indicates that the function <strong>modifies</strong> one or more of its arguments. Here, <code class="docutils literal notranslate"><span class="pre">push!</span></code> modifies the array <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
+</div></blockquote>
+<p>Similarly, the <code class="docutils literal notranslate"><span class="pre">append!</span></code> function adds the elements from a second array to the end of the first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">append!</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9-element Vector{Float64}:
+  1.0
+  2.0
+  4.0
+ -3.0
+ 10.0
+  1.1
+  3.141592653589793
+ -1.3333333333333333
+  0.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="accessing-and-modifying-elements">
+<h2><span class="section-number">2.1.2. </span>Accessing and Modifying Elements<a class="headerlink" href="#accessing-and-modifying-elements" title="Link to this heading">#</a></h2>
+<p>You can access an element in an array using its <strong>index</strong> inside square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>. A key feature of Julia is that its arrays are <strong>1-indexed</strong>, meaning the first element is at index <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Access the 3rd element in the array y.</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.3333333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<p>The keyword <code class="docutils literal notranslate"><span class="pre">end</span></code> can be used as a convenient shorthand for the last index of an array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Access the last and second-to-last elements of z.</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Last element: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="k">end</span><span class="p">])</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Second-to-last element: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last element: 0.1
+Second-to-last element: -1.3333333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<p>Arrays are <strong>mutable</strong>, so you can also use indexing to modify elements. Simply assign a new value to an indexed position.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Set the 1st element of z to the product of the last two elements.</span>
+<span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="k">end</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c"># Display the modified array.</span>
+<span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9-element Vector{Float64}:
+ -0.13333333333333333
+  2.0
+  4.0
+ -3.0
+ 10.0
+  1.1
+  3.141592653589793
+ -1.3333333333333333
+  0.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="traversing-an-array">
+<h2><span class="section-number">2.1.3. </span>Traversing an Array<a class="headerlink" href="#traversing-an-array" title="Link to this heading">#</a></h2>
+<p>A common and essential operation is to <strong>traverse</strong> an array, meaning to access each of its elements in sequence. A <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop is the perfect tool for this, and Julia offers a couple of convenient ways to write one.</p>
+<section id="looping-by-index">
+<h3><span class="section-number">2.1.3.1. </span>Looping by Index<a class="headerlink" href="#looping-by-index" title="Link to this heading">#</a></h3>
+<p>If you need both the index and the value of each element, you can loop from <code class="docutils literal notranslate"><span class="pre">1</span></code> to the <code class="docutils literal notranslate"><span class="pre">length</span></code> of the array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Element at index &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; has the value &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Element at index 1 has the value 1
+Element at index 2 has the value 2
+Element at index 3 has the value 4
+Element at index 4 has the value -3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="looping-over-elements-directly">
+<h3><span class="section-number">2.1.3.2. </span>Looping Over Elements Directly<a class="headerlink" href="#looping-over-elements-directly" title="Link to this heading">#</a></h3>
+<p>If you only need the value of each element, you can use the <code class="docutils literal notranslate"><span class="pre">in</span></code> keyword for a more direct and often more readable syntax. The loop variable will be assigned each element of the array in order.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;The next element&#39;s value is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The next element&#39;s value is 1
+The next element&#39;s value is 2
+The next element&#39;s value is 4
+The next element&#39;s value is -3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-the-sieve-of-eratosthenes">
+<h2><span class="section-number">2.1.4. </span>Example: The Sieve of Eratosthenes<a class="headerlink" href="#example-the-sieve-of-eratosthenes" title="Link to this heading">#</a></h2>
+<p>Arrays are perfect for implementing classic algorithms. The <strong>Sieve of Eratosthenes</strong> is an ancient and efficient method for finding all prime numbers up to a given limit, <span class="math notranslate nohighlight">\(n\)</span>. According to Wikipedia, the algorithm is as follows:</p>
+<ol class="arabic simple">
+<li><p>Create a list of consecutive integers from <span class="math notranslate nohighlight">\(2\)</span> through <span class="math notranslate nohighlight">\(n\)</span>: <span class="math notranslate nohighlight">\((2, 3, 4, ..., n)\)</span>.</p></li>
+<li><p>Initially, let <span class="math notranslate nohighlight">\(p\)</span> equal <span class="math notranslate nohighlight">\(2\)</span>, the smallest prime number.</p></li>
+<li><p>Enumerate the multiples of <span class="math notranslate nohighlight">\(p\)</span> by counting in increments of <span class="math notranslate nohighlight">\(p\)</span> from <span class="math notranslate nohighlight">\(2p\)</span> to <span class="math notranslate nohighlight">\(n\)</span>, and mark them in the list (these will be <span class="math notranslate nohighlight">\(2p\)</span>, <span class="math notranslate nohighlight">\(3p\)</span>, <span class="math notranslate nohighlight">\(4p\)</span>, …; the <span class="math notranslate nohighlight">\(p\)</span> itself should not be marked).</p></li>
+<li><p>Find the first number greater than <span class="math notranslate nohighlight">\(p\)</span> in the list that is not marked. If there was no such number, stop. Otherwise, let <span class="math notranslate nohighlight">\(p\)</span> now equal this new number (which is the next prime), and repeat from step 3.</p></li>
+<li><p>When the algorithm terminates, the numbers remaining not marked in the list are all the primes below <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+</ol>
+<p>A key refinement is that in step 3, we only need to start marking multiples from <span class="math notranslate nohighlight">\(p^2\)</span>. Any smaller multiple, like <span class="math notranslate nohighlight">\(2p\)</span>, would have already been marked when we processed the smaller prime factor (in this case, 2). This also means we can stop the main loop (step 4) when <span class="math notranslate nohighlight">\(p^2\)</span> exceeds <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Wikipedia also provides an animation to illustrate the method:</p>
+<p><img alt="Wikipedia Sieve of Eratosthenes animation" src="../../_images/sieve_of_eratosthenes.gif" /></p>
+<p>Our implementation will use a boolean array where <code class="docutils literal notranslate"><span class="pre">is_prime[k]</span></code> keeps track of whether the number <code class="docutils literal notranslate"><span class="pre">k</span></code> is considered prime. To determine the upper bound for our main loop (<span class="math notranslate nohighlight">\(p^2 \le n\)</span>), we can use the <code class="docutils literal notranslate"><span class="pre">isqrt(n)</span></code> function, which efficiently calculates the integer part of <span class="math notranslate nohighlight">\(\sqrt{n}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">SieveOfEratosthenes</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Create a boolean array, initially assuming all numbers are prime.</span>
+<span class="w">    </span><span class="n">is_prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trues</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">is_prime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="c"># 1 is not a prime number.</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># Iterate from p=2 up to sqrt(n).</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">isqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">        </span><span class="c"># If p is still marked as prime...</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">is_prime</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+<span class="w">            </span><span class="c"># ...then mark all of its multiples (starting from p^2) as not prime.</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="mi">2</span><span class="o">:</span><span class="n">p</span><span class="o">:</span><span class="n">n</span>
+<span class="w">                </span><span class="n">is_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+<span class="w">            </span><span class="k">end</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># Collect all numbers that are still marked as prime.</span>
+<span class="w">    </span><span class="n">primes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Int64</span><span class="p">[]</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">is_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">            </span><span class="n">push!</span><span class="p">(</span><span class="n">primes</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">primes</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SieveOfEratosthenes (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Find all prime numbers up to 100.</span>
+<span class="n">SieveOfEratosthenes</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25-element Vector{Int64}:
+  2
+  3
+  5
+  7
+ 11
+ 13
+ 17
+ 19
+ 23
+ 29
+ 31
+ 37
+ 41
+ 43
+ 47
+ 53
+ 59
+ 61
+ 67
+ 71
+ 73
+ 79
+ 83
+ 89
+ 97
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Find the largest prime number less than 1,000,000.</span>
+<span class="n">SieveOfEratosthenes</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)[</span><span class="k">end</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>999983
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="element-wise-operations-dot-syntax">
+<h2><span class="section-number">2.1.5. </span>Element-wise Operations (Dot Syntax)<a class="headerlink" href="#element-wise-operations-dot-syntax" title="Link to this heading">#</a></h2>
+<p>A powerful feature in Julia is the <strong>dot syntax</strong> for vectorization. By placing a dot <code class="docutils literal notranslate"><span class="pre">.</span></code> before an operator or after a function name, you can apply that operation to <em>every element</em> of an array. This is often called <strong>broadcasting</strong>.</p>
+<p>This avoids writing explicit loops and results in code that is more concise, readable, and often much faster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mf">3.1</span><span class="p">]</span>
+
+<span class="c"># Element-wise multiplication: computes [1*0.2, 3*4.0, 5*3.1]</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+  0.2
+ 12.0
+ 15.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Apply the sqrt function to each element of x.</span>
+<span class="n">sqrt</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+ 1.0
+ 1.7320508075688772
+ 2.23606797749979
+</pre></div>
+</div>
+</div>
+</div>
+<p>The dot syntax can be combined to form complex element-wise expressions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># For each element i, this computes x[i] + sqrt(y[i] ^ x[i])</span>
+<span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="n">sqrt</span><span class="o">.</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">.^</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+  1.4472135954999579
+ 11.0
+ 21.920151004054308
+</pre></div>
+</div>
+</div>
+</div>
+<p>For expressions with many operations, Julia provides the <code class="docutils literal notranslate"><span class="pre">&#64;.</span></code> macro as a convenient shorthand. It automatically adds a dot to every operator and function call in the expression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The @. macro makes the previous expression cleaner.</span>
+<span class="nd">@.</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">y</span><span class="o">^</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+  1.4472135954999579
+ 11.0
+ 21.920151004054308
+</pre></div>
+</div>
+</div>
+</div>
+<section id="broadcasting-rules">
+<h3><span class="section-number">2.1.5.1. </span>Broadcasting Rules<a class="headerlink" href="#broadcasting-rules" title="Link to this heading">#</a></h3>
+<p>For element-wise operations between two arrays, their dimensions must be compatible. For 1D arrays, this generally means they must have the same length.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">]</span><span class="w"> </span><span class="c"># b has a different length than a</span>
+
+<span class="c"># This will cause a DimensionMismatch error.</span>
+<span class="n">a</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">DimensionMismatch</span>: arrays could not be broadcast to a common size: a has axes Base.OneTo(3) and b has axes Base.OneTo(4)
+
+<span class="ne">Stacktrace</span>:
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">_bcs1</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">broadcast</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">528</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">_bcs</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">broadcast</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">522</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">broadcast_shape</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">broadcast</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">516</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">combine_axes</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">broadcast</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">497</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="n">instantiate</span>
+   <span class="o">@</span> <span class="o">./</span><span class="n">broadcast</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">307</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="n">materialize</span><span class="p">(</span><span class="n">bc</span><span class="p">::</span><span class="n">Base</span><span class="o">.</span><span class="n">Broadcast</span><span class="o">.</span><span class="n">Broadcasted</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Broadcast</span><span class="o">.</span><span class="n">DefaultArrayStyle</span><span class="p">{</span><span class="mi">1</span><span class="p">},</span> <span class="n">Nothing</span><span class="p">,</span> <span class="n">typeof</span><span class="p">(</span><span class="o">+</span><span class="p">),</span> <span class="n">Tuple</span><span class="p">{</span><span class="n">Vector</span><span class="p">{</span><span class="n">Int64</span><span class="p">},</span> <span class="n">Vector</span><span class="p">{</span><span class="n">Int64</span><span class="p">}}})</span>
+   <span class="o">@</span> <span class="n">Base</span><span class="o">.</span><span class="n">Broadcast</span> <span class="o">./</span><span class="n">broadcast</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">872</span>
+ <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span><span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>An important exception is when one of the arguments is a <strong>scalar</strong> (a single number). In this case, the scalar is automatically “broadcast” across all the elements of the array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Subtracts 3 from every element of x.</span>
+<span class="n">x</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+ -2
+  0
+  2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, the dot syntax works automatically for any function you define, with no extra effort required.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">pick_largest</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">b</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pick_largest (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Compare z and w element-by-element and pick the larger value from each pair.</span>
+<span class="n">pick_largest</span><span class="o">.</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+  1.4472135954999579
+ 12.0
+ 21.920151004054308
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="array-slicing">
+<h2><span class="section-number">2.1.6. </span>Array Slicing<a class="headerlink" href="#array-slicing" title="Link to this heading">#</a></h2>
+<p><strong>Slicing</strong> is the process of extracting a subset of an array. You can create a slice using a <strong>range</strong> of indices (like <code class="docutils literal notranslate"><span class="pre">1:3</span></code>) or by providing a vector of the specific integer indices you want to extract.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.1</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">]</span>
+
+<span class="c"># A range `start:stop` extracts all elements from `start` to `stop`.</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;First 3 elements:    &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="c"># A range `start:step:stop` includes a step size.</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Odd-indexed elements:  &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="o">:</span><span class="k">end</span><span class="p">])</span>
+
+<span class="c"># A negative step reverses the order.</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Elements 2 to end, reversed: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="k">end</span><span class="o">:-</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c"># A single colon `:` is a shorthand to select all elements.</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;A copy of all elements:      &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">])</span>
+
+<span class="c"># You can also index with a vector of integers.</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;A custom selection:    &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First 3 elements:    [0.2, 4.0, 3.1]
+Odd-indexed elements:  [0.2, 3.1]
+Elements 2 to end, reversed: [7.0, 3.1, 4.0]
+A copy of all elements:      [0.2, 4.0, 3.1, 7.0]
+A custom selection:    [7.0, 4.0, 7.0, 3.1, 3.1]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="creating-arrays-from-ranges">
+<h3><span class="section-number">2.1.6.1. </span>Creating Arrays from Ranges<a class="headerlink" href="#creating-arrays-from-ranges" title="Link to this heading">#</a></h3>
+<p>As you’ve seen, the <code class="docutils literal notranslate"><span class="pre">start:stop</span></code> syntax creates a <code class="docutils literal notranslate"><span class="pre">Range</span></code> object, which is a very memory-efficient way to represent a sequence of numbers. While you can often use a <code class="docutils literal notranslate"><span class="pre">Range</span></code> just like an array, you can explicitly convert it into a regular array using the <code class="docutils literal notranslate"><span class="pre">collect</span></code> function if needed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># `1:3` is a Range object.</span>
+<span class="n">typeof</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UnitRange{Int64}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># `collect` turns the Range into a Vector.</span>
+<span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collect</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vector{Int64}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This works for any kind of range.</span>
+<span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collect</span><span class="p">(</span><span class="mi">10</span><span class="o">:-</span><span class="mf">2.5</span><span class="o">:-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6-element Vector{Float64}:
+ 10.0
+  7.5
+  5.0
+  2.5
+  0.0
+ -2.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="shared-references-how-arrays-behave">
+<h2><span class="section-number">2.1.7. </span>Shared References: How Arrays Behave<a class="headerlink" href="#shared-references-how-arrays-behave" title="Link to this heading">#</a></h2>
+<p>When you assign an existing array to a new variable or pass it to a function, you are not creating a copy. Instead, both variables now <strong>refer</strong> to the exact same array in memory. Think of it like giving two people different keys to the same house—a change made by one person will be seen by the other.</p>
+<p>This behavior is crucial for performance (as copying large arrays would be slow), but it’s important to be aware of.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+
+<span class="c"># `y` is not a new array; it&#39;s just another name for `x`.</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
+
+<span class="c"># Modify the array through `y`.</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;y = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="c"># Note that `x` has also changed!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y = [1, 123, 3]
+x = [1, 123, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> both point to the same underlying data, modifying an element through <code class="docutils literal notranslate"><span class="pre">y</span></code> also changes what <code class="docutils literal notranslate"><span class="pre">x</span></code> sees.</p>
+<p>If you truly want a new, independent copy of an array, use the <code class="docutils literal notranslate"><span class="pre">copy()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># `z` is now a completely separate copy of `x`.</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c"># Modifying `z` will not affect `x`.</span>
+<span class="n">z</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">53</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;z = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>z = [1, 123, -53]
+x = [1, 123, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="behavior-in-functions">
+<h3><span class="section-number">2.1.7.1. </span>Behavior in Functions<a class="headerlink" href="#behavior-in-functions" title="Link to this heading">#</a></h3>
+<p>This same distinction applies when passing arguments to functions. Simple types like numbers are passed by <strong>value</strong> (the function gets a copy), while arrays are passed as a <strong>shared reference</strong> (the function can modify the original).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">modify_scalar</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w">      </span><span class="c"># `s` is a copy of the original number.</span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">111</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">nothing</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">modify_vector!</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w">    </span><span class="c"># `v` is a reference to the original array.</span>
+<span class="w">    </span><span class="n">v</span><span class="p">[</span><span class="o">:</span><span class="p">]</span><span class="w"> </span><span class="o">.=</span><span class="w"> </span><span class="mi">111</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">nothing</span>
+<span class="k">end</span>
+
+<span class="c"># --- Test the scalar function ---</span>
+<span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">modify_scalar</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Scalar &#39;num&#39; is still: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="c"># Unchanged</span>
+
+<span class="c"># --- Test the vector function ---</span>
+<span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">modify_vector!</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Vector &#39;vec&#39; is now:  &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w">  </span><span class="c"># Changed!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scalar &#39;num&#39; is still: 0
+Vector &#39;vec&#39; is now:  [111.0, 111.0, 111.0, 111.0, 111.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.11"
+        },
+        kernelOptions: {
+            name: "julia-1.11",
+            path: "./content/Arrays_and_Collections"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Chapter_Intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Arrays and Other Collections</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Multi_Dimensional_Arrays.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Multi-dimensional Arrays</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-1-d-arrays-vectors">2.1.1. Creating 1-D Arrays (Vectors)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays-with-functions">2.1.1.1. Creating Arrays with Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-elements-to-an-array">2.1.1.2. Adding Elements to an Array</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-and-modifying-elements">2.1.2. Accessing and Modifying Elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traversing-an-array">2.1.3. Traversing an Array</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-by-index">2.1.3.1. Looping by Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-elements-directly">2.1.3.2. Looping Over Elements Directly</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-sieve-of-eratosthenes">2.1.4. Example: The Sieve of Eratosthenes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-wise-operations-dot-syntax">2.1.5. Element-wise Operations (Dot Syntax)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting-rules">2.1.5.1. Broadcasting Rules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-slicing">2.1.6. Array Slicing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays-from-ranges">2.1.6.1. Creating Arrays from Ranges</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-references-how-arrays-behave">2.1.7. Shared References: How Arrays Behave</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#behavior-in-functions">2.1.7.1. Behavior in Functions</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Per-Olof Persson, Michael Franco, and Robert Sweeney Blanco
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

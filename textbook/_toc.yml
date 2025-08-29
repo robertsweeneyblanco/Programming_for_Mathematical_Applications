@@ -27,13 +27,13 @@ chapters:
 - file: content/Arrays_and_Collections/Chapter_Intro
   title: Arrays and Other Collections
   sections:
-  - file: content/Arrays_and_Dictionaries/Introduction_To_Arrays
+  - file: content/Arrays_and_Collections/Introduction_To_Arrays
     title: Introduction to Arrays
-  - file: content/Arrays_and_Dictionaries/Multi_Dimensional_Arrays
+  - file: content/Arrays_and_Collections/Multi_Dimensional_Arrays
     title: Multi-dimensional Arrays
-  - file: content/Arrays_and_Dictionaries/Tuples
+  - file: content/Arrays_and_Collections/Tuples
     title: Tuples
-  - file: content/Arrays_and_Dictionaries/Dictionaries
+  - file: content/Arrays_and_Collections/Dictionaries
     title: Dictionaries
     
 - file: content/Plotting/Plotting

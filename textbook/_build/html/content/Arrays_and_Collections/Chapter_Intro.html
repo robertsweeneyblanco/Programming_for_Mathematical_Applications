@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3. Dictionaries &#8212; Programming for Mathematical Applications</title>
+    <title>2. Arrays and Other Collections &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -57,12 +57,14 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Arrays_and_Dictionaries/Dictionaries';</script>
-    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Arrays_and_Dictionaries/Dictionaries.html" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Arrays_and_Collections/Chapter_Intro';</script>
+    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Arrays_and_Collections/Chapter_Intro.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3. Plotting" href="../Plotting/Plotting.html" />
-    <link rel="prev" title="2.2. Multi-dimensional Arrays" href="Multi_Dimensional_Arrays.html" />
+    <link rel="next" title="2.1. Introduction to Arrays" href="Introduction_To_Arrays.html" />
+    <link rel="prev" title="1.6. Repeated Evaluation: While-Loops" href="../Introduction/While_Loops.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -190,10 +192,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../Introduction/While_Loops.html">1.6. While-Loops</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="Chapter_Intro.html">2. Arrays and Dictionaries</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2. Arrays and Other Collections</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Introduction_To_Arrays.html">2.1. Introduction to Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Multi_Dimensional_Arrays.html">2.2. Multi-dimensional Arrays</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tuples.html">2.3. Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dictionaries.html">2.4. Dictionaries</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Plotting/Plotting.html">3. Plotting</a></li>
@@ -321,37 +324,6 @@
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Arrays_and_Dictionaries/Dictionaries.ipynb&branch=master" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on JupyterHub"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
-  </span>
-<span class="btn__text-container">JupyterHub</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -377,7 +349,7 @@
       
       
       
-      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Arrays_and_Dictionaries/Dictionaries.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Arrays_and_Collections/Chapter_Intro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +379,7 @@
       
       
       
-      <li><a href="../../_sources/content/Arrays_and_Dictionaries/Dictionaries.ipynb" target="_blank"
+      <li><a href="../../_sources/content/Arrays_and_Collections/Chapter_Intro.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,7 +389,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -489,7 +461,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Dictionaries</h1>
+    <h1>Arrays and Other Collections</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -503,107 +475,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="dictionaries">
-<h1><span class="section-number">2.3. </span>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h1>
-<p>A dictionary is like an array, but more general. In an array, the indices have to be integers; in a dictionary they can be (almost) any type.</p>
-<p>A dictionary contains a collection of indices, which are called keys, and a collection of values. Each key is associated with a single value. The association of a key and a value is called a key-value pair or sometimes an item. An example of constructing a dictionary is given below</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Dict</span><span class="p">(</span><span class="s">&quot;Introduction to Real Analysis&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">104</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Programming for Mathematical Applications&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">124</span><span class="w"> </span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dict{String, Int64} with 2 entries:
-  &quot;Programming for Mathematical Applications&quot; =&gt; 124
-  &quot;Introduction to Real Analysis&quot;             =&gt; 104
-</pre></div>
-</div>
-</div>
-</div>
-<p>Here the keys are the Strings <em>Introduction to Real Analysis</em> and <em>Programming for Mathematical Applications</em>. If you would like to get the value a key is paired with, use the <code class="docutils literal notranslate"><span class="pre">get(collection,</span> <span class="pre">key,</span> <span class="pre">default)</span></code> function.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">get</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Programming for Mathematical Applications&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Class not found&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>124
-</pre></div>
-</div>
-</div>
-</div>
-<p>If the key is not found within the dictionary, the function will return the default value.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">get</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Introduction to Abstract Algebra&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Class not found&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Class not found&quot;
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can get values using bracket notation.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span><span class="p">[</span><span class="s">&quot;Programming for Mathematical Applications&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>124
-</pre></div>
-</div>
-</div>
-</div>
-<p>If you would like to insert a key-value mapping to the dictionary, use the <code class="docutils literal notranslate"><span class="pre">push!</span></code> function (just like arrays!).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">push!</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Introduction to Abstract Algebra&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">113</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dict{String, Int64} with 3 entries:
-  &quot;Programming for Mathematical Applications&quot; =&gt; 124
-  &quot;Introduction to Abstract Algebra&quot;          =&gt; 113
-  &quot;Introduction to Real Analysis&quot;             =&gt; 104
-</pre></div>
-</div>
-</div>
-</div>
-<p>Dictionaries also allow you to directly edit the entries like arrays as follows:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span><span class="p">[</span><span class="s">&quot;Introduction to Complex Analysis&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">185</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>185
-</pre></div>
-</div>
-</div>
-</div>
-<p>If you would like to remove a key-value mapping, use the <code class="docutils literal notranslate"><span class="pre">delete!(collection,</span> <span class="pre">key)</span></code> function</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">delete!</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Introduction to Real Analysis&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dict{String, Int64} with 3 entries:
-  &quot;Programming for Mathematical Applications&quot; =&gt; 124
-  &quot;Introduction to Complex Analysis&quot;          =&gt; 185
-  &quot;Introduction to Abstract Algebra&quot;          =&gt; 113
-</pre></div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="arrays-and-other-collections">
+<h1><span class="section-number">2. </span>Arrays and Other Collections<a class="headerlink" href="#arrays-and-other-collections" title="Link to this heading">#</a></h1>
+<p>So far, we have worked with individual numbers stored in variables. However, most scientific and mathematical problems require us to handle collections of data, such as the results from an experiment, the pixels in an image, or the coefficients of a system of equations.</p>
+<p>This chapter introduces the <strong>Array</strong>, Julia’s most fundamental data structure for numerical computing. We will explore its most important forms: <strong>vectors</strong> (1D arrays) and <strong>matrices</strong> (2D arrays), which are the programming counterparts to the familiar mathematical objects. You will learn how to create, access, and manipulate these collections.</p>
+<p>We will also cover two other versatile data structures: <strong>tuples</strong>, which are fast, unchangeable collections, and <strong>dictionaries</strong>, which store data using key-value pairs. Mastering these tools is essential for organizing data and writing effective scientific code.</p>
+<div class="toctree-wrapper compound">
 </div>
 </section>
 
@@ -616,16 +493,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "python"
         },
         kernelOptions: {
-            name: "julia-1.9",
-            path: "./content/Arrays_and_Dictionaries"
+            name: "python3",
+            path: "./content/Arrays_and_Collections"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -638,20 +515,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Multi_Dimensional_Arrays.html"
+       href="../Introduction/While_Loops.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.2. </span>Multi-dimensional Arrays</p>
+        <p class="prev-next-title"><span class="section-number">1.6. </span>Repeated Evaluation: While-Loops</p>
       </div>
     </a>
     <a class="right-next"
-       href="../Plotting/Plotting.html"
+       href="Introduction_To_Arrays.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Plotting</p>
+        <p class="prev-next-title"><span class="section-number">2.1. </span>Introduction to Arrays</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

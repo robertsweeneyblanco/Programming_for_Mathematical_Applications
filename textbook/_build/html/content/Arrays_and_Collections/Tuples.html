@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Arrays and Dictionaries &#8212; Programming for Mathematical Applications</title>
+    <title>2.3. Tuples &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -57,14 +57,12 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Arrays_and_Dictionaries/Chapter_Intro';</script>
-    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Arrays_and_Dictionaries/Chapter_Intro.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Arrays_and_Collections/Tuples';</script>
+    <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Arrays_and_Collections/Tuples.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2.1. Introduction to Arrays" href="Introduction_To_Arrays.html" />
-    <link rel="prev" title="1.6. Repeated Evaluation: While-Loops" href="../Introduction/While_Loops.html" />
+    <link rel="next" title="2.4. Dictionaries" href="Dictionaries.html" />
+    <link rel="prev" title="2.2. Multi-dimensional Arrays" href="Multi_Dimensional_Arrays.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,10 +190,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../Introduction/While_Loops.html">1.6. While-Loops</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2. Arrays and Dictionaries</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Chapter_Intro.html">2. Arrays and Other Collections</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Introduction_To_Arrays.html">2.1. Introduction to Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Multi_Dimensional_Arrays.html">2.2. Multi-dimensional Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Dictionaries.html">2.3. Dictionaries</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. Tuples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Dictionaries.html">2.4. Dictionaries</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Plotting/Plotting.html">3. Plotting</a></li>
@@ -323,6 +322,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://julia.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A//github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications&urlpath=tree/Programming_for_Mathematical_Applications/textbook/content/Arrays_and_Collections/Tuples.ipynb&branch=master" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -348,7 +378,7 @@
       
       
       
-      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Arrays_and_Dictionaries/Chapter_Intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/robertsweeneyblanco/Programming_for_Mathematical_Applications/issues/new?title=Issue%20on%20page%20%2Fcontent/Arrays_and_Collections/Tuples.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -378,7 +408,7 @@
       
       
       
-      <li><a href="../../_sources/content/Arrays_and_Dictionaries/Chapter_Intro.md" target="_blank"
+      <li><a href="../../_sources/content/Arrays_and_Collections/Tuples.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -388,7 +418,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -449,7 +479,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -460,11 +492,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Arrays and Dictionaries</h1>
+    <h1>Tuples</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-tuples">2.3.1. Creating Tuples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-elements">2.3.2. Accessing Elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-vs-arrays-key-differences">2.3.3. Tuples vs. Arrays: Key Differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-which">2.3.3.1. When to Use Which?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -474,11 +519,105 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="arrays-and-dictionaries">
-<h1><span class="section-number">2. </span>Arrays and Dictionaries<a class="headerlink" href="#arrays-and-dictionaries" title="Link to this heading">#</a></h1>
-<p>This chapter will two fundamental data structures; arrays and dictionaries. These data structures allow programmers to store, access, and iterate over values.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="tuples">
+<h1><span class="section-number">2.3. </span>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h1>
+<p>A <strong>tuple</strong> is an ordered, immutable collection of elements. We have already encountered them as the return type for functions that give back multiple values.</p>
+<p>Like arrays, they can hold a sequence of values, but with one key difference: once a tuple is created, it <strong>cannot be changed</strong>. This property makes them useful for representing fixed collections of data.</p>
+<section id="creating-tuples">
+<h2><span class="section-number">2.3.1. </span>Creating Tuples<a class="headerlink" href="#creating-tuples" title="Link to this heading">#</a></h2>
+<p>You can create a tuple by enclosing a comma-separated list of values in parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">my_tuple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 3.14, &quot;hello&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In many contexts, such as simple assignments, the parentheses are optional.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This creates the exact same tuple as above.</span>
+<span class="n">another_tuple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 3.14, &quot;hello&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="accessing-elements">
+<h2><span class="section-number">2.3.2. </span>Accessing Elements<a class="headerlink" href="#accessing-elements" title="Link to this heading">#</a></h2>
+<p>You can access the elements of a tuple using indexing, just like with an array. Remember that Julia is 1-indexed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Access the third element.</span>
+<span class="n">my_tuple</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;hello&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also <strong>unpack</strong> a tuple by assigning it to a comma-separated list of variables. This is a common way to work with the results from a function that returns multiple values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_tuple</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;The value of b is: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The value of b is: 3.14
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuples-vs-arrays-key-differences">
+<h2><span class="section-number">2.3.3. </span>Tuples vs. Arrays: Key Differences<a class="headerlink" href="#tuples-vs-arrays-key-differences" title="Link to this heading">#</a></h2>
+<p>The most important difference is <strong>mutability</strong>.</p>
+<ul class="simple">
+<li><p><strong>Arrays are mutable</strong>: You can change their size and content (e.g., using <code class="docutils literal notranslate"><span class="pre">push!</span></code> or <code class="docutils literal notranslate"><span class="pre">my_array[i]</span> <span class="pre">=</span> <span class="pre">new_value</span></code>).</p></li>
+<li><p><strong>Tuples are immutable</strong>: Once created, you cannot change a tuple in any way.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Trying to modify a tuple will result in an error.</span>
+<span class="n">my_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">99</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">MethodError</span>: no method matching setindex!(::Tuple{Int64, Float64, String}, ::Int64, ::Int64)
+<span class="n">The</span> <span class="n">function</span> <span class="err">`</span><span class="n">setindex</span><span class="o">!</span><span class="sb">`</span><span class="w"> </span>exists,<span class="w"> </span>but<span class="w"> </span>no<span class="w"> </span>method<span class="w"> </span>is<span class="w"> </span>defined<span class="w"> </span><span class="k">for</span><span class="w"> </span>this<span class="w"> </span>combination<span class="w"> </span>of<span class="w"> </span>argument<span class="w"> </span>types.
+
+<span class="ne">Stacktrace</span>:
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="when-to-use-which">
+<h3><span class="section-number">2.3.3.1. </span>When to Use Which?<a class="headerlink" href="#when-to-use-which" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Use an Array when:</strong> Your collection of data needs to change. This is the case for most numerical work, where you might be adding results, filtering values, or modifying elements.</p></li>
+<li><p><strong>Use a Tuple when:</strong> You have a fixed collection of values that should not be modified. They are perfect for returning multiple values from a function or for situations where you want to guarantee that the data remains constant. Tuples can also be more efficient than arrays for small, fixed-size collections.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -490,16 +629,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "python3",
-            path: "./content/Arrays_and_Dictionaries"
+            name: "julia-1.11",
+            path: "./content/Arrays_and_Collections"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -512,20 +651,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Introduction/While_Loops.html"
+       href="Multi_Dimensional_Arrays.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.6. </span>Repeated Evaluation: While-Loops</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Multi-dimensional Arrays</p>
       </div>
     </a>
     <a class="right-next"
-       href="Introduction_To_Arrays.html"
+       href="Dictionaries.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.1. </span>Introduction to Arrays</p>
+        <p class="prev-next-title"><span class="section-number">2.4. </span>Dictionaries</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -535,6 +674,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-tuples">2.3.1. Creating Tuples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-elements">2.3.2. Accessing Elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-vs-arrays-key-differences">2.3.3. Tuples vs. Arrays: Key Differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-which">2.3.3.1. When to Use Which?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
