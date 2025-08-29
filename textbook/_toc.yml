@@ -24,13 +24,15 @@ chapters:
   - file: content/Introduction/While_Loops
     title: While-Loops
 
-- file: content/Arrays_and_Dictionaries/Chapter_Intro
-  title: Arrays and Dictionaries
+- file: content/Arrays_and_Collections/Chapter_Intro
+  title: Arrays and Other Collections
   sections:
   - file: content/Arrays_and_Dictionaries/Introduction_To_Arrays
     title: Introduction to Arrays
   - file: content/Arrays_and_Dictionaries/Multi_Dimensional_Arrays
     title: Multi-dimensional Arrays
+  - file: content/Arrays_and_Dictionaries/Tuples
+    title: Tuples
   - file: content/Arrays_and_Dictionaries/Dictionaries
     title: Dictionaries
     
