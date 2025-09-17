@@ -57,8 +57,8 @@ chapters:
   sections:
   - file: content/Vectorization/Constructing_Arrays
     title: Constructing Arrays
-  - file: content/Vectorization/Array_Functions
-    title: Array Functions
+  - file: content/Vectorization/Vectorized_Functions
+    title: Vectorized_Functions
   - file: content/Vectorization/Logical_Indexing
     title: Logical Indexing
   
