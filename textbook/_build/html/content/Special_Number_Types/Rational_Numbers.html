@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7.4. Rational numbers &#8212; Programming for Mathematical Applications</title>
+    <title>7.4. Working with Rational Numbers &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="7.5. Arrays of Special Numbers" href="Arrays_of_Special_Numbers.html" />
-    <link rel="prev" title="7.3. Complex numbers" href="Complex_Numbers.html" />
+    <link rel="prev" title="7.3. Working with Complex Numbers in Julia" href="Complex_Numbers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -207,7 +207,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -479,7 +479,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -490,11 +492,21 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Rational numbers</h1>
+    <h1>Working with Rational Numbers</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-simplification">7.4.1. Automatic Simplification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-and-comparisons">7.4.2. Arithmetic and Comparisons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promotion-with-other-numeric-types">7.4.3. Promotion with Other Numeric Types</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -504,12 +516,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="rational-numbers">
-<h1><span class="section-number">7.4. </span>Rational numbers<a class="headerlink" href="#rational-numbers" title="Link to this heading">#</a></h1>
-<p>Rational numbers (ratios of integers) can be represented exactly in Julia using the <code class="docutils literal notranslate"><span class="pre">//</span></code> operator:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-rational-numbers">
+<h1><span class="section-number">7.4. </span>Working with Rational Numbers<a class="headerlink" href="#working-with-rational-numbers" title="Link to this heading">#</a></h1>
+<p>While floating-point numbers are powerful, they can’t represent fractions like 1/3 perfectly. For situations where exact ratios of integers are required, Julia has a dedicated <strong>rational number</strong> type. You can create a rational number using the <code class="docutils literal notranslate"><span class="pre">//</span></code> operator.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">355</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">113</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The // operator creates a Rational{Int64} object.</span>
+<span class="c"># 355/113 is a well-known, highly accurate approximation of π.</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">355</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">113</span>
 </pre></div>
 </div>
 </div>
@@ -519,10 +533,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Rational numbers can be converted to floating point numbers if needed:</p>
+<p>If you need to convert a rational number to an inexact floating-point representation, you can do so by calling the desired type as a function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="kt">Float64</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This explicitly converts the exact fraction to an approximate Float64.</span>
+<span class="kt">Float64</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -532,81 +547,198 @@ document.write(`
 </div>
 </div>
 </div>
-<p>However, this is often not needed since many standard operations and comparison operators are defined directly using the rational number type: (from the Julia documentation)</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="o">//</span><span class="mi">9</span>
-<span class="nb">true</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">9</span><span class="o">//</span><span class="mi">27</span>
-<span class="nb">false</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="o">//</span><span class="mi">7</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">2</span>
-<span class="nb">true</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="o">//</span><span class="mi">4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">3</span>
-<span class="nb">true</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">6</span>
-<span class="mi">2</span><span class="o">//</span><span class="mi">3</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="o">//</span><span class="mi">12</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">4</span>
-<span class="mi">1</span><span class="o">//</span><span class="mi">6</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="o">//</span><span class="mi">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="o">//</span><span class="mi">12</span>
-<span class="mi">5</span><span class="o">//</span><span class="mi">32</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">6</span><span class="o">//</span><span class="mi">5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="o">//</span><span class="mi">7</span>
-<span class="mi">21</span><span class="o">//</span><span class="mi">25</span>
+<section id="automatic-simplification">
+<h2><span class="section-number">7.4.1. </span>Automatic Simplification<a class="headerlink" href="#automatic-simplification" title="Link to this heading">#</a></h2>
+<p>A key feature of rational numbers is that they are always stored in their <strong>canonical form</strong>: the numerator and denominator are reduced to their lowest terms, and the denominator is always positive.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 6//9 is automatically reduced to its simplest form.</span>
+<span class="mi">6</span><span class="o">//</span><span class="mi">9</span>
 </pre></div>
 </div>
-<p>Note that if the numerator and the denominator have common factors, they are reduced to the lowest terms such that the denominator is positive: (from Julia documentation)</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">6</span><span class="o">//</span><span class="mi">9</span>
-<span class="mi">2</span><span class="o">//</span><span class="mi">3</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="mi">4</span><span class="o">//</span><span class="mi">8</span>
-<span class="o">-</span><span class="mi">1</span><span class="o">//</span><span class="mi">2</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="o">//-</span><span class="mi">15</span>
-<span class="o">-</span><span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="mi">4</span><span class="o">//-</span><span class="mi">12</span>
-<span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2//3
 </pre></div>
 </div>
-<p>When combined with other numeric types, the rational numbers will be promoted to give the expected result: (from the Julia documentation)</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="o">//</span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
-<span class="mi">8</span><span class="o">//</span><span class="mi">5</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="o">//</span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span>
-<span class="mf">0.09999999999999998</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">//</span><span class="mi">7</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="o">//</span><span class="mi">7</span><span class="o">*</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
-<span class="mf">0.42857142857142855</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5714285714285714</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="o">//</span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
-<span class="mi">3</span><span class="o">//</span><span class="mi">10</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="o">//</span><span class="mi">5</span><span class="o">*</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span>
-<span class="mi">1</span><span class="o">//</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">1</span><span class="o">*</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">3</span><span class="nb">im</span>
-<span class="mi">1</span><span class="o">//</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">//</span><span class="mi">3</span><span class="o">*</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">2</span>
-<span class="nb">true</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.33</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
-<span class="nb">false</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.33</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
-<span class="nb">true</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.33</span>
-<span class="mf">0.0033333333333332993</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The sign is always stored in the numerator.</span>
+<span class="mi">5</span><span class="o">//-</span><span class="mi">15</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1//3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Double negatives are also simplified.</span>
+<span class="o">-</span><span class="mi">4</span><span class="o">//-</span><span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1//3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="arithmetic-and-comparisons">
+<h2><span class="section-number">7.4.2. </span>Arithmetic and Comparisons<a class="headerlink" href="#arithmetic-and-comparisons" title="Link to this heading">#</a></h2>
+<p>Because rational numbers are always in a canonical form, arithmetic and comparisons are exact and reliable. You can work with them without worrying about floating-point inaccuracies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Comparison works because both sides are reduced to 2//3 before checking equality.</span>
+<span class="mi">2</span><span class="o">//</span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="o">//</span><span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="o">//</span><span class="mi">7</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Arithmetic operations find a common denominator and return a new rational number.</span>
+<span class="mi">2</span><span class="o">//</span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2//3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">//</span><span class="mi">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="o">//</span><span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5//32
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span><span class="o">//</span><span class="mi">5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="o">//</span><span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21//25
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="promotion-with-other-numeric-types">
+<h2><span class="section-number">7.4.3. </span>Promotion with Other Numeric Types<a class="headerlink" href="#promotion-with-other-numeric-types" title="Link to this heading">#</a></h2>
+<p>When you combine a rational number with another numeric type, Julia <strong>promotes</strong> the result to an appropriate type to preserve accuracy whenever possible.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Rational + Integer -&gt; Rational</span>
+<span class="mi">3</span><span class="o">//</span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8//5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Rational + Float64 -&gt; Float64. The exactness of the rational is lost.</span>
+<span class="mi">3</span><span class="o">//</span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09999999999999998
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Rational * Complex{Int} -&gt; Complex{Rational{Int}}</span>
+<span class="mi">2</span><span class="o">//</span><span class="mi">7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2//7 + 4//7*im
+</pre></div>
+</div>
+</div>
+</div>
+<p>This promotion system is why <code class="docutils literal notranslate"><span class="pre">0.5</span> <span class="pre">==</span> <span class="pre">1//2</span></code> is true, but comparisons with non-exact floating-point numbers fail.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is true because 0.5 can be perfectly represented in binary.</span>
+<span class="mf">0.5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is false because the literal 0.33 is not the same as the exact fraction 1/3.</span>
+<span class="mf">0.33</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">//</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># We can see the small difference that results from the Float64&#39;s imprecision.</span>
+<span class="mi">1</span><span class="o">//</span><span class="mi">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.33</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0033333333333332993
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -618,16 +750,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Special_Number_Types"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -645,7 +777,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7.3. </span>Complex numbers</p>
+        <p class="prev-next-title"><span class="section-number">7.3. </span>Working with Complex Numbers in Julia</p>
       </div>
     </a>
     <a class="right-next"
@@ -663,6 +795,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-simplification">7.4.1. Automatic Simplification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-and-comparisons">7.4.2. Arithmetic and Comparisons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promotion-with-other-numeric-types">7.4.3. Promotion with Other Numeric Types</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

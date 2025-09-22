@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.1. Distributions &#8212; Programming for Mathematical Applications</title>
+    <title>5.1. Generating Random Numbers &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -63,7 +63,7 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Random_Numbers/Distributions.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5.2. Histograms" href="Histograms.html" />
+    <link rel="next" title="5.2. Visualizing with Histograms" href="Histograms.html" />
     <link rel="prev" title="5. Random Numbers" href="Chapter_Intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -209,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -494,7 +494,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Distributions</h1>
+    <h1>Generating Random Numbers</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -504,10 +504,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniformly-distributed-random-numbers">5.1.1. Uniformly distributed random numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-intervals">5.1.2. Other intervals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-integers">5.1.3. Random integers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-distributions">5.1.4. Normal distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-uniform-distribution-numbers-in-0-1">5.1.1. The Uniform Distribution: Numbers in <span class="math notranslate nohighlight">\([0, 1]\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibility-with-seeding">5.1.1.1. Reproducibility with Seeding</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-to-other-intervals-uniform-on-a-b">5.1.2. Scaling to Other Intervals: Uniform on <span class="math notranslate nohighlight">\([a, b]\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-from-collections-random-integers-and-more">5.1.3. Sampling from Collections: Random Integers and More</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-gaussian-distribution">5.1.4. The Normal (Gaussian) Distribution</a></li>
 </ul>
             </nav>
         </div>
@@ -519,59 +522,71 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="distributions">
-<h1><span class="section-number">5.1. </span>Distributions<a class="headerlink" href="#distributions" title="Link to this heading">#</a></h1>
-<section id="uniformly-distributed-random-numbers">
-<h2><span class="section-number">5.1.1. </span>Uniformly distributed random numbers<a class="headerlink" href="#uniformly-distributed-random-numbers" title="Link to this heading">#</a></h2>
-<p>The function <code class="docutils literal notranslate"><span class="pre">rand(n)</span></code> generates <span class="math notranslate nohighlight">\(n\)</span> so-called <em>pseudo-random</em> numbers from a uniform distribution on <span class="math notranslate nohighlight">\([0,1]\)</span>. This means that the numbers are technically fully deterministic, but for most practical purposes they can be seen as random. These numbers have a wide range of application in computing, for statistical simulations, studying noise, etc.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="generating-random-numbers">
+<h1><span class="section-number">5.1. </span>Generating Random Numbers<a class="headerlink" href="#generating-random-numbers" title="Link to this heading">#</a></h1>
+<section id="the-uniform-distribution-numbers-in-0-1">
+<h2><span class="section-number">5.1.1. </span>The Uniform Distribution: Numbers in <span class="math notranslate nohighlight">\([0, 1]\)</span><a class="headerlink" href="#the-uniform-distribution-numbers-in-0-1" title="Link to this heading">#</a></h2>
+<p>A fundamental tool in computational mathematics is the ability to generate random numbers. The <code class="docutils literal notranslate"><span class="pre">rand(n)</span></code> function is our primary tool for this, generating <span class="math notranslate nohighlight">\(n\)</span> <strong>pseudo-random</strong> numbers from a uniform distribution on the interval <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+<p>Why <em>pseudo-random</em>? Because the numbers are generated by a deterministic algorithm. However, the algorithm is designed to produce sequences that are statistically indistinguishable from truly random ones. For nearly all practical purposes, such as statistical simulations, modeling noise, or Monte Carlo methods, we can treat them as genuinely random.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">rand</span><span class="p">()</span><span class="w">               </span><span class="c"># Defaults to n = 1 random number</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Generate a single random number.</span>
+<span class="c"># If no argument is provided, `rand()` defaults to generating one number.</span>
+<span class="n">rand</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04269884999572138
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.938683192426478
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">rand</span><span class="p">()</span><span class="w">               </span><span class="c"># Different output each time</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Calling the function again produces a new, independent random number.</span>
+<span class="n">rand</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.15458849955064957
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.521370200438274
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w">              </span><span class="c"># Array of 3 random numbers</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># To get a vector of random numbers, simply pass the desired size as an argument.</span>
+<span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
- 0.7803073526830069
- 0.7657983465001919
- 0.8438909594699471
+ 0.6630482936961292
+ 0.38955380670527895
+ 0.9895799998582973
 </pre></div>
 </div>
 </div>
 </div>
-<p>Note that all the generated numbers are different, which we would expect from a random number generator. However, sometimes it is useful to be able to generate the same sequence of random numbers (e.g. for debugging code). This can be done using the <code class="docutils literal notranslate"><span class="pre">Random.seed!</span></code> command from the <code class="docutils literal notranslate"><span class="pre">Random</span></code> package, and an arbitrary so-called <em>seed</em> number:</p>
+<section id="reproducibility-with-seeding">
+<h3><span class="section-number">5.1.1.1. </span>Reproducibility with Seeding<a class="headerlink" href="#reproducibility-with-seeding" title="Link to this heading">#</a></h3>
+<p>Since pseudo-random numbers are generated by an algorithm, we can force it to produce the <em>same</em> sequence of numbers every time. This is called <strong>seeding</strong> the random number generator and is incredibly useful for debugging code or ensuring that scientific results are reproducible.</p>
+<p>We can do this using the <code class="docutils literal notranslate"><span class="pre">Random.seed!</span></code> command from the <code class="docutils literal notranslate"><span class="pre">Random</span></code> package. You provide an arbitrary integer as the <em>seed</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Random</span>
-<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span><span class="w">      </span><span class="c"># Seed number 1234</span>
+
+<span class="c"># Set the seed for the random number generator.</span>
+<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span><span class="w">      </span><span class="c"># Re-seed with same number - will give the same sequence of random numbers</span>
-<span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c"># Re-seeding with the same number resets the generator to the exact same state.</span>
+<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="c"># Note: This will be the first part of the sequence generated above.</span>
 <span class="n">println</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -586,12 +601,15 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="other-intervals">
-<h2><span class="section-number">5.1.2. </span>Other intervals<a class="headerlink" href="#other-intervals" title="Link to this heading">#</a></h2>
-<p>To generate uniform random numbers from a different interval <span class="math notranslate nohighlight">\([a,b]\)</span>, you can simply scale a random number <span class="math notranslate nohighlight">\(x\in [0,1]\)</span> by <span class="math notranslate nohighlight">\(a + x(b-a)\)</span>. For example:</p>
+</section>
+<section id="scaling-to-other-intervals-uniform-on-a-b">
+<h2><span class="section-number">5.1.2. </span>Scaling to Other Intervals: Uniform on <span class="math notranslate nohighlight">\([a, b]\)</span><a class="headerlink" href="#scaling-to-other-intervals-uniform-on-a-b" title="Link to this heading">#</a></h2>
+<p>To generate uniformly distributed random numbers on an arbitrary interval <span class="math notranslate nohighlight">\([a,b]\)</span>, we can perform a linear transformation on the output of <code class="docutils literal notranslate"><span class="pre">rand()</span></code>. If <span class="math notranslate nohighlight">\(x\)</span> is a random number in <span class="math notranslate nohighlight">\([0,1]\)</span>, then the number <span class="math notranslate nohighlight">\(y = a + (b-a)x\)</span> will be a random number in <span class="math notranslate nohighlight">\([a,b]\)</span>. Let’s see it in action.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="mi">1</span><span class="w">     </span><span class="c"># 5 uniform random numbers on [-1,1]</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Generate 5 random numbers on the interval [-1, 1].</span>
+<span class="c"># Here, a = -1 and b = 1, so (b-a) = 2. The transformation is y = -1 + 2x.</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -608,7 +626,9 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="mi">4</span><span class="w">    </span><span class="c"># 3 uniform random numbers on [4,11]</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Generate 3 random numbers on the interval [4, 11].</span>
+<span class="c"># Here, a = 4 and b = 11, so (b-a) = 7. The transformation is y = 4 + 7x.</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="mi">4</span>
 </pre></div>
 </div>
 </div>
@@ -622,12 +642,14 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="random-integers">
-<h2><span class="section-number">5.1.3. </span>Random integers<a class="headerlink" href="#random-integers" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">rand</span></code> function can also be used with a range or a vector, from which it chooses samples at random. This can be used to generate random integers:</p>
+<section id="sampling-from-collections-random-integers-and-more">
+<h2><span class="section-number">5.1.3. </span>Sampling from Collections: Random Integers and More<a class="headerlink" href="#sampling-from-collections-random-integers-and-more" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">rand</span></code> function is very versatile. Beyond generating floating-point numbers, it can also randomly select items from a collection, such as a range of integers or a vector of objects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w">        </span><span class="c"># 3 random integers between 1 and 10</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Randomly select 3 integers from the range 1 to 10 (inclusive).</span>
+<span class="c"># This is equivalent to rolling a 10-sided die three times.</span>
+<span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -640,10 +662,10 @@ document.write(`
 </div>
 </div>
 </div>
-<p>but also more generally to select any objects from a vector at random:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">rand</span><span class="p">([</span><span class="nb">π</span><span class="p">,</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="p">],</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># We can also sample (with replacement) from any collection of items.</span>
+<span class="n">rand</span><span class="p">([</span><span class="nb">π</span><span class="p">,</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="p">],</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -659,12 +681,13 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="normal-distributions">
-<h2><span class="section-number">5.1.4. </span>Normal distributions<a class="headerlink" href="#normal-distributions" title="Link to this heading">#</a></h2>
-<p>The function <code class="docutils literal notranslate"><span class="pre">randn</span></code> is similar to <code class="docutils literal notranslate"><span class="pre">rand</span></code> but draws random numbers from a normal distribution with mean 0 and standard deviation 1.</p>
+<section id="the-normal-gaussian-distribution">
+<h2><span class="section-number">5.1.4. </span>The Normal (Gaussian) Distribution<a class="headerlink" href="#the-normal-gaussian-distribution" title="Link to this heading">#</a></h2>
+<p>Another essential distribution is the <strong>normal distribution</strong>, often visualized as the classic “bell curve.” The function <code class="docutils literal notranslate"><span class="pre">randn()</span></code> draws random numbers from the <em>standard</em> normal distribution, which has a mean of 0 and a standard deviation of 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">randn</span><span class="p">()</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Generate one random number from the standard normal distribution.</span>
+<span class="n">randn</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -674,12 +697,16 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Suppose <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma &gt; 0\)</span> are constants. If <span class="math notranslate nohighlight">\(Z\)</span> is standard normal, then <span class="math notranslate nohighlight">\(\sigma Z + \mu\)</span> is normal with mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>. Thus we can generate numbers from any normal distributions using the <code class="docutils literal notranslate"><span class="pre">randn</span></code> function. As an example, the code below draws from a normal distribution with mean 2 and standard deviation 5.</p>
+<p>Just as with the uniform distribution, we can scale and shift the output of <code class="docutils literal notranslate"><span class="pre">randn()</span></code> to sample from any normal distribution.</p>
+<p>If <span class="math notranslate nohighlight">\(Z\)</span> is a random variable from the standard normal distribution, then the variable <span class="math notranslate nohighlight">\(X = \mu + \sigma Z\)</span> follows a normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>. Let’s use this to draw from a normal distribution with a mean of 2 and a standard deviation of 5.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">μ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define the desired mean and standard deviation.</span>
+<span class="n">μ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
 <span class="n">σ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span>
-<span class="n">σ</span><span class="o">*</span><span class="n">randn</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">μ</span>
+
+<span class="c"># Generate a standard normal number with randn() and then scale and shift it.</span>
+<span class="n">σ</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">randn</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">μ</span>
 </pre></div>
 </div>
 </div>
@@ -701,16 +728,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Random_Numbers"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -736,7 +763,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.2. </span>Histograms</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Visualizing with Histograms</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -756,10 +783,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniformly-distributed-random-numbers">5.1.1. Uniformly distributed random numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-intervals">5.1.2. Other intervals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-integers">5.1.3. Random integers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-distributions">5.1.4. Normal distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-uniform-distribution-numbers-in-0-1">5.1.1. The Uniform Distribution: Numbers in <span class="math notranslate nohighlight">\([0, 1]\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibility-with-seeding">5.1.1.1. Reproducibility with Seeding</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-to-other-intervals-uniform-on-a-b">5.1.2. Scaling to Other Intervals: Uniform on <span class="math notranslate nohighlight">\([a, b]\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-from-collections-random-integers-and-more">5.1.3. Sampling from Collections: Random Integers and More</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-gaussian-distribution">5.1.4. The Normal (Gaussian) Distribution</a></li>
 </ul>
   </nav></div>
 

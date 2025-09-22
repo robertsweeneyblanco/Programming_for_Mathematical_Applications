@@ -209,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -737,11 +737,12 @@ The current value of i is 20
 </section>
 <section id="example-taylor-polynomial-for-cosine">
 <h2><span class="section-number">1.4.2. </span>Example: Taylor Polynomial for Cosine<a class="headerlink" href="#example-taylor-polynomial-for-cosine" title="Link to this heading">#</a></h2>
-<p>Consider the Taylor polynomial of degree <span class="math notranslate nohighlight">\(2n\)</span> for <span class="math notranslate nohighlight">\(\cos x\)</span>:
-$<span class="math notranslate nohighlight">\(
+<p>Consider the Taylor polynomial of degree <span class="math notranslate nohighlight">\(2n\)</span> for <span class="math notranslate nohighlight">\(\cos x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
 \cos x \approx \sum_{k=0}^n \frac{(-1)^k}{(2k)!}x^{2k}
-\)</span>$
-A naive implementation might calculate the factorial and power separately in each step.</p>
+\]</div>
+<p>A naive implementation might calculate the factorial and power separately in each step.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">taylor_cos_bad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>

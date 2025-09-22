@@ -57,12 +57,14 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/Vectorization/Logical_Indexing';</script>
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Vectorization/Logical_Indexing.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="7. Special Number Types" href="../Special_Number_Types/Chapter_Intro.html" />
-    <link rel="prev" title="6.2. Array Functions" href="Array_Functions.html" />
+    <link rel="prev" title="6.2. Vectorized Functions" href="Vectorized_Functions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -207,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Chapter_Intro.html">6. Vectorization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -502,10 +504,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-logical-indexing">6.3.1. Introduction to Logical indexing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-simplifying-the-sieve-of-eratosthenes-function">6.3.2. Examples: Simplifying the Sieve of Eratosthenes function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-simplifying-the-dart-throwing-function">6.3.3. Example: Simplifying the dart-throwing function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-simplifying-the-poker-hand-flush-code">6.3.4. Example: Simplifying the poker hand flush code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-masks">6.3.1. Boolean Masks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-previous-code-the-sieve-of-eratosthenes">6.3.2. Refactoring Previous Code: The Sieve of Eratosthenes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-previous-code-monte-carlo-pi-calculation">6.3.3. Refactoring Previous Code: Monte Carlo PI Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-previous-code-checking-for-a-flush">6.3.4. Refactoring Previous Code: Checking for a Flush</a></li>
 </ul>
             </nav>
         </div>
@@ -519,14 +521,22 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="logical-indexing">
 <h1><span class="section-number">6.3. </span>Logical Indexing<a class="headerlink" href="#logical-indexing" title="Link to this heading">#</a></h1>
-<section id="introduction-to-logical-indexing">
-<h2><span class="section-number">6.3.1. </span>Introduction to Logical indexing<a class="headerlink" href="#introduction-to-logical-indexing" title="Link to this heading">#</a></h2>
-<p>As an alternative to indexing an array by <code class="docutils literal notranslate"><span class="pre">x[idx]</span></code> where <code class="docutils literal notranslate"><span class="pre">idx</span></code> is an array of integers, <em>logical indexing</em> allows for the syntax <code class="docutils literal notranslate"><span class="pre">x[choose]</span></code> where <code class="docutils literal notranslate"><span class="pre">choose</span></code> is an array of booleans. The size of <code class="docutils literal notranslate"><span class="pre">choose</span></code> must be the length of the array (or more generally, the dimension it indexes into). Note that the result is identical to <code class="docutils literal notranslate"><span class="pre">x[findall(choose)]</span></code>, but shorter to write and likely more efficient.</p>
+<section id="boolean-masks">
+<h2><span class="section-number">6.3.1. </span>Boolean Masks<a class="headerlink" href="#boolean-masks" title="Link to this heading">#</a></h2>
+<p>We’ve seen how to index an array with integers or ranges, like <code class="docutils literal notranslate"><span class="pre">x[3]</span></code> or <code class="docutils literal notranslate"><span class="pre">x[2:5]</span></code>. <strong>Logical indexing</strong> (also called boolean indexing) offers a different, often more intuitive, way to select elements. Instead of specifying <em>which indices</em> you want, you specify a <em>condition</em> that elements must satisfy.</p>
+<p>The syntax is <code class="docutils literal notranslate"><span class="pre">x[mask]</span></code>, where <code class="docutils literal notranslate"><span class="pre">mask</span></code> is an array of booleans (<code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>) with the same length as <code class="docutils literal notranslate"><span class="pre">x</span></code>. The operation returns a new array containing only the elements of <code class="docutils literal notranslate"><span class="pre">x</span></code> where the corresponding value in <code class="docutils literal notranslate"><span class="pre">mask</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>This is equivalent to <code class="docutils literal notranslate"><span class="pre">x[findall(mask)]</span></code>, but it’s more direct, readable, and generally more performant.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">11</span><span class="o">:</span><span class="mi">11</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Let&#39;s find the integers x where sin(x) is positive.</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">11</span><span class="o">:</span><span class="mi">11</span>
 <span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">y</span><span class="w"> </span><span class="o">.&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w">          </span><span class="c"># Only keep values of x where y=sin x is positive</span>
+
+<span class="c"># 1. Create a boolean mask: `y .&gt; 0` will be an array of true/false values.</span>
+<span class="n">is_positive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">.&gt;</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="c"># 2. Use the mask to select elements from the original array `x`.</span>
+<span class="n">x_where_sin_is_positive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">is_positive</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -547,84 +557,87 @@ document.write(`
 </div>
 </div>
 </div>
+<p>This technique is especially powerful for multi-dimensional arrays, allowing you to select entire rows or columns based on a condition.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Example: Consider the matrix</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Example: Select columns of a matrix whose sum is non-negative.</span>
 <span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×10 Matrix{Int64}:
- 2  -3  10   7   3   3  2  -8   9    7
- 0  -4   3  -6   3   9  4   2   5   -6
- 5  10   2  -9  -3  -8  5   8  -8  -10
+ -4  -6   7   8  -1  -4   5  -4   9   3
+ 10   0  -6  -8   2  -6  -8   7  -5  -9
+ -5   7   1   5  -5   5  -3  10  -6  -9
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Compute a boolean array with `true` if the column sums are &gt;=0</span>
-<span class="n">pick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">.≥</span><span class="w"> </span><span class="mi">0</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 1. Calculate the sum of each column and check if it&#39;s &gt;= 0.</span>
+<span class="c"># This creates a 1x10 boolean matrix (a &quot;row mask&quot;).</span>
+<span class="n">column_mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">.≥</span><span class="w"> </span><span class="mi">0</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1×10 BitMatrix:
- 1  1  1  0  1  1  1  1  1  0
+ 1  1  1  1  0  0  0  1  0  0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Create a new vector with only the columns of A given by the `pick` variable</span>
-<span class="c"># Note that since `pick` is a 2D vector (row vector), we use [:] before indexing</span>
-<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">pick</span><span class="p">[</span><span class="o">:</span><span class="p">]]</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 2. Use the mask to select columns.</span>
+<span class="c"># We use `:` to select all rows.</span>
+<span class="c"># We use `column_mask[:]` to flatten the 1x10 mask into a 1D vector,</span>
+<span class="c"># which is what Julia expects for indexing a single dimension.</span>
+<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="w"> </span><span class="n">column_mask</span><span class="p">[</span><span class="o">:</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×8 Matrix{Int64}:
- 2  -3  10   3   3  2  -8   9
- 0  -4   3   3   9  4   2   5
- 5  10   2  -3  -8  5   8  -8
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3×5 Matrix{Int64}:
+ -4  -6   7   8  -4
+ 10   0  -6  -8   7
+ -5   7   1   5  10
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="examples-simplifying-the-sieve-of-eratosthenes-function">
-<h2><span class="section-number">6.3.2. </span>Examples: Simplifying the Sieve of Eratosthenes function<a class="headerlink" href="#examples-simplifying-the-sieve-of-eratosthenes-function" title="Link to this heading">#</a></h2>
-<p>In our previous implementation, we used the code below to collect all the prime numbers:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="c"># Return an array with all prime numbers</span>
-<span class="w">    </span><span class="n">primes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Int64</span><span class="p">[]</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-<span class="w">            </span><span class="n">push!</span><span class="p">(</span><span class="n">primes</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
-<span class="w">        </span><span class="k">end</span>
+<section id="refactoring-previous-code-the-sieve-of-eratosthenes">
+<h2><span class="section-number">6.3.2. </span>Refactoring Previous Code: The Sieve of Eratosthenes<a class="headerlink" href="#refactoring-previous-code-the-sieve-of-eratosthenes" title="Link to this heading">#</a></h2>
+<p>Vectorized tools like logical indexing allow us to simplify code we’ve written previously. In our Sieve function, we used a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to collect the prime numbers from our boolean array:</p>
+<p><strong>Before (with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop):</strong></p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">primes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Int64</span><span class="p">[]</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">is_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">        </span><span class="n">push!</span><span class="p">(</span><span class="n">primes</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
 <span class="w">    </span><span class="k">end</span>
-<span class="w">    </span><span class="n">primes</span>
-<span class="w">    </span><span class="o">...</span>
+<span class="k">end</span>
 </pre></div>
 </div>
-<p>Using array comprehensions, we can replace this entire part of the code by a single line:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">primes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="p">]</span>
+<p>This is perfectly fine, but we can now express the same idea more concisely.</p>
+<p><strong>After (with array comprehensions):</strong>
+Using array comprehensions, we can replace the entire part of the code by a single line:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">primes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="n">n</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="p">]</span>
 </pre></div>
 </div>
-<p>or even simpler, since the list of primes is simply the indices of the <code class="docutils literal notranslate"><span class="pre">true</span></code> values in the array <code class="docutils literal notranslate"><span class="pre">prime</span></code>, we can use the <code class="docutils literal notranslate"><span class="pre">findall</span></code> function. However in our original implementation, <code class="docutils literal notranslate"><span class="pre">prime[1]</span></code> was set to <code class="docutils literal notranslate"><span class="pre">true</span></code> (since it was not used) so we have to first make sure the number 1 is not considered a prime. Then the code can be written as:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">prime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
-<span class="w">    </span><span class="n">primes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findall</span><span class="p">(</span><span class="n">prime</span><span class="p">)</span>
+<p><strong>After (with <code class="docutils literal notranslate"><span class="pre">findall</span></code>):</strong>
+Alternatively, since the prime numbers are just the <em>indices</em> of the <code class="docutils literal notranslate"><span class="pre">true</span></code> values in our <code class="docutils literal notranslate"><span class="pre">is_prime</span></code> array, we can use <code class="docutils literal notranslate"><span class="pre">findall</span></code> for another direct, one-line solution:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">primes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findall</span><span class="p">(</span><span class="n">is_prime</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="example-simplifying-the-dart-throwing-function">
-<h2><span class="section-number">6.3.3. </span>Example: Simplifying the dart-throwing function<a class="headerlink" href="#example-simplifying-the-dart-throwing-function" title="Link to this heading">#</a></h2>
-<p>We previously used the following code to count the number of “hits”, that is, how many points in the vectors <code class="docutils literal notranslate"><span class="pre">x</span></code>,<code class="docutils literal notranslate"><span class="pre">y</span></code> are inside the unit circle:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Determine if points are inside the circle (a &quot;hit&quot;)</span>
-<span class="n">hits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<section id="refactoring-previous-code-monte-carlo-pi-calculation">
+<h2><span class="section-number">6.3.3. </span>Refactoring Previous Code: Monte Carlo PI Calculation<a class="headerlink" href="#refactoring-previous-code-monte-carlo-pi-calculation" title="Link to this heading">#</a></h2>
+<p>Similarly, our dart-throwing simulation for <span class="math notranslate nohighlight">\(\pi\)</span> used a loop to count the number of “hits” inside the unit circle.</p>
+<p><strong>Before (with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop):</strong></p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">hits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 <span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="n">hits</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
@@ -632,25 +645,28 @@ document.write(`
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>Using the <code class="docutils literal notranslate"><span class="pre">count</span></code> function, this can be written as a single line of code:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">hits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="nd">@.</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<p><strong>After (with <code class="docutils literal notranslate"><span class="pre">count</span></code>):</strong>
+The <code class="docutils literal notranslate"><span class="pre">count</span></code> function is tailor-made for this. We can generate a boolean mask on the fly and count how many <code class="docutils literal notranslate"><span class="pre">true</span></code> values it contains.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">hits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="nd">@.</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span>
 </pre></div>
 </div>
 </section>
-<section id="example-simplifying-the-poker-hand-flush-code">
-<h2><span class="section-number">6.3.4. </span>Example: Simplifying the poker hand flush code<a class="headerlink" href="#example-simplifying-the-poker-hand-flush-code" title="Link to this heading">#</a></h2>
-<p>When simulating the poker hands, we used the following code to determine if all cards were of the same suit:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">same_suit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="mi">5</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">suits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">≠</span><span class="w"> </span><span class="n">suits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="w">            </span><span class="n">same_suit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
-<span class="w">            </span><span class="k">break</span>
-<span class="w">        </span><span class="k">end</span>
+<section id="refactoring-previous-code-checking-for-a-flush">
+<h2><span class="section-number">6.3.4. </span>Refactoring Previous Code: Checking for a Flush<a class="headerlink" href="#refactoring-previous-code-checking-for-a-flush" title="Link to this heading">#</a></h2>
+<p>Our poker simulation used a loop with a flag variable and a <code class="docutils literal notranslate"><span class="pre">break</span></code> statement to check if all cards in a hand had the same suit.</p>
+<p><strong>Before (with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and a flag):</strong></p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">same_suit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="mi">5</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">suits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">≠</span><span class="w"> </span><span class="n">suits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="w">        </span><span class="n">same_suit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+<span class="w">        </span><span class="k">break</span>
 <span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
 </pre></div>
 </div>
-<p>Using the <code class="docutils literal notranslate"><span class="pre">all</span></code> function, this can be simplified to a single line of code:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">same_suit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">all</span><span class="p">(</span><span class="n">suits</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">.==</span><span class="w"> </span><span class="n">suits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<p><strong>After (with <code class="docutils literal notranslate"><span class="pre">all</span></code>):</strong>
+This entire pattern can be replaced with the <code class="docutils literal notranslate"><span class="pre">all</span></code> function, which checks if every element in a boolean array is <code class="docutils literal notranslate"><span class="pre">true</span></code>. This version is not just shorter—it more clearly states the code’s intent.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">same_suit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">all</span><span class="p">(</span><span class="n">suits</span><span class="w"> </span><span class="o">.==</span><span class="w"> </span><span class="n">suits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
@@ -665,16 +681,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Vectorization"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -687,12 +703,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Array_Functions.html"
+       href="Vectorized_Functions.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">6.2. </span>Array Functions</p>
+        <p class="prev-next-title"><span class="section-number">6.2. </span>Vectorized Functions</p>
       </div>
     </a>
     <a class="right-next"
@@ -720,10 +736,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-logical-indexing">6.3.1. Introduction to Logical indexing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-simplifying-the-sieve-of-eratosthenes-function">6.3.2. Examples: Simplifying the Sieve of Eratosthenes function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-simplifying-the-dart-throwing-function">6.3.3. Example: Simplifying the dart-throwing function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-simplifying-the-poker-hand-flush-code">6.3.4. Example: Simplifying the poker hand flush code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-masks">6.3.1. Boolean Masks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-previous-code-the-sieve-of-eratosthenes">6.3.2. Refactoring Previous Code: The Sieve of Eratosthenes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-previous-code-monte-carlo-pi-calculation">6.3.3. Refactoring Previous Code: Monte Carlo PI Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-previous-code-checking-for-a-flush">6.3.4. Refactoring Previous Code: Checking for a Flush</a></li>
 </ul>
   </nav></div>
 

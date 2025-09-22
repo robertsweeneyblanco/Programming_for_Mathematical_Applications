@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7.3. Complex numbers &#8212; Programming for Mathematical Applications</title>
+    <title>7.3. Working with Complex Numbers in Julia &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -63,8 +63,8 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Special_Number_Types/Complex_Numbers.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="7.4. Rational numbers" href="Rational_Numbers.html" />
-    <link rel="prev" title="7.2. Arbitrary precision floating-point numbers" href="Arbitrary_Precision_Floats.html" />
+    <link rel="next" title="7.4. Working with Rational Numbers" href="Rational_Numbers.html" />
+    <link rel="prev" title="7.2. Arbitrary-Precision Floating-Point Numbers" href="Arbitrary_Precision_Floats.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -494,7 +494,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Complex numbers</h1>
+    <h1>Working with Complex Numbers in Julia</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -504,7 +504,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-roots-of-quadratic-function">7.3.1. Example: Roots of quadratic function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-complex-numbers">7.3.1. Creating Complex Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-arithmetic-operations">7.3.2. Standard Arithmetic Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulating-complex-numbers">7.3.3. Manipulating Complex Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementary-functions-with-complex-arguments">7.3.4. Elementary Functions with Complex Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-a-robust-quadratic-formula">7.3.5. Application: A Robust Quadratic Formula</a></li>
 </ul>
             </nav>
         </div>
@@ -516,12 +520,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="complex-numbers">
-<h1><span class="section-number">7.3. </span>Complex numbers<a class="headerlink" href="#complex-numbers" title="Link to this heading">#</a></h1>
-<p>Complex numbers can be created using the global constant <code class="docutils literal notranslate"><span class="pre">im</span></code> for the imaginary unit <span class="math notranslate nohighlight">\(\sqrt{-1}\)</span>:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-complex-numbers-in-julia">
+<h1><span class="section-number">7.3. </span>Working with Complex Numbers in Julia<a class="headerlink" href="#working-with-complex-numbers-in-julia" title="Link to this heading">#</a></h1>
+<p>Complex numbers are a built-in numeric type in Julia. The global constant <code class="docutils literal notranslate"><span class="pre">im</span></code> is bound to the imaginary unit, <span class="math notranslate nohighlight">\(\sqrt{-1}\)</span>.</p>
+<section id="creating-complex-numbers">
+<h2><span class="section-number">7.3.1. </span>Creating Complex Numbers<a class="headerlink" href="#creating-complex-numbers" title="Link to this heading">#</a></h2>
+<p>You can create a complex number by combining a real part and an imaginary part. Note that the coefficient must directly multiply <code class="docutils literal notranslate"><span class="pre">im</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="nb">im</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The imaginary unit `im` is a suffix to a numeric literal.</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="nb">im</span>
 </pre></div>
 </div>
 </div>
@@ -531,10 +539,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>or alternatively using the syntax <code class="docutils literal notranslate"><span class="pre">complex(real,imag)</span></code>:</p>
+<p>Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">complex()</span></code> constructor function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complex</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This syntax is useful when the real and imaginary parts are variables.</span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complex</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -544,9 +553,11 @@ document.write(`
 </div>
 </div>
 </div>
+<p>When the imaginary part is a fraction or an expression, you need to use parentheses. Julia’s order of operations would otherwise interpret <code class="docutils literal notranslate"><span class="pre">3/4im</span></code> as <code class="docutils literal notranslate"><span class="pre">3/(4*im)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="nb">im</span><span class="w">      </span><span class="c"># Parentheses needed since 3/4im == 3/(4im) </span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Parentheses are required to group the coefficient of `im`.</span>
+<span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="nb">im</span>
 </pre></div>
 </div>
 </div>
@@ -556,10 +567,14 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The standard operations work as expected for complex arguments:</p>
+</section>
+<section id="standard-arithmetic-operations">
+<h2><span class="section-number">7.3.2. </span>Standard Arithmetic Operations<a class="headerlink" href="#standard-arithmetic-operations" title="Link to this heading">#</a></h2>
+<p>All standard arithmetic operations are defined for complex numbers and work as you’d expect from mathematics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># (5 - 3i) * (5 + 3i) = 25 + 15i - 15i - 9i^2 = 25 + 9 = 34</span>
+<span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span>
 </pre></div>
 </div>
 </div>
@@ -571,7 +586,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Division is also supported.</span>
+<span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span>
 </pre></div>
 </div>
 </div>
@@ -583,7 +599,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">im</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># (1 + i)^2 = 1 + 2i + i^2 = 1 + 2i - 1 = 2i</span>
+<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">im</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -593,50 +610,145 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Several functions are provided for manipulation of complex numbers (from the Julia documentation):</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span>
-<span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">real</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span><span class="w"> </span><span class="c"># real part of z</span>
-<span class="mi">1</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">imag</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span><span class="w"> </span><span class="c"># imaginary part of z</span>
-<span class="mi">2</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">conj</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span><span class="w"> </span><span class="c"># complex conjugate of z</span>
-<span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span><span class="w"> </span><span class="c"># absolute value of z</span>
-<span class="mf">2.23606797749979</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">abs2</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span><span class="w"> </span><span class="c"># squared absolute value</span>
-<span class="mi">5</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">angle</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span><span class="w"> </span><span class="c"># phase angle in radians</span>
-<span class="mf">1.1071487177940904</span>
-</pre></div>
-</div>
-<p>Also most elementary functions are defined for complex arguments (from the Julia documentation):</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="nb">im</span><span class="p">)</span>
-<span class="mf">0.7071067811865476</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.7071067811865475</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
-<span class="mf">1.272019649514069</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.7861513777574233</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
-<span class="mf">2.0327230070196656</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">3.0518977991518</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
-<span class="o">-</span><span class="mf">1.1312043837568135</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2.4717266720048188</span><span class="nb">im</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sinh</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
-<span class="o">-</span><span class="mf">0.4890562590412937</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.4031192506220405</span><span class="nb">im</span>
-</pre></div>
-</div>
-<p>Note that these functions typically return real values when applied to real numbers and complex values when applied to complex numbers:</p>
+</section>
+<section id="manipulating-complex-numbers">
+<h2><span class="section-number">7.3.3. </span>Manipulating Complex Numbers<a class="headerlink" href="#manipulating-complex-numbers" title="Link to this heading">#</a></h2>
+<p>Julia provides a standard library of functions to work with the different parts of a complex number.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="nb">im</span><span class="p">)</span><span class="w">  </span><span class="c"># OK, complex input gives complex output</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 + 2im
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Get the real part of z</span>
+<span class="n">real</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Get the imaginary part of z</span>
+<span class="n">imag</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Get the complex conjugate of z</span>
+<span class="n">conj</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 - 2im
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Get the absolute value (magnitude or modulus) of z</span>
+<span class="n">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.23606797749979
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Get the squared absolute value, which avoids a square root and is often more efficient.</span>
+<span class="n">abs2</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Get the phase angle in radians.</span>
+<span class="n">angle</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1071487177940904
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="elementary-functions-with-complex-arguments">
+<h2><span class="section-number">7.3.4. </span>Elementary Functions with Complex Arguments<a class="headerlink" href="#elementary-functions-with-complex-arguments" title="Link to this heading">#</a></h2>
+<p>Most elementary functions are also defined for complex arguments, enabling a wide range of mathematical computations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="nb">im</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7071067811865476 + 0.7071067811865475im
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0327230070196656 - 3.0518977991517997im
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="nb">im</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1312043837568135 + 2.4717266720048188im
+</pre></div>
+</div>
+</div>
+</div>
+<p>An important principle in Julia is <strong>type stability</strong>: functions typically return a value of a predictable type based on the input types. For this reason, <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> will only return a complex number if its input is complex. Giving it a negative real number results in a <code class="docutils literal notranslate"><span class="pre">DomainError</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This is fine: complex input gives a complex output.</span>
+<span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="nb">im</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -648,36 +760,45 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="w">        </span><span class="c"># Error - real input but needs complex output</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This will error: the input is a real number, so the output must be real.</span>
+<span class="c"># The error message helpfully suggests how to fix this.</span>
+<span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">DomainError</span> <span class="k">with</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">:</span>
-<span class="n">sqrt</span> <span class="n">will</span> <span class="n">only</span> <span class="k">return</span> <span class="n">a</span> <span class="nb">complex</span> <span class="n">result</span> <span class="k">if</span> <span class="n">called</span> <span class="k">with</span> <span class="n">a</span> <span class="nb">complex</span> <span class="n">argument</span><span class="o">.</span> <span class="n">Try</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">Complex</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span>
+<span class="n">sqrt</span> <span class="n">was</span> <span class="n">called</span> <span class="k">with</span> <span class="n">a</span> <span class="n">negative</span> <span class="n">real</span> <span class="n">argument</span> <span class="n">but</span> <span class="n">will</span> <span class="n">only</span> <span class="k">return</span> <span class="n">a</span> <span class="nb">complex</span> <span class="n">result</span> <span class="k">if</span> <span class="n">called</span> <span class="k">with</span> <span class="n">a</span> <span class="nb">complex</span> <span class="n">argument</span><span class="o">.</span> <span class="n">Try</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">Complex</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span>
 
 <span class="ne">Stacktrace</span>:
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">throw_complex_domainerror</span><span class="p">(</span><span class="n">f</span><span class="p">::</span><span class="n">Symbol</span><span class="p">,</span> <span class="n">x</span><span class="p">::</span><span class="n">Float64</span><span class="p">)</span>
    <span class="o">@</span> <span class="n">Base</span><span class="o">.</span><span class="n">Math</span> <span class="o">./</span><span class="n">math</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">33</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Float64</span><span class="p">)</span>
-   <span class="o">@</span> <span class="n">Base</span><span class="o">.</span><span class="n">Math</span> <span class="o">./</span><span class="n">math</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">677</span>
+   <span class="o">@</span> <span class="n">Base</span><span class="o">.</span><span class="n">Math</span> <span class="o">./</span><span class="n">math</span><span class="o">.</span><span class="n">jl</span><span class="p">:</span><span class="mi">608</span>
  <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
-   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span><span class="mi">1</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span><span class="mi">3</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="example-roots-of-quadratic-function">
-<h2><span class="section-number">7.3.1. </span>Example: Roots of quadratic function<a class="headerlink" href="#example-roots-of-quadratic-function" title="Link to this heading">#</a></h2>
-<p>We can now update our previous example of the quadratic formula to handle all cases, including complex roots. We make sure that the argument to the <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> function is complex:</p>
+</section>
+<section id="application-a-robust-quadratic-formula">
+<h2><span class="section-number">7.3.5. </span>Application: A Robust Quadratic Formula<a class="headerlink" href="#application-a-robust-quadratic-formula" title="Link to this heading">#</a></h2>
+<p>We can now write a single, robust function to find the roots of a quadratic equation, <span class="math notranslate nohighlight">\(ax^2+bx+c=0\)</span>. By ensuring the discriminant (<span class="math notranslate nohighlight">\(b^2 - 4ac\)</span>) is converted to a complex number <em>before</em> taking the square root, our function will seamlessly handle both real and complex roots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
-<span class="w">    </span><span class="c"># Compute the roots of the quadratic ax^2 + bx + c = 0</span>
-<span class="w">    </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">complex</span><span class="p">(</span><span class="n">b</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
-<span class="w">    </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="n">a</span>
-<span class="w">    </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="n">a</span>
-<span class="w">    </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Calculate the discriminant.</span>
+<span class="w">    </span><span class="n">discriminant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># Convert the discriminant to a complex number before taking the square root.</span>
+<span class="w">    </span><span class="c"># This is the key step that handles all cases!</span>
+<span class="w">    </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">complex</span><span class="p">(</span><span class="n">discriminant</span><span class="p">))</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="n">a</span><span class="p">)</span>
+<span class="w">    </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="n">a</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -688,9 +809,10 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Let’s test it on an equation with complex roots, <span class="math notranslate nohighlight">\(x^2 + 1 = 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -700,9 +822,10 @@ document.write(`
 </div>
 </div>
 </div>
+<p>And another one, <span class="math notranslate nohighlight">\(x^2 + 4x + 13 = 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -712,10 +835,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Note that this implementation will return complex numbers even if the roots are real:</p>
+<p>Because we always convert the discriminant to a complex number, our function will return complex numbers even if the roots are real. Notice the imaginary part is <code class="docutils literal notranslate"><span class="pre">0.0im</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">roots_of_quadratic</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Testing with -x^2 + 5x + 6 = 0, which has real roots.</span>
+<span class="n">roots_of_quadratic</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -725,7 +849,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>If desired, one could easily write the function such that it returns real numbers for these cases.</p>
+<p>This is often the desired behavior for consistency. If you needed to, you could modify the function to check if the imaginary part is zero and return real numbers in that case.</p>
 </section>
 </section>
 
@@ -738,16 +862,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Special_Number_Types"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -765,7 +889,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7.2. </span>Arbitrary precision floating-point numbers</p>
+        <p class="prev-next-title"><span class="section-number">7.2. </span>Arbitrary-Precision Floating-Point Numbers</p>
       </div>
     </a>
     <a class="right-next"
@@ -773,7 +897,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7.4. </span>Rational numbers</p>
+        <p class="prev-next-title"><span class="section-number">7.4. </span>Working with Rational Numbers</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -793,7 +917,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-roots-of-quadratic-function">7.3.1. Example: Roots of quadratic function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-complex-numbers">7.3.1. Creating Complex Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-arithmetic-operations">7.3.2. Standard Arithmetic Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulating-complex-numbers">7.3.3. Manipulating Complex Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementary-functions-with-complex-arguments">7.3.4. Elementary Functions with Complex Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-a-robust-quadratic-formula">7.3.5. Application: A Robust Quadratic Formula</a></li>
 </ul>
   </nav></div>
 

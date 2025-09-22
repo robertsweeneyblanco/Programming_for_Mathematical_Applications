@@ -61,7 +61,7 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Vectorization/Constructing_Arrays.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="6.2. Array Functions" href="Array_Functions.html" />
+    <link rel="next" title="6.2. Vectorized Functions" href="Vectorized_Functions.html" />
     <link rel="prev" title="6. Vectorization" href="Chapter_Intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -207,7 +207,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Chapter_Intro.html">6. Vectorization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -502,9 +502,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-arrays-using-comprehensions">6.1.1. Constructing Arrays using Comprehensions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-expressions">6.1.2. Generator expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-creating-arrays">6.1.3. More on creating arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-comprehensions-a-mathematical-approach">6.1.1. Array Comprehensions: A Mathematical Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-with-if">6.1.1.1. Filtering with <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-the-element-type">6.1.1.2. Specifying the Element Type</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-expressions-for-efficiency">6.1.2. Generator Expressions for Efficiency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-powerful-array-creation-techniques">6.1.3. Other Powerful Array Creation Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape">6.1.3.1. <code class="docutils literal notranslate"><span class="pre">reshape</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permutedims">6.1.3.2. <code class="docutils literal notranslate"><span class="pre">permutedims</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeat">6.1.3.3. <code class="docutils literal notranslate"><span class="pre">repeat</span></code></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -518,17 +527,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="constructing-arrays">
 <h1><span class="section-number">6.1. </span>Constructing Arrays<a class="headerlink" href="#constructing-arrays" title="Link to this heading">#</a></h1>
-<section id="constructing-arrays-using-comprehensions">
-<h2><span class="section-number">6.1.1. </span>Constructing Arrays using Comprehensions<a class="headerlink" href="#constructing-arrays-using-comprehensions" title="Link to this heading">#</a></h2>
-<p><em>Comprehension syntax</em> is a a more general way to create arrays based on expressions.
-It has the following form:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span> <span class="n">F</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="o">...</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="o">=</span><span class="n">rx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ry</span><span class="p">,</span> <span class="o">...</span> <span class="p">]</span>
+<section id="array-comprehensions-a-mathematical-approach">
+<h2><span class="section-number">6.1.1. </span>Array Comprehensions: A Mathematical Approach<a class="headerlink" href="#array-comprehensions-a-mathematical-approach" title="Link to this heading">#</a></h2>
+<p>Beyond creating arrays of zeros or random numbers, we often need to construct arrays based on a specific mathematical rule. Julia’s <strong>comprehension syntax</strong> is a powerful and concise way to do this, closely mirroring mathematical set-builder notation. It’s an elegant alternative to writing a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to populate an array.</p>
+<p>The general form is:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">variable1</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">range1</span><span class="p">,</span><span class="w"> </span><span class="n">variable2</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">range2</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The function <code class="docutils literal notranslate"><span class="pre">F(x,y,...)</span></code> will be evaluated with the values <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, etc, taking on each value in their given lists. The resulting values are put in a multi-dimensional array, of the size given by the variable ranges <code class="docutils literal notranslate"><span class="pre">rx</span></code>, <code class="docutils literal notranslate"><span class="pre">ry</span></code>, etc.</p>
+<p>Here, the <code class="docutils literal notranslate"><span class="pre">expression</span></code> is evaluated for each combination of values from the given ranges (or any iterable). The results are then collected into a new array whose dimensions are determined by the lengths of the ranges.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="w"> </span><span class="p">]</span><span class="w">                </span><span class="c"># Square of the numbers 1 to 5</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Create a vector containing the first 5 perfect squares.</span>
+<span class="c"># The expression `x^2` is evaluated for each `x` in the range `1:5`.</span>
+<span class="n">squares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="w"> </span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -545,7 +556,9 @@ It has the following form:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="w"> </span><span class="p">]</span><span class="w">       </span><span class="c"># 3x5 matrix with entries A_ij = i + j</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Using two variables creates a 2D array (a Matrix).</span>
+<span class="c"># This builds a 3x5 matrix where the entry A[i,j] = i + j.</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="w"> </span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -560,7 +573,8 @@ It has the following form:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="w"> </span><span class="p">]</span><span class="w">       </span><span class="c"># 3x5 matrix with entries A_ij = i^j</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Another example: a 3x5 matrix where B[i,j] = i^j.</span>
+<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">i</span><span class="o">^</span><span class="n">j</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="w"> </span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -573,10 +587,14 @@ It has the following form:</p>
 </div>
 </div>
 </div>
-<p>The generated values can also be filtered using the <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword, that is, the value will only be included in the array if the condition after <code class="docutils literal notranslate"><span class="pre">if</span></code> is true:</p>
+<section id="filtering-with-if">
+<h3><span class="section-number">6.1.1.1. </span>Filtering with <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#filtering-with-if" title="Link to this heading">#</a></h3>
+<p>You can add an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement at the end of a comprehension to filter the values. The expression is only evaluated and included in the final array if the condition is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="o">%</span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w">    </span><span class="c"># Only for x that are multiples of 3</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Create a vector of squares for numbers from 1 to 10,</span>
+<span class="c"># but only include the square if the number `x` is a multiple of 3.</span>
+<span class="n">multiples_of_3_squared</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -589,40 +607,52 @@ It has the following form:</p>
 </div>
 </div>
 </div>
-<p>Like before, the data type of the elements in the array will be determined based on the values, but can also be enforced by putting the type name before the brackets:</p>
+</section>
+<section id="specifying-the-element-type">
+<h3><span class="section-number">6.1.1.2. </span>Specifying the Element Type<a class="headerlink" href="#specifying-the-element-type" title="Link to this heading">#</a></h3>
+<p>Julia automatically infers the element type of the array from the expression. However, you can explicitly set the type by prefixing the comprehension with the desired type. This is useful for ensuring type stability or controlling memory usage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Float64</span><span class="p">[</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">:</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="w"> </span><span class="p">]</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Create a 2x10 matrix of random integers.</span>
+<span class="c"># Even though `rand` produces integers here, we explicitly specify</span>
+<span class="c"># that the matrix should store them as `Float64` values.</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Float64</span><span class="p">[</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">:</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="w"> </span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2×10 Matrix{Float64}:
- 4.0  -1.0  -1.0  -3.0  -5.0  3.0  -4.0  1.0  4.0  -1.0
- 2.0  -3.0   1.0   3.0  -1.0  0.0   5.0  5.0  0.0  -3.0
+ -5.0   1.0  1.0  -1.0  -1.0   3.0  2.0  4.0   1.0  3.0
+ -3.0  -5.0  2.0   1.0  -4.0  -2.0  4.0  2.0  -2.0  4.0
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="generator-expressions">
-<h2><span class="section-number">6.1.2. </span>Generator expressions<a class="headerlink" href="#generator-expressions" title="Link to this heading">#</a></h2>
-<p>If you remove the brackets from a comprehension, you create a <em>generator expression</em>. It can be seen as a rule that produces the requested values on demand, without allocating an array to store them. Parentheses are needed to separate the generator from other elements:</p>
+</section>
+<section id="generator-expressions-for-efficiency">
+<h2><span class="section-number">6.1.2. </span>Generator Expressions for Efficiency<a class="headerlink" href="#generator-expressions-for-efficiency" title="Link to this heading">#</a></h2>
+<p>What if you need to perform a calculation on a sequence of values, but you don’t actually need to store all the values in memory at once? This is common when you want to sum a series or find a maximum value.</p>
+<p>By simply removing the square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> from a comprehension, you create a <strong>generator expression</strong>. Instead of building an array, this creates a special <em>generator</em> object that produces the values on demand. This is often called “lazy” evaluation and can be incredibly memory-efficient.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">gen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">)</span><span class="w">        </span><span class="c"># A generator expression</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This doesn&#39;t compute all 10 values and store them.</span>
+<span class="c"># Instead, `gen` is an object that knows how to produce the values when asked.</span>
+<span class="n">gen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Base.Generator{UnitRange{Int64}, var&quot;#13#14&quot;}(var&quot;#13#14&quot;(), 1:10)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Base.Generator{UnitRange{Int64}, var&quot;#11#12&quot;}(var&quot;#11#12&quot;(), 1:10)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">gen</span><span class="w">                        </span><span class="c"># Loop over all the values in the generator expression</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># We can iterate over the generator just like an array.</span>
+<span class="c"># The values are computed one by one as the loop progresses.</span>
+<span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">gen</span>
 <span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
@@ -635,12 +665,17 @@ It has the following form:</p>
 </div>
 </div>
 </section>
-<section id="more-on-creating-arrays">
-<h2><span class="section-number">6.1.3. </span>More on creating arrays<a class="headerlink" href="#more-on-creating-arrays" title="Link to this heading">#</a></h2>
-<p>Some other useful functions for creating arrays include the <code class="docutils literal notranslate"><span class="pre">reshape</span></code> function, which takes the data from one array and rearranges it into new dimensions:</p>
+<section id="other-powerful-array-creation-techniques">
+<h2><span class="section-number">6.1.3. </span>Other Powerful Array Creation Techniques<a class="headerlink" href="#other-powerful-array-creation-techniques" title="Link to this heading">#</a></h2>
+<section id="reshape">
+<h3><span class="section-number">6.1.3.1. </span><code class="docutils literal notranslate"><span class="pre">reshape</span></code><a class="headerlink" href="#reshape" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">reshape</span></code> function is a versatile tool that takes an existing collection of elements and pours them into an array of new dimensions without changing the underlying data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Take the numbers 1 through 15 and arrange them into a 3x5 matrix.</span>
+<span class="c"># Note that Julia is &quot;column-major,&quot; meaning it fills the first column completely,</span>
+<span class="c"># then the second column, and so on.</span>
+<span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -653,10 +688,16 @@ It has the following form:</p>
 </div>
 </div>
 </div>
-<p>Note how the elements are assigned column-wise, that is, first into column 1, then column 2, etc. If you want to assign by rows, you can use the <code class="docutils literal notranslate"><span class="pre">permutedims</span></code> function (which is strongly related to the <em>transpose</em> of a matrix in linear algebra, more on this later):</p>
+</section>
+<section id="permutedims">
+<h3><span class="section-number">6.1.3.2. </span><code class="docutils literal notranslate"><span class="pre">permutedims</span></code><a class="headerlink" href="#permutedims" title="Link to this heading">#</a></h3>
+<p>Since <code class="docutils literal notranslate"><span class="pre">reshape</span></code> fills arrays column-by-column, how can we achieve row-by-row filling? A common trick is to <code class="docutils literal notranslate"><span class="pre">reshape</span></code> into the <em>transposed</em> dimensions and then use <code class="docutils literal notranslate"><span class="pre">permutedims</span></code> to swap the dimensions.</p>
+<p>For a 2D matrix, <code class="docutils literal notranslate"><span class="pre">permutedims(A)</span></code> is equivalent to the transpose <code class="docutils literal notranslate"><span class="pre">A'</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">permutedims</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># To get a 3x5 matrix filled row-by-row, we first create a 5x3 matrix.</span>
+<span class="c"># Then, permuting its dimensions gives us the desired 3x5 layout.</span>
+<span class="n">permutedims</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -669,11 +710,14 @@ It has the following form:</p>
 </div>
 </div>
 </div>
-<p>Note how the inner matrix is of dimensions 5x3, so that after permutation the size is 3x5 just like before.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">repeat</span></code> function repeats the entries of a given matrix according to a specified pattern. In its simplest form, it just copies the array:</p>
+</section>
+<section id="repeat">
+<h3><span class="section-number">6.1.3.3. </span><code class="docutils literal notranslate"><span class="pre">repeat</span></code><a class="headerlink" href="#repeat" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">repeat</span></code> function constructs a larger array by tiling it with copies of a smaller one. You can specify how many times to repeat along each dimension.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Repeat the elements of the vector `1:2` three times.</span>
+<span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -689,10 +733,11 @@ It has the following form:</p>
 </div>
 </div>
 </div>
-<p>but it also works for multi-dimensional arrays:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># For multiple dimensions, you can specify inner and outer repetitions.</span>
+<span class="c"># Here, we repeat `1:2` 3 times down (inner) and 4 times across (outer).</span>
+<span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -710,7 +755,11 @@ It has the following form:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">repeat</span><span class="p">([</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># You can also repeat an entire matrix.</span>
+<span class="c"># `repeat(A, m, n)` will create a larger matrix by tiling A `m` times</span>
+<span class="c"># vertically and `n` times horizontally.</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span>
+<span class="n">repeat</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="c"># Repeat 1 time along dimension 1, 2 times along dimension 2.</span>
 </pre></div>
 </div>
 </div>
@@ -724,6 +773,7 @@ It has the following form:</p>
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -734,16 +784,16 @@ It has the following form:</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Vectorization"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -765,11 +815,11 @@ It has the following form:</p>
       </div>
     </a>
     <a class="right-next"
-       href="Array_Functions.html"
+       href="Vectorized_Functions.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6.2. </span>Array Functions</p>
+        <p class="prev-next-title"><span class="section-number">6.2. </span>Vectorized Functions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -789,9 +839,18 @@ It has the following form:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-arrays-using-comprehensions">6.1.1. Constructing Arrays using Comprehensions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-expressions">6.1.2. Generator expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-creating-arrays">6.1.3. More on creating arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-comprehensions-a-mathematical-approach">6.1.1. Array Comprehensions: A Mathematical Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-with-if">6.1.1.1. Filtering with <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-the-element-type">6.1.1.2. Specifying the Element Type</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-expressions-for-efficiency">6.1.2. Generator Expressions for Efficiency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-powerful-array-creation-techniques">6.1.3. Other Powerful Array Creation Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape">6.1.3.1. <code class="docutils literal notranslate"><span class="pre">reshape</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permutedims">6.1.3.2. <code class="docutils literal notranslate"><span class="pre">permutedims</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeat">6.1.3.3. <code class="docutils literal notranslate"><span class="pre">repeat</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

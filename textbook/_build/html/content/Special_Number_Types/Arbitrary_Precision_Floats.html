@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7.2. Arbitrary precision floating-point numbers &#8212; Programming for Mathematical Applications</title>
+    <title>7.2. Arbitrary-Precision Floating-Point Numbers &#8212; Programming for Mathematical Applications</title>
   
   
   
@@ -63,8 +63,8 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Special_Number_Types/Arbitrary_Precision_Floats.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="7.3. Complex numbers" href="Complex_Numbers.html" />
-    <link rel="prev" title="7.1. Arbitrary Precision Integers" href="Arbitrary_Precision_Integers.html" />
+    <link rel="next" title="7.3. Working with Complex Numbers in Julia" href="Complex_Numbers.html" />
+    <link rel="prev" title="7.1. Arbitrary-Precision Integer Arithmetic" href="Arbitrary_Precision_Integers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -494,7 +494,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Arbitrary precision floating-point numbers</h1>
+    <h1>Arbitrary-Precision Floating-Point Numbers</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -504,7 +504,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-cubic-convergence">7.2.1. Example: Cubic convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-float64-conversion-trap">7.2.1. The <code class="docutils literal notranslate"><span class="pre">Float64</span></code> Conversion Trap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controlling-precision-with-setprecision">7.2.2. Controlling Precision with <code class="docutils literal notranslate"><span class="pre">setprecision</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-visualizing-cubic-convergence-with-halley-s-method">7.2.3. Example: Visualizing Cubic Convergence with Halley’s Method</a></li>
 </ul>
             </nav>
         </div>
@@ -517,11 +519,17 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="arbitrary-precision-floating-point-numbers">
-<h1><span class="section-number">7.2. </span>Arbitrary precision floating-point numbers<a class="headerlink" href="#arbitrary-precision-floating-point-numbers" title="Link to this heading">#</a></h1>
-<p>Similarly, the <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> data type can create floating-point numbers with higher precision than the regular <code class="docutils literal notranslate"><span class="pre">Float64</span></code> type. It can also be created from an existing <code class="docutils literal notranslate"><span class="pre">Float64</span></code> number:</p>
+<h1><span class="section-number">7.2. </span>Arbitrary-Precision Floating-Point Numbers<a class="headerlink" href="#arbitrary-precision-floating-point-numbers" title="Link to this heading">#</a></h1>
+<p>Just as <code class="docutils literal notranslate"><span class="pre">BigInt</span></code> handles oversized integers, the <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> type manages floating-point numbers with far more precision than the standard <code class="docutils literal notranslate"><span class="pre">Float64</span></code>.</p>
+<p>This is essential because <code class="docutils literal notranslate"><span class="pre">Float64</span></code> numbers are stored in binary, and many decimal fractions (like 0.1 or 2.1) cannot be represented perfectly, leading to tiny rounding errors. <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> allows us to increase the number of bits used for storage, minimizing these errors and enabling high-precision calculations.</p>
+<section id="the-float64-conversion-trap">
+<h2><span class="section-number">7.2.1. </span>The <code class="docutils literal notranslate"><span class="pre">Float64</span></code> Conversion Trap<a class="headerlink" href="#the-float64-conversion-trap" title="Link to this heading">#</a></h2>
+<p>Like with <code class="docutils literal notranslate"><span class="pre">BigInt</span></code>, creating a <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> using <code class="docutils literal notranslate"><span class="pre">big()</span></code> on a standard number can be tricky. The input number is first interpreted as a <code class="docutils literal notranslate"><span class="pre">Float64</span></code> <em>before</em> being converted. If the number can be represented perfectly in binary, the result is what you’d expect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="kt">BigFloat</span><span class="p">(</span><span class="mf">1.75</span><span class="p">)</span><span class="w">              </span><span class="c"># Accidentally OK, since 1.75 is exactly represented by Float64</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This works perfectly because 1.75 is exactly 1 + 1/2 + 1/4,</span>
+<span class="c"># which has a finite binary representation.</span>
+<span class="n">big</span><span class="p">(</span><span class="mf">1.75</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -531,10 +539,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p>But again this might give unintended results, since the number is first converted to <code class="docutils literal notranslate"><span class="pre">Float64</span></code> with only about 16 decimal digits of accuracy:</p>
+<p>However, if the number cannot be represented exactly as a <code class="docutils literal notranslate"><span class="pre">Float64</span></code>, the initial representation error is carried over and exposed by <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code>’s high precision.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="kt">BigFloat</span><span class="p">(</span><span class="mf">2.1</span><span class="p">)</span><span class="w">               </span><span class="c"># First rounded to Float64, low precision</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The number 2.1 is first rounded to the nearest Float64.</span>
+<span class="c"># BigFloat then faithfully represents that small inaccuracy with many digits.</span>
+<span class="n">big</span><span class="p">(</span><span class="mf">2.1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -544,10 +554,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Again this can be solved using the string syntax:</p>
+<p>The solution, once again, is to use the <code class="docutils literal notranslate"><span class="pre">big&quot;...&quot;</span></code> string macro. This tells Julia to parse the decimal string directly into a <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> at maximum precision, bypassing the <code class="docutils literal notranslate"><span class="pre">Float64</span></code> intermediate step entirely.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">parse</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2.1&quot;</span><span class="p">)</span><span class="w">      </span><span class="c"># High precision</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># The string macro correctly parses the decimal &quot;2.1&quot; to the highest possible precision.</span>
+<span class="sa">big</span><span class="s">&quot;2.1&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -557,11 +568,16 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The precision, or the number of bits used to store the number, can be controlled with the <code class="docutils literal notranslate"><span class="pre">setprecision</span></code> function. It will set the precision for all later operations, unless used in a <code class="docutils literal notranslate"><span class="pre">do</span></code> block as shown below when it will only apply to that block of code.</p>
+</section>
+<section id="controlling-precision-with-setprecision">
+<h2><span class="section-number">7.2.2. </span>Controlling Precision with <code class="docutils literal notranslate"><span class="pre">setprecision</span></code><a class="headerlink" href="#controlling-precision-with-setprecision" title="Link to this heading">#</a></h2>
+<p>You can control the precision (the number of <strong>bits</strong> used for the significand) of <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> calculations using the <code class="docutils literal notranslate"><span class="pre">setprecision</span></code> function.</p>
+<p>While you can set this globally, the recommended practice is to use a <code class="docutils literal notranslate"><span class="pre">do</span></code> block. This temporarily sets the precision for only the code inside the block, ensuring your high-precision code doesn’t have unintended side effects elsewhere.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">setprecision</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="kt">BigFloat</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="kt">BigFloat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Temporarily set the precision to 512 bits for the duration of this block.</span>
+<span class="n">setprecision</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="n">big</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">big</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -572,11 +588,15 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Julia’s built-in functions support the higher precision:</p>
+<p>Thanks to multiple dispatch, many of Julia’s built-in mathematical functions and constants have specialized methods for <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code>. When you use them, they automatically operate at the currently set precision.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="nb">pi</span><span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="nb">pi</span><span class="p">)))</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># big(pi) computes π to the current BigFloat precision.</span>
+<span class="n">display</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="nb">pi</span><span class="p">))</span>
+
+<span class="c"># The result of sin(π) should be 0. The tiny non-zero result here is the numerical error</span>
+<span class="c"># at this high level of precision—still incredibly close to zero!</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="nb">pi</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -589,26 +609,39 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="example-cubic-convergence">
-<h2><span class="section-number">7.2.1. </span>Example: Cubic convergence<a class="headerlink" href="#example-cubic-convergence" title="Link to this heading">#</a></h2>
-<p><em>Halley’s method</em> is an extension of Newton’s method for solving <span class="math notranslate nohighlight">\(f(x)=0\)</span>, which involves the second derivative but gives cubic convergence:</p>
+</section>
+<section id="example-visualizing-cubic-convergence-with-halley-s-method">
+<h2><span class="section-number">7.2.3. </span>Example: Visualizing Cubic Convergence with Halley’s Method<a class="headerlink" href="#example-visualizing-cubic-convergence-with-halley-s-method" title="Link to this heading">#</a></h2>
+<p><strong>Halley’s method</strong> is a root-finding algorithm that extends Newton’s method. It’s known for its <strong>cubic convergence</strong>, which means the number of correct digits roughly triples with each iteration.</p>
 <div class="math notranslate nohighlight">
-\[
-x_{n+1} = x_n - \frac{2f(x_n) f'(x_n)}{2[f'(x_n)]^2 - f(x_n)f''(x_n)}
-\]</div>
-<p>This cubic convergence is sometimes hard to observe, since the machine precision is achieved very quickly. But with arbitrary precision we can confirm the “tripling of the accurate digits” in each iteration. For example, consider computing <span class="math notranslate nohighlight">\(x=\sqrt[3]{a}\)</span> by solving the equation <span class="math notranslate nohighlight">\(f(x) = x^3 - a\)</span>:</p>
+\[ x_{n+1} = x_n - \frac{2f(x_n) f'(x_n)}{2[f'(x_n)]^2 - f(x_n)f''(x_n)} \]</div>
+<p>This rapid convergence is often impossible to observe with standard <code class="docutils literal notranslate"><span class="pre">Float64</span></code> because you hit the precision limit almost instantly. But with <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code>, we can use it like a mathematical microscope to watch this phenomenon in action. Let’s try to compute <span class="math notranslate nohighlight">\(x = \sqrt[3]{a}\)</span> by finding the root of the equation <span class="math notranslate nohighlight">\(f(x) = x^3 - a = 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">halley_cuberoot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">ε</span><span class="p">)</span>
-<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">    </span><span class="c"># Initial guess</span>
-<span class="w">    </span><span class="n">Δx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="c"># Need to initialize to get started</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Note: This function is written generically. It will work with Float64, BigFloat,</span>
+<span class="c"># or any other number type that supports the required arithmetic operations.</span>
+<span class="k">function</span><span class="w"> </span><span class="n">halley_cuberoot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">ε</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Initial guess is 1, but cast to the same type as the input &#39;a&#39;.</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># Initialize the change in x to be larger than the tolerance to ensure the loop runs.</span>
+<span class="w">    </span><span class="n">Δx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="n">ε</span>
+<span class="w">    </span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">Δx</span><span class="w"> </span><span class="o">≥</span><span class="w"> </span><span class="n">ε</span>
-<span class="w">        </span><span class="n">xnew</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">(</span><span class="mi">3</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">6</span><span class="n">x</span><span class="p">))</span>
-<span class="w">        </span><span class="n">Δx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">xnew</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xnew</span>
+<span class="w">        </span><span class="c"># Apply Halley&#39;s formula for f(x) = x^3 - a</span>
+<span class="w">        </span><span class="c"># f&#39;(x) = 3x^2, f&#39;&#39;(x) = 6x</span>
+<span class="w">        </span><span class="n">fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">^</span><span class="mi">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span>
+<span class="w">        </span><span class="n">f_prime_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span>
+<span class="w">        </span><span class="n">f_double_prime_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="n">x</span>
+<span class="w">        </span><span class="n">x_new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">fx</span><span class="o">*</span><span class="n">f_prime_x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">f_prime_x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fx</span><span class="o">*</span><span class="n">f_double_prime_x</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">Δx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">x_new</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_new</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c"># This print statement is our &quot;microscope&quot; to observe the error shrinking.</span>
 <span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Error = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cbrt</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
 <span class="w">    </span><span class="k">end</span>
-<span class="w">    </span><span class="n">x</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -621,7 +654,10 @@ x_{n+1} = x_n - \frac{2f(x_n) f'(x_n)}{2[f'(x_n)]^2 - f(x_n)f''(x_n)}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">halley_cuberoot</span><span class="p">(</span><span class="kt">BigFloat</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mf">1e-60</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Let&#39;s find the cube root of 2.</span>
+<span class="c"># By passing in big(2), we trigger the BigFloat methods throughout our function.</span>
+<span class="c"># The high-precision tolerance (1e-60) is only meaningful because we&#39;re using BigFloat.</span>
+<span class="n">halley_cuberoot</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mf">1e-60</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -651,16 +687,16 @@ Error = 0.0
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Special_Number_Types"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -678,7 +714,7 @@ Error = 0.0
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7.1. </span>Arbitrary Precision Integers</p>
+        <p class="prev-next-title"><span class="section-number">7.1. </span>Arbitrary-Precision Integer Arithmetic</p>
       </div>
     </a>
     <a class="right-next"
@@ -686,7 +722,7 @@ Error = 0.0
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7.3. </span>Complex numbers</p>
+        <p class="prev-next-title"><span class="section-number">7.3. </span>Working with Complex Numbers in Julia</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -706,7 +742,9 @@ Error = 0.0
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-cubic-convergence">7.2.1. Example: Cubic convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-float64-conversion-trap">7.2.1. The <code class="docutils literal notranslate"><span class="pre">Float64</span></code> Conversion Trap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controlling-precision-with-setprecision">7.2.2. Controlling Precision with <code class="docutils literal notranslate"><span class="pre">setprecision</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-visualizing-cubic-convergence-with-halley-s-method">7.2.3. Example: Visualizing Cubic Convergence with Halley’s Method</a></li>
 </ul>
   </nav></div>
 

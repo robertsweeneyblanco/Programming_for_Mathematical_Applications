@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="6.1. Constructing Arrays" href="Constructing_Arrays.html" />
-    <link rel="prev" title="5.3. Monte Carlo" href="../Random_Numbers/Monte_Carlo.html" />
+    <link rel="prev" title="5.3. Monte Carlo Methods" href="../Random_Numbers/Monte_Carlo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">6. Vectorization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -477,7 +477,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="vectorization">
 <h1><span class="section-number">6. </span>Vectorization<a class="headerlink" href="#vectorization" title="Link to this heading">#</a></h1>
-<p>Vectorization allows code to become quicker to execute and more compact. Readers should expect to learn how to improve the performance and readability of their code after finishing the chapter.</p>
+<p>Vectorization is the art of operating on entire arrays at once, rather than looping through individual elements. This powerful programming paradigm encourages you to “think in arrays,” much like you would in a math class. The result is code that’s not only more compact and readable but also significantly faster, as it allows Julia to use highly-optimized, low-level routines for computation.</p>
+<p>This chapter provides a comprehensive toolkit for writing vectorized code. We’ll begin by mastering <strong>array comprehensions</strong> for elegant array creation. Next, we’ll explore a suite of built-in functions for summarizing, transforming, and querying data, including how to apply them along specific dimensions. You’ll then learn the indispensable technique of <strong>logical indexing</strong> to filter data with boolean masks. To see these concepts in action, we’ll conclude by refactoring code from our previous examples, transforming them into remarkably concise and efficient solutions.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -518,7 +519,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.3. </span>Monte Carlo</p>
+        <p class="prev-next-title"><span class="section-number">5.3. </span>Monte Carlo Methods</p>
       </div>
     </a>
     <a class="right-next"

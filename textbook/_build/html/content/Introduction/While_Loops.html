@@ -209,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -678,12 +678,13 @@ Current estimate: x = 16.0
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">my_sqrt_v2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">ε</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-15</span><span class="p">)</span>
 <span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Current estimate: x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
 <span class="w">    </span><span class="n">x_new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="o">/</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="c"># Calculate the first step to initialize the change</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="c"># Loop as long as the change is greater than or equal to the tolerance</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">x_new</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">≥</span><span class="w"> </span><span class="n">ε</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Current estimate: x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x_new</span><span class="p">)</span>
 <span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_new</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Current estimate: x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x_new</span><span class="p">)</span>
 <span class="w">        </span><span class="n">x_new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="o">/</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">    </span><span class="k">end</span>
 <span class="w">    </span>
@@ -705,7 +706,8 @@ Current estimate: x = 16.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Current estimate: x = 128.5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Current estimate: x = 1.0
+Current estimate: x = 128.5
 Current estimate: x = 65.24610894941634
 Current estimate: x = 34.58485728656987
 Current estimate: x = 20.993470372021676

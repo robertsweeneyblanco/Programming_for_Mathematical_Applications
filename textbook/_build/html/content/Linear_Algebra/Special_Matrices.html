@@ -63,8 +63,8 @@
     <link rel="canonical" href="https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Linear_Algebra/Special_Matrices.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="9.3. Linear Systems and Regression" href="Linear_Systems_And_Regression.html" />
-    <link rel="prev" title="9.1. Matrix Operations" href="Matrix_Operations.html" />
+    <link rel="next" title="9.3. Solving Linear Systems with Backslash ( \ )" href="Linear_Systems_And_Regression.html" />
+    <link rel="prev" title="9.1. Linear Algebra in Julia: Matrix Operations" href="Matrix_Operations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -504,7 +504,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-identity-matrix">9.2.1. The identity matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-dramatic-improvement-in-scaling-performance">9.2.1. Example: Dramatic Improvement in Scaling Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-identity-matrix">9.2.2. The Identity Matrix</a></li>
 </ul>
             </nav>
         </div>
@@ -525,7 +526,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The 2D arrays seen so far have been general, that is, that can be used to represent arbitrary matrices. Many applications lead to matrices with special structures or properties, and Julia defines a number of specialized matrix representations for this. The main reason for using these is to obtain better performance (which can make a very big difference), but they are also useful to e.g. ensure correctness of codes by enforcing known properties.</p>
+<p>So far, we have used general-purpose 2D arrays that can represent any arbitrary matrix. However, many applications involve matrices with special structures (e.g., symmetric, diagonal, triangular).</p>
+<p>Julia provides a rich set of specialized matrix types to handle these cases. Using them has two major benefits:</p>
+<ol class="arabic simple">
+<li><p><strong>Performance</strong>: Operations can be orders of magnitude faster and use significantly less memory.</p></li>
+<li><p><strong>Correctness</strong>: Enforcing a structure (like symmetry) can help ensure your algorithms are correct.</p></li>
+</ol>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Type</p></th>
@@ -533,43 +539,43 @@ document.write(`
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>Symmetric</p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Symmetric</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Symmetric_matrix">Symmetric matrix</a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>Hermitian</p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Hermitian</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian matrix</a></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>UpperTriangular</p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UpperTriangular</span></code></p></td>
 <td class="text-left"><p>Upper <a class="reference external" href="https://en.wikipedia.org/wiki/Triangular_matrix">triangular matrix</a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>UnitUpperTriangular</p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UnitUpperTriangular</span></code></p></td>
 <td class="text-left"><p>Upper <a class="reference external" href="https://en.wikipedia.org/wiki/Triangular_matrix">triangular matrix</a> with unit diagonal</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>LowerTriangular</p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LowerTriangular</span></code></p></td>
 <td class="text-left"><p>Lower <a class="reference external" href="https://en.wikipedia.org/wiki/Triangular_matrix">triangular matrix</a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>UnitLowerTriangular</p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UnitLowerTriangular</span></code></p></td>
 <td class="text-left"><p>Lower <a class="reference external" href="https://en.wikipedia.org/wiki/Triangular_matrix">triangular matrix</a> with unit diagonal</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>Tridiagonal</p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Tridiagonal</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Tridiagonal_matrix">Tridiagonal matrix</a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>SymTridiagonal</p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">SymTridiagonal</span></code></p></td>
 <td class="text-left"><p>Symmetric tridiagonal matrix</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>Bidiagonal</p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Bidiagonal</span></code></p></td>
 <td class="text-left"><p>Upper/lower <a class="reference external" href="https://en.wikipedia.org/wiki/Bidiagonal_matrix">bidiagonal matrix</a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>Diagonal</p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Diagonal</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Diagonal_matrix">Diagonal matrix</a></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>UniformScaling</p></td>
-<td class="text-left"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Uniform_scaling">Uniform scaling operator</a></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UniformScaling</span></code></p></td>
+<td class="text-left"><p>A uniform scaling operator, <code class="docutils literal notranslate"><span class="pre">α*I</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>For example, if you know that your matrix is both symmetric and tridiagonal, you can use the <code class="docutils literal notranslate"><span class="pre">SymTridiagonal</span></code> type. The example below shows how to generate a famous matrix which is very common in applications:</p>
+<p>For example, if you know that your matrix is both symmetric and tridiagonal, you can use the <code class="docutils literal notranslate"><span class="pre">SymTridiagonal</span></code> type. The example below shows how to construct the 1D discrete Laplacian, a matrix that appears frequently when solving differential equations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SymTridiagonal</span><span class="p">(</span><span class="mi">2</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
@@ -587,11 +593,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The matrix operations defined above will work just as before on these specialized types, but likely be much more efficient. For example:</p>
+<p>The standard matrix operations will work just as before on these specialized types, but Julia will dispatch to highly efficient, specialized algorithms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w">     </span><span class="c"># Matrix-vector multiplication</span>
-<span class="n">T</span><span class="o">^</span><span class="mi">3</span><span class="w">              </span><span class="c"># Matrix cube</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="c"># Matrix-vector multiplication</span>
+<span class="n">T</span><span class="o">^</span><span class="mi">3</span><span class="w">          </span><span class="c"># Matrix cube</span>
 </pre></div>
 </div>
 </div>
@@ -606,12 +612,49 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="the-identity-matrix">
-<h2><span class="section-number">9.2.1. </span>The identity matrix<a class="headerlink" href="#the-identity-matrix" title="Link to this heading">#</a></h2>
-<p>The identity matrix <span class="math notranslate nohighlight">\(I\)</span> is so commonly used, that it has a special syntax which supports some additional performance improvements. In its simplest form, you can simply use the <code class="docutils literal notranslate"><span class="pre">I</span></code> operator and it will behave as expected:</p>
+<section id="example-dramatic-improvement-in-scaling-performance">
+<h2><span class="section-number">9.2.1. </span>Example: Dramatic Improvement in Scaling Performance<a class="headerlink" href="#example-dramatic-improvement-in-scaling-performance" title="Link to this heading">#</a></h2>
+<p>The real power of these specialized types becomes obvious when working with large matrices. Let’s consider a <code class="docutils literal notranslate"><span class="pre">1,000,000</span> <span class="pre">x</span> <span class="pre">1,000,000</span></code> tridiagonal matrix.</p>
+<p>If we were to store this as a standard <code class="docutils literal notranslate"><span class="pre">Matrix{Float64}</span></code>, it would require <code class="docutils literal notranslate"><span class="pre">1,000,000</span> <span class="pre">*</span> <span class="pre">1,000,000</span> <span class="pre">*</span> <span class="pre">8</span></code> bytes of memory, which is <strong>8 terabytes</strong>! That’s far more RAM than any standard computer has.</p>
+<p>By using <code class="docutils literal notranslate"><span class="pre">SymTridiagonal</span></code>, we only store the diagonal and off-diagonal elements, making the problem tractable. Furthermore, Julia’s <code class="docutils literal notranslate"><span class="pre">eigvals</span></code> function uses specialized, highly efficient algorithms for these matrix types.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="n">I</span><span class="w">     </span><span class="c"># OK, since T is 5-by-5</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1_000_000</span>
+<span class="n">T_large</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SymTridiagonal</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c"># This computation is only feasible because of the special matrix type.</span>
+<span class="c"># It uses a fast algorithm and minimal memory to find the 5 smallest eigenvalues.</span>
+<span class="nd">@time</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eigvals</span><span class="p">(</span><span class="n">T_large</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;The 5 smallest eigenvalues are:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">lambda</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.692150 seconds (982.77 k allocations: 234.523 MiB, 0.40% gc time, 9.49% compilation time)
+The 5 smallest eigenvalues are:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Float64}:
+ 9.869691735229404e-12
+ 3.9478444686844015e-11
+ 8.882637160787986e-11
+ 1.579134638370591e-10
+ 2.4673972355866816e-10
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the calculation is incredibly fast and memory-efficient. This task would be completely impossible with a standard dense matrix, demonstrating the critical importance of using the right data structure for your problem.</p>
+</section>
+<section id="the-identity-matrix">
+<h2><span class="section-number">9.2.2. </span>The Identity Matrix<a class="headerlink" href="#the-identity-matrix" title="Link to this heading">#</a></h2>
+<p>The identity matrix <span class="math notranslate nohighlight">\(I\)</span> is so common that it has a special representation, <code class="docutils literal notranslate"><span class="pre">I</span></code>, which is a <code class="docutils literal notranslate"><span class="pre">UniformScaling</span></code> operator. This object acts like an identity matrix of any required size without ever allocating memory for it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Julia infers that I should be a 5x5 identity matrix to match the size of T.</span>
+<span class="n">T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="n">I</span>
 </pre></div>
 </div>
 </div>
@@ -626,10 +669,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>If you want to actually create an identity matrix, you have to specify the element type and the dimensions:</p>
+<p>If you need to create an explicit, dense identity matrix, you can do so, but this is often unnecessary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">I4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This creates a standard 4x4 Matrix{Float64}.</span>
+<span class="n">I4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">I</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -643,7 +687,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>but this is often not necessary since the <code class="docutils literal notranslate"><span class="pre">I</span></code> operator can be used in expressions, as shown above.</p>
+<p>In most cases, you can just use the <code class="docutils literal notranslate"><span class="pre">I</span></code> operator directly in your expressions, and Julia will handle the dimensions and calculations efficiently.</p>
 </section>
 </section>
 
@@ -656,16 +700,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.9"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "julia-1.9",
+            name: "julia-1.11",
             path: "./content/Linear_Algebra"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.9'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -683,7 +727,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">9.1. </span>Matrix Operations</p>
+        <p class="prev-next-title"><span class="section-number">9.1. </span>Linear Algebra in Julia: Matrix Operations</p>
       </div>
     </a>
     <a class="right-next"
@@ -691,7 +735,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9.3. </span>Linear Systems and Regression</p>
+        <p class="prev-next-title"><span class="section-number">9.3. </span>Solving Linear Systems with Backslash ( \ )</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -711,7 +755,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-identity-matrix">9.2.1. The identity matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-dramatic-improvement-in-scaling-performance">9.2.1. Example: Dramatic Improvement in Scaling Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-identity-matrix">9.2.2. The Identity Matrix</a></li>
 </ul>
   </nav></div>
 

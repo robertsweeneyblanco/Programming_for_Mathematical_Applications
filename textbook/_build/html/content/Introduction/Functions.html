@@ -209,7 +209,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Vectorization/Chapter_Intro.html">6. Vectorization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Constructing_Arrays.html">6.1. Constructing Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Array_Functions.html">6.2. Array Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Vectorization/Vectorized_Functions.html">6.2. Vectorized Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Vectorization/Logical_Indexing.html">6.3. Logical Indexing</a></li>
 </ul>
 </details></li>
@@ -505,7 +505,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-and-hyperbolic-functions">1.3.1. Trigonometric and Hyperbolic Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ramanujan-s-constant">1.3.2. Example: Ramanujan’s Constant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-curiosities-almost-integers">1.3.2. Numerical Curiosities: Almost Integers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-1-standard-floating-point-arithmetic">1.3.2.1. Attempt 1: Standard Floating-Point Arithmetic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-2-using-high-precision-arithmetic">1.3.2.2. Attempt 2: Using High-Precision Arithmetic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-3-formatting-the-output-for-clarity">1.3.2.3. Attempt 3: Formatting the Output for Clarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-near-integer-e-pi-pi">1.3.2.4. Another Near-Integer: <span class="math notranslate nohighlight">\(e^\pi - \pi\)</span></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-roots-of-a-quadratic">1.3.3. Example: Real Roots of a Quadratic</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-defined-functions">1.3.4. User-Defined Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-assignment-form">1.3.4.1. Compact Assignment Form</a></li>
@@ -588,12 +594,78 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="example-ramanujan-s-constant">
-<h2><span class="section-number">1.3.2. </span>Example: Ramanujan’s Constant<a class="headerlink" href="#example-ramanujan-s-constant" title="Link to this heading">#</a></h2>
-<p>Let’s evaluate the expression <span class="math notranslate nohighlight">\(e^\pi - \pi\)</span>. While not an integer, it is famously close to 20.</p>
+<section id="numerical-curiosities-almost-integers">
+<h2><span class="section-number">1.3.2. </span>Numerical Curiosities: Almost Integers<a class="headerlink" href="#numerical-curiosities-almost-integers" title="Link to this heading">#</a></h2>
+<p>Mathematics is full of fascinating coincidences! A famous example is <strong>Ramanujan’s constant</strong>, <span class="math notranslate nohighlight">\(e^{\pi\sqrt{163}}\)</span>, which is amazingly close to being a perfect integer. Let’s try to calculate it and see just how close it is.</p>
+<section id="attempt-1-standard-floating-point-arithmetic">
+<h3><span class="section-number">1.3.2.1. </span>Attempt 1: Standard Floating-Point Arithmetic<a class="headerlink" href="#attempt-1-standard-floating-point-arithmetic" title="Link to this heading">#</a></h3>
+<p>Let’s start with the most direct approach. We’ll use Julia’s standard numeric types to calculate the value. As we’ll see, this approach can sometimes be misleading.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span><span class="p">(</span><span class="nb">π</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">π</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># This calculation uses the default `Float64` precision.</span>
+<span class="c"># Notice the result! It looks like a perfect integer.</span>
+<span class="c"># This is due to floating-point rounding; the actual value is so close to an integer</span>
+<span class="c"># that at this precision, the tiny fractional part is completely lost.</span>
+<span class="n">exp</span><span class="p">(</span><span class="nb">π</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">163</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.6253741264076826e17
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="attempt-2-using-high-precision-arithmetic">
+<h3><span class="section-number">1.3.2.2. </span>Attempt 2: Using High-Precision Arithmetic<a class="headerlink" href="#attempt-2-using-high-precision-arithmetic" title="Link to this heading">#</a></h3>
+<p>To get around the rounding issue, we need more precision. We can tell Julia to perform the calculation using <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code>, a type that allows for an arbitrarily high number of digits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># By wrapping numbers with `big()`, we convert them to high-precision types.</span>
+<span class="c"># The calculation is now accurate, but Julia&#39;s default output for `BigFloat`</span>
+<span class="c"># uses scientific notation, which makes it hard to see the &#39;almost integer&#39; property.</span>
+<span class="n">ramanujan_constant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="nb">π</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">big</span><span class="p">(</span><span class="mi">163</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.62537412640768743999999999999250072597198185688879353856337336990862707537278e+17
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="attempt-3-formatting-the-output-for-clarity">
+<h3><span class="section-number">1.3.2.3. </span>Attempt 3: Formatting the Output for Clarity<a class="headerlink" href="#attempt-3-formatting-the-output-for-clarity" title="Link to this heading">#</a></h3>
+<p>We have the correct value stored, but we need to display it differently. A helpful package called <code class="docutils literal notranslate"><span class="pre">Printf</span></code> gives us fine-grained control over how numbers are printed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># First, we load the package.</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Printf</span>
+
+<span class="c"># The `@printf` macro lets us specify a format string.</span>
+<span class="c"># &quot;%.30f&quot; means &#39;print a floating-point number with 30 digits after the decimal.&#39;</span>
+<span class="c"># Now we can clearly see the long string of nines!</span>
+<span class="nd">@printf</span><span class="w"> </span><span class="s">&quot;</span><span class="si">%.30f</span><span class="s">&quot;</span><span class="w"> </span><span class="n">ramanujan_constant</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>262537412640768743.999999999999250072597198185689
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="another-near-integer-e-pi-pi">
+<h3><span class="section-number">1.3.2.4. </span>Another Near-Integer: <span class="math notranslate nohighlight">\(e^\pi - \pi\)</span><a class="headerlink" href="#another-near-integer-e-pi-pi" title="Link to this heading">#</a></h3>
+<p>Another well-known mathematical curiosity is the expression <span class="math notranslate nohighlight">\(e^\pi - \pi\)</span>. While not as close to an integer as Ramanujan’s constant, it’s famously near the number 20. In this case, regular <code class="docutils literal notranslate"><span class="pre">Float64</span></code> calculations are sufficient and the number will be printed without exponents by default.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Let&#39;s evaluate this second expression.</span>
+<span class="c"># It&#39;s a fun example of how fundamental constants can combine in unexpected ways.</span>
+<span class="n">exp</span><span class="p">(</span><span class="nb">π</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">π</span>
 </pre></div>
 </div>
 </div>
@@ -603,6 +675,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="example-real-roots-of-a-quadratic">
 <h2><span class="section-number">1.3.3. </span>Example: Real Roots of a Quadratic<a class="headerlink" href="#example-real-roots-of-a-quadratic" title="Link to this heading">#</a></h2>
@@ -848,36 +921,25 @@ For now, we will assume the roots are real; we’ll cover complex numbers in a l
 <section id="optional-arguments">
 <h3><span class="section-number">1.3.6.1. </span>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Link to this heading">#</a></h3>
 <p>You can make function arguments optional by providing them with a <strong>default value</strong>. If a caller doesn’t provide a value for that argument, the default is used automatically.</p>
-<p>Let’s consider solving the equation <span class="math notranslate nohighlight">\(2x = \tan x\)</span> using the fixed-point iteration <span class="math notranslate nohighlight">\(x_{n+1} = \tan^{-1}(2x_n)\)</span>. Our function could take two arguments:</p>
+<p>Let’s model the vertical motion of an object under gravity using the formula <span class="math notranslate nohighlight">\(y(t) = y_0 + v_0 t - \frac{1}{2} g t^2\)</span>. Our function will take three arguments:</p>
 <ul class="simple">
-<li><p>A termination tolerance <code class="docutils literal notranslate"><span class="pre">δ</span></code>.</p></li>
-<li><p>A starting value <code class="docutils literal notranslate"><span class="pre">x0</span></code>.</p></li>
+<li><p>The time <code class="docutils literal notranslate"><span class="pre">t</span></code> (required).</p></li>
+<li><p>The initial height <code class="docutils literal notranslate"><span class="pre">y0</span></code> (optional).</p></li>
+<li><p>The initial velocity <code class="docutils literal notranslate"><span class="pre">v0</span></code> (optional).</p></li>
 </ul>
-<p>By setting default values, we can make both of these optional.</p>
+<p>By setting default values for <code class="docutils literal notranslate"><span class="pre">y0</span></code> and <code class="docutils literal notranslate"><span class="pre">v0</span></code>, we can easily model an object starting from the ground at rest.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">solve_fixed_point</span><span class="p">(</span><span class="n">δ</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span>
-<span class="w">    </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nb">true</span>
-<span class="w">        </span><span class="n">iter</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">        </span><span class="n">x_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
-<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atan</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x_prev</span><span class="p">)</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Iteration &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x_prev</span><span class="p">)</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="n">δ</span>
-<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Converged after &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; iterations.&quot;</span><span class="p">)</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span>
-<span class="w">        </span><span class="k">end</span>
-<span class="w">    </span><span class="k">end</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">calculate_height_v1</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">v0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># In this version, gravity &#39;g&#39; is hard-coded to Earth&#39;s value.</span>
+<span class="w">    </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v0</span><span class="o">*</span><span class="n">t</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">t</span><span class="o">^</span><span class="mi">2</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>solve_fixed_point (generic function with 3 methods)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>calculate_height_v1 (generic function with 3 methods)
 </pre></div>
 </div>
 </div>
@@ -885,79 +947,42 @@ For now, we will assume the roots are real; we’ll cover complex numbers in a l
 <p>Now we can call the function in several ways:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 1. No arguments: use both default values.</span>
-<span class="n">solve_fixed_point</span><span class="p">()</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 1. One argument: uses default values for y0 and v0.</span>
+<span class="c"># This calculates the height of an object dropped from the ground after 3 seconds.</span>
+<span class="n">calculate_height_v1</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 1.1071487177940904
-Iteration 2: x = 1.1466039045135867
-Iteration 3: x = 1.1595864584933437
-Iteration 4: x = 1.1636959143671342
-Iteration 5: x = 1.1649805955397385
-Iteration 6: x = 1.165380637446075
-
-Converged after 6 iterations.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.165380637446075
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-44.145
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 2. One argument: overrides the first default value (δ).</span>
-<span class="n">solve_fixed_point</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 2. Two arguments: overrides y0, but uses the default for v0.</span>
+<span class="c"># This calculates the height of an object dropped from a 100m cliff after 3 seconds.</span>
+<span class="n">calculate_height_v1</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 1.1071487177940904
-Iteration 2: x = 1.1466039045135867
-Iteration 3: x = 1.1595864584933437
-Iteration 4: x = 1.1636959143671342
-Iteration 5: x = 1.1649805955397385
-Iteration 6: x = 1.165380637446075
-Iteration 7: x = 1.1655050559893403
-Iteration 8: x = 1.1655437371644453
-Iteration 9: x = 1.1655557615495353
-Iteration 10: x = 1.165559499298558
-
-Converged after 10 iterations.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.165559499298558
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55.855
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 3. Two arguments: overrides both default values.</span>
-<span class="n">solve_fixed_point</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># 3. Three arguments: overrides both default values.</span>
+<span class="c"># An object THROWN UPWARDS at 20 m/s from a 100m cliff. Height after 3 seconds.</span>
+<span class="n">calculate_height_v1</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">20.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 0.7853981633974483
-Iteration 2: x = 1.0038848218538872
-Iteration 3: x = 1.108697830869966
-Iteration 4: x = 1.147128141357208
-Iteration 5: x = 1.1597539140293118
-Iteration 6: x = 1.1637484136986498
-Iteration 7: x = 1.1649969581251391
-Iteration 8: x = 1.1653857278508495
-Iteration 9: x = 1.1655066387105377
-Iteration 10: x = 1.1655442291805418
-Iteration 11: x = 1.165555914492745
-Iteration 12: x = 1.1655595468401398
-
-Converged after 12 iterations.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1655595468401398
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>115.85499999999999
 </pre></div>
 </div>
 </div>
@@ -973,87 +998,46 @@ Converged after 12 iterations.
 </pre></div>
 </div>
 <p>When calling the function, you also use the names to pass values, and their order doesn’t matter.</p>
-<p>Let’s add a <code class="docutils literal notranslate"><span class="pre">maxiter</span></code> keyword argument to our solver to prevent it from running forever.</p>
+<p>Let’s improve our function by making the acceleration due to gravity, <code class="docutils literal notranslate"><span class="pre">g</span></code>, a keyword argument. This makes it easy to model the same scenario on different planets without changing the positional arguments.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">solve_fixed_point_v2</span><span class="p">(</span><span class="n">δ</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span><span class="w"> </span><span class="n">maxiter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">maxiter</span>
-<span class="w">        </span><span class="n">x_prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
-<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atan</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x_prev</span><span class="p">)</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Iteration &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: x = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<span class="w">        </span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x_prev</span><span class="p">)</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="n">δ</span>
-<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Converged after &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; iterations.&quot;</span><span class="p">)</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span>
-<span class="w">        </span><span class="k">end</span>
-<span class="w">    </span><span class="k">end</span>
-<span class="w">    </span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Did not converge within &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">maxiter</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; iterations.&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">calculate_height</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">v0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span><span class="w"> </span><span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">y0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v0</span><span class="o">*</span><span class="n">t</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">t</span><span class="o">^</span><span class="mi">2</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>solve_fixed_point_v2 (generic function with 3 methods)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>calculate_height (generic function with 3 methods)
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now we can provide the optional positional arguments (<code class="docutils literal notranslate"><span class="pre">δ</span></code>, <code class="docutils literal notranslate"><span class="pre">x0</span></code>) and the keyword argument (<code class="docutils literal notranslate"><span class="pre">maxiter</span></code>) in a clear and flexible way.</p>
+<p>Now we can provide the optional positional arguments (<code class="docutils literal notranslate"><span class="pre">y0</span></code>, <code class="docutils literal notranslate"><span class="pre">v0</span></code>) and the keyword argument (<code class="docutils literal notranslate"><span class="pre">g</span></code>) in a clear and flexible way.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Use default values for δ and x0, but specify maxiter.</span>
-<span class="n">solve_fixed_point_v2</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Use default values for y0 and v0, but specify &#39;g&#39; for the Moon.</span>
+<span class="c"># Height of an object dropped on the Moon (g ≈ 1.62) after 3 seconds.</span>
+<span class="n">calculate_height</span><span class="p">(</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">g</span><span class="o">=</span><span class="mf">1.62</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 1.1071487177940904
-Iteration 2: x = 1.1466039045135867
-Iteration 3: x = 1.1595864584933437
-Iteration 4: x = 1.1636959143671342
-Iteration 5: x = 1.1649805955397385
-
-Did not converge within 5 iterations.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1649805955397385
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-7.290000000000001
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Specify δ and maxiter, but use the default x0.</span>
-<span class="c"># Note that the keyword argument can be placed anywhere after the semicolon.</span>
-<span class="n">solve_fixed_point_v2</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">;</span><span class="w"> </span><span class="n">maxiter</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Specify y0 and g, but use the default v0.</span>
+<span class="c"># Height of an object dropped from 100m on Mars (g ≈ 3.71) after 3 seconds.</span>
+<span class="n">calculate_height</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">;</span><span class="w"> </span><span class="n">g</span><span class="o">=</span><span class="mf">3.71</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 1: x = 1.1071487177940904
-Iteration 2: x = 1.1466039045135867
-Iteration 3: x = 1.1595864584933437
-Iteration 4: x = 1.1636959143671342
-Iteration 5: x = 1.1649805955397385
-Iteration 6: x = 1.165380637446075
-Iteration 7: x = 1.1655050559893403
-Iteration 8: x = 1.1655437371644453
-Iteration 9: x = 1.1655557615495353
-Iteration 10: x = 1.165559499298558
-Iteration 11: x = 1.1655606611549096
-Iteration 12: x = 1.1655610223095458
-Iteration 13: x = 1.1655611345717263
-Iteration 14: x = 1.165561169467562
-
-Converged after 14 iterations.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.165561169467562
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>83.305
 </pre></div>
 </div>
 </div>
@@ -1127,7 +1111,13 @@ Converged after 14 iterations.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-and-hyperbolic-functions">1.3.1. Trigonometric and Hyperbolic Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ramanujan-s-constant">1.3.2. Example: Ramanujan’s Constant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-curiosities-almost-integers">1.3.2. Numerical Curiosities: Almost Integers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-1-standard-floating-point-arithmetic">1.3.2.1. Attempt 1: Standard Floating-Point Arithmetic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-2-using-high-precision-arithmetic">1.3.2.2. Attempt 2: Using High-Precision Arithmetic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-3-formatting-the-output-for-clarity">1.3.2.3. Attempt 3: Formatting the Output for Clarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-near-integer-e-pi-pi">1.3.2.4. Another Near-Integer: <span class="math notranslate nohighlight">\(e^\pi - \pi\)</span></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-roots-of-a-quadratic">1.3.3. Example: Real Roots of a Quadratic</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-defined-functions">1.3.4. User-Defined Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-assignment-form">1.3.4.1. Compact Assignment Form</a></li>
