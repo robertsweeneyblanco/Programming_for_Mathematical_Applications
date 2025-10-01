@@ -1,8 +1,9 @@
--44,-58,46
-72,55,78
-4,-90,-12
-92,-58,-97
-70,-32,-61
-56,52,74
-15,-82,-16
--89,50,-21
+Here are some random strings:
+xnluhsxogmyjyhvcekmq
+zjggxsoxqixzsuczrnkg
+byehkvyyrkbntouthzjf
+vgsxpukrbapxioymgywm
+yhjxvfdozcvolpwliwkk
+
+Here are some Fibonacci numbers:
+1 1 2 3 5 8 13 21 34 55 89 144
