@@ -1,3 +1,7 @@
 # Sparse Matrices
 
-After studying matrices and their application throughout the book, this chapter will introduce different matrix designs for sparse matrices which improves performance both in terms of time and memory.   
+After studying matrices and their application throughout the book, this chapter introduces a critical optimization for computational science: **sparse matrix storage**. In many of the most important real-world problems, the matrices involved are enormous, often with millions or even billions of rows and columns.
+
+These massive matrices share a common property: they are **sparse**, meaning the vast majority of their entries are zero. Trying to store these matrices as a standard dense 2D array is not just inefficient, it's computationally impossible as it would require terabytes of memory. This chapter is dedicated to the clever data structures that let us *only* store the non-zero values and their locations. We'll explore the trade-offs of different designs, from the intuitive "Coordinate" (COO) format to the high-performance **Compressed Sparse Column (CSC)** format used in professional libraries.
+
+We'll then see how to put this theory into practice using Julia's built-in `SparseArrays` module. You'll learn how to create, manipulate, and visualize these matrices, as well as the correct high-performance method for constructing them. Finally, we'll see how powerful this concept is by connecting it back to our previous chapter: we will discover that a **graph is just a sparse matrix in disguise**. We'll use this insight to implement graph algorithms and build one of the most famous algorithms of the modern era: Google's **PageRank**.
